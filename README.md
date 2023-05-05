@@ -24,6 +24,6 @@ cd../Nodejs
 npm init
 npm install
 node index.js
-
+open your browser on http://localhost:3000/
 </pre>
 
