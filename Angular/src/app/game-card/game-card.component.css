@@ -2,13 +2,14 @@
     /* background-image: url("../../assets/images/bgblur.jpg");
     background-repeat: no-repeat;
     background-size: cover; */
-    background-color: black;
+    /* background-color: black; */
     font-family: 'Nova Flat';
-    width: 60%;
+    width: 800px;
     color: white;
     justify-content: space-between;
     /* align-items: center; */
     transition: transform 0.3s ease;
+    margin: 5px;
 
 }
 

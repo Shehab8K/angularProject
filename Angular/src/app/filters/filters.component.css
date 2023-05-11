@@ -1,0 +1,29 @@
+.container {
+    font-family: 'Nova Flat';
+    width: 300px;
+    color: white;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.search {
+    border: none;
+    margin: 2px;
+}
+
+.search .search-btn {
+    border-radius: 0px 0px 0px 0px;
+}
+
+i {
+    transition: transform 0.3s ease;
+}
+
+.search-btn:hover i {
+    transform: scale(1.15);
+}
+
+hr{
+    width: 80%;
+    border: 1px solid gray;
+}

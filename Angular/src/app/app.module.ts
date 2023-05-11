@@ -4,11 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameCardComponent } from './game-card/game-card.component';
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameCardComponent
+    GameCardComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
