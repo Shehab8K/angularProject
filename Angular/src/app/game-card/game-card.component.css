@@ -31,6 +31,8 @@ img {
 .image {
     position: relative;
     display: inline-block;
+    overflow: hidden;
+
 }
 
 .overlay {
