@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+.hamo{
+    background-image: url("assets/images/r.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: rgb(26, 25, 25); */
+}
