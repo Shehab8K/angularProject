@@ -1,6 +1,13 @@
 const express = require('express');
 const userController = require('./controllers/userController');
+const productController = require('./controllers/ProductController');
+
 const app = express();
+//enable parsing of json object in the body
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+// app.use(express.static('public'));
+
 
 // Require Database
 const connectDB = require('./db.js');
@@ -10,7 +17,8 @@ require('dotenv').config({path: __dirname + '/.env'})
 connectDB(process.env.DATABASE_NAME);
 
 // Middleware to parse request body as JSON
-app.use(express.json());
+// app.use(express.json());
+app.use('/api/products',productController)
 
 app.get('/',(req,res)=>{
     res.send("Hello Shehab");
