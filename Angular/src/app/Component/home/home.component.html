@@ -174,13 +174,13 @@
   <div class="d-flex justify-content-center col-12">
     <button (click)="ShowPrevious()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="prev col-1"> ❮ </button>
 
-    <div class="container row col-10 shadow">
+    <div class="container row col-10 shadow-lg">
       <div class="image col-md-8 ">
         <img [src]="images[currentImageIndex].src" />
       </div>
 
-      <div class="col-md-4  d-flex flex-column ">
-        <h1>{{images[currentImageIndex].title}}</h1>
+      <div class="col-md-4 d-flex flex-column right-side">
+        <p class="container text-white fs-3">{{images[currentImageIndex].title}}</p>
 
         <div class="side d-flex gap-3">
 

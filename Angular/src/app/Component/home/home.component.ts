@@ -41,10 +41,10 @@ export class HomeComponent {
       title: 'Game 2',
       content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       photo: [
-        'https://i.ytimg.com/vi/_fPJoRFGZpc/maxresdefault.jpg',
         'https://th.bing.com/th/id/OIP._TdlTXLwsbDRxzgoAga19wEsC0?pid=ImgDet&rs=1',
+        'https://i.ytimg.com/vi/h6sH1KYID44/maxresdefault.jpg',
         'https://th.bing.com/th/id/OIP.pHS9-oSfeh2Y2BtzLdoRzAAAAA?pid=ImgDet&w=255&h=255&rs=1',
-        'https://i.ytimg.com/vi/h6sH1KYID44/maxresdefault.jpg'
+        'https://i.ytimg.com/vi/_fPJoRFGZpc/maxresdefault.jpg',
       ]
     },
     {
@@ -52,10 +52,10 @@ export class HomeComponent {
       title: 'Game 3',
       content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       photo: [
-        'https://i.ytimg.com/vi/_fPJoRFGZpc/maxresdefault.jpg',
         'https://th.bing.com/th/id/OIP._TdlTXLwsbDRxzgoAga19wEsC0?pid=ImgDet&rs=1',
+        'https://i.ytimg.com/vi/_fPJoRFGZpc/maxresdefault.jpg',
+        'https://i.ytimg.com/vi/h6sH1KYID44/maxresdefault.jpg',
         'https://th.bing.com/th/id/OIP.pHS9-oSfeh2Y2BtzLdoRzAAAAA?pid=ImgDet&w=255&h=255&rs=1',
-        'https://i.ytimg.com/vi/h6sH1KYID44/maxresdefault.jpg'
       ]
     }
   ];
@@ -104,12 +104,12 @@ export class HomeComponent {
       this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
     }, 4000);
   }
-  // ngOnInit1() {
-  //   this.timer = setInterval(() => {
-  //     this.currentImageIndex = (this.currentImageIndex + 1) % this.images.photo.length;
-  //   }, 4000);
-  // }
-  
+  ngOnInit1() {
+    this.timer = setInterval(() => {
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.images[this.currentImageIndex].photo.length;
+    }, 4000);
+  }
+
   Stop(){
     clearInterval(this.timer);
   }
