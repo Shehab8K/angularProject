@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+div, footer {
+    box-sizing: border-box;
+}
+
+footer.site-footer {
+    padding:2vw;
+    background: #222222;
+    color: #999999;
+    font-size: 10pt;
+}
+
+div#footer-container {
+    margin: 0 auto;
+    transition: all 0.2s ease;
+}
+
+div#footer-grid {
+    display: flex;
+    padding-bottom: 3vh;
+}
+
+footer#footer-3-cols div#left-footer-section {
+    flex-basis: 33.33%;
+    border-right: 1px solid #444444;
+}
+
+footer#footer-3-cols div#second-footer-section {
+    flex-basis: 33.33%;
+    border-right: 1px solid #444444;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+footer#footer-3-cols div#right-footer-section {
+    flex-basis: 33.33%;
+    padding-left: 30px;
+}
+
+footer#footer-3-cols div#footer-logo {
+    width: 2vw;
+    margin-right: 1vw;
+}
+
+footer#footer-3-cols div#footer-search input {
+    font-family: "Open Sans", sans-serif;
+    border: 2px solid #999999;
+    background: #2a2a2a;
+    outline: none;
+    color: #999999;
+}
+
+footer#footer-3-cols div#footer-search button {
+    font-family: "Open Sans", sans-serif;
+    border: 2px solid #999999;
+    background: transparent;
+    color: #cecece;
+    cursor: pointer;
+}
+
+footer#footer-3-cols div#footer-search button:hover {
+    background: #cecece;
+    color: #666666;
+    border: 2px solid #666666;
+    transition: all 0.25s ease;
+}
+
+footer#footer-3-cols div.footer-section h3 {
+    margin: 0;
+    margin-bottom: 3vh;
+}
+
+footer#footer-3-cols div#footer-logo img {
+    width: 100%;
+}
+
+/* footer#footer-3-cols div.footer-information p {
+    margin-top: 10px;
+} */
+
+/* footer#footer-3-cols div.footer-information p:first-child {
+    margin-top: 30px;
+} */
+
+/* footer#footer-3-cols div.footer-information p:last-child {
+    margin-bottom: 0;
+} */
+
+/* footer#footer-3-cols div.footer-information p img {
+    margin-right: 0.75em;
+} */
+
+
+/* footer#footer-3-cols div.footer-section ul {
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding: 0;
+} */
+
+footer#footer-3-cols div.footer-links ul li, footer#footer-3-cols div.footer-links ul li a   {
+    list-style: none;
+    color: #999999;
+    line-height: 1.38em;
+    margin-bottom: 1em;
+}
+
+/* footer#footer-3-cols div.footer-links ul li:last-child, footer#footer-3-cols div.footer-links ul li a:last-child   {
+    margin-bottom: 0;
+} */
+
+footer#footer-3-cols div.footer-section ul li a:hover {
+    color:#00bdc6;
+    transition: all 0.2s ease;
+}
+
+footer#footer-3-cols div#copyright-information {
+    border-top: 1px solid #444444;
+    padding: 3vh 0 0 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+footer#footer-3-cols div#copyright-information div#social-buttons {
+    margin-left: auto;
+
+}
+
+footer#footer-3-cols div#copyright-information div#social-buttons img {
+    margin-left: 0.68em;
+    cursor: pointer;
+    font-size: 14pt;
+}
+
+
+@media screen and (max-width: 960px){
+
+    div#footer-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    div#footer-grid {
+        flex-direction: column;
+        width: 480px;
+        margin: 0 auto;
+        padding-bottom: 60px;
+    }
+
+    footer#footer-3-cols div#left-footer-section {
+        border-right: 0;
+        padding-bottom: 30px;
+    }
+
+    footer#footer-3-cols div#second-footer-section {
+        border-right: none;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 30px;
+
+    }
+
+    footer#footer-3-cols div.footer-section {
+        padding-top: 30px;
+    }
+
+    footer#footer-3-cols div.footer-section h3 {
+        text-align: center;
+    }
+
+    footer#footer-3-cols div.footer-section:first-child {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    footer#footer-3-cols div#right-footer-section {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    footer#footer-3-cols div#second-footer-section ul,
+    footer#footer-3-cols div#right-footer-section ul {
+        margin: 0;
+        padding: 0;
+        font-size: 11pt;
+        text-align: center;
+    }
+
+    footer#footer-3-cols div.footer-links ul li {
+        margin: 0;
+    }
+
+    footer#footer-3-cols div.footer-links ul li a {
+        margin: 0;
+        display: block;
+        padding: 15px;
+        background: #2a2a2a;
+        border-bottom: 1px solid #444444;
+        text-decoration: none;
+
+    }
+
+    footer#footer-3-cols div.footer-links ul li:last-child a {
+        border-bottom: none;
+    }
+
+    footer#footer-3-cols div#footer-search input {
+        width: calc(100% - 77px);
+    }
+
+    footer#footer-3-cols div#copyright-information {
+        display: block;
+        width: 480px;
+        margin: 0 auto;
+    }
+
+    footer#footer-3-cols div#copyright-information div#social-buttons {
+        padding: 15px 0;
+    }
+
+    footer#footer-3-cols div#copyright-information div#social-buttons img:first-child {
+        margin-left: 0;
+    }
+
+    footer#footer-3-cols div#copyright-information div#footer-logo-section {
+        display: block;
+        align-items: normal;
+    }
+
+    footer#footer-3-cols div#copyright-information div#footer-logo {
+        display: block;
+        width: 100%;
+        margin: 0;
+    }
+
+    footer#footer-3-cols div#copyright-information div#footer-logo img {
+        width: 30px;
+        text-align: center;
+    }
+
+    footer#footer-3-cols div#copyright-information div#copyright-text {
+        display: block;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    footer#footer-3-cols div#copyright-information div#social-buttons i.fa {
+        font-size: 24pt;
+    }
+}
+
+@media screen and (max-width: 576px) {
+
+    div#footer-grid {
+        width: 100%;
+    }
+
+    footer#footer-3-cols div#footer-search input {
+        width: calc(100% - 77px);
+    }
+
+    footer#footer-3-cols div.footer-information {
+        margin: 0 auto;
+    }
+
+    footer#footer-3-cols div#copyright-information {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    footer#footer-3-cols div#copyright-information div#copyright-text {
+        width: 100%;
+    }
+
+    footer#footer-3-cols div#copyright-information div#social-buttons {
+        width: 100%;
+    }
+}
+
+
+
