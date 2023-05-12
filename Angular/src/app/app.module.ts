@@ -7,13 +7,15 @@ import { HomeCardsComponent } from './home-cards/home-cards.component';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './Component/home/home.component';
+import { FooterComponent } from './Component/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeCardsComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

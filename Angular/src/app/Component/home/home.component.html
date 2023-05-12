@@ -167,19 +167,19 @@
 </video>
 <!-- <img class="container-fluid" src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/page_bg_english.jpg?t=1683671735"> -->
 
-<section class="container d-flex flex-column">
+<section class="container d-flex flex-column mb-2">
   <p class="container text-white">Trending Games</p>
 
-  <div class="d-flex justify-content-center col-12">
+  <div class="d-flex justify-content-center col-12 content">
     <button (click)="ShowPrevious()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="prev col-1"> ❮ </button>
 
-    <div class="container row col-10 shadow">
+    <div class="container row col-10 shadow-lg">
       <div class="image col-md-8 ">
         <img [src]="images[currentImageIndex].src" />
       </div>
 
-      <div class="col-md-4  d-flex flex-column ">
-        <h1>{{images[currentImageIndex].title}}</h1>
+      <div class="col-md-4 d-flex flex-column right-side">
+        <p class="container text-white fs-3">{{images[currentImageIndex].title}}</p>
 
         <div class="side d-flex gap-3">
 
@@ -231,3 +231,4 @@
 
 <!-- Your Cards are there -->
 </section>
+<app-footer></app-footer>
