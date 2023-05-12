@@ -1,3 +1,11 @@
+## introduction
+MEAN is a technology stack used for building full stack applications. It's a combination of the following technologies:
+
+- MongoDB—document database
+- Express—a Node.js framework for building APIs
+- Angular—front-end application framework
+- Node.js—server-side JavaScript runtime environment
+
 ## Installation & Run
 <pre>
 git clone https://github.com/asmaagamal871/angularProject.git
@@ -24,7 +32,7 @@ cd Nodejs
 npm init
 npm install
 node index.js
-open your browser on http://localhost:3000/
+Server will be listening on port 3000
 </pre>
 
 ## API Testing 
