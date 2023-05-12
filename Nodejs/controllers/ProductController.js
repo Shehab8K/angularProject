@@ -16,7 +16,7 @@ const router = express.Router();
 // router.get('/test',(req,res)=>{
 //     res.send("hello");
 //    });
-//all courses
+//all products
 router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
