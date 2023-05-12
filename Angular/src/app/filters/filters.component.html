@@ -1,5 +1,4 @@
 <div class="container bg-dark d-flex flex-column shadow  mb-3 p-2  rounded">
-    <!-- <input class="form-control search"> -->
     <div class="input-group mb-3 search">
         <input type="text" class="form-control" placeholder="Search by tag">
         <div class="input-group-append">
@@ -9,7 +8,41 @@
     <div class="m-2">
         <h5>Price</h5>
         <hr>
-        <div class="form-check">
+        <form [formGroup]="priceRange">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="range1" formControlName="range1"
+                    (change)="onChangepriceRange()">
+                <label class="form-check-label" for="range1">
+                    < 20.0$</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="range2" formControlName="range2"
+                    (change)="onChangepriceRange()">
+                <label class="form-check-label" for="range2"> 20.0$ - 40.0$</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="range3" formControlName="range3"
+                    (change)="onChangepriceRange()">
+                <label class="form-check-label" for="range3">40.0$ - 60.0$</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="range4" formControlName="range4"
+                    (change)="onChangepriceRange()">
+                <label class="form-check-label" for="range4"> 60.0$ - 80.0$</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="range5" formControlName="range5"
+                    (change)="onChangepriceRange()">
+                <label class="form-check-label" for="range5">80.0$ - 100.0$</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="range6" formControlName="range6"
+                    (change)="onChangepriceRange()">
+                <label class="form-check-label" for="range6">100.0$ < </label>
+            </div>
+        </form>
+
+        <!--   <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="price_range_1">
             <label class="form-check-label" for="price_range_1">
                 < 20.0$ </label>
@@ -42,14 +75,50 @@
             <input class="form-check-input" type="checkbox" value="" id="price_range_6">
             <label class="form-check-label" for="price_range_6">
                 100.0$ < </label>
-        </div>
+        </div>-->
+    </div>
+
+    <div class="m-2">
+        <h5>Tags</h5>
+        <hr>
+        <select class="selectpicker" multiple data-live-search="true" [(ngModel)]="tags" (change)="onChangeTags()">
+            <option>action</option>
+            <option>adventure</option>
+            <option>sports</option>
+            <option>sci-fi</option>
+        </select>
+    </div>
+    <div class="m-2">
+        <h5>Type</h5>
+        <hr>
+        <select class="selectpicker" multiple data-live-search="true" [(ngModel)]="types" (change)="onChangeTypes()">
+            <option>Singleplayer</option>
+            <option>Multiplayer</option>
+        </select>
     </div>
     <div class="m-2">
         <h5>Platform</h5>
         <hr>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="apple" value="apple">
-            <label class="form-check-label" for="apple">MacOS</label>
+
+        <form [formGroup]="os">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="mac" formControlName="mac" (change)="onChangeOs()">
+                <label class="form-check-label" for="mac">MacOS</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="windows" formControlName="windows"
+                    (change)="onChangeOs()">
+                <label class="form-check-label" for="windows"> Windows</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="linux" formControlName="linux"
+                    (change)="onChangeOs()">
+                <label class="form-check-label" for="linux">Linux</label>
+            </div>
+        </form>
+        <!-- <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="mac" value="mac">
+            <label class="form-check-label" for="mac">MacOS</label>
         </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="windows" value="windows">
@@ -58,16 +127,7 @@
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="linux" value="linux">
             <label class="form-check-label" for="linux">Linux</label>
-        </div>
+        </div> -->
     </div>
-    <div class="m-2">
-        <h5>Tags</h5>
-        <hr>
-        <!-- <select class="js-example-basic-multiple" name="tags[]" multiple="multiple">
-            <option value="action">action</option>
-            <option value="adv">adventure</option>
-            <option value="scifi">sci-fi</option>
-            <option value="sports">sports</option>
-          </select> -->
-    </div>
+
 </div>
