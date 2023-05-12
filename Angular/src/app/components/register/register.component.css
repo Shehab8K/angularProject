@@ -1,0 +1,43 @@
+*{
+  color: white;
+  font-family: 'Nova Flat';
+}
+html,body{
+  margin: 0;
+}
+
+body{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden; /* clip the image */
+  z-index: -1;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: calc(100% + 100px);
+  height: calc(100% + 100px);
+  filter: blur(20px);
+  background-image: url("/assets/images/modern-battlefield.png");
+  background-size: cover;
+  z-index: -1;
+}
+#main{
+  width: 50%;
+}
+.container::before {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-image: url("/assets/images/stone.jpg");
+  background-size: cover;
+  opacity: 0.6;
+  z-index: -1;
+}
