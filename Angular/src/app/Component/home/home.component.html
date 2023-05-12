@@ -1,0 +1,233 @@
+<!-- <section class="container d-flex justify-content-center align-items-center">
+  <nav class="col-1">
+    <ul>
+      <li class="active">
+        <i class="fas fa-home"></i>
+      </li>
+      <li>
+        <i class="fas fa-user-friends"></i>
+      </li>
+      <li>
+        <i class="fas fa-chart-pie"></i>
+      </li>
+      <li>
+        <i class="fas fa-shopping-bag"></i>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="right-main col-11">
+
+    <div class="main-top d-flex justify-content-between mb-3">
+      <div class="search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search..." />
+      </div>
+      <div class="top d-flex gap-4">
+        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-user-circle"></i>
+      </div>
+    </div>
+
+    <div class="main-flex row ">
+
+      <main class="col-md-7">
+        <header>
+          <div class="tag">New</div>
+          <h1>Marvel's Spider-Man: Myles Morals</h1>
+          <div class="purchase">
+            <h2>$99.99</h2>
+            <button>Purchase</button>
+          </div>
+          <div class="spiderman-img">
+            <img
+              src="https://image.api.playstation.com/vulcan/ap/rnd/202008/1020/D2APa7eBrNew2zVipbfI0QXt.png"
+              alt="spiderman"
+              draggable="false"
+            />
+          </div>
+        </header>
+      </main>
+      <div class="col-md-1"></div>
+      <aside class="col-md-4 offset-md-1 ">
+        <div class="library">
+          <h3>About Us</h3>
+          <div class="library-card">
+            <div class="game-logo">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0747/3829/products/mL2363_1024x1024.jpg?v=1571445542"
+                alt=""
+              />
+            </div>
+            <div class="game-details">
+              <h4>Red Dead Redemption</h4>
+              <p>PS4</p>
+            </div>
+            <i class="fas fa-download"></i>
+          </div>
+          <div class="library-card">
+            <div class="game-logo">
+              <img
+                src="https://www.vgr.com/wp-content/uploads/2020/05/GTA-V-Premium-Edition-Free-Giveaway-Epic-Games-Store.jpg"
+                alt=""
+              />
+            </div>
+            <div class="game-details">
+              <h4>Gran Theft Auto V</h4>
+              <p>PS4 & PS5</p>
+            </div>
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="library-card">
+            <div class="game-logo">
+              <img
+                src="https://i2.wp.com/technosports.co.in/wp-content/uploads/2020/10/Screenshot-189.png?fit=1920%2C1080&ssl=1"
+                alt=""
+              />
+            </div>
+            <div class="game-details">
+              <h4>Fifa 21</h4>
+              <p>PS4</p>
+            </div>
+            <i class="fas fa-download"></i>
+          </div>
+          <hr />
+          <h3>Social</h3>
+          <div class="library-card">
+            <div class="game-logo">
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
+                alt=""
+              />
+            </div>
+            <div class="game-details">
+              <h4>Adramelech</h4>
+              <p>Playing Resident Evil Village</p>
+            </div>
+            <div class="online"></div>
+          </div>
+          <div class="library-card">
+            <div class="game-logo">
+              <img
+                src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/man4-512.png"
+                alt=""
+              />
+            </div>
+            <div class="game-details">
+              <h4>Phase Runner</h4>
+              <p>Offline</p>
+            </div>
+            <div class="offline"></div>
+          </div>
+          <div class="library-card">
+            <div class="game-logo">
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png"
+                alt=""
+              />
+            </div>
+            <div class="game-details">
+              <h4>Elena</h4>
+              <p>Playing The Witcher 3: Wild Hunt</p>
+            </div>
+            <div class="online"></div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+
+  </div>
+
+
+</section> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<video class="container-fluid" loop="" muted="" autoplay="" playsinline="" poster="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/page_bg_english.jpg?t=1683671735" class="fullscreen-bg__video">
+  <source src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/mp4_page_bg_english.mp4?t=1683671735" type="video/mp4">
+</video>
+<!-- <img class="container-fluid" src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/page_bg_english.jpg?t=1683671735"> -->
+
+<section class="container d-flex flex-column">
+  <p class="container text-white">Trending Games</p>
+
+  <div class="d-flex justify-content-center col-12">
+    <button (click)="ShowPrevious()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="prev col-1"> ❮ </button>
+
+    <div class="container row col-10 shadow">
+      <div class="image col-md-8 ">
+        <img [src]="images[currentImageIndex].src" />
+      </div>
+
+      <div class="col-md-4  d-flex flex-column ">
+        <h1>{{images[currentImageIndex].title}}</h1>
+
+        <div class="side d-flex gap-3">
+
+          <!-- <img [src]="images[currentImageIndex].image" /> -->
+          <img *ngFor="let image of images[currentImageIndex].photo;
+          let i = index" [src]="image" (mouseover)="setCurrentImage(i)" (mouseout)="onMouseOut()">
+
+          <!-- <div *ngFor="let slide of images; let i = index">
+            <img *ngFor="let photo of slide.photo;
+            let j = index" [src]="photo" (mouseover)="setCurrentImage(i, j)">
+          </div> -->
+
+        </div>
+        <!-- <div class="side d-flex gap-2">
+          <img src="https://i.ytimg.com/vi/_fPJoRFGZpc/maxresdefault.jpg">
+          <img src="https://th.bing.com/th/id/OIP._TdlTXLwsbDRxzgoAga19wEsC0?pid=ImgDet&rs=1">
+        </div> -->
+        <!-- <div class="side d-flex gap-2">
+          <img src="https://th.bing.com/th/id/OIP.pHS9-oSfeh2Y2BtzLdoRzAAAAA?pid=ImgDet&w=255&h=255&rs=1">
+          <img src="https://i.ytimg.com/vi/h6sH1KYID44/maxresdefault.jpg">
+        </div> -->
+      </div>
+    </div>
+
+
+    <!-- <div class="slideshow">
+      <div class="content" *ngFor="let slide of slides; let i = index"
+           [class.active]="isActiveSlide(i)">
+        <h2>{{ slide.title }}</h2>
+        <p>{{ slide.description }}</p>
+      </div>
+      <div class="dots">
+        <span *ngFor="let slide of slides; let i = index"
+              [class.active]="isActiveSlide(i)"
+              (click)="setActiveSlide(i)"></span>
+      </div>
+    </div> -->
+    <button (click)="ShowNext()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="next col-1"> ❯ </button>
+  </div>
+
+<!-- <div class="container">
+  <img [src]="currentindex">
+</div>
+<ul>
+  <li *ngFor="let image of image">
+    <img [src]="image.src" [alt]="image.alt" (mouseover)="setCurrentImage(image)">
+  </li>
+</ul> -->
+
+<!-- Your Cards are there -->
+</section>

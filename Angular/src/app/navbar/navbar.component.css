@@ -17,6 +17,7 @@ body {
     position: fixed;
     line-height: 65px;
     text-align: center;
+    
 }
 
 .nav div.logo {
@@ -68,17 +69,6 @@ body {
     color: grey;
 }
 
-
-/* Home section */
-
-.home {
-    width: 100%;
-    height: 100vh;
-    background-image: url(https://images.unsplash.com/photo-1498550744921-75f79806b8a7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b0f6908fa5e81286213c7211276e6b3d&auto=format&fit=crop&w=1500&q=80);
-    background-position: center top;
-	background-size:cover;
-}
-
 .navTrigger {
     display: none;
 }
@@ -88,6 +78,11 @@ body {
     padding-bottom: 20px;
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 
@@ -114,6 +109,7 @@ body {
     .nav div.show_list {
         height: auto;
         display: none;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     }
     .nav div.main_list ul {
         flex-direction: column;
@@ -122,8 +118,7 @@ body {
         right: 0;
         left: 0;
         bottom: 0;
-        background-color: #111;
-        /*same background color of navbar*/
+        background-color: #1B2838;
         background-position: center top;
     }
     .nav div.main_list ul li {
@@ -333,7 +328,8 @@ body {
 
 .affix {
     padding: 0;
-    background-color: #111;
+    background-color: #1B2838;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 

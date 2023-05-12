@@ -1,22 +1,22 @@
-    <div class="contenedorCards" >
+    <div class="Cards " >
         <div class="card" *ngFor="let card of products">
           <div class="wrapper">
             <div class="colorProd" [style.background-color]="card.color"></div>
             <div class="imgProd" [style.background-image]="'url(' + card.image + ')'"></div>
             <div class="infoProd">
-              <p class="nombreProd">{{ card.name }}</p>
+              <p class="nameProd">{{ card.name }}</p>
               <p class="extraInfo">Release Date: {{ card.releaseDate }}</p>
               <div class="actions">
-                <div class="preciosGrupo">
-                  <p class="precio precioOferta">{{ card.discountPrice }}</p>
-                  <p class="precio precioProd">{{ card.price }}</p>
+                <div class="pricesGroup">
+                  <p class="price priceProd">{{ card.discountPrice }}</p>
+                  <p class="price discountPrice">{{ card.price }}</p>
                 </div>
-                <div class="icono action aFavs">
+                <div class="icon action Fav">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                     <path d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z"></path>
                   </svg>
                 </div>
-                <div class="icono action alCarrito">
+                <div class="icon action toCart">
                   <svg class="inCart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                     <title>remove from cart</title>
                     <path d="M30 22H12M2 6h6l10 40h32l3.2-9.7"></path>

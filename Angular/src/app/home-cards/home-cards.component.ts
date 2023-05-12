@@ -20,7 +20,7 @@ export class HomeCardsComponent implements AfterViewInit {
       image: 'https://firebasestorage.googleapis.com/v0/b/fotos-3cba1.appspot.com/o/blackpanter.png?alt=media&token=de5d3491-e31f-4d91-aa3d-1eb15827d954',
       color: '#1d1d1d',
       releaseDate: '31/03/2021',
-      price: 2799
+      discountPrice: 2799
     },
     {
       name: 'Nendoroid Fate/Grand Order: Saber/Arthur Pendragon Ascension',
@@ -45,15 +45,15 @@ export class HomeCardsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     //Producto a favoritos
-    const aFavs = this.el.nativeElement.querySelectorAll('.card .aFavs');
-    aFavs.forEach((el: HTMLElement) => {
+    const Fav = this.el.nativeElement.querySelectorAll('.card .Fav');
+    Fav.forEach((el: HTMLElement) => {
       this.renderer.listen(el, 'click', () => {
         el.closest('.card')?.classList.toggle('esFav');
       });
     });
     
-    const alCarrito = this.el.nativeElement.querySelectorAll('.card .alCarrito');
-    alCarrito.forEach((el: HTMLElement) => {
+    const toCart = this.el.nativeElement.querySelectorAll('.card .toCart');
+    toCart.forEach((el: HTMLElement) => {
       this.renderer.listen(el, 'click', () => {
         el.closest('.card')?.classList.toggle('enCarrito');
       });

@@ -35,7 +35,7 @@ body li {
   list-style-type: none;
 }
 
-.contenedorCards {
+.Cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -46,25 +46,25 @@ body li {
   padding: 20px 0;
   box-sizing: border-box;
 }
-.contenedorCards .card {
+.Cards .card {
   width: 300px;
   transition: ease all 0.3s;
 }
-.contenedorCards .card.esFav .wrapper .infoProd .actions .action.aFavs {
+.Cards .card.esFav .wrapper .infoProd .actions .action.Fav {
   transform: rotateX(360deg) scale(1.2);
 }
-.contenedorCards .card.esFav .wrapper .infoProd .actions .action.aFavs svg path,
-.contenedorCards .card.esFav .wrapper .infoProd .actions .action.aFavs svg circle {
+.Cards .card.esFav .wrapper .infoProd .actions .action.Fav svg path,
+.Cards .card.esFav .wrapper .infoProd .actions .action.Fav svg circle {
   fill: #fff;
   transition-delay: 0.2s;
 }
-.contenedorCards .card.enCarrito .wrapper .infoProd .actions .action.alCarrito .inCart {
+.Cards .card.enCarrito .wrapper .infoProd .actions .action.toCart .inCart {
   transform: scale(1);
 }
-.contenedorCards .card.enCarrito .wrapper .infoProd .actions .action.alCarrito .outCart {
+.Cards .card.enCarrito .wrapper .infoProd .actions .action.toCart .outCart {
   transform: scale(0);
 }
-.contenedorCards .card .wrapper {
+.Cards .card .wrapper {
   margin: 60px 10px 10px 10px;
   padding-top: 300px;
   box-sizing: border-box;
@@ -72,13 +72,13 @@ body li {
   box-shadow: 0 0 20px 10px rgba(29, 29, 29, 0.1);
   transition: ease all 0.3s;
 }
-.contenedorCards .card .wrapper:hover {
+.Cards .card .wrapper:hover {
   transform: translateY(-10px);
 }
-.contenedorCards .card .wrapper:hover .imgProd {
+.Cards .card .wrapper:hover .imgProd {
   height: 350px;
 }
-.contenedorCards .card .wrapper .colorProd {
+.Cards .card .wrapper .colorProd {
   display: block;
   position: absolute;
   top: 0;
@@ -87,7 +87,7 @@ body li {
   height: 200px;
   background-color: #b82d44;
 }
-.contenedorCards .card .wrapper .imgProd {
+.Cards .card .wrapper .imgProd {
   background-size: contain;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -97,7 +97,7 @@ body li {
   height: 300px;
   transition: ease all 0.3s;
 }
-.contenedorCards .card .wrapper .infoProd {
+.Cards .card .wrapper .infoProd {
   display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -108,12 +108,12 @@ body li {
     padding: 20px;
     box-sizing: border-box;
 }
-.contenedorCards .card .wrapper .infoProd p {
+.Cards .card .wrapper .infoProd p {
   width: 100%;
   font-size: 14px;
   text-align: center;
 }
-.contenedorCards .card .wrapper .infoProd .nombreProd {
+.Cards .card .wrapper .infoProd .nameProd {
   font-family: "Roboto", sans-serif ;
   margin-bottom: 10px;
   font-size: 16px;
@@ -124,12 +124,12 @@ body li {
   text-overflow: ellipsis;
   display: -webkit-box;
 }
-.contenedorCards .card .wrapper .infoProd .extraInfo {
+.Cards .card .wrapper .infoProd .extraInfo {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-.contenedorCards .card .wrapper .infoProd .actions {
+.Cards .card .wrapper .infoProd .actions {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -140,18 +140,18 @@ body li {
   margin-top: auto;
   padding-top: 10px;
 }
-.contenedorCards .card .wrapper .infoProd .actions .preciosGrupo {
+.Cards .card .wrapper .infoProd .actions .pricesGroup {
   flex-grow: 1;
   position: relative;
 }
-.contenedorCards .card .wrapper .infoProd .actions .preciosGrupo .precio {
+.Cards .card .wrapper .infoProd .actions .pricesGroup .price {
   font-family: "Roboto", sans-serif;
   color: #1d1d1d;
   font-size: 25px;
   font-weight: 600;
   text-align: left;
 }
-.contenedorCards .card .wrapper .infoProd .actions .preciosGrupo .precio.precioOferta {
+.Cards .card .wrapper .infoProd .actions .pricesGroup .price.discountPrice {
   position: absolute;
   left: 0;
   top: -15px;
@@ -159,14 +159,14 @@ body li {
   font-size: 15px;
   text-decoration: line-through;
 }
-.contenedorCards .card .wrapper .infoProd .actions .preciosGrupo .precio.precioOferta:before {
+.Cards .card .wrapper .infoProd .actions .pricesGroup .price.discountPrice:before {
   font-size: 12px;
 }
-.contenedorCards .card .wrapper .infoProd .actions .preciosGrupo .precio:before {
+.Cards .card .wrapper .infoProd .actions .pricesGroup .price:before {
   content: var(--currencyPrefix);
   font-size: 20px;
 }
-.contenedorCards .card .wrapper .infoProd .actions .action {
+.Cards .card .wrapper .infoProd .actions .action {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -181,17 +181,17 @@ body li {
   cursor: pointer;
   color: #1d1d1d;
 }
-.contenedorCards .card .wrapper .infoProd .actions .action svg {
+.Cards .card .wrapper .infoProd .actions .action svg {
   position: absolute;
   transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) all 0.3s;
 }
-.contenedorCards .card .wrapper .infoProd .actions .action svg path,
-.contenedorCards .card .wrapper .infoProd .actions .action svg circle {
+.Cards .card .wrapper .infoProd .actions .action svg path,
+.Cards .card .wrapper .infoProd .actions .action svg circle {
   stroke: currentColor;
   fill: transparent;
   transition: ease all 0.3s;
 }
-.contenedorCards .card .wrapper .infoProd .actions .action.aFavs {
+.Cards .card .wrapper .infoProd .actions .action.Fav {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -200,11 +200,11 @@ body li {
   height: 25px;
   color: #fff;
 }
-.contenedorCards .card .wrapper .infoProd .actions .action.alCarrito svg.inCart {
+.Cards .card .wrapper .infoProd .actions .action.toCart svg.inCart {
   transform: scale(0);
 }
 
-.nombreProd
+.nameProd
 {color:#848484}
 .extraInfo
 {
@@ -214,10 +214,15 @@ body li {
   color: #B3B3B3;
   font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
 }
-.icono svg {
-  color: #fff; 
+.icon svg {
+  color: #848478; 
 }
 .contenedorCards
 {
   background-color: #213C57;
+}
+.card
+{
+  background-color: transparent !important;
+  border:0;
 }
