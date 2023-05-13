@@ -1,5 +1,6 @@
 const express = require('express');
-const multer = require('multer');
+const cors = require('cors');
+
 const userController = require('./controllers/userController');
 const productController = require('./controllers/ProductController');
 
@@ -7,8 +8,9 @@ const app = express();
 //enable parsing of json object in the body
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-// app.use(express.static('uploads'));
-// app.use(express.static('public'));
+
+// Enable CORS for all routes
+app.use(cors());
 
 
 // Require Database
