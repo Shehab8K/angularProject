@@ -1,7 +1,7 @@
-<div class="container bg-dark d-flex flex-row shadow  mb-3 p-2  rounded">
+<div class="container bg-dark d-flex flex-row shadow  mb-3 p-2  rounded" *ngFor="let g of games">
     <div class="d-flex flex-row ">
         <div class="image">
-            <img src="../../assets/images/OIP.jpg">
+            <img src="../../../assets/images/OIP.jpg">
             <div class="overlay">
                 <!-- <i class="fa-solid fa-cart-shopping cart"></i> -->
                 <!-- <button class="btn"> <i class="fa-solid fa-cart-shopping cart p-1 fa-2x"></i></button> -->
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="d-flex flex-column details">
-            <h4>Valorant</h4>
+            <h4 class="game-title">{{g.title}}</h4>
             <div class="d-flex flex-row">
                 <!-- for tags -->
                 <p class="tag p-1 text-center   ">Action</p>

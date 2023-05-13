@@ -18,6 +18,18 @@
 
 }
 
+.game-title {
+    transition: transform 0.3s ease;
+    width: fit-content;
+}
+
+.game-title:hover {
+    /* text-decoration: underline; */
+    /* transform: scale(1.05); */
+    color: #007bff;
+    cursor: pointer;
+}
+
 .details {
     height: 150px;
     margin-left: 15px;
