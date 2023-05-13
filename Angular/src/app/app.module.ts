@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './Component/home/home.component';
 import { FooterComponent } from './Component/footer/footer.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FooterComponent } from './Component/footer/footer.component';
     HomeCardsComponent,
     NavbarComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
