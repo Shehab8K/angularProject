@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'node_modules/bootstrap/dist/css/bootstrap.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+*{
+  margin: 0;
+	padding: 0;
+}
+body{
+  height: 100vh !important;
+}
+
