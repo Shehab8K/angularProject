@@ -44,38 +44,38 @@ router.get("/:id", async (req, res) => {
 });
 
 //create product
-// router.post("/",upload.single('image'), async (req, res) => {
+router.post("/",upload.single('image'), async (req, res) => {
 // const { error } = validateProduct(req.body);
 // if (error) return res.status(400).send(error.details[0].message);
 
-// try {
+try {
 
-//   let imagePath = req.file; // Initialize imagePath variable
+  // let imagePath = req.file; // Initialize imagePath variable
 
-//   if (imagePath) {
-//     imagePath = req.file.path; // Assign imagePath if file is uploaded
-//      res.json(imagePath)
-//   } else {
-//     return res.status(400).send("No image file uploaded");
-//   }
+  // if (imagePath) {
+  //   imagePath = req.file.path; // Assign imagePath if file is uploaded
+  //    res.json(imagePath)
+  // } else {
+  //   return res.status(400).send("No image file uploaded");
+  // }
 
-// const product = await Product.create({
-//   name: req.body.name,
-//   price: req.body.price,
-//   os:req.body.os,
-//   tag:req.body.tag,
-//   type:req.body.type,
-//   description:req.body.description,
-//   imagePath: imagePath,
-//   // releasedDate:req.body.releasedDate,
+const product = await Product.create({
+  name: req.body.name,
+  price: req.body.price,
+  os:req.body.os,
+  tag:req.body.tag,
+  type:req.body.type,
+  description:req.body.description,
+  // imagePath:req.body.imagePath ,
+  // releasedDate:req.body.releasedDate,
 
-// });
-// res.status(200).json(product);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("An error occurred while creating the product.");
-//   }
-// });
+});
+res.status(200).json(product);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while creating the product.");
+  }
+});
 
 
 // router.post("/", upload.single("file"), function (req, res, next) {
