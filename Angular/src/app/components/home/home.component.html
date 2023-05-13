@@ -5,7 +5,7 @@
 <!-- <img class="container-fluid" src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/page_bg_english.jpg?t=1683671735"> -->
 
 <section class="container d-flex flex-column mb-2">
-  <p class="container text-white">Trending Games</p>
+  <h3 class="title1 text-white p5 mt-4 mb-3">Trending Games</h3>
 
   <div class="d-flex justify-content-center col-12 content">
     <button (click)="ShowPrevious()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="prev col-1"> ❮ </button>
@@ -16,7 +16,7 @@
       </div>
 
       <div class="col-md-4 d-flex flex-column right-side">
-        <p class="container text-white fs-3">{{images[currentImageIndex].title}}</p>
+        <p class="container text-white p-2 fs-3">{{images[currentImageIndex].title}}</p>
 
         <div class="side d-flex gap-3">
 
