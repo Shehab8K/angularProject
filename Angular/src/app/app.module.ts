@@ -6,11 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FormMainInfoComponent } from './components/register/form-main-info/form-main-info.component';
+import { FormDiscordComponent } from './components/register/form-discord/form-discord.component';
+import { FormCharacterComponent } from './components/register/form-character/form-character.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    FormMainInfoComponent,
+    FormDiscordComponent,
+    FormCharacterComponent
   ],
   imports: [
     BrowserModule,
