@@ -8,4 +8,13 @@
 body{
   height: 100vh !important;
 } */
+*
+{
+ font-family: 'Nova Flat';
+}
 
+
+/* app-root{
+    display: flex;
+   justify-content: center;
+} */

@@ -1,4 +1,4 @@
-const User = require('../models/User'); // import the User model
+const User = require("../models/User"); // import the User model
 
 // get all users
 const getAllUsers = async (req, res) => {
@@ -25,7 +25,7 @@ const createUser = async (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
   });
   try {
     const newUser = await user.save();
@@ -56,7 +56,7 @@ const updateUser = async (req, res) => {
 // delete a user by ID
 const deleteUser = async (req, res) => {
   try {
-    const user = await User.deleteOne({_id : req.params.id});
+    const user = await User.deleteOne({ _id: req.params.id });
     if (user) {
       res.json({ message: "User deleted" });
     } else {
@@ -72,5 +72,5 @@ module.exports = {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
 };
