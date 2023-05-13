@@ -146,7 +146,7 @@ body li {
 }
 .Cards .card .wrapper .infoProd .actions .pricesGroup .price {
   font-family: "Roboto", sans-serif;
-  color: #1d1d1d;
+  color: white;
   font-size: 25px;
   font-weight: 600;
   text-align: left;
