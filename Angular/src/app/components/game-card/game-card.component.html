@@ -1,11 +1,11 @@
-<div class="container bg-dark d-flex flex-row shadow  mb-3 p-2  rounded" *ngFor="let g of games">
+<div class="game-container bg-dark d-flex flex-row shadow  mb-3 p-2  rounded" *ngFor="let g of games">
     <div class="d-flex flex-row ">
         <div class="image">
-            <img src="../../../assets/images/OIP.jpg">
+            <img class="game-img " src="../../../assets/images/OIP.jpg">
             <div class="overlay">
                 <!-- <i class="fa-solid fa-cart-shopping cart"></i> -->
                 <!-- <button class="btn"> <i class="fa-solid fa-cart-shopping cart p-1 fa-2x"></i></button> -->
-                <i class=" fa cart fa-2x p-2" [class.fa-cart-shopping]="isAdded" [class.fa-cart-plus]="!isAdded"
+                <i class=" fa cart fa-2x p-2 icons" [class.fa-cart-shopping]="isAdded" [class.fa-cart-plus]="!isAdded"
                     (click)="toggleAdded()"></i>
 
             </div>
@@ -26,8 +26,8 @@
                 <p>June 16, 2020</p>
                 <!-- for os -->
                 <div class="os">
-                    <i class='fab fa-apple '></i>
-                    <i class='fab fa-windows '></i>
+                    <i class='fab fa-apple icons'></i>
+                    <i class='fab fa-windows icons'></i>
                 </div>
             </div>
             <p class="rev text-success"> <i class='fas fa-users'></i> 10,000 | <span class="text-primary">200 reviews
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class=" shadow-sm d-flex flex-column right-col">
-        <i class="star fa-star fa-2x p-2" [class.far]="!isFavorite" [class.fa]="isFavorite"
+        <i class="star fa-star fa-2x p-2 icons" [class.far]="!isFavorite" [class.fa]="isFavorite"
             (click)="toggleFavorite()"></i>
         <h4 class="price">{{g.price}}$</h4>
     </div>
