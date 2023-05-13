@@ -26,7 +26,7 @@ export class HomeComponent {
 
   images = [
     {
-      src: 'https://th.bing.com/th/id/OIP.ky02K_RaApV5EI5d0VvJLgHaEK?pid=ImgDet&rs=1',
+      src: '../../../assets/images/val.jpeg',
       title: 'Game 1',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       photo: [
@@ -37,7 +37,7 @@ export class HomeComponent {
       ]
     },
     {
-      src: 'https://th.bing.com/th/id/R.0e249008936b54dd7e510ab07835eebc?rik=tJ4QvPsaUT8xvw&pid=ImgRaw&r=0',
+      src: '../../../assets/images/cod.jpg',
       title: 'Game 2',
       content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       photo: [
@@ -48,7 +48,7 @@ export class HomeComponent {
       ]
     },
     {
-      src: 'https://i.pinimg.com/originals/d0/ea/7d/d0ea7d697127bf515aa6d1e33001db0d.jpg',
+      src: '../../../assets/images/lol.jpg',
       title: 'Game 3',
       content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       photo: [
