@@ -1,11 +1,4 @@
-.hamo{
-    background-image: url("assets/images/bgggg.jpg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-    /* background-color: rgb(26, 25, 25); */
-}
+
 app-root{
     display: flex;
    justify-content: center;
