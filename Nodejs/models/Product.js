@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
     enum: ['singleplayer', 'multiplayer']
   },
   tag: {
-    type: String,
+    type: [String],
     enum: ['action', 'funny']
   },
   releasedDate: {
