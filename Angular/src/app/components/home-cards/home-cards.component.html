@@ -1,0 +1,40 @@
+    <div class="Cards " >
+        <div class="card" *ngFor="let card of products">
+          <div class="wrapper">
+            <div class="colorProd" [style.background-color]="card.color"></div>
+            <div class="imgProd" [style.background-image]="'url(' + card.image + ')'"></div>
+            <div class="infoProd">
+              <p class="nameProd">{{ card.name }}</p>
+              <p class="extraInfo">Release Date: {{ card.releaseDate }}</p>
+              <div class="actions">
+                <div class="pricesGroup">
+                  <p class="price priceProd">{{ card.discountPrice }}</p>
+                  <p class="price discountPrice">{{ card.price }}</p>
+                </div>
+                <div class="icon action Fav">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                    <path d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z"></path>
+                  </svg>
+                </div>
+                <div class="icon action toCart">
+                  <svg class="inCart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                    <title>remove from cart</title>
+                    <path d="M30 22H12M2 6h6l10 40h32l3.2-9.7"></path>
+                    <circle cx="20" cy="54" r="4"></circle>
+                    <circle cx="46" cy="54" r="4"></circle>
+                    <circle cx="46" cy="22" r="16"></circle>
+                    <path d="M53 18l-8 9-5-5"></path>
+                  </svg>
+                  <svg class="outCart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                    <title> Add to cart </title>
+                    <path d="M2 6h10l10 40h32l8-24H16"></path>
+                    <circle cx="23" cy="54" r="4"></circle>
+                    <circle cx="49" cy="54" r="4"></circle>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>

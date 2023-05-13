@@ -12,10 +12,10 @@ export class FiltersComponent {
   types: string[] | undefined;
 
   onChangeTags(): void {
-    // console.log(this.tags);
+    console.log(this.tags);
   }
   onChangeTypes(): void {
-    // console.log(this.types);
+    console.log(this.types);
   }
 
   priceRange: FormGroup;
@@ -39,11 +39,11 @@ export class FiltersComponent {
 
   onChangepriceRange(): void {
     const selectedPrice = Object.keys(this.priceRange.value).filter(option => this.priceRange.value[option]);
-    // console.log(selectedPrice);
+    console.log(selectedPrice);
   }
 
   onChangeOs(): void {
     const selectedOS = Object.keys(this.os.value).filter(option => this.os.value[option]);
-    // console.log(selectedOS);
+    console.log(selectedOS);
   }
 }

@@ -13,7 +13,7 @@
 
 }
 
-.container:hover {
+.game-container:hover {
     transform: scale(1.05);
 
 }
