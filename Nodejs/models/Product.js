@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema({
   },
   tag: {
     type: [String],
-    enum: ['action', 'funny']
+    enum: ['action','funny','sports','adventure','horror']
   },
   releasedDate: {
     type: Date
