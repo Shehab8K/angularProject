@@ -1,7 +1,7 @@
-<div class="container bg-dark d-flex flex-row shadow  mb-3 p-2  rounded">
+<div class="container bg-dark d-flex flex-row shadow  mb-3 p-2  rounded" *ngFor="let g of games">
     <div class="d-flex flex-row ">
         <div class="image">
-            <img src="../../assets/images/OIP.jpg">
+            <img src="../../../assets/images/OIP.jpg">
             <div class="overlay">
                 <!-- <i class="fa-solid fa-cart-shopping cart"></i> -->
                 <!-- <button class="btn"> <i class="fa-solid fa-cart-shopping cart p-1 fa-2x"></i></button> -->
@@ -11,12 +11,16 @@
             </div>
         </div>
         <div class="d-flex flex-column details">
-            <h4>Valorant</h4>
+            <h4 class="game-title">{{g.name}}</h4>
             <div class="d-flex flex-row">
                 <!-- for tags -->
-                <p class="tag p-1 text-center   ">Action</p>
-                <p class="tag p-1 text-center   ">Multiplayer</p>
-                <p class="tag p-1 text-center   ">Singleplayer</p>
+                <div  *ngFor="let t of g.type">
+                    <p class="tag p-1 text-center">{{t}}</p>
+                </div>
+                <div  *ngFor="let tag of g.tag">
+                    <p class="tag p-1 text-center">{{tag}}</p>
+                </div>
+                <!-- <p class="tag p-1 text-center   ">Singleplayer</p> -->
             </div>
             <div class="d-flex flex-row">
                 <p>June 16, 2020</p>
@@ -34,6 +38,6 @@
     <div class=" shadow-sm d-flex flex-column right-col">
         <i class="star fa-star fa-2x p-2" [class.far]="!isFavorite" [class.fa]="isFavorite"
             (click)="toggleFavorite()"></i>
-        <h4 class="price">20.00$</h4>
+        <h4 class="price">{{g.price}}$</h4>
     </div>
 </div>
