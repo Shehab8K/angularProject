@@ -5,7 +5,6 @@ import { FiltersComponent } from './components/filters/filters.component';
 
 const routes: Routes = [
   {path:'games',component:AllGamesComponent},
-  {path:'',component:FiltersComponent}
   
 ];
 
