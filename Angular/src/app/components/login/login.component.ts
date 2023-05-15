@@ -32,8 +32,6 @@ get password() {return this.mainInfo.get("password"); }
     console.log("Inside login Angular");
 
     const formData = this.mainInfo.value;
-    console.log("This is user from componenet"+formData.email+ " : "+formData.password);
-
     this.UserService.Login(formData).subscribe({
       next:(res)=>{
       localStorage.setItem('token', JSON.stringify(res));
@@ -42,12 +40,4 @@ get password() {return this.mainInfo.get("password"); }
   });
   }
 
-  // public login(email:any, password:any){
-  //         let user = {email, password};
-  //         this.UserService.Login(user).subscribe(
-  //           {
-
-  //           }
-  //         );
-  // }
 }

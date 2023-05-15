@@ -7,7 +7,6 @@
     <form class="myForm" (ngSubmit)="onSubmit()">
     <div class="row" [formGroup]="mainInfo">
 
-
         <div class="mb-3">
           <div [ngClass]="{'error':email.invalid && (email.dirty || email.touched)}">
             <label for="emailInput" class="form-label">Email address</label>
@@ -37,14 +36,6 @@
         </div>
       </div>
     </form>
-
-    <!-- <form (submit)="login(email.value, password.value)" [formGroup]="mainInfo">
-      <label for="emailInput"  class="form-label">Email address</label>
-      <input type="text" class="form-control" id="emailInput" name="email" aria-describedby="emailHelp">
-      <label for="passwordInput"  class="form-label">Password</label>
-      <input type="password" class="form-control" id="passwordInput" name="password" aria-describedby="passwordHelp">
-      <button type="submit" class="btn btn-outline-light col-md-3 offset-md-3">Login</button>
-    </form> -->
 
   </div>
 </div>
