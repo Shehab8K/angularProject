@@ -34,6 +34,10 @@ app.post('/users', userController.createUser);
 app.put('/users/:id', userController.updateUser);
 app.delete('/users/:id', userController.deleteUser);
 
+//Demo Login Route ((Shehab))
+app.post('/api/users/login',userController.login);
+///////////////////////////////////////////////////////
+
 // Error handling middleware
 app.use((error, req, res, next) => {
   res.status(error.status || 500).json({

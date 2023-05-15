@@ -1,0 +1,51 @@
+<body>
+  <!-- <form  (ngSubmit)="Add()" [formGroup]="validationForm"> -->
+  <!-- </form> -->
+<div id="main" class="mx-auto">
+  <div class="container">
+    <h1 class="text-center">Login</h1>
+    <form class="myForm" (ngSubmit)="onSubmit()">
+    <div class="row" [formGroup]="mainInfo">
+
+
+        <div class="mb-3">
+          <div [ngClass]="{'error':email.invalid && (email.dirty || email.touched)}">
+            <label for="emailInput" class="form-label">Email address</label>
+            <span *ngIf="email.invalid && (email.dirty || email.touched)">
+              <span class="ms-3 errMsg" *ngIf="email.hasError('required')">Required</span>
+              <span class="ms-3 errMsg" *ngIf="email.hasError('email')">Invalid Email Format</span>
+            </span>
+            <input type="text" class="form-control" id="emailInput" name="email" aria-describedby="emailHelp" formControlName="email" (blur)="updateView()">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div [ngClass]="{'error':password.invalid && (password.dirty || password.touched)}">
+            <label for="passwordInput" class="form-label">Password</label>
+            <span *ngIf="password.invalid && (password.dirty || password.touched)">
+              <span class="ms-3 errMsg" *ngIf="password.hasError('required')">Required</span>
+              <span class="ms-3 errMsg" *ngIf="password.hasError('minlength')">Minimum Length is 6</span>
+            </span>
+            <input type="password" class="form-control" id="passwordInput" name="password" aria-describedby="passwordHelp" formControlName="password" (blur)="updateView()">
+          </div>
+        </div>
+
+
+        <div class="row mt-3">
+          <p class="col-md-6">Don't have an accout? <a href="">Sign up</a></p>
+          <button type="submit" [disabled]="!mainInfo.valid" class="btn btn-outline-light col-md-3 offset-md-3">Login</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- <form (submit)="login(email.value, password.value)" [formGroup]="mainInfo">
+      <label for="emailInput"  class="form-label">Email address</label>
+      <input type="text" class="form-control" id="emailInput" name="email" aria-describedby="emailHelp">
+      <label for="passwordInput"  class="form-label">Password</label>
+      <input type="password" class="form-control" id="passwordInput" name="password" aria-describedby="passwordHelp">
+      <button type="submit" class="btn btn-outline-light col-md-3 offset-md-3">Login</button>
+    </form> -->
+
+  </div>
+</div>
+</body>
