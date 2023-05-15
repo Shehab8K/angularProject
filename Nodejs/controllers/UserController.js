@@ -1,5 +1,32 @@
 const User = require("../models/User"); // import the User model
-
+const jwt = require('jsonwebtoken');
+require('dotenv').config({path: __dirname + '/.env'})
+// login 
+const login = async (req, res) => {
+  try{
+    const email = req.body.email;
+    console.log(req.body);
+    const user = await User.findOne().where({name:"Shehab"});
+    console.log("Pasword from db : "+user);
+    if(user.password != req.body.password)
+    {
+      console.log("Wrong password");
+    }else{
+      userDataForToken = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        createdAt: user.createdAt
+      }
+      const token = jwt.sign(userDataForToken,process.env.SECRET_KEY , { expiresIn: '1d' });
+      console.log("Logged in");
+      console.log(token);
+      res.json(token);
+    }
+  }catch (err) {
+    console.log(err);
+  }
+};
 // get all users
 const getAllUsers = async (req, res) => {
   try {
@@ -73,4 +100,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  login
 };
