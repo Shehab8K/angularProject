@@ -9,7 +9,9 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    const uploadDir = "uploads/";
+    fs.mkdirSync(uploadDir, { recursive: true }); // Create the directory if it doesn't exist
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
     cb(null, `${Date.now()}_${file.originalname}`);
@@ -44,33 +46,32 @@ router.get("/:id", async (req, res) => {
 });
 
 //create product
-router.post("/",upload.single('image'), async (req, res) => {
+
 // const { error } = validateProduct(req.body);
 // if (error) return res.status(400).send(error.details[0].message);
 
-try {
 
-  // let imagePath = req.file; // Initialize imagePath variable
+router.post("/", upload.array("file"), async (req, res) => {
+  try {
+    if (req.files && req.files.length > 0) {
+      // Handle multiple file uploads
+      const fileNames = req.files.map((file) => file.path);
 
-  // if (imagePath) {
-  //   imagePath = req.file.path; // Assign imagePath if file is uploaded
-  //    res.json(imagePath)
-  // } else {
-  //   return res.status(400).send("No image file uploaded");
-  // }
+      const product = await Product.create({
+        name: req.body.name,
+        price: req.body.price,
+        os: req.body.os,
+        tag: req.body.tag,
+        type: req.body.type,
+        description: req.body.description,
+        // releasedDate: req.body.releasedDate,
+        images: fileNames, // Save file paths in the 'files' field of the product
+      });
 
-const product = await Product.create({
-  name: req.body.name,
-  price: req.body.price,
-  os:req.body.os,
-  tag:req.body.tag,
-  type:req.body.type,
-  description:req.body.description,
-  // imagePath:req.body.imagePath ,
-  // releasedDate:req.body.releasedDate,
-
-});
-res.status(200).json(product);
+      res.status(200).json(product);
+    } else {
+      return res.status(400).send("No files uploaded");
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send("An error occurred while creating the product.");
@@ -78,10 +79,10 @@ res.status(200).json(product);
 });
 
 
-// router.post("/", upload.single("file"), function (req, res, next) {
-//   const file = req.file;
-//   if (file) {
-//     res.json(req.file);
+// router.post("/", upload.array("file"), function (req, res, next) {
+//   const files = req.files;
+//   if (files) {
+//     res.json(req.files);
 //   } else throw "error";
 // });
 

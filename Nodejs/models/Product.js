@@ -13,25 +13,25 @@ const productSchema = new mongoose.Schema({
   },
   type: {
     type: [String],
-    enum: ['singleplayer', 'multiplayer']
+    enum: ["singleplayer", "multiplayer"],
   },
   tag: {
     type: [String],
     enum: ['action','funny','sports','adventure','horror']
   },
   releasedDate: {
-    type: Date
+    type: Date,
   },
   os: {
     type: [String],
-    enum: ['windows', 'mac', 'linux']
+    enum: ["windows", "mac", "linux"],
   },
   description: {
-    type: String
+    type: String,
   },
-  imagePath :{
-    type:[String],
-  }
+  images: {
+    type: [String],
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);
