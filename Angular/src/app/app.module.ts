@@ -34,7 +34,7 @@ import { LoginComponent } from './components/login/login.component';
     GameCardComponent,
     FiltersComponent,
     AllGamesComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
