@@ -19,7 +19,8 @@
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
-    width: 70%;   background-color: #1B2838;
+    width: 70%;   
+    background-color: #1B2838;
 
 }
 
@@ -49,60 +50,9 @@
 .order-type:active {
     transform: scale(0.85);
 }
-
-.order {
-    /* background-color: #1B2838; */
-}
-
-.order-id {
-    /* background:   linear-gradient(to bottom right, #565657, #2f2f2f); */
-    background-color: lightgray;
-    width: fit-content;
-    border-radius: 20px;
-    padding: 8px 13px;
-}
-
-.order-header {
+.body-container{
     display: flex;
-    font-size: small;
-    align-items: baseline;
-}
-
-.order-item,
-.item-details {
-    display: flex;
-    justify-content: space-between;
-}
-
-.order-item {
-    width: 80%;
-
-}
-
-.item-details {
-    width: 68%;
-    margin-right: 5px;
-}
-
-.game-img {
-    width: 200px;
-    height: 120px;
-}
-
-.price {
-    width: 30%;
-}
-
-.order-footer {
-    display: flex;
-    justify-content: space-between;
-}
-
-.col1,
-.col2 {
-    width: fit-content;
-}
-
-.col2 {
-    align-self: flex-end;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

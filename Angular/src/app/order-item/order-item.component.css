@@ -1,0 +1,53 @@
+
+
+.order-id {
+    /* background:   linear-gradient(to bottom right, #565657, #2f2f2f); */
+    background-color: lightgray;
+    width: fit-content;
+    border-radius: 20px;
+    padding: 8px 13px;
+}
+
+.order-header {
+    display: flex;
+    font-size: small;
+    align-items: baseline;
+}
+
+.order-item,
+.item-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-item {
+    width: 80%;
+
+}
+
+.item-details {
+    width: 68%;
+    margin-right: 5px;
+}
+
+.game-img {
+    width: 200px;
+    height: 120px;
+}
+
+.price {
+    width: 30%;
+}
+
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.close-icon{
+    transition: all 0s ease;
+}
+
+.cancel-btn:hover .close-icon{
+color: white;
+}
