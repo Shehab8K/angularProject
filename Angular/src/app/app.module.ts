@@ -17,7 +17,7 @@ import { FormCharacterComponent } from './components/register/form-character/for
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { AllGamesComponent } from './components/all-games/all-games.component';
-
+import { OrdersComponent } from './components/orders/orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import { AllGamesComponent } from './components/all-games/all-games.component';
     FormCharacterComponent,
     GameCardComponent,
     FiltersComponent,
-    AllGamesComponent
+    AllGamesComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

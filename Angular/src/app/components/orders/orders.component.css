@@ -1,0 +1,108 @@
+.orders-container {
+    background-image: url("../../../assets/images/bgggg.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* position: absolute; */
+    /* top: 0;
+    left: 0;*/
+    /* width: 100%;
+    height: 100%;  */
+    color: white;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-menu {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    width: 70%;   background-color: #1B2838;
+
+}
+
+.order-filter {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightgray;
+    color: #1B2838;
+    /* background:   linear-gradient(to bottom right, #1b1b1d, #2b2b2c); */
+    /* background:   linear-gradient(to bottom right, #565657, #2f2f2f); */
+    width: 80%;
+}
+
+.order-type {
+    transition: transform 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.order-type:hover {
+    /* background-color: rgb(113, 112, 112); */
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;;
+    cursor: pointer;
+    color: white;
+}
+
+.order-type:active {
+    transform: scale(0.85);
+}
+
+.order {
+    /* background-color: #1B2838; */
+}
+
+.order-id {
+    /* background:   linear-gradient(to bottom right, #565657, #2f2f2f); */
+    background-color: lightgray;
+    width: fit-content;
+    border-radius: 20px;
+    padding: 8px 13px;
+}
+
+.order-header {
+    display: flex;
+    font-size: small;
+    align-items: baseline;
+}
+
+.order-item,
+.item-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-item {
+    width: 80%;
+
+}
+
+.item-details {
+    width: 68%;
+    margin-right: 5px;
+}
+
+.game-img {
+    width: 200px;
+    height: 120px;
+}
+
+.price {
+    width: 30%;
+}
+
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col1,
+.col2 {
+    width: fit-content;
+}
+
+.col2 {
+    align-self: flex-end;
+}
