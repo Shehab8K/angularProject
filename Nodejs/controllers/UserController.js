@@ -1,6 +1,10 @@
 const User = require("../models/User"); // import the User model
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+
 require('dotenv').config({path: __dirname + '/.env'})
+
 // login 
 const login = async (req, res) => {
   try{
@@ -49,15 +53,33 @@ const getUserById = async (req, res) => {
 
 // create a new user
 const createUser = async (req, res) => {
-  const user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-  });
   try {
+    const { name, username, email, password } = req.body;
+
+    // Hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const userData = {
+      name,
+      username,
+      email,
+      password: hashedPassword,
+    };
+
+    const token = jwt.sign(userData,process.env.SECRET_KEY , { expiresIn: '1d' });
+    const user = new User({
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email,
+      password: hashedPassword,
+      token: token  // token
+    });
+
     const newUser = await user.save();
     res.status(201).json(newUser);
   } catch (err) {
+    console.log(err);
     res.status(400).json({ message: err.message });
   }
 };
