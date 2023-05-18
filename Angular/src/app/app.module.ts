@@ -18,6 +18,7 @@ import { GameCardComponent } from './components/game-card/game-card.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { AllGamesComponent } from './components/all-games/all-games.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ChartComponent } from './components/chart/chart.component';
     GameCardComponent,
     FiltersComponent,
     AllGamesComponent,
-    ChartComponent
+    ChartComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -92,11 +92,6 @@ export class HomeComponent {
       this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
     }, 4000);
   }
-  ngOnInit1() {
-    this.timer = setInterval(() => {
-      this.currentImageIndex = (this.currentImageIndex + 1) % this.images[this.currentImageIndex].photo.length;
-    }, 4000);
-  }
 
   Stop(){
     clearInterval(this.timer);

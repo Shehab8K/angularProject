@@ -1,11 +1,22 @@
 import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { GamesService } from 'src/app/services/games.service';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent {
+  games: any
+  constructor(gamesService: GamesService) {
+    console.log(gamesService.GetAllGames())
+    gamesService.GetAllGames().subscribe({
+      next: (data) => {
+        this.games = data
+      },
+      error: (err) => { }
+    })
+  }
   public chart: any;
   createChart(){
 

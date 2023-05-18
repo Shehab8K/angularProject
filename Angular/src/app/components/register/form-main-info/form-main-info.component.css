@@ -13,3 +13,7 @@ input {
 .error input{
   border: 3px solid red;
 }
+
+.tip:hover .tip::after{
+  content: "Please fill form first";
+}
