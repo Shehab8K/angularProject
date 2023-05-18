@@ -3,23 +3,26 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
-    // required: true,
+    required: true,
     minlength: 3,
   },
   price: {
     type: Number,
-    // required: true,
+    required: true,
     min: 1,
   },
   type: {
     type: [String],
+    required: true,
     enum: ["singleplayer", "multiplayer"],
   },
   tag: {
     type: [String],
+    required: true,
     enum: ['action','funny','sports','adventure','horror']
   },
   releasedDate: {
+    required: true,
     type: Date,
   },
   os: {
@@ -28,9 +31,11 @@ const productSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    required: true,
   },
   images: {
     type: [String],
+    required: true,
   },
 });
 

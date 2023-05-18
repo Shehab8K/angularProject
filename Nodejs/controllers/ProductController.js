@@ -30,18 +30,7 @@ const upload = multer({
     cb(null, true);
   }
 });
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     const uploadDir = "uploads/";
-//     fs.mkdirSync(uploadDir, { recursive: true }); // Create the directory if it doesn't exist
-//     cb(null, uploadDir);
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, `${Date.now()}_${file.originalname}`);
-//   },
-// });
 
-// var upload = multer({ storage: storage });
 
 //all products
 router.get("/", async (req, res) => {
@@ -68,13 +57,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//create product
 
-// const { error } = validateProduct(req.body);
-// if (error) return res.status(400).send(error.details[0].message);
 
 router.post("/", upload.array("file"), async (req, res) => {
   try {
+    // Validate the request body
+    const { error } = validateProduct(req.body);
+    if (error) {
+      return res.status(400).json({ error: error.details[0].message });
+    }
     if (req.files && req.files.length > 0) {
       // Handle multiple file uploads
       const fileNames = [];
@@ -93,6 +84,7 @@ router.post("/", upload.array("file"), async (req, res) => {
         tag: req.body.tag,
         type: req.body.type,
         description: req.body.description,
+        releasedDate: req.body.releasedDate,
         images: fileNames, // Save the secure URLs of the uploaded images
       });
 
@@ -110,7 +102,12 @@ router.post("/", upload.array("file"), async (req, res) => {
 
 router.put("/:id", upload.array("file"), async (req, res) => {
   try {
-    const { name, price, os, tag, type, description } = req.body;
+     // Validate the request body
+    //  const { error } = validateProduct(req.body);
+    //  if (error) {
+    //    return res.status(400).json({ error: error.details[0].message });
+    //  }
+    const { name, price, os, tag, type, description, releasedDate } = req.body;
 
     const updatedFields = {
       name,
@@ -119,6 +116,7 @@ router.put("/:id", upload.array("file"), async (req, res) => {
       tag,
       type,
       description,
+      releasedDate,
     };
 
     if (req.files && req.files.length > 0) {
@@ -142,13 +140,8 @@ router.put("/:id", upload.array("file"), async (req, res) => {
         // Remove the temporary file after upload
         fs.unlinkSync(file.path);
       }
-
- 
-
       updatedFields.images = fileNames;
     }
-    
-
     const product = await Product.findByIdAndUpdate(req.params.id, updatedFields, { new: true });
 
     res.status(200).json(product);
@@ -159,18 +152,52 @@ router.put("/:id", upload.array("file"), async (req, res) => {
 });
 
 
+//delete product 
+router.delete("/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Delete the images from Cloudinary
+    if (product.images && product.images.length > 0) {
+      const publicIds = product.images.map((image) => {
+        const filename = image.split("/").pop();
+        return `games/${filename.split(".")[0]}`;
+      });
+
+      await cloudinary.api.delete_resources(publicIds);
+    }
+
+    // Delete the product from the database
+    await Product.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while deleting the product.");
+  }
+});
 
 
 
-
-
-function validateProduct(product) {
-  const schema = Joi.object({
-    name: Joi.string().min(3).required(),
-    price: Joi.number().min(0).required(),
+const validateProduct = (data) => {
+  const productSchema = Joi.object({
+    name: Joi.string().required(),
+    price: Joi.number().required(),
+    os: Joi.string().required(),
+    tag: Joi.string().required(),
+    type: Joi.string().required(),
+    description: Joi.string().required(),
+    releasedDate: Joi.date().required(),
   });
-  return schema.validate(product);
-}
+
+  return productSchema.validate(data);
+};
+
+
+
 
 
 module.exports = router;
