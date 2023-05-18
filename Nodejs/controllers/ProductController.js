@@ -93,6 +93,8 @@ function validateProduct(product) {
     price: Joi.number().min(0).required(),
   });
   return schema.validate(product);
+
+  
 }
 
 

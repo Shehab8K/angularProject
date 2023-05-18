@@ -1,14 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
 
-  constructor(private readonly myClient: HttpClient) {}
+  constructor(private readonly myClient: HttpClient) { }
 
-  private readonly Base_URL = 'http://localhost:3000/api/products';
+  private readonly Base_URL = 'http://localhost:3000/api/products/';
 
   GetAllGames() {
     // console.log (this.myClient.get(this.Base_URL));
@@ -16,6 +17,6 @@ export class GamesService {
   }
   GetGameByID(id: any) {
     return this.myClient.get(this.Base_URL + '/' + id)
-
   }
+
 }

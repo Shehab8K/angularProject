@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GamesService } from 'src/app/services/games.service';
+import { GamesService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-game-card',
@@ -12,7 +12,7 @@ export class GameCardComponent {
   isAdded: boolean = false;
 
   constructor(gamesService: GamesService) {
-    console.log(gamesService.GetAllGames())
+    // console.log(gamesService.GetAllGames())
     gamesService.GetAllGames().subscribe({
       next: (data) => {
         this.games = data

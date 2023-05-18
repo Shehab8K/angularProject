@@ -3,6 +3,7 @@ const cors = require('cors');
 
 const userController = require('./controllers/userController');
 const productController = require('./controllers/ProductController');
+const filterController = require('./controllers/FilterController');
 
 const app = express();
 //enable parsing of json object in the body
@@ -23,6 +24,7 @@ connectDB(process.env.DATABASE_NAME);
 // Middleware to parse request body as JSON
 // app.use(express.json());
 app.use('/api/products',productController)
+// app.use('/api/products/filter',filterController)
 
 app.get('/',(req,res)=>{
     res.send("Hello Shehab");
