@@ -29,9 +29,8 @@ export class RegisterComponent {
     const formData = this.mainInfo.value;
     console.log(formData);
     this.UserService.Register(formData).subscribe({
-      next:(res)=>{
-      localStorage.setItem('token', JSON.stringify(res));
-      this.router.navigate(['']);
+      next:()=>{
+      this.router.navigate(['/login']);
        }
   });
   }
