@@ -34,7 +34,7 @@ get password() {return this.mainInfo.get("password"); }
     const formData = this.mainInfo.value;
     this.UserService.Login(formData).subscribe({
       next:(res)=>{
-      localStorage.setItem('token', JSON.stringify(res));
+      localStorage.setItem('user', JSON.stringify(res));
       this.router.navigate(['']);
        }
   });

@@ -8,27 +8,44 @@ require('dotenv').config({path: __dirname + '/.env'})
 // login 
 const login = async (req, res) => {
   try{
-    const email = req.body.email;
-    console.log(req.body);
-    const user = await User.findOne().where({name:"Shehab"});
-    console.log("Pasword from db : "+user);
-    if(user.password != req.body.password)
+    const userEmail = req.body.email.toLowerCase();
+    console.log(userEmail);
+    const userPassword = req.body.password;
+
+    const user = await User.findOne({email:userEmail});
+    // Check if user is available ?
+    if(!user)
     {
-      console.log("Wrong password");
-    }else{
+      console.log("User Check False");
+      res.status(404).json({message: "User not found"})
+      return;
+    }
+
+    const isPasswordValid = await bcrypt.compare(userPassword,user.password);
+    
+    // Check if password is valid ?
+    if(!isPasswordValid)
+    {
+      console.log("Password Check " + isPasswordValid);
+      res.status(401).json({ message: 'Invalid password' });
+      return;
+    }
+    
+    // User is found and valdated => creating token and send it
       userDataForToken = {
         id: user.id,
         name: user.name,
+        username: user.username,
         email: user.email,
-        createdAt: user.createdAt
+        role: user.role  
       }
       const token = jwt.sign(userDataForToken,process.env.SECRET_KEY , { expiresIn: '1d' });
-      console.log("Logged in");
-      console.log(token);
+
       res.json(token);
-    }
+    
   }catch (err) {
-    console.log(err);
+    res.status(500).json({ message: 'Internal server error' });
+    return;
   }
 };
 // get all users
@@ -60,23 +77,23 @@ const createUser = async (req, res) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const userData = {
-      name,
-      username,
-      email,
-      password: hashedPassword,
-    };
-
-    const token = jwt.sign(userData,process.env.SECRET_KEY , { expiresIn: '1d' });
     const user = new User({
       name: req.body.name,
       username: req.body.username,
-      email: req.body.email,
-      password: hashedPassword,
-      token: token  // token
+      email: req.body.email.toLowerCase(),
+      password: hashedPassword
+      // token: token  // token
     });
 
     const newUser = await user.save();
+    // userData = {
+    //   id: newUser.id,
+    //   name: newUser.name,
+    //   username: newUser.username,
+    //   email: newUser.email,
+    //   role: newUser.role
+    // }
+    // const token = jwt.sign(newUser,process.env.SECRET_KEY , { expiresIn: '1d' });
     res.status(201).json(newUser);
   } catch (err) {
     console.log(err);
