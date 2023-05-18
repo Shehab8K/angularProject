@@ -22,49 +22,13 @@
 
           <!-- <img [src]="images[currentImageIndex].image" /> -->
           <img *ngFor="let image of images[currentImageIndex].photo;
-          let i = index" [src]="image" (mouseover)="setCurrentImage(i)" (mouseout)="onMouseOut()">
-
-          <!-- <div *ngFor="let slide of images; let i = index">
-            <img *ngFor="let photo of slide.photo;
-            let j = index" [src]="photo" (mouseover)="setCurrentImage(i, j)">
-          </div> -->
+          let i = index" [src]="image" (mouseout)="onMouseOut()">
 
         </div>
-        <!-- <div class="side d-flex gap-2">
-          <img src="https://i.ytimg.com/vi/_fPJoRFGZpc/maxresdefault.jpg">
-          <img src="https://th.bing.com/th/id/OIP._TdlTXLwsbDRxzgoAga19wEsC0?pid=ImgDet&rs=1">
-        </div> -->
-        <!-- <div class="side d-flex gap-2">
-          <img src="https://th.bing.com/th/id/OIP.pHS9-oSfeh2Y2BtzLdoRzAAAAA?pid=ImgDet&w=255&h=255&rs=1">
-          <img src="https://i.ytimg.com/vi/h6sH1KYID44/maxresdefault.jpg">
-        </div> -->
       </div>
     </div>
-
-
-    <!-- <div class="slideshow">
-      <div class="content" *ngFor="let slide of slides; let i = index"
-           [class.active]="isActiveSlide(i)">
-        <h2>{{ slide.title }}</h2>
-        <p>{{ slide.description }}</p>
-      </div>
-      <div class="dots">
-        <span *ngFor="let slide of slides; let i = index"
-              [class.active]="isActiveSlide(i)"
-              (click)="setActiveSlide(i)"></span>
-      </div>
-    </div> -->
     <button (click)="ShowNext()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="next col-1"> ❯ </button>
   </div>
-
-<!-- <div class="container">
-  <img [src]="currentindex">
-</div>
-<ul>
-  <li *ngFor="let image of image">
-    <img [src]="image.src" [alt]="image.alt" (mouseover)="setCurrentImage(image)">
-  </li>
-</ul> -->
 
 <!-- Your Cards are there -->
 <app-home-cards></app-home-cards>

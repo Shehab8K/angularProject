@@ -7,18 +7,6 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  // image = [
-  //   { src: 'https://th.bing.com/th/id/OIP.ky02K_RaApV5EI5d0VvJLgHaEK?pid=ImgDet&rs=1' },
-  //   { src: 'https://th.bing.com/th/id/R.0e249008936b54dd7e510ab07835eebc?rik=tJ4QvPsaUT8xvw&pid=ImgRaw&r=0'},
-  //   { src: 'https://i.pinimg.com/originals/d0/ea/7d/d0ea7d697127bf515aa6d1e33001db0d.jpg' }
-  // ];
-  // currentImage = '';
-  // currentImageAlt = '';
-
-  // setCurrentImage(image: any) {
-  //   this.currentindex = image.src;
-  //   this.currentImageAlt = image.alt;
-  // }
 
   currentindex = 0;
   timer:any;
