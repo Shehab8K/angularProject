@@ -19,6 +19,7 @@ import { FiltersComponent } from './components/filters/filters.component';
 import { AllGamesComponent } from './components/all-games/all-games.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { LoginComponent } from './components/login/login.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LoginComponent } from './components/login/login.component';
     FiltersComponent,
     AllGamesComponent,
     ChartComponent,
-    LoginComponent
+    LoginComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
