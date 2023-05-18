@@ -20,6 +20,7 @@
       <span *ngIf="username.invalid && (username.dirty || username.touched)">
         <span class="ms-3 errMsg" *ngIf="username.hasError('required')">Required</span>
         <span class="ms-3 errMsg" *ngIf="username.hasError('minlength')">Minimum Length is 6</span>
+        <span class="ms-3 errMsg" *ngIf="username.hasError('forbiddenUsername')">Name can't be {{mainInfo.get("username").value}}</span>
       </span>
       <input type="text" class="form-control" id="usernameInput" name="username" aria-describedby="emailHelp" formControlName="username" (blur)="updateView()">
     </div>
