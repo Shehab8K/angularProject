@@ -161,12 +161,6 @@ router.put("/:id", upload.array("file"), async (req, res) => {
 
 
 
-// router.post("/", upload.array("file"), function (req, res, next) {
-//   const files = req.files;
-//   if (files) {
-//     res.json(req.files);
-//   } else throw "error";
-// });
 
 
 
