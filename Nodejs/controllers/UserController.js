@@ -17,7 +17,7 @@ const login = async (req, res) => {
     if(!user)
     {
       console.log("User Check False");
-      res.status(404).json({message: "User not found"})
+      res.status(404).json({message: "Email not registered"});
       return;
     }
 
@@ -85,7 +85,13 @@ const createUser = async (req, res) => {
       // token: token  // token
     });
 
-    const newUser = await user.save();
+    try{
+      const newUser = await user.save();
+    }catch(err)
+    {
+      res.status(409).json({ message: 'Email Already Registered' });
+      return;
+    }
     // userData = {
     //   id: newUser.id,
     //   name: newUser.name,

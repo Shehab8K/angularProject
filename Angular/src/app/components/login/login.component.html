@@ -4,6 +4,12 @@
 <div id="main" class="mx-auto">
   <div class="container">
     <h1 class="text-center">Login</h1>
+
+    <!-- Print Error if any -->
+    <span *ngIf="errorMsg">
+      <h5 class="text-center mt-3 errMsg">{{errorMsg}}</h5>
+    </span>
+
     <form class="myForm" (ngSubmit)="onSubmit()">
     <div class="row" [formGroup]="mainInfo">
 
@@ -31,7 +37,7 @@
 
 
         <div class="row mt-3">
-          <p class="col-md-6">Don't have an accout? <a href="/register">Sign up</a></p>
+          <p class="col-md-6">Don't have an accout? <a routerLink="/register">Sign up</a></p>
           <button type="submit" [disabled]="!mainInfo.valid" class="btn btn-outline-light col-md-3 offset-md-3">Login</button>
         </div>
       </div>
