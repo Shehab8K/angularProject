@@ -196,9 +196,5 @@ const validateProduct = (data) => {
   return productSchema.validate(data);
 };
 
-
-
-
-
 module.exports = router;
 

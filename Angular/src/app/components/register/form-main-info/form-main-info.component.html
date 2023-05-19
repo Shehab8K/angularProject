@@ -3,7 +3,7 @@
 
   <div class="mb-3">
     <div [ngClass]="{'error':name.invalid && (name.dirty || name.touched)}">
-      <label for="nameInput" formControlName="name" class="form-label">Name</label>
+      <label for="nameInput" class="form-label">Name</label>
       <span *ngIf="name.invalid && (name.dirty || name.touched)">
         <span class="ms-3 errMsg" *ngIf="name.hasError('required')">Required</span>
         <span class="ms-3 errMsg" *ngIf="name.hasError('minlength')">Minimum Length is 6</span>
@@ -16,10 +16,11 @@
 
   <div class="mb-3">
     <div [ngClass]="{'error':username.invalid && (username.dirty || username.touched)}">
-      <label for="usernameInput" formControlName="username" class="form-label">Username</label>
+      <label for="usernameInput"  class="form-label">Username</label>
       <span *ngIf="username.invalid && (username.dirty || username.touched)">
         <span class="ms-3 errMsg" *ngIf="username.hasError('required')">Required</span>
         <span class="ms-3 errMsg" *ngIf="username.hasError('minlength')">Minimum Length is 6</span>
+        <span class="ms-3 errMsg" *ngIf="username.hasError('forbiddenUsername')">Name can't be {{mainInfo.get("username").value}}</span>
       </span>
       <input type="text" class="form-control" id="usernameInput" name="username" aria-describedby="emailHelp" formControlName="username" (blur)="updateView()">
     </div>
@@ -27,7 +28,7 @@
 
   <div class="mb-3">
     <div [ngClass]="{'error':email.invalid && (email.dirty || email.touched)}">
-      <label for="emailInput" formControlName="email" class="form-label">Email address</label>
+      <label for="emailInput"  class="form-label">Email address</label>
       <span *ngIf="email.invalid && (email.dirty || email.touched)">
         <span class="ms-3 errMsg" *ngIf="email.hasError('required')">Required</span>
         <span class="ms-3 errMsg" *ngIf="email.hasError('email')">Invalid Email Format</span>
@@ -38,35 +39,26 @@
 
   <div class="mb-3">
     <div [ngClass]="{'error':password.invalid && (password.dirty || password.touched)}">
-      <label for="passwordInput" formControlName="password" class="form-label">Password</label>
+      <label for="passwordInput"  class="form-label">Password</label>
       <span *ngIf="password.invalid && (password.dirty || password.touched)">
         <span class="ms-3 errMsg" *ngIf="password.hasError('required')">Required</span>
         <span class="ms-3 errMsg" *ngIf="password.hasError('minlength')">Minimum Length is 6</span>
       </span>
-      <input type="password" class="form-control" id="passwordInput" name="password" aria-describedby="passwordHelp" formControlName="password" (blur)="updateView()">
+      <input type="password" class="form-control" id="passwordInput" name="password" aria-describedby="passwordHelp" formControlName="password" [(ngModel)]="myPass" (blur)="checkPasswords()">
     </div>
   </div>
-
-  <!-- <div class="mb-3">
-    <div [ngClass]="{'error':confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)}">
-      <label for="passwordInput" formControlName="confirmPassword" class="form-label">Confirm Password</label>
-      <span *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
-        <span class="ms-3 errMsg" *ngIf="confirmPassword.hasError('passwordNotMatched')">Password doesn't match</span>
-      </span>
-      <input type="password" class="form-control" id="passwordInput" name="password" aria-describedby="passwordHelp" formControlName="confirmPassword" (blur)="updateView()">
-    </div>
-  </div> -->
 
   <div class="mb-3">
-    <div>
+    <div [ngClass]="{'error':!matchPass}">
       <label for="pass2Input" class="form-label">Confirm Password</label>
-      <input type="password" class="form-control" id="pass2Input">
+      <span *ngIf="!matchPass">
+        <span class="ms-3 errMsg">Password doesn't match</span>
+      </span>
+      <input type="password" class="form-control" id="passwordInput" name="password" aria-describedby="passwordHelp" formControlName="password2" [(ngModel)]="myPass2" (blur)="checkPasswords()">
+
     </div>
   </div>
 
-  <div class="row mt-3">
-    <p class="col-md-6">Have an accout? <a href="">Sign in</a></p>
-    <button type="button" class="btn btn-outline-light col-md-3 offset-md-3">Next</button>
-  </div>
+
 </div>
 </ng-container>
