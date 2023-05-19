@@ -17,7 +17,12 @@ git clone https://github.com/asmaagamal871/angularProject.git
 
 
 ```
-DATABASE_NAME= db_name
+DATABASE_NAME=
+CLOUD_NAME=
+CLOUDINARY_KEY=
+CLOUDINARY_SECRET=
+
+SECRET_KEY=WeAreTheBestTeamForSamkara
 ```
 
 <pre>
