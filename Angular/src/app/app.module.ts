@@ -24,7 +24,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AdminOnlyComponent } from './components/admin-only/admin-only.component';
 import { UserOnlyComponent } from './components/user-only/user-only.component';
 import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
-
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderItemComponent } from './order-item/order-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,11 @@ import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
     UnauthorizedComponent,
     AdminOnlyComponent,
     UserOnlyComponent,
-    AuthOnlyComponent
+    AuthOnlyComponent,
+    OrdersComponent,
+    OrderItemComponent,
+    
+
   ],
   imports: [
     BrowserModule,

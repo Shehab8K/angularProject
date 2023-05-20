@@ -60,6 +60,7 @@ get password() {return this.mainInfo.get("password"); }
 
           default:
           this.errorMsg = "Login failed";
+          console.log(err);
         }
       }
   });

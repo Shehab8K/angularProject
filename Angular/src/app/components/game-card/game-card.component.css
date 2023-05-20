@@ -1,4 +1,4 @@
-.container {
+.game-container {
     /* background-image: url("../../assets/images/bgblur.jpg");
     background-repeat: no-repeat;
     background-size: cover; */
@@ -13,7 +13,7 @@
 
 }
 
-.container:hover {
+.game-container:hover {
     transform: scale(1.05);
 
 }
@@ -35,7 +35,7 @@
     margin-left: 15px;
 }
 
-img {
+.game-img {
     width: 250px;
     height: 150px;
     transition: transform 0.3s ease;
@@ -89,7 +89,7 @@ img {
     font-size: small;
 }
 
-i {
+.icons {
     margin-left: 5px;
 }
 

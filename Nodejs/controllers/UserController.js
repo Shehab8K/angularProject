@@ -1,11 +1,10 @@
 const User = require("../models/User"); // import the User model
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
+require("dotenv").config({ path: __dirname + "/.env" });
 
-require('dotenv').config({path: __dirname + '/.env'})
-
-// login 
+// login
 const login = async (req, res) => {
   try{
     const userEmail = req.body.email.toLowerCase();
@@ -22,7 +21,7 @@ const login = async (req, res) => {
     }
 
     const isPasswordValid = await bcrypt.compare(userPassword,user.password);
-    
+     console.log("bcrypt testttttt");
     // Check if password is valid ?
     if(!isPasswordValid)
     {
@@ -42,7 +41,6 @@ const login = async (req, res) => {
       const token = jwt.sign(userDataForToken,process.env.SECRET_KEY , { expiresIn: '1d' });
 
       res.json(token);
-    
   }catch (err) {
     res.status(500).json({ message: 'Internal server error' });
     return;
@@ -81,16 +79,16 @@ const createUser = async (req, res) => {
       name: req.body.name,
       username: req.body.username,
       email: req.body.email.toLowerCase(),
-      password: hashedPassword
+      password: hashedPassword,
       // token: token  // token
     });
 
-    try{
+    try {
       const newUser = await user.save();
       res.status(201).json(newUser);
-    }catch(err)
-    {
-      res.status(409).json({ message: 'Email Already Registered' });
+      return;
+    } catch (err) {
+      res.status(409).json({ message: "Email Already Registered" });
       return;
     }
     // userData = {
@@ -101,7 +99,6 @@ const createUser = async (req, res) => {
     //   role: newUser.role
     // }
     // const token = jwt.sign(newUser,process.env.SECRET_KEY , { expiresIn: '1d' });
-
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: err.message });
@@ -146,5 +143,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  login
+  login,
 };
