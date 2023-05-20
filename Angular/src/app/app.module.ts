@@ -18,7 +18,9 @@ import { FormCharacterComponent } from './components/register/form-character/for
 // import { FiltersComponent } from './components/filters/filters.component';
 import { AllGamesComponent } from './components/all-games/all-games.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { OrderItemComponent } from './order-item/order-item.component';
+import { OrderItemComponent } from './components/order-item/order-item.component';
+import { LoginComponent } from './components/login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,9 @@ import { OrderItemComponent } from './order-item/order-item.component';
     // FiltersComponent,
     AllGamesComponent,
     OrdersComponent,
-    OrderItemComponent
+    OrderItemComponent,
+    AllGamesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

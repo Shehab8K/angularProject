@@ -44,21 +44,18 @@ export class AllGamesComponent implements OnInit {
       const data = await firstValueFrom(this.gamesService.GetAllGames());
       this.rawData = data;
       this.games = this.rawData;
-      this.genTags();
+      if (this.games && this.games.length > 0) {
+        this.games.forEach((game: any) => {
+          game.tag.forEach((tag: string) => {
+            if (!this.gameTags.includes(tag))
+              this.gameTags.push(tag)
+          });
+        });
+      }
+      console.log(this.gameTags)
     } catch (error) {
       console.error("An error occurred while retrieving the games", error);
     }
-  }
-  genTags() {
-    if (this.games && this.games.length > 0) {
-      this.games.forEach((game: any) => {
-        game.tag.forEach((tag: string) => {
-          if (!this.gameTags.includes(tag))
-            this.gameTags.push(tag)
-        });
-      });
-    }
-    console.log(this.gameTags)
   }
 
   toggleFavorite(): void {
@@ -126,11 +123,11 @@ export class AllGamesComponent implements OnInit {
   onChangeTypes(): void {
     this.rawData.forEach((game: any) => {
       if (game.type.some((type: string) => this.types.includes(type))) {
-        if (!(this.filteredGames.some(obj => obj.name === game.name)))
+        if (!(this.filteredGames.some(obj => obj.id === game.id)))
           this.filteredGames.push(game)
       }
       else
-        if (this.filteredGames.some(obj => obj.name === game.name))
+        if (this.filteredGames.some(obj => obj.id === game.id))
           this.filteredGames.splice(game)
     });
     console.log(this.filteredGames)

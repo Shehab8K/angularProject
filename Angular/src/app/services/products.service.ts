@@ -9,7 +9,7 @@ export class GamesService {
 
   constructor(private readonly myClient: HttpClient) { }
 
-  private readonly Base_URL = 'http://localhost:3000/api/products/';
+  private readonly Base_URL = 'http://localhost:3000/api/products';
 
   GetAllGames() {
     // console.log (this.myClient.get(this.Base_URL));
