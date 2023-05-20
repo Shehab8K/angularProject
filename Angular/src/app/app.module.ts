@@ -20,6 +20,7 @@ import { AllGamesComponent } from './components/all-games/all-games.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { LoginComponent } from './components/login/login.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,6 @@ import { LoginComponent } from './components/login/login.component';
     AllGamesComponent,
     OrdersComponent,
     OrderItemComponent,
-    AllGamesComponent,
     LoginComponent
   ],
   imports: [
@@ -47,7 +47,11 @@ import { LoginComponent } from './components/login/login.component';
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: "toast-bottom-right",
+      preventDuplicates: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
