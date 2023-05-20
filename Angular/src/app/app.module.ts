@@ -22,6 +22,14 @@ import { LoginComponent } from './components/login/login.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 
+import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
+import { UnauthorizedComponent } from './components/errors/unauthorized/unauthorized.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AdminOnlyComponent } from './components/admin-only/admin-only.component';
+import { UserOnlyComponent } from './components/user-only/user-only.component';
+import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderItemComponent } from './order-item/order-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +48,17 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
     ChartComponent,
     LoginComponent,
     CartComponent,
-    CartItemComponent
+    CartItemComponent,
+    LoginComponent,
+    ForbiddenComponent,
+    UnauthorizedComponent,
+    AdminOnlyComponent,
+    UserOnlyComponent,
+    AuthOnlyComponent,
+    OrdersComponent,
+    OrderItemComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -48,7 +66,11 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: "toast-bottom-right",
+      preventDuplicates: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

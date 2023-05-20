@@ -22,7 +22,7 @@ export class FormMainInfoComponent{
 
       this.mainInfo = this.fb.group({
         name: new FormControl('', [Validators.required, Validators.minLength(4), UsernameValidator.forbiddenNamesValidator(["admin","root"])]),
-        username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+        username: new FormControl('', [Validators.required, Validators.minLength(4), UsernameValidator.forbiddenNamesValidator(["admin","root"])]),
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required, Validators.minLength(6)]),
         password2: new FormControl('', [Validators.required, Validators.minLength(6)])

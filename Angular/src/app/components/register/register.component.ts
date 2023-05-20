@@ -11,6 +11,7 @@ export class RegisterComponent {
   public validMainInfo: boolean | boolean = false;
   public matchPass: boolean | boolean = true;
   public mainInfo:any;
+  public errorMsg:any = null;
 
   constructor(private UserService: UserService, private router: Router){}
 
@@ -29,10 +30,18 @@ export class RegisterComponent {
     const formData = this.mainInfo.value;
     console.log(formData);
     this.UserService.Register(formData).subscribe({
-      next:(res)=>{
-      localStorage.setItem('token', JSON.stringify(res));
-      this.router.navigate(['']);
-       }
+      next:()=>{
+      this.router.navigate(['/login']);
+       },
+
+      error:(err)=>{
+        if(err.status = 409 )
+        {
+          this.errorMsg = err.error.message;
+        }else{
+          this.errorMsg = "Registration Failed";
+        }
+      }
   });
   }
 }
