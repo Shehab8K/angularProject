@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-
-const userController = require('./controllers/userController');
-const productController = require('./controllers/ProductController');
+const path = require("path");
+const userController = require(path.join(__dirname, "./controllers/UserController"));
+const productController = require(path.join(__dirname, "./controllers/ProductController"));
 const filterController = require('./controllers/FilterController');
 
 const app = express();
@@ -30,11 +30,11 @@ app.get('/',(req,res)=>{
     res.send("Hello Shehab");
 });
 // Routes for managing user data
-app.get('/users', userController.getAllUsers);
-app.get('/users/:id', userController.getUserById);
+app.get('/api/users', userController.getAllUsers);
+app.get('/api/users/:id', userController.getUserById);
 app.post('/api/users/register', userController.createUser);
-app.put('/users/:id', userController.updateUser);
-app.delete('/users/:id', userController.deleteUser);
+app.put('/api/users/:id', userController.updateUser);
+app.delete('/api/users/:id', userController.deleteUser);
 
 //Demo Login Route ((Shehab))
 app.post('/api/users/login',userController.login);

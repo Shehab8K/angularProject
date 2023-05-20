@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { GamesService } from 'src/app/services/products.service';
 // import { FiltersService } from 'src/app/services/filters.service';
 import { firstValueFrom } from 'rxjs';
+import { UserService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-all-games',
@@ -22,8 +23,9 @@ export class AllGamesComponent implements OnInit {
   os: FormGroup;
   filteredGames: any[] = [];
   gameTags: any[] = [];
+  user: any;
 
-  constructor(private gamesService: GamesService, private formBuilder: FormBuilder,) {
+  constructor(private gamesService: GamesService, private formBuilder: FormBuilder, userService: UserService) {
     this.priceRange = this.formBuilder.group({
       range1: false,
       range2: false,
@@ -37,6 +39,18 @@ export class AllGamesComponent implements OnInit {
       windows: false,
       linux: false
     });
+    const userObservable = userService.getCurrentUser()
+    if (userObservable) {
+      userObservable.subscribe({
+        next: (data) => {
+          this.user = data;
+          // console.log(this.user)
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      })
+    }
   }
 
   async ngOnInit(): Promise<void> {
@@ -52,7 +66,7 @@ export class AllGamesComponent implements OnInit {
           });
         });
       }
-      console.log(this.gameTags)
+      // console.log(this.gameTags)
     } catch (error) {
       console.error("An error occurred while retrieving the games", error);
     }
@@ -62,13 +76,25 @@ export class AllGamesComponent implements OnInit {
     // this.isFavorite = !this.isFavorite;
   }
 
-  toggleAdded(): void {
-    // this.isAdded = !this.isAdded;
+  // toggleAdded(): void {
+  //   // this.isAdded = !this.isAdded;
+  // }
+  addToCart(g: any) {
+    if (this.user.cart.length > 0) {
+      const index = this.user.cart.findIndex((item: any) => item.id === g.id);
+      if (index === -1) {
+        this.user.cart.push(g);
+      } else {
+        this.user.cart.splice(index, 1);
+      }
+    }
+    else
+      this.user.cart.push(g);
+    console.log(this.user)
   }
   onChangepriceRange(): void {
     const selectedPrice = Object.keys(this.priceRange.value).filter(option => this.priceRange.value[option]);
-    console.log(selectedPrice);
-
+    // console.log(selectedPrice);
   }
 
   onChangeOs(): void {

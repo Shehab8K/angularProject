@@ -11,8 +11,7 @@
                         <div class="overlay">
                             <!-- <i class="fa-solid fa-cart-shopping cart"></i> -->
                             <!-- <button class="btn"> <i class="fa-solid fa-cart-shopping cart p-1 fa-2x"></i></button> -->
-                            <i class=" fa cart fa-2x p-2" [class.fa-cart-shopping]="isAdded"
-                                [class.fa-cart-plus]="!isAdded" (click)="toggleAdded()"></i>
+                            <i class=" fa cart fa-2x p-2 fa-cart-plus"(click)="addToCart(g)"></i>
                         </div>
                     </div>
                     <div class="d-flex flex-column details">
