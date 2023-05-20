@@ -87,6 +87,7 @@ const createUser = async (req, res) => {
 
     try{
       const newUser = await user.save();
+      res.status(201).json(newUser);
     }catch(err)
     {
       res.status(409).json({ message: 'Email Already Registered' });
@@ -100,7 +101,7 @@ const createUser = async (req, res) => {
     //   role: newUser.role
     // }
     // const token = jwt.sign(newUser,process.env.SECRET_KEY , { expiresIn: '1d' });
-    res.status(201).json(newUser);
+
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: err.message });
