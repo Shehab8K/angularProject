@@ -1,30 +1,49 @@
 const User = require("../models/User"); // import the User model
-const jwt = require('jsonwebtoken');
-require('dotenv').config({path: __dirname + '/.env'})
-// login 
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+require("dotenv").config({ path: __dirname + "/.env" });
+
+// login
 const login = async (req, res) => {
   try{
-    const email = req.body.email;
-    console.log(req.body);
-    const user = await User.findOne().where({name:"Shehab"});
-    console.log("Pasword from db : "+user);
-    if(user.password != req.body.password)
+    const userEmail = req.body.email.toLowerCase();
+    console.log(userEmail);
+    const userPassword = req.body.password;
+
+    const user = await User.findOne({email:userEmail});
+    // Check if user is available ?
+    if(!user)
     {
-      console.log("Wrong password");
-    }else{
+      console.log("User Check False");
+      res.status(404).json({message: "Email not registered"});
+      return;
+    }
+
+    const isPasswordValid = await bcrypt.compare(userPassword,user.password);
+     console.log("bcrypt testttttt");
+    // Check if password is valid ?
+    if(!isPasswordValid)
+    {
+      console.log("Password Check " + isPasswordValid);
+      res.status(401).json({ message: 'Invalid password' });
+      return;
+    }
+    
+    // User is found and valdated => creating token and send it
       userDataForToken = {
         id: user.id,
         name: user.name,
+        username: user.username,
         email: user.email,
-        createdAt: user.createdAt
+        role: user.role  
       }
       const token = jwt.sign(userDataForToken,process.env.SECRET_KEY , { expiresIn: '1d' });
-      console.log("Logged in");
-      console.log(token);
+
       res.json(token);
-    }
   }catch (err) {
-    console.log(err);
+    res.status(500).json({ message: 'Internal server error' });
+    return;
   }
 };
 // get all users
@@ -49,15 +68,39 @@ const getUserById = async (req, res) => {
 
 // create a new user
 const createUser = async (req, res) => {
-  const user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-  });
   try {
-    const newUser = await user.save();
-    res.status(201).json(newUser);
+    const { name, username, email, password } = req.body;
+
+    // Hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const user = new User({
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email.toLowerCase(),
+      password: hashedPassword,
+      // token: token  // token
+    });
+
+    try {
+      const newUser = await user.save();
+      res.status(201).json(newUser);
+      return;
+    } catch (err) {
+      res.status(409).json({ message: "Email Already Registered" });
+      return;
+    }
+    // userData = {
+    //   id: newUser.id,
+    //   name: newUser.name,
+    //   username: newUser.username,
+    //   email: newUser.email,
+    //   role: newUser.role
+    // }
+    // const token = jwt.sign(newUser,process.env.SECRET_KEY , { expiresIn: '1d' });
   } catch (err) {
+    console.log(err);
     res.status(400).json({ message: err.message });
   }
 };
@@ -100,5 +143,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  login
+  login,
 };

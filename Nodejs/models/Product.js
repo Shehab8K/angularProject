@@ -3,35 +3,40 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
-    // required: true,
+    required: true,
     minlength: 3,
   },
   price: {
     type: Number,
-    // required: true,
+    required: true,
     min: 1,
   },
   type: {
     type: [String],
-    enum: ['singleplayer', 'multiplayer']
+    required: true,
+    enum: ["singleplayer", "multiplayer"],
   },
   tag: {
     type: [String],
+    required: true,
     enum: ['action','funny','sports','adventure','horror']
   },
   releasedDate: {
-    type: Date
+    required: true,
+    type: Date,
   },
   os: {
     type: [String],
-    enum: ['windows', 'mac', 'linux']
+    enum: ["windows", "mac", "linux"],
   },
   description: {
-    type: String
+    type: String,
+    required: true,
   },
-  imagePath :{
-    type:[String],
-  }
+  images: {
+    type: [String],
+    required: true,
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);

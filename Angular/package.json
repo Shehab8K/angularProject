@@ -18,11 +18,14 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
-    "jquery": "^3.7.0",
     "@fortawesome/fontawesome-free": "^6.4.0",
     "bootstrap": "^5.2.3",
     "bootstrap-select": "^1.13.18",
+    "jquery": "^3.7.0",
+    "jwt-decode": "^3.1.2",
+    "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
+    "slick-carousel": "^1.8.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
@@ -39,5 +42,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~5.0.2"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

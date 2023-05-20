@@ -30,7 +30,7 @@ app.get('/',(req,res)=>{
 // Routes for managing user data
 app.get('/users', userController.getAllUsers);
 app.get('/users/:id', userController.getUserById);
-app.post('/users', userController.createUser);
+app.post('/api/users/register', userController.createUser);
 app.put('/users/:id', userController.updateUser);
 app.delete('/users/:id', userController.deleteUser);
 
