@@ -5,33 +5,21 @@
   width: 65rem;
   color: white;
   justify-content: space-between;
-  /* align-items: center; */
   transition: transform 0.3s ease;
-  /* margin: 5px; */
 }
  main {
   display: grid;
   grid-gap: 2rem;
-  /* border:5px solid red */
 }
 img {
   width: 10rem;
   height: 15vh;
-  /* transition: transform 0.3s ease; */
 }
-/* main {
-  grid-template: "content" "summary" "actions" "help" "promo";
-} */
 
-/* @media (min-width: 50rem) { */
   main {
     grid-template: "promo promo" "content summary" "content actions" "content help";
     grid-template-columns: auto 20rem;
   }
-/* } */
-/* .summary {
-  grid-area: summary;
-} */
 
 .promo {
   grid-area: promo;
@@ -45,27 +33,12 @@ img {
   grid-area: content;
 }
 
-
-/** styling **/
-/* @media (min-width: 50rem) {
-  /* body, main {
-    max-width: 60rem;
-  }
-
-  body {
-    margin: auto;
-  }
-} */
 .summary {
   display: flex;
   justify-content: space-between;
   font-size: 18px;
   background: #5c527a;
 }
-/* .summary .total {
-  font-family: monospace;
-  text-align: right;
-} */
 
 .cart .item {
   display: flex;
@@ -74,35 +47,6 @@ img {
   border-bottom: 1px dotted #60709f;
   margin-bottom: 0.5rem;
 }
-/* .cart .item:not(:last-child) {
-  padding-bottom: 10rem;
-} */
-/* .cart .name { */
-  /* font-size: 18px; */
-  /* font-weight: 400; */
-  /* margin: 0; */
-/* } */
-/* .cart .price {
-  font-family: monospace;
-  margin: 0;
-} */
-
-/* @media (min-width: 600px) {
-  .container {
-
-    width: 6rem;
-  }
-} */
-
-  /* .cart .name,
-.cart .price {
-    font-size: 24px;
-  } */
-
-  /* .cart .item:not(:last-child) {
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-  } */
 
 .actions {
   background: #527a70;
@@ -125,7 +69,6 @@ button {
   color: #3c3d29;
   background: #777a52;
   color: white;
-  /* font-weight: 800; */
 }
 
 @media (min-width: 50rem) {
@@ -141,18 +84,6 @@ section {
   padding: 1rem;
 }
 
-/* section {
-  min-height: 3rem;
-} */
-
-
-/* body {
-  color: white;
-  background: #323743;
-  padding: 20px;
-  font-family: "Heebo", sans-serif;
-  font-weight: 300;
-} */
 
 ul {
   list-style: none;
@@ -160,71 +91,10 @@ ul {
   margin: 0;
 }
 
-
-
-
-
-
-/* .container{
-    transform: scale(1.01);
-
-} */
-
-
-
-
-
-
-
-
-/* .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.3s ease;
-} */
-
-
 .cart {
     transition: transform 0.3s ease;
 
 }
-
-/* .cart:hover {
-    cursor: pointer;
-    transform: scale(1.2);
-} */
-
-/* .tag {
-    width: fit-content;
-    padding: 1px;
-    margin-left: 3px;
-    background-color: rgb(39, 41, 53);
-    font-size: small;
-} */
-
-/* i {
-    margin-left: 5px;
-} */
-
-/* .os {
-    margin-left: 10px;
-} */
-
-/* .rev {
-    background-color: rgb(39, 41, 53);
-    font-size: small;
-    height: fit-content;
-    width: fit-content;
-    padding: 2px;
-} */
 
 .price {
     justify-self: flex-end;
