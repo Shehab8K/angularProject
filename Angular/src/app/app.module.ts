@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { TestComponent } from './test/test.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormMainInfoComponent } from './components/register/form-main-info/form-main-info.component';
 import { FormDiscordComponent } from './components/register/form-discord/form-discord.component';
@@ -37,7 +36,6 @@ import { OrderItemComponent } from './order-item/order-item.component';
     NavbarComponent,
     HomeComponent,
     FooterComponent,
-    TestComponent,
     RegisterComponent,
     FormMainInfoComponent,
     FormDiscordComponent,
