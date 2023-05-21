@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const ordersSchema = new mongoose.Schema({
 
   GID: {
-    type: "array",
+    type: [String],
     required: true,
   },
   statue: {
