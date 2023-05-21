@@ -1,4 +1,4 @@
-
+const path = require("path");
 const ordersModel = require(path.join(__dirname,"../models/Order"));
 // const validate = require("../utils/OrdersValidator");
 
@@ -13,6 +13,19 @@ let getOrderbyid = async (req, res) => {
   let id = req.params.id;
   let order = await ordersModel.findById({_id: id});
   res.json(order);
+};
+
+// get all orders by userID
+// get all orders by userID
+let getOrdersByUserID = async (req, res) => {
+  try {
+    const userID = req.params.userID;
+    const orders = await ordersModel.find({ userID });
+    res.json(orders);
+  } catch (error) {
+    console.error("Error retrieving orders:", error);
+    res.status(500).json({ error: "Failed to retrieve orders" });
+  }
 };
 
 // create new order
@@ -92,6 +105,7 @@ let deleteOrder = async (req, res) => {
 
 module.exports = {
   getAllOrders,
+  getOrdersByUserID,
   createOrder,
   updateOrder,
   deleteOrder,
