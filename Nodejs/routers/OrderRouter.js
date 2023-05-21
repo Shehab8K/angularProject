@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const orderController = require("../controllers/OrderController");
+const path = require("path");
+
+const orderController = require(path.join(__dirname,"../controllers/OrderController"));
 
 
 router.get("/", orderController.getAllOrders);
