@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, firstValueFrom } from 'rxjs';
+import { OrdersService } from 'src/app/services/orders.service';
 import { UserService } from 'src/app/services/users.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { UserService } from 'src/app/services/users.service';
 })
 export class OrderItemComponent {
   user: any;
-  constructor(private userService: UserService) {
+  orders: any;
+  constructor(private userService: UserService, private orderService: OrdersService) {
     const userObservable = userService.getCurrentUser()
     if (userObservable) {
       userObservable.subscribe({
@@ -22,6 +24,18 @@ export class OrderItemComponent {
         }
       })
     }
+    // const ordersObservable = orderService.GetUserOrders(this.user.id)
+    // if (ordersObservable) {
+    //   ordersObservable.subscribe({
+    //     next: (data) => {
+    //       this.orders = data;
+    //       console.log(this.orders)
+    //     },
+    //     error: (err) => {
+    //       console.log(err)
+    //     }
+    //   })
+    // }
   }
 }
 
