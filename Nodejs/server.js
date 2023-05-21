@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const path = require("path");
-const productController = require(path.join(__dirname,"./controllers/ProductController"));
+
+const productController = require(path.join(__dirname, "./controllers/ProductController"));
+
 
 const app = express();
 
