@@ -44,7 +44,7 @@ export class AllGamesComponent implements OnInit {
       userObservable.subscribe({
         next: (data) => {
           this.user = data;
-          // console.log(this.user)
+          console.log(this.user)
         },
         error: (err) => {
           console.log(err)
@@ -79,9 +79,18 @@ export class AllGamesComponent implements OnInit {
   // toggleAdded(): void {
   //   // this.isAdded = !this.isAdded;
   // }
+  isInCart(g: any): boolean {
+
+    const index = this.user.cart.findIndex((item: any) => item._id === g._id);
+    if (index === -1) {
+      return false;
+    } else {
+      return true
+    }
+  }
   addToCart(g: any) {
     if (this.user.cart.length > 0) {
-      const index = this.user.cart.findIndex((item: any) => item.id === g.id);
+      const index = this.user.cart.findIndex((item: any) => item._id === g._id);
       if (index === -1) {
         this.user.cart.push(g);
       } else {
