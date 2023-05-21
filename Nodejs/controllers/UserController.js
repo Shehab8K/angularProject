@@ -1,6 +1,8 @@
 const User = require("../models/User"); // import the User model
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const Joi = require("joi");
+const mongoose = require('mongoose');
 
 require("dotenv").config({ path: __dirname + "/.env" });
 
@@ -59,17 +61,23 @@ const getUserById = async (req, res) => {
     res.json(user);
   } catch (err) {
     res.status(404).json({ message: "User not found" });
+    return;
   }
 };
 
 // create a new user
 const createUser = async (req, res) => {
   try {
-    const { name, username, email, password } = req.body;
 
+    const {error} = validateUser(req.body);
+
+    if(error)
+    {
+      return res.status(400).json({ message: error.details });
+    }
     // Hash the password
     const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
 
     const user = new User({
       name: req.body.name,
@@ -95,12 +103,32 @@ const createUser = async (req, res) => {
 // update a user by ID
 const updateUser = async (req, res) => {
   try {
+
+    const {error} = validateUpdate(req.body);
+
+    if(error)
+    {
+      return res.status(400).json({ message: error.details });
+    }
+
+    if(req.body.password)
+    {
+      const saltRounds = 10;
+      var hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+    }
+
     const user = await User.findById(req.params.id);
     if (user) {
       user.name = req.body.name || user.name;
+      user.username = req.body.username || user.username;
       user.email = req.body.email || user.email;
-      user.password = req.body.password || user.password;
+      user.password = hashedPassword || user.password;
       const updatedUser = await user.save();
+      
+      if(!updatedUser)
+      {
+      res.status(400).json({ message: "Failed to update" });
+      }
       res.json(updatedUser);
     } else {
       res.status(404).json({ message: "User not found" });
@@ -112,16 +140,48 @@ const updateUser = async (req, res) => {
 
 // delete a user by ID
 const deleteUser = async (req, res) => {
+  
+  if (!mongoose.isValidObjectId(req.body.id)) {
+    res.status(400).json({ message: "Invalid user ID" });
+    return;
+  }
+
   try {
-    const user = await User.deleteOne({ _id: req.params.id });
-    if (user) {
+    const deleteUser = await User.deleteOne({ _id: req.body.id});
+    if (deleteUser) {
       res.json({ message: "User deleted" });
+      return;
+
     } else {
-      res.status(404).json({ message: "User not found" });
+      res.status(400).json({ message: "Failed to delete user" });
+      return;
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
+    return;
   }
+};
+
+
+const validateUser = (data) => {
+  const userSchema = Joi.object({
+    name: Joi.string().required(),
+    username: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.required()
+  });
+
+  return userSchema.validate(data);
+};
+
+
+const validateUpdate = (data) => {
+  const userSchema = Joi.object({
+    name: Joi.string(),
+    username: Joi.string(),
+    email: Joi.string().email(),
+  });
+  return userSchema.validate(data);
 };
 
 module.exports = {
