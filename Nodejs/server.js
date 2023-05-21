@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require("path");
 const userController = require(path.join(__dirname, "./controllers/UserController"));
 const productController = require(path.join(__dirname, "./controllers/ProductController"));
+const OrderRouter = require("./routers/OrderRouter");
 
 const app = express();
 //enable parsing of json object in the body
@@ -24,6 +25,10 @@ connectDB(process.env.DATABASE_NAME);
 // app.use(express.json());
 app.use('/api/products',productController)
 
+//#region Orders
+app.use("/api/orders", OrderRouter);
+//#endregion
+
 app.get('/',(req,res)=>{
     res.send("Hello Shehab");
 });
@@ -33,6 +38,8 @@ app.get('/users/:id', userController.getUserById);
 app.post('/api/users/register', userController.createUser);
 app.put('/users/:id', userController.updateUser);
 app.delete('/users/:id', userController.deleteUser);
+
+
 
 //Demo Login Route ((Shehab))
 app.post('/api/users/login',userController.login);
