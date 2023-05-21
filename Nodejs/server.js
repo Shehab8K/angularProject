@@ -3,7 +3,7 @@ const cors = require('cors');
 const path = require("path");
 
 const productController = require(path.join(__dirname, "./controllers/ProductController"));
-const OrderRouter = require("./routers/OrderRouter");
+
 
 const app = express();
 
@@ -17,9 +17,9 @@ require('dotenv').config({path: __dirname + '/.env'})
 // Connect to MongoDB
 connectDB(process.env.DATABASE_NAME);
 
-// Middleware to parse request body as JSON
-// app.use(express.json());
-app.use('/api/products',productController)
+// Routes
+const OrderRouter = require(path.join(__dirname,"./routers/OrderRouter"));
+const UserRouter = require(path.join(__dirname ,"./routers/UserRouter"));
 
 app.use('/api/users',UserRouter);
 app.use("/api/orders", OrderRouter);
@@ -30,13 +30,6 @@ app.use('/api/products',productController);
 app.get('/',(req,res)=>{
     res.send("Hello Shehab");
 });
-// Routes for managing user data
-app.get('/users', userController.getAllUsers);
-app.get('/users/:id', userController.getUserById);
-app.post('/api/users/register', userController.createUser);
-app.put('/users/:id', userController.updateUser);
-app.delete('/users/:id', userController.deleteUser);
-
 
 
 // Error handling middleware
