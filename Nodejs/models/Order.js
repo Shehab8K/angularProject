@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-var DB_URL = "mongodb+srv://nada:nada123@gamers-iti.tik9vwa.mongodb.net/gamers";
+var DB_URL =process.env.DATABASE_NAME;
 
 mongoose.connect(DB_URL, { useNewUrlParser: true });
 const connection = mongoose.connection;
