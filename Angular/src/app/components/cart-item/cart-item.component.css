@@ -33,6 +33,10 @@ img {
   grid-area: content;
 }
 
+li:hover {
+  transform: scale(1.05);
+}
+
 .summary {
   display: flex;
   justify-content: space-between;
@@ -55,7 +59,9 @@ img {
 .actions button{
   background: #26d9ac;
 }
-
+.actions button:hover {
+  transform: scale(1.06);
+}
 button {
   background-color: #1B2838;
   box-shadow: 0 2px 4px #11221e;
