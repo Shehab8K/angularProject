@@ -1,5 +1,5 @@
 
-const ordersModel = require("../models/Order");
+const ordersModel = require(path.join(__dirname,"../models/Order"));
 // const validate = require("../utils/OrdersValidator");
 
 // get all Orders

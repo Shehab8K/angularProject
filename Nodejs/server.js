@@ -3,7 +3,7 @@ const cors = require('cors');
 const path = require("path");
 const userController = require(path.join(__dirname, "./controllers/UserController"));
 const productController = require(path.join(__dirname, "./controllers/ProductController"));
-const OrderRouter = require("./routers/OrderRouter");
+const OrderRouter = require(path.join(__dirname,"./routers/OrderRouter"));
 
 const app = express();
 //enable parsing of json object in the body
