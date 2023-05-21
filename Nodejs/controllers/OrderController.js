@@ -2,39 +2,76 @@
 const ordersModel = require("../models/Order");
 // const validate = require("../utils/OrdersValidator");
 
+// get all Orders
 let getAllOrders = async (req, res) => {
   let data = await ordersModel.find({});
   res.json(data);
 };
-let createOrder = async (req, res) => {
-data=req.body;
-gids=JSON.parse(req.body.GID);
-console.log(gids);
-let neworder= new ordersModel({
-  date: date.now(),
-  GID: data.gids ,
-  userID: data.userID,
-  NumGames:data.gids.length(),
-  total:data.total
-  
-})
-await neworder.save();
-await res.status(200).json(neworder);
+
+// get order by id
+let getOrderbyid = async (req, res) => {
+  let id = req.params.id;
+  let order = await ordersModel.findById({_id: id});
+  res.json(order);
 };
 
-let updateOrder = async (req, res) => {
-  let Id = req.params.id; 
-//   pids=JSON.parse(req.body.pID);
-  data=req.body;
-    await ordersModel.updateOne(
-      { _id: Id },
-      {
-         
-        statue: data.statue,
-      }
-    );
-    await res.send("updated successfully");
+// create new order
+let createOrder = async (req, res) => {
+  try {
+    const data = req.body;
+    const gids = data.GID;
+
+    const neworder = new ordersModel({
+      date: Date.now(),
+      GID: gids,
+      userID: data.userID,
+      NumGames: gids.length,
+      total: data.total,
+    });
+    await neworder.save();
+    await res.status(200).json(neworder);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
+
+// update order(statue or gameslist)
+let updateOrder = async (req, res) => {
+  try {
+    const orderId = req.params.id;
+    const newData = req.body;
+    const order = await ordersModel.findById(orderId);
+
+    if (order.statue === "accepted") {
+      return res.status(400).json({ message: "Order has already been accepted and cannot be edited." });
+    }
+
+    if (order.statue === "pending") {
+      await ordersModel.updateOne(
+        { _id: orderId },
+        {
+          GID: newData.GID,
+          statue: newData.statue
+        }
+      );
+      res.send("Order updated successfully");
+    } else {
+      await ordersModel.updateOne(
+        { _id: orderId },
+        {
+          statue: newData.statue
+        }
+      );
+      res.send("Order status updated successfully");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// delete order
 let deleteOrder = async (req, res) => {
   var ID = req.params.id;
 
@@ -52,11 +89,6 @@ let deleteOrder = async (req, res) => {
   }
 };
 
-let getOrderbyid = async (req, res) => {
-  let id = req.params.id;
-  let order = await ordersModel.findById({_id: id});
-  res.json(order);
-};
 
 module.exports = {
   getAllOrders,
