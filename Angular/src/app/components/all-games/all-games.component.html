@@ -1,8 +1,147 @@
 <app-navbar></app-navbar>
+
 <body>
     <div class="d-flex flex-row page-display">
-        <app-game-card></app-game-card>
-        <app-filters></app-filters>
+        <div class="d-flex flex-column">
+
+            <div class="game-container bg-dark d-flex flex-row shadow  mb-3 p-2  rounded" *ngFor="let g of games">
+                <div class="d-flex flex-row ">
+                    <div class="image">
+                        <img src={{g.images[0]}}>
+                        <div class="overlay">
+                            <!-- <i class="fa-solid fa-cart-shopping cart"></i> -->
+                            <!-- <button class="btn"> <i class="fa-solid fa-cart-shopping cart p-1 fa-2x"></i></button> -->
+                            <i class=" fa cart fa-2x p-2 fa-cart-plus"(click)="addToCart(g)"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column details">
+                        <h4 class="game-title">{{g.name}}</h4>
+                        <div class="d-flex flex-row">
+                            <!-- for tags -->
+                            <div *ngFor="let t of g.type">
+                                <p class="tag p-1 text-center">{{t}}</p>
+                            </div>
+                            <div *ngFor="let tag of g.tag">
+                                <p class="tag p-1 text-center">{{tag}}</p>
+                            </div>
+                            <!-- <p class="tag p-1 text-center   ">Singleplayer</p> -->
+                        </div>
+                        <div class="d-flex flex-row">
+                            <p>{{formatDate(g.releasedDate || '') }}</p>
+                            <!-- for os -->
+                            <div class="os">
+                                <i *ngFor="let p of g.os" class="fa" [ngClass]="{
+                                    'fa-apple': p === 'mac',
+                                    'fa-windows': p === 'windows',
+                                    'fa-linux': p === 'linux'
+                                  }"></i>
+                            </div>
+                        </div>
+                        <p class="rev text-success"> <i class='fas fa-users'></i> 10,000 | <span
+                                class="text-primary">200 reviews
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class=" shadow-sm d-flex flex-column right-col">
+                    <i class="star fa-star fa-2x p-2" [class.far]="!isFavorite" [class.fa]="isFavorite"
+                        (click)="toggleFavorite()"></i>
+                    <h4 class="price">{{g.price}}$</h4>
+                </div>
+            </div>
+        </div>
+        <div class="filters-container bg-dark d-flex flex-column shadow  mb-3 p-2  rounded">
+            <div class="input-group mb-3 search">
+                <input type="text" class="form-control" placeholder="Search by name">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary search-btn" type="button"><i
+                            class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="m-2">
+                <h5>Price</h5>
+                <hr>
+                <form [formGroup]="priceRange">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="range1" formControlName="range1"
+                            (change)="onChangepriceRange()">
+                        <label class="form-check-label" for="range1">
+                            < 20.0$</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="range2" formControlName="range2"
+                            (change)="onChangepriceRange()">
+                        <label class="form-check-label" for="range2"> 20.0$ - 40.0$</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="range3" formControlName="range3"
+                            (change)="onChangepriceRange()">
+                        <label class="form-check-label" for="range3">40.0$ - 60.0$</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="range4" formControlName="range4"
+                            (change)="onChangepriceRange()">
+                        <label class="form-check-label" for="range4"> 60.0$ - 80.0$</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="range5" formControlName="range5"
+                            (change)="onChangepriceRange()">
+                        <label class="form-check-label" for="range5">80.0$ - 100.0$</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="range6" formControlName="range6"
+                            (change)="onChangepriceRange()">
+                        <label class="form-check-label" for="range6">100.0$ < </label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="m-2">
+                <h5>Tags</h5>
+                <hr>
+                <select class="selectpicker" multiple data-live-search="true" [(ngModel)]="tags"
+                    (change)="onChangeTags()">
+                    <option *ngFor="let tag of gameTags">{{tag}}</option>
+
+                    <!-- <option>adventure</option>
+                    <option>sports</option>
+                    <option>sci-fi</option>
+                    <option>horror</option> -->
+                </select>
+            </div>
+            <div class="m-2">
+                <h5>Type</h5>
+                <hr>
+                <select class="selectpicker" multiple data-live-search="true" [(ngModel)]="types"
+                    (change)="onChangeTypes()">
+                    <option>multiplayer</option>
+                    <option>singleplayer</option>
+                </select>
+            </div>
+            <div class="m-2">
+                <h5>Platform</h5>
+                <hr>
+
+                <form [formGroup]="os">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="mac" formControlName="mac"
+                            (change)="onChangeOs()">
+                        <label class="form-check-label" for="mac">MacOS</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="windows" formControlName="windows"
+                            (change)="onChangeOs()">
+                        <label class="form-check-label" for="windows"> Windows</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="linux" formControlName="linux"
+                            (change)="onChangeOs()">
+                        <label class="form-check-label" for="linux">Linux</label>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
-</body> 
+</body>
 <app-footer></app-footer>
