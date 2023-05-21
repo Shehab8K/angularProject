@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { TestComponent } from './test/test.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormMainInfoComponent } from './components/register/form-main-info/form-main-info.component';
 import { FormDiscordComponent } from './components/register/form-discord/form-discord.component';
@@ -17,7 +16,11 @@ import { FormCharacterComponent } from './components/register/form-character/for
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { AllGamesComponent } from './components/all-games/all-games.component';
+import { ChartComponent } from './components/chart/chart.component';
 import { LoginComponent } from './components/login/login.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
+
 import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
 import { UnauthorizedComponent } from './components/errors/unauthorized/unauthorized.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -34,7 +37,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     NavbarComponent,
     HomeComponent,
     FooterComponent,
-    TestComponent,
     RegisterComponent,
     FormMainInfoComponent,
     FormDiscordComponent,
@@ -42,6 +44,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     GameCardComponent,
     FiltersComponent,
     AllGamesComponent,
+    ChartComponent,
+    LoginComponent,
+    CartComponent,
+    CartItemComponent,
     LoginComponent,
     ForbiddenComponent,
     UnauthorizedComponent,

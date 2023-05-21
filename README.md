@@ -17,7 +17,12 @@ git clone https://github.com/asmaagamal871/angularProject.git
 
 
 ```
-DATABASE_NAME= db_name
+DATABASE_NAME=
+CLOUD_NAME=
+CLOUDINARY_KEY=
+CLOUDINARY_SECRET=
+
+SECRET_KEY=WeAreTheBestTeamForSamkara
 ```
 
 <pre>
@@ -31,7 +36,7 @@ open your browser on http://localhost:4200/
 cd Nodejs
 npm init
 npm install
-node index.js
+node server.js     or    nodemon server.js
 Server will be listening on port 3000
 </pre>
 

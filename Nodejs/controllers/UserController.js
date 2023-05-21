@@ -8,24 +8,20 @@ require("dotenv").config({ path: __dirname + "/.env" });
 const login = async (req, res) => {
   try{
     const userEmail = req.body.email.toLowerCase();
-    console.log(userEmail);
     const userPassword = req.body.password;
 
     const user = await User.findOne({email:userEmail});
     // Check if user is available ?
     if(!user)
     {
-      console.log("User Check False");
       res.status(404).json({message: "Email not registered"});
       return;
     }
 
     const isPasswordValid = await bcrypt.compare(userPassword,user.password);
-     console.log("bcrypt testttttt");
     // Check if password is valid ?
     if(!isPasswordValid)
     {
-      console.log("Password Check " + isPasswordValid);
       res.status(401).json({ message: 'Invalid password' });
       return;
     }
@@ -91,16 +87,7 @@ const createUser = async (req, res) => {
       res.status(409).json({ message: "Email Already Registered" });
       return;
     }
-    // userData = {
-    //   id: newUser.id,
-    //   name: newUser.name,
-    //   username: newUser.username,
-    //   email: newUser.email,
-    //   role: newUser.role
-    // }
-    // const token = jwt.sign(newUser,process.env.SECRET_KEY , { expiresIn: '1d' });
   } catch (err) {
-    console.log(err);
     res.status(400).json({ message: err.message });
   }
 };

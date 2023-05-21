@@ -1,24 +1,21 @@
 import { Component } from '@angular/core';
-
+import { GamesService } from 'src/app/services/games.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
-  // image = [
-  //   { src: 'https://th.bing.com/th/id/OIP.ky02K_RaApV5EI5d0VvJLgHaEK?pid=ImgDet&rs=1' },
-  //   { src: 'https://th.bing.com/th/id/R.0e249008936b54dd7e510ab07835eebc?rik=tJ4QvPsaUT8xvw&pid=ImgRaw&r=0'},
-  //   { src: 'https://i.pinimg.com/originals/d0/ea/7d/d0ea7d697127bf515aa6d1e33001db0d.jpg' }
-  // ];
-  // currentImage = '';
-  // currentImageAlt = '';
-
-  // setCurrentImage(image: any) {
-  //   this.currentindex = image.src;
-  //   this.currentImageAlt = image.alt;
-  // }
+  games: any
+  constructor(gamesService: GamesService) {
+    console.log(gamesService.GetAllGames())
+    gamesService.GetAllGames().subscribe({
+      next: (data) => {
+        this.games = data
+      },
+      error: (err) => { }
+    })
+  }
 
   currentindex = 0;
   timer:any;
@@ -102,11 +99,6 @@ export class HomeComponent {
   ngOnInit() {
     this.timer = setInterval(() => {
       this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
-    }, 4000);
-  }
-  ngOnInit1() {
-    this.timer = setInterval(() => {
-      this.currentImageIndex = (this.currentImageIndex + 1) % this.images[this.currentImageIndex].photo.length;
     }, 4000);
   }
 

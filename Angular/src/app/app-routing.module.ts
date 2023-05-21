@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AllGamesComponent } from './components/all-games/all-games.component';
-import { OrdersComponent } from './components/orders/orders.component';
+import { ChartComponent } from './components/chart/chart.component';
 import { LoginComponent } from './components/login/login.component';
+import { CartComponent } from './components/cart/cart.component';
+import { OrdersComponent } from './components/orders/orders.component';
 import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
 import { UnauthorizedComponent } from './components/errors/unauthorized/unauthorized.component';
 import { AdminOnlyComponent } from './components/admin-only/admin-only.component';
@@ -18,6 +20,9 @@ const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
   {path:'games',component:AllGamesComponent},
+  {path:'profile',component:ChartComponent},
+  {path:'login',component:LoginComponent},
+  {path:'cart',component:CartComponent},
   {path:'orders',component:OrdersComponent},
   {path:'login',component:LoginComponent},
 
