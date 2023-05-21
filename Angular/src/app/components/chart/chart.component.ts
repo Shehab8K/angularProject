@@ -43,7 +43,7 @@ export class ChartComponent {
             // hoverOffset: 4
           }],
       },
-      options: { //forspacing of bottom
+      options: { //forsize of chart
         aspectRatio:2.5
       }
 
