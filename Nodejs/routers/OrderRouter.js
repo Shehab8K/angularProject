@@ -1,13 +1,24 @@
 const express = require("express");
 const router = express.Router();
-const orderController = require("../controllers/OrderController");
+const path = require("path");
+const orderController = require(path.join(__dirname,"../controllers/OrderController"));
 
-
+// GET all orders
 router.get("/", orderController.getAllOrders);
-router.get("/:id", orderController.getOrderbyid);
-router.post("/create", orderController.createOrder);
-router.put("/:id", orderController.updateOrder);
-router.delete("/:id", orderController.deleteOrder);
 
+// GET order by id
+router.get("/:id", orderController.getOrderbyid);
+
+// GET orders by userID
+router.get("/user/:userID", orderController.getOrdersByUserID);
+
+// POST new order
+router.post("/", orderController.createOrder);
+
+// PUT update order
+router.put("/:id", orderController.updateOrder);
+
+// DELETE order
+router.delete("/:id", orderController.deleteOrder);
 
 module.exports = router;
