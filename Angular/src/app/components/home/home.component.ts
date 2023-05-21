@@ -6,16 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  games: any
-  // constructor(gamesService: GamesService) {
-  //   console.log(gamesService.GetAllGames())
-  //   gamesService.GetAllGames().subscribe({
-  //     next: (data) => {
-  //       this.games = data
-  //     },
-  //     error: (err) => { }
-  //   })
-  // }
 
   currentindex = 0;
   timer:any;

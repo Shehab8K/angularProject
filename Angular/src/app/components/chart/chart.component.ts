@@ -8,15 +8,7 @@ import Chart from 'chart.js/auto';
 })
 export class ChartComponent {
   games: any
-  // constructor(gamesService: GamesService) {
-  //   console.log(gamesService.GetAllGames())
-  //   gamesService.GetAllGames().subscribe({
-  //     next: (data) => {
-  //       this.games = data
-  //     },
-  //     error: (err) => { }
-  //   })
-  // }
+  
   public chart: any;
   createChart(){
 
