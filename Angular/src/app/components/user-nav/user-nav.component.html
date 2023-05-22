@@ -1,0 +1,49 @@
+<span class="main" id="usrWrap">
+  <img src="../../../assets/images/profile.png" id="userImg" class="main-profile-img" (click)="toggleWrap()">
+  <div class="user-wrap" >
+    <div class="user">
+      <span class="user-info">
+        <img src="../../../assets/images/profile.png" class="profile-img">
+            <span *ngIf="myusername">{{ myusername }}</span>
+            <span *ngIf="!myusername">guest</span>
+      </span>
+
+      <hr class="hr">
+
+      <span *ngIf="myusername" class="links">
+        <div class="sub-menu-link">
+          <a routerLink="/">
+            <i class="fa-solid fa-circle-user fa-xl element"></i>
+            <span>Profile</span>
+          </a>
+        </div>
+
+        <div class="sub-menu-link">
+          <a (click)="logout()" routerLink="/">
+            <i class="fa-solid fa-right-from-bracket fa-xl element"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </span>
+<!-- ////////////////////////////////////////////////////////////////////////////// -->
+      <span *ngIf="!myusername" class="links">
+
+          <div class="sub-menu-link">
+            <a routerLink="/login">
+              <i class="fa-solid fa-circle-user fa-xl element"></i>
+              <span>Login</span>
+            </a>
+          </div>
+
+          <div class="sub-menu-link">
+            <a routerLink="/register">
+              <i class="fa-solid fa-right-from-bracket fa-xl element"></i>
+              <span>Register</span>
+            </a>
+          </div>
+
+      </span>
+
+    </div>
+  </div>
+</span>
