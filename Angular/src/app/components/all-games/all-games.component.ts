@@ -44,7 +44,7 @@ export class AllGamesComponent implements OnInit {
       userObservable.subscribe({
         next: (data) => {
           this.user = data;
-          console.log(this.user)
+          // console.log(this.user)
         },
         error: (err) => {
           console.log(err)
