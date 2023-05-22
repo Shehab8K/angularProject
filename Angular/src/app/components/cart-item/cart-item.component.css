@@ -32,7 +32,9 @@ img {
 .cart {
   grid-area: content;
 }
-
+li{
+  transition: transform 0.3s ease;
+}
 li:hover {
   transform: scale(1.05);
 }
@@ -58,6 +60,8 @@ li:hover {
 }
 .actions button{
   background: #26d9ac;
+  transition: transform 0.3s ease;
+
 }
 .actions button:hover {
   transform: scale(1.06);
