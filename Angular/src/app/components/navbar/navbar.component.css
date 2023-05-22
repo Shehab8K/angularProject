@@ -26,7 +26,11 @@ body {
     height: auto;
     padding-left: 3rem;
 }
-
+.logo{
+    width: 100px;
+/* border: 2px solid red; */
+    
+}
 .nav div.logo a {
     text-decoration: none;
     color: #fff;

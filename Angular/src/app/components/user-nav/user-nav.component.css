@@ -5,7 +5,14 @@ body{
   width: 40px;
   cursor: pointer;
 }
+.username a{
+  text-decoration: none;
+  color: black;
+}
+.sub-menu-link{
+  transition: transform 0.3s ease;
 
+}
 .user-wrap{
   width: 200px;
   background-color: rgba(255, 255, 255, 0.9);
