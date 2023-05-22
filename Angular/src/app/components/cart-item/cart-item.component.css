@@ -1,11 +1,12 @@
 .container {
-  margin-top: 15vh;
   margin-bottom: 5vh;
   font-family: 'Nova Flat';
   width: 65rem;
   color: white;
   justify-content: space-between;
   transition: transform 0.3s ease;
+  margin-top: 150px !important;
+
 }
  main {
   display: grid;
