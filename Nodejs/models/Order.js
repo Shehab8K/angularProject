@@ -1,31 +1,47 @@
 const mongoose = require("mongoose");
-const ordersSchema = new mongoose.Schema({
 
-  GID: {
-    type: [String],
-    required: true,
-  },
-  statue: {
-    type: "string",
-    enum: ['pending', 'accepted', 'rejected'],
-    default: 'pending',
-    required: true,
-  },
-  userID: {
-    type: "number",
-    required: true,
-  },
-  date: {
-    type: "Date",
-    default: Date.now
+const gameItemSchema = new mongoose.Schema({
+   GameTitle:{
+    type: String,
+    required: true
+   },
+		GamePic:{
+       type: String,
+      required: true
     },
-  total: {
-    type: "number",
-    required: true,
-  },
-  NumGames: {
-    type: "number",
-    required: true,
+    GamePrice: {
+    type: Number,
+    required: true
   }
 });
+
+const ordersSchema = new mongoose.Schema({
+  gameItems: {
+    type: [gameItemSchema],
+    required: true
+  },
+  status: {
+    type: String,
+    enum: ['pending', 'accepted', 'rejected'],
+    default: 'pending',
+    required: true
+  },
+  userID: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  total: {
+    type: Number,
+    required: true
+  },
+  numGames: {
+    type: Number,
+    required: true
+  }
+});
+
 module.exports = mongoose.model('Order', ordersSchema);
