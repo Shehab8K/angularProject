@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: "user"
   },
+  cart:{
+    type: Array,
+    default: []
+  },
   token: {
     type: String,
   },
