@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { GamesService } from 'src/app/services/games.service';
+// import { GamesService } from 'src/app/services/games.service';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -8,15 +8,7 @@ import { GamesService } from 'src/app/services/games.service';
 })
 export class ChartComponent {
   games: any
-  constructor(gamesService: GamesService) {
-    console.log(gamesService.GetAllGames())
-    gamesService.GetAllGames().subscribe({
-      next: (data) => {
-        this.games = data
-      },
-      error: (err) => { }
-    })
-  }
+  
   public chart: any;
   createChart(){
 
@@ -43,7 +35,7 @@ export class ChartComponent {
             // hoverOffset: 4
           }],
       },
-      options: { //forspacing of bottom
+      options: { //forsize of chart
         aspectRatio:2.5
       }
 

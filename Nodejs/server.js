@@ -3,7 +3,7 @@ const cors = require('cors');
 const path = require("path");
 
 const productController = require(path.join(__dirname, "./controllers/ProductController"));
-
+// const filterController = require('./controllers/FilterController');
 
 const app = express();
 
@@ -19,6 +19,10 @@ connectDB(process.env.DATABASE_NAME);
 
 // Routes
 const OrderRouter = require(path.join(__dirname,"./routers/OrderRouter"));
+// Middleware to parse request body as JSON
+// app.use(express.json());
+// app.use('/api/products/filter',filterController)
+// Routes
 const UserRouter = require(path.join(__dirname ,"./routers/UserRouter"));
 
 app.use('/api/users',UserRouter);
