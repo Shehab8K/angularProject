@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeCardsComponent } from './components/home-cards/home-cards.component';
@@ -29,7 +30,29 @@ import { UserOnlyComponent } from './components/user-only/user-only.component';
 import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderItemComponent } from './order-item/order-item.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { HeaderComponent } from './components/dashboard/header/header.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { WidgetComponent } from './components/dashboard/widget/widget.component';
+import { ChartoneComponent } from './components/dashboard/chartone/chartone.component';
+import { TitleComponent } from './components/dashboard/title/title.component';
+// import { MatSidenavModule } from '@angular/material/select';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,9 +80,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     OrdersComponent,
     OrderItemComponent,
     DashboardComponent,
-
-    
-
+    SidenavComponent,
+    HeaderComponent,
+    WidgetComponent,
+    ChartoneComponent,
+    TitleComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,10 +93,23 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSidenavModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatListModule,
+    MatMenuModule,
+    
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right",
       preventDuplicates: true
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

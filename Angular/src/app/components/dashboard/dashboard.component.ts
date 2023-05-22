@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-
+constructor(){
+  console.log("hiiii")
+}
 }

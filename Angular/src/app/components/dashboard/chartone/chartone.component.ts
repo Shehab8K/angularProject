@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { GamesService } from 'src/app/services/games.service';
+
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  selector: 'app-chartone',
+  templateUrl: './chartone.component.html',
+  styleUrls: ['./chartone.component.css']
 })
-export class ChartComponent {
+export class ChartoneComponent  {
+ 
   games: any
   constructor(gamesService: GamesService) {
     console.log(gamesService.GetAllGames())
@@ -21,7 +23,7 @@ export class ChartComponent {
   createChart(){
 
     this.chart = new Chart("MyChart", {
-      type: 'pie', //this denotes tha type of chart
+      type: 'bar', //this denotes tha type of chart
 
       data: {// values on X-Axis
         labels: ['Action','Adventure',
@@ -44,7 +46,7 @@ export class ChartComponent {
           }],
       },
       options: { //forspacing of bottom
-        aspectRatio:0.5
+        aspectRatio:2.5
       }
 
     });
