@@ -40,6 +40,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -56,6 +57,10 @@ import { UsersTableComponent } from './components/dashboard/users/users-table/us
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { UserNavComponent } from './components/user-nav/user-nav.component';
 import { DashboardHomeComponent } from './components/dashboard/dashboard-home/dashboard-home.component';
+import { DashboardOrdersComponent } from './components/dashboard/dashboard-orders/dashboard-orders.component';
+import { AcceptedOrdersComponent } from './components/dashboard/dashboard-orders/accepted-orders/accepted-orders.component';
+import { RejectedOrdersComponent } from './components/dashboard/dashboard-orders/rejected-orders/rejected-orders.component';
+import { PendingOrdersComponent } from './components/dashboard/dashboard-orders/pending-orders/pending-orders.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +97,10 @@ import { DashboardHomeComponent } from './components/dashboard/dashboard-home/da
     UsersTableComponent,
     UserNavComponent,
     DashboardHomeComponent,
+    DashboardOrdersComponent,
+    AcceptedOrdersComponent,
+    RejectedOrdersComponent,
+    PendingOrdersComponent,
 
   ],
   imports: [
@@ -112,7 +121,7 @@ import { DashboardHomeComponent } from './components/dashboard/dashboard-home/da
     MatToolbarModule,
     MatListModule,
     MatMenuModule,
-    
+    MatTabsModule,
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right",
       preventDuplicates: true

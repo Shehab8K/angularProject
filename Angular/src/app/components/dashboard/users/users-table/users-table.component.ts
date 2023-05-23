@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./users-table.component.css']
 })
 export class UsersTableComponent {
+  userTitle: string="Users";
   displayedColumns: string[] = ['column1', 'column2', 'column3'];
   dataSource: MatTableDataSource<any>;
 

@@ -8,7 +8,7 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./chartone.component.css']
 })
 export class ChartoneComponent  {
- 
+  chartTitle:string="Orders";
   games: any
   
   public chart: any;
