@@ -17,7 +17,7 @@ body {
     position: fixed;
     line-height: 65px;
     text-align: center;
-    
+
 }
 
 .nav div.logo {
@@ -26,7 +26,11 @@ body {
     height: auto;
     padding-left: 3rem;
 }
-
+.logo{
+    width: 100px;
+/* border: 2px solid red; */
+    
+}
 .nav div.logo a {
     text-decoration: none;
     color: #fff;

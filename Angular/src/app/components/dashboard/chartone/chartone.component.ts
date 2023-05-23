@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { GamesService } from 'src/app/services/games.service';
+// import { GamesService } from 'src/app/services/games.service';
 
 @Component({
   selector: 'app-chartone',
@@ -10,20 +10,12 @@ import { GamesService } from 'src/app/services/games.service';
 export class ChartoneComponent  {
  
   games: any
-  constructor(gamesService: GamesService) {
-    console.log(gamesService.GetAllGames())
-    gamesService.GetAllGames().subscribe({
-      next: (data) => {
-        this.games = data
-      },
-      error: (err) => { }
-    })
-  }
+  
   public chart: any;
   createChart(){
 
     this.chart = new Chart("MyChart", {
-      type: 'bar', //this denotes tha type of chart
+      type: 'pie', //this denotes tha type of chart
 
       data: {// values on X-Axis
         labels: ['Action','Adventure',
@@ -45,7 +37,7 @@ export class ChartoneComponent  {
             // hoverOffset: 4
           }],
       },
-      options: { //forspacing of bottom
+      options: { //forsize of chart
         aspectRatio:2.5
       }
 

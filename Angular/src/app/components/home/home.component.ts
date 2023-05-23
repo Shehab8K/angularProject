@@ -1,21 +1,11 @@
 import { Component } from '@angular/core';
-import { GamesService } from 'src/app/services/games.service';
+// import { GamesService } from 'src/app/services/games.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  games: any
-  constructor(gamesService: GamesService) {
-    console.log(gamesService.GetAllGames())
-    gamesService.GetAllGames().subscribe({
-      next: (data) => {
-        this.games = data
-      },
-      error: (err) => { }
-    })
-  }
 
   currentindex = 0;
   timer:any;

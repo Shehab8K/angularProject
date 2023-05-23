@@ -192,9 +192,13 @@ const validateProduct = (data) => {
     description: Joi.string().required(),
     releasedDate: Joi.date().required(),
   });
+  return schema.validate(product);
 
-  return productSchema.validate(data);
-};
+  
+}
+
+  // return productSchema.validate(data);
+
 
 module.exports = router;
 

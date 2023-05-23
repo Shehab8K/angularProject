@@ -1,0 +1,43 @@
+<div class="order bg-dark m-3 shadow-lg rounded p-4" *ngFor="let o of orders">
+    <div class="order-header">
+        <div class="text-dark order-id fs-6">
+            Order <span class="text-primary">#{{o._id}}</span>
+        </div>
+        <p class="m-3">Order Placed: {{formatDate(o.date || '') }}</p>
+    </div>
+    <hr class="ms-4 me-4">
+    <div class="order-body">
+        <div class=" ms-3 d-flex flex-column" *ngFor="let g of o.gameItems">
+            <div class="d-flex flex-row order-item ">
+                <img class="game-img " src={{g.GamePic}}>
+                <div class="item-details  mt-1">
+                    <div class="fs-5">
+                        {{g.GameTitle}}
+                    </div>
+                    <div class="price">
+                        <p class="text-secondary">
+                            Price
+                        </p>
+                        <p class="fs-4">{{g.GamePrice}} $</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="ms-4 me-5">
+        </div>
+    </div>
+    <div class="order-footer ms-3 me-3">
+        <!-- <div class="col1">
+            <button class="btn  ms-3 btn-success">Accept</button>
+            <button class="btn  ms-3 btn-danger">Decline</button>
+        </div> -->
+        <div class="col1">
+            <button class="btn cancel-btn btn-outline-secondary"> <i class="close-icon fa fa-times fs-4 "></i> CANCEL
+                OREDR </button>
+        </div>
+        <div class="col2">
+            <p class="text-secondary">
+                TOTAL PRICE</p>
+            <p class="m-3">{{o.total}} $</p>
+        </div>
+    </div>
+</div>

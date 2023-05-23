@@ -1,11 +1,12 @@
 .container {
-  margin-top: 15vh;
   margin-bottom: 5vh;
   font-family: 'Nova Flat';
   width: 65rem;
   color: white;
   justify-content: space-between;
   transition: transform 0.3s ease;
+  margin-top: 150px !important;
+
 }
  main {
   display: grid;
@@ -32,6 +33,12 @@ img {
 .cart {
   grid-area: content;
 }
+li{
+  transition: transform 0.3s ease;
+}
+li:hover {
+  transform: scale(1.05);
+}
 
 .summary {
   display: flex;
@@ -54,8 +61,12 @@ img {
 }
 .actions button{
   background: #26d9ac;
-}
+  transition: transform 0.3s ease;
 
+}
+.actions button:hover {
+  transform: scale(1.06);
+}
 button {
   background-color: #1B2838;
   box-shadow: 0 2px 4px #11221e;

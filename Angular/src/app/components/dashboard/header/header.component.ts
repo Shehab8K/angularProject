@@ -9,7 +9,6 @@ import { MatMenuTrigger } from '@angular/material/menu';
 export class HeaderComponent {
   @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
 
-  // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   someMethod() {
     this.trigger.openMenu();
