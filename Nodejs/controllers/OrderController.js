@@ -1,5 +1,5 @@
 const path = require("path");
-const Order = require(path.join(__dirname,"../models/Order"));
+const Order = require(path.join(__dirname, "../models/Order"));
 
 // get all Orders
 let getAllOrders = async (req, res) => {
@@ -9,15 +9,15 @@ let getAllOrders = async (req, res) => {
 
 // get order by id
 let getOrderbyid = async (req, res) => {
-  try{
-  let id = req.params.id;
-  let order = await Order.findById(id);
-  res.json(order);
-}
-catch (error) {
-  console.error("Error retrieving orders:", error);
-  res.status(500).json({ error: "Failed to retrieve orders" });
-}
+  try {
+    let id = req.params.id;
+    let order = await Order.findById(id);
+    res.json(order);
+  }
+  catch (error) {
+    console.error("Error retrieving orders:", error);
+    res.status(500).json({ error: "Failed to retrieve orders" });
+  }
 };
 
 // get all orders by userID
@@ -53,7 +53,7 @@ let createOrder = async (req, res) => {
 
     await newOrder.save();
     await res.status(200).json(newOrder);
-  } 
+  }
   catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
@@ -78,7 +78,7 @@ let updateOrder = async (req, res) => {
         }
       );
       res.send("Order updated successfully");
-    } 
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
@@ -87,18 +87,20 @@ let updateOrder = async (req, res) => {
 
 // delete order
 let deleteOrder = async (req, res) => {
-  try
-  {var ID = req.params.id;
+  console.log("in controller")
+  try {
+    var ID = req.params.id;
+    console.log("in controller")
+    var order = await Order.findOne({ _id: ID });
+    console.log(order.status);
 
-  var order = await Order.findOne({ _id: ID });
-  console.log(order.status);
-
-  if (order.status=== 'accepted') {
-    res.json("This order has already been accepted and cannot be deleted.");
-  } else {
-    await Order.deleteOne({ _id: ID });
-    res.json(order.status || "Not Found");
-  }}
+    if (order.status === 'accepted') {
+      res.json("This order has already been accepted and cannot be deleted.");
+    } else {
+      await Order.deleteOne({ _id: ID });
+      res.json(order.status || "Not Found");
+    }
+  }
   catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });

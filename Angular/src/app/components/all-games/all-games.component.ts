@@ -24,8 +24,9 @@ export class AllGamesComponent implements OnInit {
   filteredGames: any[] = [];
   gameTags: any[] = [];
   user: any;
+  cart: any[] = []
 
-  constructor(private gamesService: GamesService, private formBuilder: FormBuilder, userService: UserService) {
+  constructor(private gamesService: GamesService, private formBuilder: FormBuilder, private userService: UserService) {
     this.priceRange = this.formBuilder.group({
       range1: false,
       range2: false,
@@ -39,21 +40,21 @@ export class AllGamesComponent implements OnInit {
       windows: false,
       linux: false
     });
-    const userObservable = userService.getCurrentUser()
+  }
+
+  async ngOnInit(): Promise<void> {
+    const userObservable = this.userService.getCurrentUser()
     if (userObservable) {
       userObservable.subscribe({
         next: (data) => {
           this.user = data;
-          // console.log(this.user)
+          this.cart = this.user.cart
         },
         error: (err) => {
           console.log(err)
         }
       })
     }
-  }
-
-  async ngOnInit(): Promise<void> {
     try {
       const data = await firstValueFrom(this.gamesService.GetAllGames());
       this.rawData = data;
@@ -76,12 +77,8 @@ export class AllGamesComponent implements OnInit {
     // this.isFavorite = !this.isFavorite;
   }
 
-  // toggleAdded(): void {
-  //   // this.isAdded = !this.isAdded;
-  // }
   isInCart(g: any): boolean {
-
-    const index = this.user.cart.findIndex((item: any) => item._id === g._id);
+    const index = this.cart.findIndex((item: any) => item._id === g._id);
     if (index === -1) {
       return false;
     } else {
@@ -89,17 +86,24 @@ export class AllGamesComponent implements OnInit {
     }
   }
   addToCart(g: any) {
-    if (this.user.cart.length > 0) {
-      const index = this.user.cart.findIndex((item: any) => item._id === g._id);
+    if (this.cart.length > 0) {
+      const index = this.cart.findIndex((item: any) => item._id === g._id);
       if (index === -1) {
-        this.user.cart.push(g);
+        this.cart.push(g);
       } else {
-        this.user.cart.splice(index, 1);
+        this.cart.splice(index, 1);
       }
     }
     else
-      this.user.cart.push(g);
-    console.log(this.user)
+      this.cart.push(g);
+    this.userService.updateUserCart(this.user._id, this.cart).subscribe({
+      next: () => {
+        this.ngOnInit();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
   onChangepriceRange(): void {
     const selectedPrice = Object.keys(this.priceRange.value).filter(option => this.priceRange.value[option]);
@@ -108,7 +112,7 @@ export class AllGamesComponent implements OnInit {
 
   onChangeOs(): void {
     const selectedOS = Object.keys(this.os.value).filter(option => this.os.value[option]);
-    // console.log(selectedOS)
+    console.log(selectedOS)
     this.rawData.forEach((game: any) => {
       if (game.os.some((os: string) => selectedOS.includes(os))) {
         if (!(this.filteredGames.some(obj => obj.name === game.name)))

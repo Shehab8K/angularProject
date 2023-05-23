@@ -27,7 +27,6 @@ const UserRouter = require(path.join(__dirname ,"./routers/UserRouter"));
 
 app.use('/api/users',UserRouter);
 app.use("/api/orders", OrderRouter);
-
 app.use('/api/products',productController);
 
 
