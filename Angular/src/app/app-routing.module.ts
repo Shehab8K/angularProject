@@ -15,6 +15,7 @@ import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { PaymentComponent } from './components/payment/payment.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -25,7 +26,7 @@ const routes: Routes = [
   {path:'cart',component:CartComponent},
   {path:'orders',component:OrdersComponent},
   {path:'login',component:LoginComponent},
-
+  {path:'payment',component:PaymentComponent},
   // Error routes to be handled
   {path:'403',component:ForbiddenComponent},
   {path:'401',component:UnauthorizedComponent},

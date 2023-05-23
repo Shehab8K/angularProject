@@ -29,6 +29,7 @@ import { UserOnlyComponent } from './components/user-only/user-only.component';
 import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { OrderItemComponent } from './components/order-item/order-item.component
     AuthOnlyComponent,
     OrdersComponent,
     OrderItemComponent,
+    PaymentComponent,
 
 
   ],
