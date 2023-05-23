@@ -154,6 +154,7 @@ router.put("/:id", upload.array("file"), async (req, res) => {
 
 //delete product 
 router.delete("/:id", async (req, res) => {
+  console.log("in controller")
   try {
     const product = await Product.findById(req.params.id);
     if (!product) {

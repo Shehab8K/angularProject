@@ -23,7 +23,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 
 import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
-import { UnauthorizedComponent } from './components/errors/unauthorized/unauthorized.component';
+import { NotfoundComponent } from './components/errors/notfound/notfound.component';
+
 import { ToastrModule } from 'ngx-toastr';
 import { AdminOnlyComponent } from './components/admin-only/admin-only.component';
 import { UserOnlyComponent } from './components/user-only/user-only.component';
@@ -82,7 +83,7 @@ import { PendingOrdersComponent } from './components/dashboard/dashboard-orders/
     CartItemComponent,
     LoginComponent,
     ForbiddenComponent,
-    UnauthorizedComponent,
+    NotfoundComponent,
     AdminOnlyComponent,
     UserOnlyComponent,
     AuthOnlyComponent,
@@ -101,6 +102,7 @@ import { PendingOrdersComponent } from './components/dashboard/dashboard-orders/
     AcceptedOrdersComponent,
     RejectedOrdersComponent,
     PendingOrdersComponent,
+
 
   ],
   imports: [

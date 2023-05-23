@@ -18,7 +18,7 @@ export class UserGuard {
       const role = this.auth.getRole();
     if (role !== 'user' && role !== 'admin') {
       console.log(role);
-      this.router.navigate(['/401']);
+      this.router.navigate(['/401']); //Useless for now
     }
     return true;
   }
