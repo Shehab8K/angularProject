@@ -30,6 +30,14 @@ import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { UserNavComponent } from './components/user-nav/user-nav.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SliderTestComponent } from './components/slider-test/slider-test.component';
+
+// Material
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormField } from '@angular/material/form-field';
+import { MatButtonToggle } from '@angular/material/button-toggle';
+
 
 @NgModule({
   declarations: [
@@ -58,15 +66,18 @@ import { UserNavComponent } from './components/user-nav/user-nav.component';
     OrdersComponent,
     OrderItemComponent,
     UserNavComponent,
+    SliderTestComponent
 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatStepperModule,
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right",
       preventDuplicates: true

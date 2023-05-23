@@ -17,6 +17,10 @@
         (mainInfoData)="getMain($event)">
     </app-form-main-info>
 
+    <div id="steppers">
+      <app-slider-test ></app-slider-test>
+
+    </div>
   <div class="row mt-3">
       <p class="col-md-6">Have an accout? <a routerLink="/login">Sign in</a></p>
       <button type="submit"  [disabled]="!validMainInfo|| !matchPass" class="btn btn-outline-light col-md-3 offset-md-3">Register</button>
