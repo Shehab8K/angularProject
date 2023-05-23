@@ -55,6 +55,7 @@ import { UsersTableComponent } from './components/dashboard/users/users-table/us
 // import { MatSidenavModule } from '@angular/material/select';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { UserNavComponent } from './components/user-nav/user-nav.component';
+import { DashboardHomeComponent } from './components/dashboard/dashboard-home/dashboard-home.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { UserNavComponent } from './components/user-nav/user-nav.component';
     TitleComponent,
     UsersTableComponent,
     UserNavComponent,
+    DashboardHomeComponent,
 
   ],
   imports: [
