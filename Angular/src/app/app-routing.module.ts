@@ -16,6 +16,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component'
+import { UsersTableComponent } from './components/dashboard/users/users-table/users-table.component';
 const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'orders',component:OrdersComponent},
   {path:'login',component:LoginComponent},
   {path:'dashboard',component:DashboardComponent},
+  {path:'dashboard/users',component:UsersTableComponent},
 
   // Error routes to be handled
   {path:'403',component:ForbiddenComponent},

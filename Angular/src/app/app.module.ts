@@ -51,6 +51,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { WidgetComponent } from './components/dashboard/widget/widget.component';
 import { ChartoneComponent } from './components/dashboard/chartone/chartone.component';
 import { TitleComponent } from './components/dashboard/title/title.component';
+import { UsersTableComponent } from './components/dashboard/users/users-table/users-table.component';
 // import { MatSidenavModule } from '@angular/material/select';
 
 @NgModule({
@@ -85,6 +86,7 @@ import { TitleComponent } from './components/dashboard/title/title.component';
     WidgetComponent,
     ChartoneComponent,
     TitleComponent,
+    UsersTableComponent,
   ],
   imports: [
     BrowserModule,
