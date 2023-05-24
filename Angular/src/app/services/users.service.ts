@@ -44,7 +44,7 @@ export class UserService {
     // console.log(typeof(cart))
     console.log((cart))
 
-    return this.myClient.put(this.Base_URL + '/cart/' + id, cart)
+    return this.myClient.put(this.Base_URL + '/cart/' + id, {cart})
   }
   logout(){
     localStorage.removeItem('user');
