@@ -10,7 +10,7 @@ body{
   color: black;
 }
 .sub-menu-link{
-  transition: transform 0.3s ease;
+  transition: transform 0.1s ease;
 
 }
 .user-wrap{

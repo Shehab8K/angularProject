@@ -6,12 +6,15 @@
                 My Orders
             </h1>
         </div>
-            <div class="order-filter  m-3 p-1 rounded fs-5">
-                <div class="order-type rounded p-3 ">Accepted</div>
-                <div class="order-type rounded p-3 ">Pending</div>
-                <div class="order-type rounded p-3 ">Rejected</div>
-            </div>
-        <app-order-item></app-order-item>
+    
+        <div class="order-filter m-3 p-1 rounded fs-5">
+            <label class="order-type rounded p-3 " *ngFor="let option of options"
+                [class.selected]="option.value === selectedValue" >
+                <input (change)="filterData()"  type="radio" [formControl]="radioControl" [value]="option.value">
+                {{ option.label }}
+            </label>
+        </div>
+        <app-order-item (itemDeleted)="refresh()" [filteredOrders]="filteredOrders"></app-order-item>
 
     </div>
 </div>

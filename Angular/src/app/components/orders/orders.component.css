@@ -36,16 +36,24 @@
     text-align: center;
 }
 
-.order-type:hover {
-    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;;
+.order-type:hover,
+.order-type.selected {
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    ;
     cursor: pointer;
     color: white;
 }
 
-.order-type:active {
-    transform: scale(0.85);
+.order-type.selected {
+    transform: scale(0.90);
 }
-.body-container{
+
+.order-type input[type="radio"] {
+    display: none;
+    /* Hide the default radio button */
+}
+
+.body-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
