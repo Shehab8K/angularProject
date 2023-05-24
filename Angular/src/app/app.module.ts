@@ -62,6 +62,12 @@ import { DashboardOrdersComponent } from './components/dashboard/dashboard-order
 import { AcceptedOrdersComponent } from './components/dashboard/dashboard-orders/accepted-orders/accepted-orders.component';
 import { RejectedOrdersComponent } from './components/dashboard/dashboard-orders/rejected-orders/rejected-orders.component';
 import { PendingOrdersComponent } from './components/dashboard/dashboard-orders/pending-orders/pending-orders.component';
+import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
+import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
+import { LoadingComponent } from './components/loading/loading.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -102,6 +108,9 @@ import { PendingOrdersComponent } from './components/dashboard/dashboard-orders/
     AcceptedOrdersComponent,
     RejectedOrdersComponent,
     PendingOrdersComponent,
+    DashboardProductsComponent,
+    DashboardProductDetailsComponent,
+    LoadingComponent,
 
 
   ],
