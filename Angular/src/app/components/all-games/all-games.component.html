@@ -2,6 +2,7 @@
 
 <body>
     <div *ngIf="games && gameTags else falseBlock " class="page-container shadow-lg ps-4 pe-4 m-5 rounded">
+       <div class="header m-2 p-3  shadow-sm fs-3"> ALL YOUR FAVORITE GAMES IN ONE PLACE<img class="gif" src="../../../assets/images/icon.gif"></div>
         <div class="d-flex flex-row page-display">
             <div class="d-flex flex-column">
 
@@ -47,8 +48,9 @@
                             </p>
                         </div>
                     </div>
-                    <div class=" shadow-sm d-flex flex-column right-col">
-                        <i class=" star fa-regular fa-heart fa-2x p-2"></i>
+                    <div class="last-col p-2 shadow-sm d-flex flex-column right-col">
+                        <!-- <i class=" star fa-regular fa-heart fa-2x p-2"></i> -->
+                        <h5 class="text-secondary" >Price</h5>
                         <h4 class="price">{{g.price}}$</h4>
                     </div>
                 </div>
