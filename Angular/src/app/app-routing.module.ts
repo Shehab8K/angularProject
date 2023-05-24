@@ -18,6 +18,8 @@ import { NotfoundComponent } from './components/errors/notfound/notfound.compone
 
 import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { UsersTableComponent } from './components/dashboard/users/users-table/users-table.component';
+import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
+import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
 const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
@@ -29,6 +31,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'dashboard',component:DashboardComponent},
   {path:'dashboard/users',component:UsersTableComponent},
+  {path:'dashboard/games/:id',component:DashboardProductDetailsComponent},
 
   // Error routes to be handled
   {path:'403',component:ForbiddenComponent},
