@@ -1,13 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
-html,
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Quicksand", sans-serif;
-    font-size: 62.5%;
-    font-size: 10px;
-}
 
 /* Navbar section */
 
@@ -69,17 +60,22 @@ body {
     width: 100%;
     z-index: 1000;
 }
-
+/* class for navbar when scroll */
+.affix {
+    padding: 0;
+    background-color: #212529;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
 
 /* Media qurey section */
 
-/* @media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width:990px) and (max-width: 1024px) {
     .container {
         margin: 0;
     }
-} */
+}
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:990px) {
     .navTrigger {
         display: block;
     }
@@ -121,7 +117,7 @@ body {
     }
 }
 
-
+/* for navbar hambourger icon */
 .navTrigger {
     cursor: pointer;
     width: 30px;
@@ -141,7 +137,6 @@ body {
     width: 100%;
     height: 4px;
 }
-
 .navTrigger i:nth-child(1) {
     -webkit-animation: outT 0.8s backwards;
     animation: outT 0.8s backwards;
@@ -311,43 +306,3 @@ body {
     }
 }
 
-.affix {
-    padding: 0;
-    background-color: #1B2838;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-
-
-
-
-
-.myH2 {
-	text-align:center;
-	font-size: 4rem;
-}
-.myP {
-	text-align: justify;
-	padding-left:15%;
-	padding-right:15%;
-	font-size: 20px;
-}
-@media all and (max-width:700px){
-	.myP {
-		padding:2%;
-	}
-}
-
-/* for debugging  */
-/* nav{
-
-    border: 5px solid red !important;
-  
-  }
-  .container{
-  
-    border: 5px solid blue;
-  }
-  .container *{
-    border: 5px solid green;
-  } */
