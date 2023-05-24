@@ -69,8 +69,14 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
   try {
 
-    const {error} = validateUser(req.body);
-
+    const { name, username, email, password } = req.body;
+    let myuser = {
+      name,
+      username,
+      email,
+      password
+    }
+    const {error} = validateUser(myuser);
     if(error)
     {
       return res.status(400).json({ message: error.details });
@@ -168,7 +174,7 @@ const validateUser = (data) => {
     name: Joi.string().required(),
     username: Joi.string().required(),
     email: Joi.string().email().required(),
-    password: Joi.required()
+    password: Joi.required(),
   });
 
   return userSchema.validate(data);

@@ -6,17 +6,26 @@ html,body{
   margin: 0;
 }
 
-body{
+/* body{
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden; /* clip the image */
+  overflow: hidden;
   z-index: -1;
+} */
+
+#body{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
-body::before {
+#body::before {
   content: "";
   position: absolute;
   top: -50px;
@@ -52,7 +61,6 @@ body::before {
 }
 .container {
   position: relative;
-
 }
 
 .errMsg{
