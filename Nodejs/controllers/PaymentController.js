@@ -7,11 +7,20 @@ const { json } = require('body-parser');
 
 const createCharge = async (req,res) =>{
     try{
+
+        /*
+        *     Need in body => Id, cardNumber, cardExpMonth, cardExpYear, cardCVC, price
+        *     Price should be numbers not strings, price can be 12.50
+        */
+
+
+        // Find User
         const user = await User.findById(req.body.id);
         if(!user){
             return res.status(404).json({ message: "User not found" });
         }
 
+        // send name, email to create customer
         const sendUser ={
             name: user.name,
             email: user.email
@@ -22,7 +31,8 @@ const createCharge = async (req,res) =>{
         if(!customer){
             return res.status(400).json({ message: "Failed to create customer invoice"});
         }
-        
+
+        // Send card data and customer ID to make source and get a card
         const sendCardToken = {
             name: user.name,
             number: req.body.cardNumber,
@@ -32,20 +42,26 @@ const createCharge = async (req,res) =>{
         }
 
         const card_Token = await createCardToken(sendCardToken,customer.id);
-        // console.log(sendCardToken);
-        return res.json({card: card_Token});
-        console.log("Card-token : "+card_Token);
 
         if(!card_Token){
             return res.status(400).json({ message: "Wrong Card credentials"});
         }
 
+        // Make a charge 
 
-        console.log("Card : "+card);
-        if(!card){
-            return res.status(400).json({ message: "Failed to create card"});
+        const bill = {
+            reciept_email: user.email,
+            amount: req.body.price,
+            card : card_Token.id,
+            customerID: customer.id 
         }
-        return res.status(200).json({card: card_Token});
+        const charge = await createCharges(bill);
+
+        if(!charge){
+            return res.status(400).json({ message: "Failed to Purchase order"});
+        }
+
+        return res.status(200).json({card: charge});
     }
     catch(err)
     {
@@ -62,6 +78,7 @@ const createCustomer = async (user) =>{
         return customer;
     }catch(err){
         console.log("from create Customer "+err);
+        return {"createCustomer":err};
     }
 } 
 
@@ -83,8 +100,26 @@ const createCardToken = async (card,customerID) =>{
         return mycard;
     }catch(err){
         console.log("from create card token "+err);
+        return {"cardToken":err};
     }
 } 
+
+const createCharges = async (customer) =>{
+    try{
+        const createCharge = await stripe.charges.create({
+            reciept_email: customer.email,
+            amount: customer.amount*100,
+            currency: 'USD',
+            card : customer.card,
+            customer: customer.customerID, 
+        })
+        return createCharge;
+    }catch(err){
+        console.log("from create Customer "+err);
+        return {"charges":err};
+    }
+} 
+
 module.exports = {
     createCharge
 }
