@@ -62,10 +62,10 @@ router.get("/:id", async (req, res) => {
 router.post("/", upload.array("file"), async (req, res) => {
   try {
     // Validate the request body
-    const { error } = validateProduct(req.body);
-    if (error) {
-      return res.status(400).json({ error: error.details[0].message });
-    }
+    // const { error } = validateProduct(req.body);
+    // if (error) {
+    //   return res.status(400).json({ error: error.details[0].message });
+    // }
     if (req.files && req.files.length > 0) {
       // Handle multiple file uploads
       const fileNames = [];
