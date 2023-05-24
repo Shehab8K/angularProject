@@ -8,7 +8,7 @@ const orderController = require(path.join(__dirname,"../controllers/OrderControl
 router.delete("/:id", orderController.deleteOrder);
 
 // // GET all orders
-// router.get("/", orderController.getAllOrders);
+router.get("/", orderController.getAllOrders);
 
 // GET order by id
 router.get("/:id", orderController.getOrderbyid);
@@ -17,9 +17,9 @@ router.get("/:id", orderController.getOrderbyid);
 router.get("/user/:userID", orderController.getOrdersByUserID);
 
 // // POST new order
-// router.post("/", orderController.createOrder);
+router.post("/", orderController.createOrder);
 
 // // PUT update order
-// router.put("/:id", orderController.updateOrder);
+router.put("/:id", orderController.updateOrder);
 
 module.exports = router;
