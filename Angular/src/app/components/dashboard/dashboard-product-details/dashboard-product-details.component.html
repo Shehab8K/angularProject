@@ -1,4 +1,4 @@
-<div style="background-color: aqua;">
+<div *ngIf="game else falseBlock " style="background-color: rgb(95, 100, 100);">
     <p>name:{{game.name}}</p>
     <p>price:{{game.price}}</p>
     <p>description:{{game.description}}</p>
@@ -17,3 +17,8 @@
         <img [src]="imageUrl" alt="Product Image" />
       </div>
 </div>
+
+<ng-template #falseBlock>
+    <!-- <h1 class="alert alert-danger">loading</h1> -->
+<app-loading></app-loading>
+</ng-template>
