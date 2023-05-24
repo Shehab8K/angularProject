@@ -38,7 +38,7 @@ export class UserService {
   getUserByID(id: any) {
     return this.myClient.get(this.Base_URL + '/' + id)
   }
-  updateUserCart(id: string, cart: any []) {    
+  updateUserCart(id: string, cart: any []) {
     console.log(this.Base_URL + '/cart/' + id)
     console.log("in cart service")
     // console.log(typeof(cart))
