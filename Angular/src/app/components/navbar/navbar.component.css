@@ -21,7 +21,7 @@
     text-decoration: none;
     color: #fff;
 }
-
+ 
 .nav div.logo a:hover {
     color:grey;
 }
@@ -33,6 +33,7 @@
 {
     display:flex;  
     justify-content: space-between;
+
 }
 
 .nav div.main_list ul li a {
@@ -305,4 +306,4 @@
         transform: translateY(-9px) rotate(135deg);
     }
 }
-
+ 
