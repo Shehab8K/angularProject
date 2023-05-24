@@ -2,10 +2,8 @@ require('dotenv').config({path: __dirname + '/../.env'})
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const path = require("path");
 const User = require("../models/User"); // import the User model
-const mongoose = require('mongoose');
-const { json } = require('body-parser');
 
-const createCharge = async (req,res) =>{
+const createPayment = async (req,res) =>{
     try{
 
         /*
@@ -121,5 +119,5 @@ const createCharges = async (customer) =>{
 } 
 
 module.exports = {
-    createCharge
+    createPayment
 }

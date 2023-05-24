@@ -4,6 +4,6 @@ const path = require("path");
 
 const paymentController = require(path.join(__dirname,"../controllers/PaymentController"));
 
-router.post("/charge",paymentController.createCharge);
+router.post("/charge",paymentController.createPayment);
 
 module.exports = router;
