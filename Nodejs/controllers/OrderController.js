@@ -1,26 +1,30 @@
 const path = require("path");
-const ordersModel = require(path.join(__dirname,"../models/Order"));
-// const validate = require("../utils/OrdersValidator");
+const Order = require(path.join(__dirname,"../models/Order"));
 
 // get all Orders
 let getAllOrders = async (req, res) => {
-  let data = await ordersModel.find({});
+  let data = await Order.find({});
   res.json(data);
 };
 
 // get order by id
 let getOrderbyid = async (req, res) => {
+  try{
   let id = req.params.id;
-  let order = await ordersModel.findById({_id: id});
+  let order = await Order.findById(id);
   res.json(order);
+}
+catch (error) {
+  console.error("Error retrieving orders:", error);
+  res.status(500).json({ error: "Failed to retrieve orders" });
+}
 };
 
-// get all orders by userID
 // get all orders by userID
 let getOrdersByUserID = async (req, res) => {
   try {
     const userID = req.params.userID;
-    const orders = await ordersModel.find({ userID });
+    const orders = await Order.find({ userID });
     res.json(orders);
   } catch (error) {
     console.error("Error retrieving orders:", error);
@@ -28,56 +32,53 @@ let getOrdersByUserID = async (req, res) => {
   }
 };
 
-// create new order
 let createOrder = async (req, res) => {
   try {
     const data = req.body;
-    const gids = data.GID;
+    const gameItems = data.gameItems;
 
-    const neworder = new ordersModel({
-      date: Date.now(),
-      GID: gids,
+    let total = 0;
+    for (let i = 0; i < gameItems.length; i++) {
+      total += gameItems[i].GamePrice;
+    }
+
+    const newOrder = new Order({
+      gameItems: gameItems,
+      status: 'pending',
       userID: data.userID,
-      NumGames: gids.length,
-      total: data.total,
+      date: Date.now(),
+      numGames: gameItems.length,
+      total: total,
     });
-    await neworder.save();
-    await res.status(200).json(neworder);
-  } catch (err) {
+
+    await newOrder.save();
+    await res.status(200).json(newOrder);
+  } 
+  catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
-// update order(statue or gameslist)
+// update order(status)
 let updateOrder = async (req, res) => {
   try {
     const orderId = req.params.id;
     const newData = req.body;
-    const order = await ordersModel.findById(orderId);
+    const order = await Order.findById(orderId);
 
-    if (order.statue === "accepted") {
+    if (order.status === "accepted") {
       return res.status(400).json({ message: "Order has already been accepted and cannot be edited." });
     }
 
-    if (order.statue === "pending") {
-      await ordersModel.updateOne(
+    if (order.status === "pending") {
+      await Order.updateOne(
         { _id: orderId },
         {
-          GID: newData.GID,
-          statue: newData.statue
+          status: newData.status
         }
       );
       res.send("Order updated successfully");
-    } else {
-      await ordersModel.updateOne(
-        { _id: orderId },
-        {
-          statue: newData.statue
-        }
-      );
-      res.send("Order status updated successfully");
-    }
+    } 
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
@@ -86,22 +87,23 @@ let updateOrder = async (req, res) => {
 
 // delete order
 let deleteOrder = async (req, res) => {
-  var ID = req.params.id;
+  try
+  {var ID = req.params.id;
 
-  var order = await ordersModel.findOne({ _id: ID });
-  console.log(order.statue);
+  var order = await Order.findOne({ _id: ID });
+  console.log(order.status);
 
-  
-  if (order.statue !='accepted')
-  {
-    await ordersModel.deleteOne({ _id: ID });
-    res.json(order.statue || "Not Found");
-  }
-  else {
-    res.json("this order is already accepted can't be deleted");
+  if (order.status=== 'accepted') {
+    res.json("This order has already been accepted and cannot be deleted.");
+  } else {
+    await Order.deleteOne({ _id: ID });
+    res.json(order.status || "Not Found");
+  }}
+  catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
-
 
 module.exports = {
   getAllOrders,

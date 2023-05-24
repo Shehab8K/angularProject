@@ -38,4 +38,8 @@ export class UserService {
   getUserByID(id: any) {
     return this.myClient.get(this.Base_URL + '/users/' + id)
   }
+
+  logout(){
+    localStorage.removeItem('user');
+  }
 }
