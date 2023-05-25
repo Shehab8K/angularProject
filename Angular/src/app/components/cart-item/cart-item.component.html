@@ -5,7 +5,7 @@
     <section class="summary shadow-lg mb-3">
       <div class="items">🛒 {{user.cart.length}} items</div>
 
-      <div class="total"> {{total}} 💲</div>
+      <div class="total"> {{total.toFixed(2)}} 💲</div>
     </section>
 
     <section class="actions shadow-lg" *ngIf="user.cart.length > 0">
@@ -14,7 +14,7 @@
 
     <section class="cart shadow-lg">
       <ul *ngFor="let cart of user.cart">
-        <li class="item shadow-lg mb-3">
+        <li class="item shadow-lg mb-3 rounded">
           <div class="d-flex gap-4">
             <div class="image">
               <img src={{cart.images[0]}}>
