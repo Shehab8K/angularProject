@@ -31,18 +31,7 @@ export class CreateProductComponent  {
       imageURL: this.formBuilder.array([]),
     });
   }
-  // validate(){
-  //   this.gameForm = this.formBuilder.group({
-  //     name: new FormControl(null, Validators.required),
-  //     price: new FormControl(null, Validators.required),
-  //     tag: new FormControl([], Validators.required),
-  //     type: new FormControl([], Validators.required),
-  //     os: new FormControl([], Validators.required),
-  //     description: new FormControl(null, Validators.required),
-  //     imageURL: new FormControl([], Validators.required),
-  //     // imageURL: this.formBuilder.array([]),
-  //   }); 
-  // }
+
   onChangeFile(event: any) {
     const files = event.target.files;
     console.log(files);
@@ -70,33 +59,33 @@ export class CreateProductComponent  {
           const formattedDate = currentDate.toISOString();
           // console.log(formattedDate)
           formData.append('releasedDate', formattedDate);
-          // console.log(this.gameForm.value)
-          // console.log("validated :", this.gameForm.valid)
-          // console.log(this.gameForm.value)
-          // console.log(this.gameForm.valid)
-          // console.log(typeof(this.gameForm.get('tag')!.value))
-          // console.log(this.gameForm.get('name')!.value);
           formData.append('name', this.gameForm.get('name')!.value);
-              formData.append('price', this.gameForm.get('price')!.value);
-              formData.append('tag', this.gameForm.get('tag')!.value);
-              formData.append('type', this.gameForm.get('type')!.value);
-              formData.append('os', this.gameForm.get('os')!.value);
-              formData.append('description', this.gameForm.get('description')!.value);
-              
-              // for (const entry of formData.entries()) {
-              //   console.log(entry);
-              // }
-
-              console.log(formData);
-
-          this.gamesService.AddNewProduct( this.gameForm.value).subscribe({
+          formData.append('price', this.gameForm.get('price')!.value);
+          formData.append('tag', this.gameForm.get('tag')!.value);
+          formData.append('type', this.gameForm.get('type')!.value);
+          formData.append('os', this.gameForm.get('os')!.value);
+          formData.append('description', this.gameForm.get('description')!.value);
+          
+          
+          console.log(formData);
+            
+          this.gamesService.AddNewProduct( formData).subscribe({
             next:()=>{console.log("donee")},
-            error:(err)=>{console.log(err)}
-          });
-     }
-    else{
-      console.log("engzzzzzzzzz")
-    }
-  }   
-}
+              error:(err)=>{console.log(err)}
+            });
+          }
+          else{
+            console.log("engzzzzzzzzz")
+          }
+        }   
+      }
+      // for (const entry of formData.entries()) {
+        //   console.log(entry);
+        // }
  
+        // console.log(this.gameForm.value)
+        // console.log("validated :", this.gameForm.valid)
+        // console.log(this.gameForm.value)
+        // console.log(this.gameForm.valid)
+        // console.log(typeof(this.gameForm.get('tag')!.value))
+        // console.log(this.gameForm.get('name')!.value);
