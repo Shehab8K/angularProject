@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, firstValueFrom, switchMap } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UserService } from 'src/app/services/users.service';
 
@@ -9,36 +8,14 @@ import { UserService } from 'src/app/services/users.service';
   styleUrls: ['./order-item.component.css']
 })
 export class OrderItemComponent implements OnInit {
-  user: any;
-  orders: any;
 
-  constructor(private userService: UserService, private orderService: OrdersService) { }
+  @Input() filteredOrders: any
+  @Output() itemDeleted: EventEmitter<void> = new EventEmitter<void>();
+
+  constructor(private orderService: OrdersService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
-    const userObservable = this.userService.getCurrentUser();
-
-    if (userObservable) {
-      userObservable.pipe(
-        switchMap((userData) => { //to switch to the ordersObservable inside the userObservable subscription
-          this.user = userData;
-          // Fetch user orders
-          const ordersObservable = this.orderService.GetUserOrders(this.user._id);
-          if (ordersObservable) {
-            return ordersObservable;
-          } else {
-            throw new Error('Failed to fetch user orders');
-          }
-        })
-      ).subscribe({
-        next: (data: any) => {
-          this.orders = data;
-        },
-        error: (err: any) => {
-          console.log(err);
-        }
-      });
-    }
   }
 
   formatDate(dateString: string | null): string {
@@ -54,9 +31,12 @@ export class OrderItemComponent implements OnInit {
 
     console.log(id)
     this.orderService.deleteOrder(id)
-     .subscribe({
+      .subscribe({
         next: () => {
-          this.ngOnInit();
+          this.itemDeleted.emit();
+          // console.log("emmiting event")
+          // this.cdr.detectChanges();
+          // this.ngOnInit()
         },
         error: (err) => {
           console.log(err);
