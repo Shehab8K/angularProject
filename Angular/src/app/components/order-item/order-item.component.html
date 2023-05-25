@@ -1,4 +1,4 @@
-<div class="order bg-dark m-3 shadow-lg rounded p-4" *ngFor="let o of orders">
+<div class="order bg-dark m-3 shadow-lg rounded p-4" *ngFor="let o of filteredOrders">
     <div class="order-header">
         <div class="text-dark order-id fs-6">
             Order <span class="text-primary">#{{o._id}}</span>
@@ -31,8 +31,14 @@
             <button class="btn  ms-3 btn-danger">Decline</button>
         </div> -->
         <div class="col1">
-            <button class="btn cancel-btn btn-outline-secondary"> <i class="close-icon fa fa-times fs-4 "></i> CANCEL
+            <button *ngIf="o.status=='pending'; else elseBlock" (click)="deleteOrder(o._id)"
+                class="btn cancel-btn btn-outline-secondary"> <i class="close-icon fa fa-times fs-4 "></i> CANCEL
                 OREDR </button>
+            <ng-template #elseBlock>
+                <p class="text-secondary">
+                    STATUS</p>
+                <p>{{o.status.toUpperCase()}}</p>
+            </ng-template>
         </div>
         <div class="col2">
             <p class="text-secondary">

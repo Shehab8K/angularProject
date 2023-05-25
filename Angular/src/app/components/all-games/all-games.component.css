@@ -19,6 +19,17 @@ body {
 .page-display {
     margin-top: 40px;
 }
+.gif{
+    width: 60px;
+    height: 60px;
+}
+
+.header {
+    background: #5c527a;
+    color: white;
+    text-align: center;
+
+}
 
 .filters-container {
     font-family: 'Nova Flat';
@@ -80,7 +91,10 @@ hr {
     height: 150px;
     margin-left: 15px;
 }
-
+.last-col{
+   align-items: center;
+   justify-content: space-around;
+}
 img {
     width: 250px;
     height: 150px;
@@ -151,11 +165,6 @@ i {
     padding: 2px;
 }
 
-.price {
-    justify-self: flex-end;
-    border-radius: 0%;
-    padding: 10px;
-}
 
 .right-col {
     justify-content: space-between;

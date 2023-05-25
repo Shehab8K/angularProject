@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Observable, firstValueFrom, switchMap } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UserService } from 'src/app/services/users.service';
 
@@ -8,45 +7,41 @@ import { UserService } from 'src/app/services/users.service';
   templateUrl: './order-item.component.html',
   styleUrls: ['./order-item.component.css']
 })
-export class OrderItemComponent {
-  user: any;
-  orders: any;
-  constructor(private userService: UserService, private orderService: OrdersService) {
-    const userObservable = userService.getCurrentUser();
+export class OrderItemComponent implements OnInit {
 
-    if (userObservable) {
-      userObservable.pipe(
-        switchMap((userData) => { //to switch to the ordersObservable inside the userObservable subscription
-          this.user = userData;
-          console.log(this.user._id);
+  @Input() filteredOrders: any
+  @Output() itemDeleted: EventEmitter<void> = new EventEmitter<void>();
 
-          // Fetch user orders
-          const ordersObservable = orderService.GetUserOrders(this.user._id);
+  constructor(private orderService: OrdersService, private cdr: ChangeDetectorRef) { }
 
-          if (ordersObservable) {
-            return ordersObservable;
-          } else {
-            throw new Error('Failed to fetch user orders');
-          }
-        })
-      ).subscribe({
-        next: (data) => {
-          this.orders = data;
-          console.log(this.orders);
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
-    }
+  ngOnInit(): void {
 
   }
+
   formatDate(dateString: string | null): string {
+
     if (dateString) {
       const date = new Date(dateString);
       return date.toLocaleDateString('en', { day: 'numeric', month: 'long', year: 'numeric' });
     }
     return '';
+  }
+
+  deleteOrder(id: string) {
+
+    console.log(id)
+    this.orderService.deleteOrder(id)
+      .subscribe({
+        next: () => {
+          this.itemDeleted.emit();
+          // console.log("emmiting event")
+          // this.cdr.detectChanges();
+          // this.ngOnInit()
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
   }
 }
 

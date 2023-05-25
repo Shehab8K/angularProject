@@ -1,23 +1,19 @@
 .checkout {
-  margin: 150px auto 30px;
+  margin:30vh auto 30px;
   position: relative;
-  width:80%;
+  width:50%;
   background: #414758;
   border-radius: 15px;
   padding: 160px 45px 30px;
   color:white
 }
-.side {
-  margin-top: 30vh;
-  position: relative;
-  width:50%;
-  height: 10vh;
+section {
   background: #414758;
-  border-radius: 15px;
-  color:white
-
+  border-radius: 3px;
+  padding: 1rem;
+  color:#b9a463
 }
-.side:hover{
+section:hover{
   transform: scale(1.05);
 }
 

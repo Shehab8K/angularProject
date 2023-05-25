@@ -10,7 +10,7 @@ body{
   color: black;
 }
 .sub-menu-link{
-  transition: transform 0.3s ease;
+  transition: transform 0.1s ease;
 
 }
 .user-wrap{
@@ -71,6 +71,6 @@ body{
 }
 
 .expand .user-wrap{
-  height: 12.5em !important;
+  height: 14em !important;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }

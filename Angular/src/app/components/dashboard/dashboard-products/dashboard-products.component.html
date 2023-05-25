@@ -1,0 +1,44 @@
+<app-title [titleContent]="productsTitle"></app-title>
+<table mat-table [dataSource]="dataSource">
+  <!-- Column definitions -->
+
+  <ng-container matColumnDef="_id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let game">{{ game._id }}</td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let game">{{ game.name }}</td>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let game">{{ game.releasedDate }}</td>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Price</th>
+    <td mat-cell *matCellDef="let game">{{ game.price }}</td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>actions</th>
+    <td mat-cell *matCellDef="let game">
+      <a [routerLink]="'/dashboard/games/' + game._id">
+      <i class="material-icons button--rounded ">visibility</i>
+    </a>
+      <i class="material-icons button--rounded m-2">edit</i>
+      <i class="material-icons button--rounded ">delete</i>
+    </td>
+  </ng-container>
+
+  <!-- Add more column definitions for other properties -->
+
+  <!-- Table rows -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Add the paginator below the table -->
+<mat-paginator [length]="100"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select page">
+</mat-paginator>

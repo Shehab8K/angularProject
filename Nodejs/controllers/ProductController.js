@@ -62,10 +62,10 @@ router.get("/:id", async (req, res) => {
 router.post("/", upload.array("file"), async (req, res) => {
   try {
     // Validate the request body
-    const { error } = validateProduct(req.body);
-    if (error) {
-      return res.status(400).json({ error: error.details[0].message });
-    }
+    // const { error } = validateProduct(req.body);
+    // if (error) {
+    //   return res.status(400).json({ error: error.details[0].message });
+    // }
     if (req.files && req.files.length > 0) {
       // Handle multiple file uploads
       const fileNames = [];
@@ -154,6 +154,7 @@ router.put("/:id", upload.array("file"), async (req, res) => {
 
 //delete product 
 router.delete("/:id", async (req, res) => {
+  console.log("in controller")
   try {
     const product = await Product.findById(req.params.id);
     if (!product) {

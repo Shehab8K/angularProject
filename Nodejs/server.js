@@ -24,10 +24,11 @@ const OrderRouter = require(path.join(__dirname,"./routers/OrderRouter"));
 // app.use('/api/products/filter',filterController)
 // Routes
 const UserRouter = require(path.join(__dirname ,"./routers/UserRouter"));
+const PaymentRouter = require(path.join(__dirname ,"./routers/PaymentRouter"));
 
 app.use('/api/users',UserRouter);
 app.use("/api/orders", OrderRouter);
-
+app.use("/api/payment", PaymentRouter);
 app.use('/api/products',productController);
 
 

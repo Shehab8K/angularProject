@@ -37,8 +37,11 @@ export class RegisterComponent {
       error:(err)=>{
         if(err.status = 409 )
         {
+          console.log(err);
           this.errorMsg = err.error.message;
         }else{
+          console.log("else "+err);
+
           this.errorMsg = "Registration Failed";
         }
       }

@@ -23,7 +23,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 
 import { ForbiddenComponent } from './components/errors/forbidden/forbidden.component';
-import { UnauthorizedComponent } from './components/errors/unauthorized/unauthorized.component';
+import { NotfoundComponent } from './components/errors/notfound/notfound.component';
+
 import { ToastrModule } from 'ngx-toastr';
 import { AdminOnlyComponent } from './components/admin-only/admin-only.component';
 import { UserOnlyComponent } from './components/user-only/user-only.component';
@@ -40,6 +41,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -58,6 +60,16 @@ import { CreditCardComponent } from './components/payment/credit-card/credit-car
 import { UserNavComponent } from './components/user-nav/user-nav.component';
 import { DashboardHomeComponent } from './components/dashboard/dashboard-home/dashboard-home.component';
 import { PaymentComponent } from './components/payment/payment/payment.component';
+import { DashboardOrdersComponent } from './components/dashboard/dashboard-orders/dashboard-orders.component';
+import { AcceptedOrdersComponent } from './components/dashboard/dashboard-orders/accepted-orders/accepted-orders.component';
+import { RejectedOrdersComponent } from './components/dashboard/dashboard-orders/rejected-orders/rejected-orders.component';
+import { PendingOrdersComponent } from './components/dashboard/dashboard-orders/pending-orders/pending-orders.component';
+import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
+import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
+import { LoadingComponent } from './components/loading/loading.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -79,7 +91,7 @@ import { PaymentComponent } from './components/payment/payment/payment.component
     CartItemComponent,
     LoginComponent,
     ForbiddenComponent,
-    UnauthorizedComponent,
+    NotfoundComponent,
     AdminOnlyComponent,
     UserOnlyComponent,
     AuthOnlyComponent,
@@ -97,6 +109,14 @@ import { PaymentComponent } from './components/payment/payment/payment.component
     UserNavComponent,
     DashboardHomeComponent,
     PaymentComponent,
+    DashboardOrdersComponent,
+    AcceptedOrdersComponent,
+    RejectedOrdersComponent,
+    PendingOrdersComponent,
+    DashboardProductsComponent,
+    DashboardProductDetailsComponent,
+    LoadingComponent,
+
 
   ],
   imports: [
@@ -117,7 +137,7 @@ import { PaymentComponent } from './components/payment/payment/payment.component
     MatToolbarModule,
     MatListModule,
     MatMenuModule,
-
+    MatTabsModule,
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right",
       preventDuplicates: true
