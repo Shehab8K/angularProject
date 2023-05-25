@@ -81,11 +81,11 @@
   </div>
 
   <form >
-    <div class="mb-2">
+    <div class="mb-3">
       <label>Name on Card</label>
       <input required class="form-control" type="text" placeholder="John Smith" [(ngModel)]="cardholderName" (input)="onNameChange($event)">
     </div>
-    <div class="mb-2">
+    <div class="mb-3">
       <label>Card Number</label>
       <input class="form-control" type="text"  maxlength="16"
       placeholder="XXXXXXXXXXXXXXXX" [(ngModel)]="cardNumber"
@@ -121,9 +121,9 @@
       <input class="form-control cvvinput" type="text"  maxlength="3" placeholder="XXX" [(ngModel)]="cvv" (focus)="onCvvFocus()" (blur)="onCvvBlur()" (input)="onCvvChange($event)">
     </div>
     </div>
-    <section class="summary shadow-lg mt-3 mb-3 d-flex justify-content-around">
-      <div class="items">🛒 3 items</div>
-      <div class="total">Price: 415.00 💲</div>
+    <section class="summary shadow-lg mt-3 fs-5 mb-3 d-flex justify-content-around">
+      <div class="items">🛒 {{cart.length}} items</div>
+      <div class="total">Price: {{total.toFixed(2)}}💲</div>
     </section>
     <button class="btn col-12 mt-3" type="submit">Pay</button>
   </form>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
+
 
 @Component({
   selector: 'app-credit-card',
@@ -6,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./credit-card.component.css']
 })
 export class CreditCardComponent {
+  total: number = 5;
   cardholderName = 'CARDHOLDER';
   cardNumber: string[] = ['XXXX', 'XXXX', 'XXXX', 'XXXX'];
   cvv = 0;
@@ -17,15 +20,28 @@ export class CreditCardComponent {
   endYear = this.expirationDateyear + 6;
   years: number[] = [];
 
-  cvvFocus = false;
+  cart: any[] = [];
 
-  constructor() {
+  cvvFocus = false;
+  
+  ngOnInit(): void {
+    // Subscribe to the cartItems$ observable to receive cart updates
+    this.cartService.cartItems$.subscribe(items => {
+      this.cart = items;
+    });
+  }
+  constructor(private cartService: CartService) {
+
+    this.cartService.total$.subscribe((total) => {
+      this.total = total;
+    });
     for (let i = this.expirationDateyear; i <= this.endYear; i++) {
       this.years.push(i);
     }
     for (let i = 1; i <= 12; i++) {
       if (i < 10) {
         this.months.push(Number("0" + i));
+        console.log(typeof this.months[0])
       }
       else
       {
