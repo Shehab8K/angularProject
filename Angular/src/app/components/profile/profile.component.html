@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class=" page-container d-flex">
+    <div class="profile-container rounded">
+        <div class="header m-2 p-3 d-flex flex-row">
+            <div class=" info d-flex flex-row">
+                <div class="profile-pic rounded m-3">
+                    <img src="../../../assets/images/pubg.png">
+                </div>
+                <div>
+                    <p class="fw-bold fs-2">{{user.name.toUpperCase()}}</p>
+                    <p class="fs-5">Discord Username: classicshmosby#5681</p>
+                    <div class="header d-flex flex-row">
+                        <p class="p-2 m-2 rounded bg-dark text-light">Followers</p>
+                        <p class="p-2 m-2 rounded bg-dark text-light">Following</p>
+                    </div>
+                </div>
+            </div>
+            <div class="level-container m-3">
+                <p class="fs-3">Level</p>
+                <!-- <p class="level fs-1">21</p> -->
+                <img class="level" src="../../../assets/images/gladiator.png">
+                <button class="btn btn-outline-dark btn-lg ps-5 pe-5 mt-4">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
