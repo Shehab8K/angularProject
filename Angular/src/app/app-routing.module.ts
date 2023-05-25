@@ -23,6 +23,7 @@ import { DashboardProductsComponent } from './components/dashboard/dashboard-pro
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
 const routes: Routes = [
+  
   {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
   {path:'games',component:AllGamesComponent},

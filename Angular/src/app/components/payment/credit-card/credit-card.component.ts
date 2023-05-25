@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
+
 
 @Component({
   selector: 'app-credit-card',
@@ -6,9 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./credit-card.component.css']
 })
 export class CreditCardComponent {
+  total: number = 5;
   cardholderName = 'CARDHOLDER';
   cardNumber: string[] = ['XXXX', 'XXXX', 'XXXX', 'XXXX'];
-  cvv = 'XXX';
+  cvv = 0;
 
   expirationDatemonth = new Date().getMonth();
   months:number[] = [];
@@ -17,14 +20,34 @@ export class CreditCardComponent {
   endYear = this.expirationDateyear + 6;
   years: number[] = [];
 
-  cvvFocus = false;
+  cart: any[] = [];
 
-  constructor() {
+  cvvFocus = false;
+  
+  ngOnInit(): void {
+    // Subscribe to the cartItems$ observable to receive cart updates
+    this.cartService.cartItems$.subscribe(items => {
+      this.cart = items;
+    });
+  }
+  constructor(private cartService: CartService) {
+
+    this.cartService.total$.subscribe((total) => {
+      this.total = total;
+    });
     for (let i = this.expirationDateyear; i <= this.endYear; i++) {
       this.years.push(i);
     }
-    for (let i = 0; i <= 12; i++) {
-      this.months.push(i);
+    for (let i = 1; i <= 12; i++) {
+      if (i < 10) {
+        this.months.push(Number("0" + i));
+        console.log(typeof this.months[0])
+      }
+      else
+      {
+        this.months.push(i);
+      }
+
     }
   }
   onCvvFocus() {
@@ -49,16 +72,17 @@ export class CreditCardComponent {
   }
 
  onCvvChange(event: Event): void {
-    this.cvv = (event.target as HTMLInputElement).value;
+    const cvvString = (event.target as HTMLInputElement).value; // get the input value as a string
+    this.expirationDatemonth = parseInt(cvvString, 10);// convert the string to a number using parseInt()
   }
 
   onexpirationDatemonthChange(event: Event): void {
-    const monthString = (event.target as HTMLInputElement).value; // get the input value as a string
+    const monthString = (event.target as HTMLInputElement).value;
     this.expirationDatemonth = parseInt(monthString, 10);
   }
 
   onexpirationDateyearChange(event: Event): void {
-    const yearString = (event.target as HTMLInputElement).value; // get the input value as a string
-    this.expirationDateyear = parseInt(yearString, 10); // convert the string to a number using parseInt()
+    const yearString = (event.target as HTMLInputElement).value;
+    this.expirationDateyear = parseInt(yearString, 10);
   }
 }
