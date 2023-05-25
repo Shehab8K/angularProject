@@ -12,7 +12,11 @@ const gameItemSchema = new mongoose.Schema({
     GamePrice: {
     type: Number,
     required: true
-  }
+  },
+  tags: {
+    type: [String],
+    required: true
+  },
 });
 
 const ordersSchema = new mongoose.Schema({
