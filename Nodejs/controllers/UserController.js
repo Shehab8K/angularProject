@@ -110,7 +110,12 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
 
-    const {error} = validateUpdate(req.body);
+    const data = {
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email
+    }
+    const {error} = validateUpdate(data);
 
     if(error)
     {
