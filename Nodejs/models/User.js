@@ -30,6 +30,14 @@ const userSchema = new mongoose.Schema({
   token: {
     type: String,
   },
+  discord:{
+    type: String,
+    default: "",
+  },
+  preferences:{
+    type: Array,
+    default: [],
+  },
   createdAt: {
     type: Date,
     default: Date.now

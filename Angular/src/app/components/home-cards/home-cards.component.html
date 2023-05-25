@@ -1,4 +1,11 @@
-<div class="Cards">
+<div >
+  <div class="arrow left-arrow" (click)="scrollCards('left')">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </svg>
+  </div>
+  <div class="Cards" >
+    <h3 class="title1 text-white position-absolute">Choose your Favorite Character and Enjoy it's Game</h3>
     <div class="card" *ngFor="let card of products">
       <div class="wrapper shadow-lg">
         <div class="colorProd" [style.background-color]="card.color"></div>
@@ -36,4 +43,10 @@
         </div>
       </div>
     </div>
-  </div>
+   
+  </div> <div class="arrow right-arrow" (click)="scrollCards('right')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+      </svg>
+    </div>
+</div>

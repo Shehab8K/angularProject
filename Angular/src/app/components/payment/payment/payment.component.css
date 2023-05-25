@@ -1,0 +1,10 @@
+body{
+  background-image: url("../../../../assets/images/bgggg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}

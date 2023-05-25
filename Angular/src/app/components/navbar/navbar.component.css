@@ -1,64 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
-html,
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Quicksand", sans-serif;
-    font-size: 62.5%;
-    font-size: 10px;
-}
 
 /* Navbar section */
 
 .nav {
     width: 100%;
-    height: 65px;
-    position: fixed;
-    line-height: 65px;
+    position:fixed;
     text-align: center;
+    display:flex;
 }
+ 
 
 .nav div.logo {
     float: left;
-    width: auto;
-    height: auto;
-    padding-left: 3rem;
 }
 .logo{
     width: 100px;
-/* border: 2px solid red; */
-
 }
+
 .nav div.logo a {
     text-decoration: none;
     color: #fff;
-    font-size: 2.5rem;
 }
-
+ 
 .nav div.logo a:hover {
     color:grey;
 }
 
 .nav div.main_list {
     height: 65px;
-    float: right;
 }
+.nav div.main_list ul
+{
+    display:flex;  
+    justify-content: space-between;
+    list-style-type: none;
 
-.nav div.main_list ul {
-    width: 100%;
-    height: 65px;
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.nav div.main_list ul li {
-    width: auto;
-    height: 65px;
-    padding: 0;
-    padding-right: 3rem;
 }
 
 .nav div.main_list ul li a {
@@ -81,23 +57,27 @@ body {
     padding-bottom: 20px;
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
 }
-
+/* class for navbar when scroll */
+.affix {
+    padding: 0;
+    background-color: #212529;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
 
 /* Media qurey section */
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width:990px) and (max-width: 1024px) {
     .container {
         margin: 0;
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:990px) {
     .navTrigger {
         display: block;
     }
@@ -121,7 +101,7 @@ body {
         right: 0;
         left: 0;
         bottom: 0;
-        background-color: #1B2838;
+        background-color: #212529;
         background-position: center top;
     }
     .nav div.main_list ul li {
@@ -139,7 +119,7 @@ body {
     }
 }
 
-
+/* for navbar hambourger icon */
 .navTrigger {
     cursor: pointer;
     width: 30px;
@@ -159,7 +139,6 @@ body {
     width: 100%;
     height: 4px;
 }
-
 .navTrigger i:nth-child(1) {
     -webkit-animation: outT 0.8s backwards;
     animation: outT 0.8s backwards;
@@ -328,30 +307,4 @@ body {
         transform: translateY(-9px) rotate(135deg);
     }
 }
-
-.affix {
-    padding: 0;
-    background-color: #1B2838;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-
-
-
-
-
-.myH2 {
-	text-align:center;
-	font-size: 4rem;
-}
-.myP {
-	text-align: justify;
-	padding-left:15%;
-	padding-right:15%;
-	font-size: 20px;
-}
-@media all and (max-width:700px){
-	.myP {
-		padding:2%;
-	}
-}
+ 

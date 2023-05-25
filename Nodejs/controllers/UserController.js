@@ -69,8 +69,14 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
   try {
 
-    const {error} = validateUser(req.body);
-
+    const { name, username, email, password } = req.body;
+    let myuser = {
+      name,
+      username,
+      email,
+      password
+    }
+    const {error} = validateUser(myuser);
     if(error)
     {
       return res.status(400).json({ message: error.details });
@@ -104,13 +110,26 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
 
-    const {error} = validateUpdate(req.body);
+    const data = {
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email
+    }
+    const {error} = validateUpdate(data);
 
     if(error)
     {
       return res.status(400).json({ message: error.details });
     }
 
+    if(req.body.discord){
+      const discordEmailRegex = /^[\w-]+(\.[\w-]+)*@discord\.com$/;
+      const isValidDiscordEmail = discordEmailRegex.test(req.body.discord);
+      if(!isValidDiscordEmail)
+      {
+        return res.status(400).json({message: "Wrong Discord Format"});
+      }
+    }
     if(req.body.password)
     {
       const saltRounds = 10;
@@ -123,6 +142,8 @@ const updateUser = async (req, res) => {
       user.username = req.body.username || user.username;
       user.email = req.body.email || user.email;
       user.password = hashedPassword || user.password;
+      user.discord = req.body.discord || user.discord;
+      user.preferences = req.body.preferences || user.preferences;
       const updatedUser = await user.save();
       
       if(!updatedUser)
@@ -168,7 +189,7 @@ const validateUser = (data) => {
     name: Joi.string().required(),
     username: Joi.string().required(),
     email: Joi.string().email().required(),
-    password: Joi.required()
+    password: Joi.required(),
   });
 
   return userSchema.validate(data);

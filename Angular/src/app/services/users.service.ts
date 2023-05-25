@@ -38,13 +38,13 @@ export class UserService {
   getUserByID(id: any) {
     return this.myClient.get(this.Base_URL + '/' + id)
   }
-  updateUserCart(id: string, cart: any []) {    
+  updateUserCart(id: string, cart: any []) {
     console.log(this.Base_URL + '/cart/' + id)
     console.log("in cart service")
     // console.log(typeof(cart))
     console.log((cart))
 
-    return this.myClient.put(this.Base_URL + '/cart/' + id, cart)
+    return this.myClient.put(this.Base_URL + '/cart/' + id, {cart})
   }
   logout(){
     localStorage.removeItem('user');

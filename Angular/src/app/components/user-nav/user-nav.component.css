@@ -10,13 +10,14 @@ body{
   color: black;
 }
 .sub-menu-link{
-  transition: transform 0.3s ease;
+  transition: transform 0.1s ease;
 
 }
 .user-wrap{
   width: 200px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
+  margin-top: 1em;
   overflow: hidden;
   height: 0;
   transition: 1s;
@@ -39,7 +40,7 @@ body{
 }
 
 .user-info span{
-  font-size: 1.3em;
+  font-size: 1.4em;
   margin-left: 0.6em;
   font-weight: 500;
 }
@@ -47,9 +48,10 @@ body{
 .hr{
   width: 90%;
 }
-
+/* ////////////////////////////////////////////////////////// */
 .links{
   width: 90%;
+  height: 0em;
 }
 .sub-menu-link{
   display: flex;
@@ -64,6 +66,7 @@ body{
 .sub-menu-link > a{
   color: black;
   text-decoration: none;
+  font-size: 1em;
 }
 
 .sub-menu-link:hover{
@@ -71,6 +74,12 @@ body{
 }
 
 .expand .user-wrap{
-  height: 12.5em !important;
+  height: 10em !important;
   border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.expand .links{
+  height: 6em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

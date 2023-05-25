@@ -14,6 +14,7 @@ import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { PaymentComponent } from './components/payment/payment/payment.component';
 import { NotfoundComponent } from './components/errors/notfound/notfound.component';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component'
@@ -21,6 +22,7 @@ import { UsersTableComponent } from './components/dashboard/users/users-table/us
 import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
 const routes: Routes = [
+  
   {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
   {path:'games',component:AllGamesComponent},
@@ -29,6 +31,7 @@ const routes: Routes = [
   {path:'cart',component:CartComponent},
   {path:'orders',component:OrdersComponent},
   {path:'login',component:LoginComponent},
+  {path:'payment',component:PaymentComponent},
   {path:'dashboard',component:DashboardComponent},
   {path:'dashboard/users',component:UsersTableComponent},
   {path:'dashboard/games/:id',component:DashboardProductDetailsComponent},

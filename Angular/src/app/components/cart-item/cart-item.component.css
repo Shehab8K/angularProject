@@ -46,7 +46,15 @@ li:hover {
   font-size: 18px;
   background: #5c527a;
 }
+.spin-emoji {
+  display: inline-block;
+  animation: spin 2s infinite linear;
+}
 
+@keyframes spin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
 .cart .item {
   display: flex;
   justify-content: space-between;
@@ -95,7 +103,16 @@ section {
   padding: 1rem;
 }
 
-
+.tag {
+  width: fit-content;
+  padding: 1px;
+  margin-left: 3px;
+  background-color: rgb(39, 41, 53);
+  font-size: small;
+}
+.os {
+  margin-left: 10px;
+}
 ul {
   list-style: none;
   padding: 0;
@@ -112,5 +129,6 @@ ul {
     border-radius: 0%;
     padding: 10px;
 }
+
 
 

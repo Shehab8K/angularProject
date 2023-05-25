@@ -8,7 +8,7 @@ import Chart from 'chart.js/auto';
 })
 export class ChartComponent {
   games: any
-  
+
   public chart: any;
   createChart(){
 
