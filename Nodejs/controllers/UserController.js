@@ -122,6 +122,14 @@ const updateUser = async (req, res) => {
       return res.status(400).json({ message: error.details });
     }
 
+    if(req.body.discord){
+      const discordEmailRegex = /^[\w-]+(\.[\w-]+)*@discord\.com$/;
+      const isValidDiscordEmail = discordEmailRegex.test(req.body.discord);
+      if(!isValidDiscordEmail)
+      {
+        return res.status(400).json({message: "Wrong Discord Format"});
+      }
+    }
     if(req.body.password)
     {
       const saltRounds = 10;
@@ -134,6 +142,8 @@ const updateUser = async (req, res) => {
       user.username = req.body.username || user.username;
       user.email = req.body.email || user.email;
       user.password = hashedPassword || user.password;
+      user.discord = req.body.discord || user.discord;
+      user.preferences = req.body.preferences || user.preferences;
       const updatedUser = await user.save();
       
       if(!updatedUser)
