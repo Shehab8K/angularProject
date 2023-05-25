@@ -1,24 +1,53 @@
-<div *ngIf="game else falseBlock " style="background-color: rgb(95, 100, 100);">
-    <p>name:{{game.name}}</p>
-    <p>price:{{game.price}}</p>
-    <p>description:{{game.description}}</p>
-    <p>date:{{game.releasedDate}}</p>
-    <div *ngFor="let operatingSystem of game.os">
-        {{operatingSystem}}
-      </div>
-    <div *ngFor="let gameType of game.type">
-        {{gameType}}
-      </div>
-    <div *ngFor="let gameTag of game.tag">
-        {{gameTag}}
-      </div>
+<app-title [titleContent]="Title"></app-title>
 
-    <div *ngFor="let imageUrl of game.images">
-        <img [src]="imageUrl" alt="Product Image" />
-      </div>
+<div class="card">
+  <h2 class="GameName">{{game.name}}</h2>
+  <div class="Top">
+    <div>
+    <h6><i class="fa fa-money"></i> price: {{game.price}}$</h6>
+    <h6><i class="fa fa-calendar"></i> date: {{game.releasedDate| date: 'dd/MM/yyyy'}}</h6>
+    <h6><i class="fa fa-clock"></i> time: {{game.releasedDate | date: 'HH:mm:ss aa'}}</h6>
+    </div>
+    <div class="smallimages">
+    <div  *ngFor="let imageUrl of game.images">
+      <img [src]="imageUrl" alt="Product Image" (mouseover)="displayLargeImage(imageUrl)"/>
+    </div>
+   </div>
+  </div>
+  <div class="right">
+    
+     <div class="largeimage">
+      <img [src]="hoveredImageUrl ? hoveredImageUrl : defaultImageUrl" alt="Large image">
+    </div> 
+    
+
+    <h3 >
+      Description: {{game.description}}
+    </h3> 
+    </div>
+
+  <div class="type">
+  <i *ngFor="let gameType of game.type"class="fa" [ngClass]="{
+    'fa-user': gameType === 'singleplayer',
+    'fa-users': gameType === 'multiplayer'
+  }">
+    {{gameType}}
+</i>
+
 </div>
-
+<div class="down">
+  <div class="OS">
+      <i *ngFor="let operatingSystem of game.os" class="fa" [ngClass]="{
+      'fa-apple': operatingSystem === 'mac',
+      'fa-windows': operatingSystem === 'windows',
+      'fa-linux': operatingSystem === 'linux'
+    }"></i><h5 *ngFor="let gameTag of game.tag">
+    {{gameTag}}
+  </h5>
+  </div>
+  
+</div>
+</div>
 <ng-template #falseBlock>
-    <!-- <h1 class="alert alert-danger">loading</h1> -->
-<app-loading></app-loading>
+  <app-loading></app-loading>
 </ng-template>
