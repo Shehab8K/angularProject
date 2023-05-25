@@ -1,5 +1,5 @@
-<div class="container d-flex align-content-center justify-content-center p-5">
-<div class="checkout">
+<div class="container d-flex p-5 shadow-lg gap-4">
+<div class="checkout shadow-lg">
   <div class="credit-card-box" [class.active]="cvvFocus" >
     <div class="flip">
       <div class="front d-flex flex-column justify-content-between">
@@ -81,7 +81,7 @@
     </div>
   </div>
 
-  <form class="border">
+  <form >
     <div class="mb-2">
       <label>Name on Card</label>
       <input required class="form-control" type="text" placeholder="John Smith" [(ngModel)]="cardholderName" (input)="onNameChange($event)">
@@ -124,5 +124,11 @@
     </div>
     <button class="btn col-12 mt-3" type="submit">Pay</button>
   </form>
+</div>
+<div class="side shadow-lg">
+<section class="summary mb-3 d-flex flex-column justify-content-center align-items-center ">
+  <div class="items">🛒 3 items</div>
+  <div class="total">Price: 415.00 💲</div>
+</section>
 </div>
 </div>

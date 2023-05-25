@@ -1,12 +1,21 @@
 .checkout {
   margin: 150px auto 30px;
   position: relative;
-  width:50%;
+  width:80%;
   background: #414758;
   border-radius: 15px;
   padding: 160px 45px 30px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  /* color:white */
+  color:white
+}
+.side {
+  margin-top: 30vh;
+  position: relative;
+  width:50%;
+  height: 10vh;
+  background: #414758;
+  border-radius: 15px;
+  color:white
+
 }
 .btn{
   background-color: #1B2838;
@@ -39,7 +48,7 @@ Credit Card
   height: 250px;
   border-radius: 15px;
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   background: linear-gradient(135deg, #bd6772, #53223f);
   position: absolute;
   color:#b9a463;
@@ -57,8 +66,6 @@ Credit Card
   height: 100%;
   top: 0;
   left: 0;
-  background: url("http://cdn.flaticon.com/svg/44/44386.svg") no-repeat center;
-   background-size: cover;
   opacity: 0.05;
 }
 .credit-card-box .flip {
@@ -94,7 +101,6 @@ Credit Card
   top: 20px;
   left: 20px;
   background-color: #ffdd81;
-  /* background: linear-gradient(135deg, #ddccf0 0%, #d1e9f5 44%, #f8ece7 100%); */
   border-radius: 10px;
 }
 .credit-card-box .chip::before {
@@ -162,6 +168,5 @@ Credit Card
 }
 .credit-card-box .ccv label {
   margin: -25px 0 10px;
-  color: #fff;
 }
 
