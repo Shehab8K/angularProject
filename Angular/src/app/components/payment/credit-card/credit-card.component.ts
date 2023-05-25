@@ -9,10 +9,24 @@ export class CreditCardComponent {
   cardholderName = 'CARDHOLDER';
   cardNumber: string[] = ['XXXX', 'XXXX', 'XXXX', 'XXXX'];
   cvv = 'XXX';
-  expirationDatemonth = ' MM';
-  expirationDateyear = ' YY';
+
+  expirationDatemonth = new Date().getMonth();
+  months:number[] = [];
+
+  expirationDateyear = new Date().getFullYear();
+  endYear = this.expirationDateyear + 6;
+  years: number[] = [];
+
   cvvFocus = false;
 
+  constructor() {
+    for (let i = this.expirationDateyear; i <= this.endYear; i++) {
+      this.years.push(i);
+    }
+    for (let i = 0; i <= 12; i++) {
+      this.months.push(i);
+    }
+  }
   onCvvFocus() {
     this.cvvFocus = true;
   }
@@ -39,9 +53,12 @@ export class CreditCardComponent {
   }
 
   onexpirationDatemonthChange(event: Event): void {
-    this.expirationDatemonth = (event.target as HTMLInputElement).value;
+    const monthString = (event.target as HTMLInputElement).value; // get the input value as a string
+    this.expirationDatemonth = parseInt(monthString, 10);
   }
+
   onexpirationDateyearChange(event: Event): void {
-    this.expirationDateyear = (event.target as HTMLInputElement).value;
+    const yearString = (event.target as HTMLInputElement).value; // get the input value as a string
+    this.expirationDateyear = parseInt(yearString, 10); // convert the string to a number using parseInt()
   }
 }
