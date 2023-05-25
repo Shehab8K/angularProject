@@ -28,4 +28,11 @@ export class GamesService {
     return this.myClient.delete(this.Base_URL + '/' + id)
 
   }
+  AddNewProduct(newProduct:any,){
+    console.log('in service')
+    console.log(newProduct);
+    // console.log(Array.isArray(newProduct.os))
+    return this.myClient.post(this.Base_URL,newProduct.imageURL[0]);
+
+  }
 }
