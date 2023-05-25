@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class=" page-container d-flex">
-    <div class="profile-container rounded">
+    <div class="profile-container shadow-lg rounded">
         <div class="header m-2 p-3 d-flex flex-row">
             <div class=" info d-flex flex-row">
                 <div class="profile-pic rounded m-3">
@@ -21,7 +21,10 @@
                 <img class="level" src="../../../assets/images/gladiator.png">
                 <button class="btn btn-outline-dark btn-lg ps-5 pe-5 mt-4">Edit</button>
             </div>
-        </div>
+
+        </div><hr class="m-2 separator rounded">
+        <p class="m-2 p-3 fs-4 fw-medium text-light">Here are your favorite genres based on your purchases</p>
+        <app-chart></app-chart>
     </div>
 </div>
 <app-footer></app-footer>
