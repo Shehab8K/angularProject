@@ -80,7 +80,9 @@
 {
   border: 5px dotted #980e84;
   width:fit-content;
-  padding:1%;
+  padding: 0 1%;
+  margin: 0 1%;
+  float: left;
 }
 .type
 {
