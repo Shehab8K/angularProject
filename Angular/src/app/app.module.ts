@@ -56,8 +56,10 @@ import { TitleComponent } from './components/dashboard/title/title.component';
 import { UsersTableComponent } from './components/dashboard/users/users-table/users-table.component';
 // import { MatSidenavModule } from '@angular/material/select';
 import { OrderItemComponent } from './components/order-item/order-item.component';
+import { CreditCardComponent } from './components/payment/credit-card/credit-card.component';
 import { UserNavComponent } from './components/user-nav/user-nav.component';
 import { DashboardHomeComponent } from './components/dashboard/dashboard-home/dashboard-home.component';
+import { PaymentComponent } from './components/payment/payment/payment.component';
 import { DashboardOrdersComponent } from './components/dashboard/dashboard-orders/dashboard-orders.component';
 import { AcceptedOrdersComponent } from './components/dashboard/dashboard-orders/accepted-orders/accepted-orders.component';
 import { RejectedOrdersComponent } from './components/dashboard/dashboard-orders/rejected-orders/rejected-orders.component';
@@ -96,6 +98,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     AuthOnlyComponent,
     OrdersComponent,
     OrderItemComponent,
+    CreditCardComponent,
+
     DashboardComponent,
     SidenavComponent,
     HeaderComponent,
@@ -105,6 +109,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     UsersTableComponent,
     UserNavComponent,
     DashboardHomeComponent,
+    PaymentComponent,
     DashboardOrdersComponent,
     AcceptedOrdersComponent,
     RejectedOrdersComponent,
