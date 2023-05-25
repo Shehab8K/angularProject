@@ -9,6 +9,8 @@ import { UserService } from 'src/app/services/users.service';
 export class CartItemComponent {
 
   user: any;
+  total: number = 0;
+  cart: any[] = []
   constructor(private userService: UserService) {
 
     const userObservable = userService.getCurrentUser()
@@ -16,7 +18,6 @@ export class CartItemComponent {
       userObservable.subscribe({
         next: (data) => {
           this.user = data;
-          // console.log(this.user)
         },
         error: (err) => {
           console.log(err)
@@ -25,14 +26,52 @@ export class CartItemComponent {
     }
   }
 
-  removeItem(g: any) {
-    if (this.user.cart.length > 0) {
-      const index = this.user.cart.findIndex((item: any) => item.id === g.id);
-      if (index != -1) {
-        this.user.cart.splice(index, 1);
-        //{update actual user cart in db}
-      }
-    }
+  removeCartItem(cart: any) {
+    if (this.cart.length > 0) {
+      let index = this.cart.indexOf(cart);
+      this.cart.splice(index, 1);
+      this.userService.updateUserCart(this.user._id, this.cart).subscribe({
+        next: () => {
+          this.calculateTotalPrice();
+        },
 
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
   }
+
+  async ngOnInit(): Promise<void> {
+    const userObservable = this.userService.getCurrentUser()
+    if (userObservable) {
+      userObservable.subscribe({
+        next: (data) => {
+          this.user = data;
+          this.cart = this.user.cart
+          this.calculateTotalPrice();
+
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      })
+    }
+  }
+
+  clearCart(){
+    this.userService.updateUserCart(this.user._id, []).subscribe({
+      next: () => {
+        this.ngOnInit();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  calculateTotalPrice() {
+    this.total = this.cart.reduce((acc, item) => acc + item.price, 0);
+  }
+
 }

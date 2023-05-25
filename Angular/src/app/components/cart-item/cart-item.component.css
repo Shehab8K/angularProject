@@ -103,7 +103,16 @@ section {
   padding: 1rem;
 }
 
-
+.tag {
+  width: fit-content;
+  padding: 1px;
+  margin-left: 3px;
+  background-color: rgb(39, 41, 53);
+  font-size: small;
+}
+.os {
+  margin-left: 10px;
+}
 ul {
   list-style: none;
   padding: 0;
@@ -120,5 +129,6 @@ ul {
     border-radius: 0%;
     padding: 10px;
 }
+
 
 

@@ -105,6 +105,7 @@ export class AllGamesComponent implements OnInit {
       }
     })
   }
+  
   onChangepriceRange(): void {
     const selectedPrice = Object.keys(this.priceRange.value).filter(option => this.priceRange.value[option]);
     // console.log(selectedPrice);
