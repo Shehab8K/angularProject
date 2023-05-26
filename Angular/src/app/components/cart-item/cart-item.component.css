@@ -14,16 +14,21 @@
     display: flex;
     flex-direction: column;
   }
+
 }
 @media (min-width: 600px) {
   .container {
     width: 65rem;
   }
+  main {
+    display: grid;
+    grid-gap: 2rem;
+  }
 }
- main {
+ /* main {
   display: grid;
   grid-gap: 2rem;
-}
+} */
 img {
   width: 100%;
   height: 100%;
