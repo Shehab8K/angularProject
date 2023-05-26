@@ -11,6 +11,7 @@
  main {
   display: grid;
   grid-gap: 2rem;
+  
 }
 img {
   width: 100%;
@@ -39,6 +40,7 @@ img {
 
 .cart {
   grid-area: content;
+  width: 100%;
 }
 li button{
   transition: transform 0.3s ease;
