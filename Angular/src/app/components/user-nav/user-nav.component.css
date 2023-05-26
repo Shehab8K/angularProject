@@ -4,6 +4,7 @@ body{
 .main-profile-img{
   width: 40px;
   cursor: pointer;
+  /* border: 2px solid red; */
 }
 .username a{
   text-decoration: none;

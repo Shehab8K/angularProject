@@ -68,6 +68,7 @@ import { DashboardProductsComponent } from './components/dashboard/dashboard-pro
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CreateProductComponent } from './components/dashboard/create-product/create-product.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -118,6 +119,7 @@ import { CreateProductComponent } from './components/dashboard/create-product/cr
     DashboardProductDetailsComponent,
     LoadingComponent,
     CreateProductComponent,
+    ProfileComponent,
 
 
   ],
