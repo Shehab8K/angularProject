@@ -21,21 +21,33 @@ import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { UsersTableComponent } from './components/dashboard/users/users-table/users-table.component';
 import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
-// import { CreditCardComponent } from './components/payment/credit-card/credit-card.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { DashboardHomeComponent } from './components/dashboard/dashboard-home/dashboard-home.component';
+import { DashboardOrdersComponent } from './components/dashboard/dashboard-orders/dashboard-orders.component';
+import { CreateProductComponent } from './components/dashboard/create-product/create-product.component';
 const routes: Routes = [
 
   {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
   {path:'games',component:AllGamesComponent},
-  {path:'profile',component:ChartComponent},
+  {path:'profile',component:ProfileComponent},
   {path:'login',component:LoginComponent},
   {path:'cart',component:CartComponent},
   {path:'orders',component:OrdersComponent},
   {path:'login',component:LoginComponent},
   {path:'payment',component:PaymentComponent},
-  {path:'dashboard',component:DashboardComponent},
-  {path:'dashboard/users',component:UsersTableComponent},
-  {path:'dashboard/games/:id',component:DashboardProductDetailsComponent},
+  {
+    path:'dashboard',
+    component:DashboardComponent,
+    children: [
+      {path:'', component:DashboardHomeComponent},
+      {path:'users', component:UsersTableComponent},
+      {path:'games',component:DashboardProductsComponent},
+      {path:'games/add',component:CreateProductComponent},
+      {path:'orders',component:DashboardOrdersComponent},
+    ]
+  },
+
 
   // Error routes to be handled
   {path:'403',component:ForbiddenComponent},

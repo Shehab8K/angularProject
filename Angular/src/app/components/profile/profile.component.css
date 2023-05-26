@@ -1,0 +1,89 @@
+.page-container {
+    background-image: url("../../../assets/images/pubg.png");
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+}
+
+.profile-container {
+    margin-top: 150px !important;
+    background-color: rgba(112, 192, 219, 0.527);
+    width: 80%;
+
+}
+
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    border: 10px solid black;
+    padding: 10px;
+    overflow: hidden;
+    justify-content: center;
+    display: flex;
+}
+
+.header {
+    justify-content: space-between;
+}
+
+.info {
+    align-items: center;
+    width: 50%;
+    justify-content: space-evenly;
+    color: black;
+}
+
+.stat,
+.tag {
+    padding: 3px 18px;
+    background: linear-gradient(to right, rgb(64, 64, 64) 0%, rgb(0, 0, 0) 100%);
+
+}
+.tags{
+    flex-wrap: wrap;
+
+}
+.Preferences {
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.tag {
+    height: fit-content;
+}
+
+.tagEdit {
+    width: fit-content;
+}
+
+.level-container {
+    color: black;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+}
+
+.level {
+    width: 150px;
+}
+
+.separator {
+    border: 2px solid lightgray
+}
+
+.card {
+    overflow: hidden;
+}
+
+.card-img {
+    width: 220px;
+    height: 150px;
+}
+
+.games-purchased {
+    justify-content: center;
+    flex-wrap: wrap;
+}

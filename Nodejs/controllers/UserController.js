@@ -27,7 +27,10 @@ const login = async (req, res) => {
       res.status(401).json({ message: 'Invalid password' });
       return;
     }
-    
+    if(user.isBanned)
+    {
+      return res.status(403).json({message: "User Banned"});
+    }
     // User is found and valdated => creating token and send it
       userDataForToken = {
         id: user.id,
@@ -183,6 +186,62 @@ const deleteUser = async (req, res) => {
   }
 };
 
+// Ban user
+const banUser = async(req,res)=>{
+  if (!mongoose.isValidObjectId(req.body.id)) {
+    res.status(400).json({ message: "Invalid user ID" });
+    return;
+  }
+    try{
+      const user = await User.findById(req.body.id);
+
+      if(!user){
+        res.status(404).json({message: "User not found"})
+      }
+    
+      if(user.role == "admin")
+      {
+        return res.status(403).json({message : "Can't ban admin"});
+      }
+      user.isBanned = true;
+      const banned = user.save();
+    
+      if(!banned){
+        return res.status(401).json({message : "failed to ban user"})
+      }else{
+        return res.status(200).json({message : "User Banned"});
+      }
+    }catch(err){
+      return res.json(err);
+    }
+}
+
+// Unban User
+const unBanUser = async(req,res)=>{
+  if (!mongoose.isValidObjectId(req.body.id)) {
+    res.status(400).json({ message: "Invalid user ID" });
+    return;
+  }
+    try{
+      const user = await User.findById(req.body.id);
+
+      if(!user){
+        res.status(404).json({message: "User not found"})
+      }
+    
+      user.isBanned = false;
+      const banned = user.save();
+    
+      if(!banned){
+        return res.status(401).json({message : "failed to unban user"})
+      }else{
+        return res.status(200).json({message : "User Unbanned"});
+      }
+    }catch(err){
+      return res.json(err);
+    }
+}
+
 
 const validateUser = (data) => {
   const userSchema = Joi.object({
@@ -212,4 +271,6 @@ module.exports = {
   updateUser,
   deleteUser,
   login,
+  banUser,
+  unBanUser
 };

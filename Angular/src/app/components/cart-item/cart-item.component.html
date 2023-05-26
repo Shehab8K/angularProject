@@ -12,12 +12,12 @@
       <a routerLink="/payment"><button (click)="updateTotal()">Checkout 💳</button></a>
     </section>
 
-    <section class="cart shadow-lg">
+    <section class="cart rounded shadow-lg">
       <ul *ngFor="let cart of user.cart">
-        <li class="item shadow-lg mb-3 rounded">
+        <li class="item mb-3 rounded">
           <div class="d-flex gap-4">
-            <div class="image">
-              <img src={{cart.images[0]}}>
+            <div class="image ">
+              <img  src={{cart.images[0]}}>
             </div>
 
             <div>
@@ -29,34 +29,36 @@
                 <div *ngFor="let tag of cart.tag">
                   <p class="tag p-1 text-center">{{tag}}</p>
                 </div>
-            </div>
-            <div class="os d-flex gap-2">
-              <i *ngFor="let p of cart.os" class="fa" [ngClass]="{
+              </div>
+              <div class="os d-flex gap-2">
+                <i *ngFor="let p of cart.os" class="fa" [ngClass]="{
               'fa-apple': p === 'mac',
               'fa-windows': p === 'windows',
               'fa-linux': p === 'linux'
               }"></i>
-          </div>
+              </div>
             </div>
           </div>
 
-          <div>
+          <div class="right-col d-flex flex-column">
             <p class="price">{{cart.price}} $</p>
             <p><button (click)="removeCartItem(cart)">Remove</button></p>
           </div>
         </li>
+        <hr class="m-2 separator rounded">
       </ul>
 
-      <section class="shadow-lg d-flex justify-content-around">
-        <a routerLink="/games"><button>Continue Shipping</button></a>
-        <button *ngIf="user.cart.length > 0" (click)="clearCart()">Remove All</button>
+      <section class="d-flex justify-content-around">
+        <a routerLink="/games"><button class="bottmom-button">Continue Shipping</button></a>
+        <button class="bottmom-button" *ngIf="user.cart.length > 0" (click)="clearCart()">Remove All</button>
       </section>
     </section>
 
-    <section class="promo text-center shadow-lg">
-      <div><p class="spin-emoji">🌟</p> Offer Ends Soon! <p class="spin-emoji">🌟</p></div>
+    <section class="promo text-center m-2 p-3 mt-3 shadow-sm fs-3 rounded">
+      <div>
+        <p class="spin-emoji">🌟</p> Offer Ends Soon! <p class="spin-emoji">🌟</p>
+      </div>
     </section>
-
 
   </main>
 

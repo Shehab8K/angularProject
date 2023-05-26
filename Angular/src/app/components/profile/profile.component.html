@@ -1,0 +1,87 @@
+<app-navbar></app-navbar>
+<div class=" page-container d-flex">
+    <div class="profile-container shadow-lg rounded">
+        <div class="header m-2 p-3 d-flex flex-row">
+            <div class=" info d-flex flex-row">
+                <div class="profile-pic rounded m-3">
+                    <img src="../../../assets/images/pubg.png">
+                </div>
+                <div>
+                    <div class="mb-4" *ngIf="editMode else elseblock">
+                        <label class="fw-medium fs-4">Username: <i class="fas fa-edit"></i></label>
+                        <input class="form-control bg-dark text-light p-2 mb-1" value={{user.name}}>
+                    </div>
+                    <ng-template #elseblock>
+                        <p class="fw-bold fs-2">{{user.name.toUpperCase()}}</p>
+                    </ng-template>
+                    <div class="fs-5">
+                        <div>
+                            <div class="mb-4" *ngIf="editMode else elseblock2">
+                                <label class="fw-medium fs-4">Discord Username: <i class="fas fa-edit"></i></label>
+                                <input class="form-control bg-dark text-light p-2 mb-1" value={{user.discord}}>
+                            </div>
+                            <ng-template #elseblock2><i class="fa-brands fa-discord"> </i>
+                                <span> {{user.discord}}</span>
+                            </ng-template>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4 d-flex flex-row" *ngIf="!editMode">
+                        <div class="mt-2 m-2 rounded text-center stat text-light">
+                            <span>465</span><br>
+                            <label>Followers</label>
+                        </div>
+                        <div class="mt-2 m-2 rounded text-center stat text-light">
+                            <span>3,415</span><br>
+                            <label>Following</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="level-container m-3">
+                <p class="fs-3">Level</p>
+                <!-- <p class="level fs-1">21</p> -->
+                <img class="level" src="../../../assets/images/gladiator.png">
+                <button *ngIf="editMode else elseblock3" (click)="toggleEditMode()"
+                    class="btn btn-outline-success btn-lg ps-5 pe-5 mt-4">Save</button>
+                <ng-template #elseblock3>
+                    <button (click)="toggleEditMode()"
+                        class="btn btn-outline-dark btn-lg ps-5 pe-5 mt-4">Edit</button></ng-template>
+            </div>
+
+        </div>
+        <hr class="m-2 separator rounded">
+        <div class="d-flex flex-row Preferences">
+            <p class="m-2 p-3 fs-4 fw-medium text-light">Preferences: <i *ngIf="editMode" class="fas fa-edit"></i>
+            </p>
+            <div class="d-flex flex-row tags" *ngIf="!editMode else elseblock4">
+                <p class="tag ms-2 rounded text-center text-light" *ngFor="let t of user.preferences">{{t}}
+                </p>
+            </div>
+            <ng-template class="elseblock4" #elseblock4>
+                <input class="form-control tagEdit bg-dark text-light p-2 ms-2" *ngFor="let t of user.preferences"
+                    value={{t}}>
+            </ng-template>
+        </div>
+        <hr class="m-2 separator rounded">
+        <p class="m-2 p-3 fs-4 fw-medium text-light">Games Purchased</p>
+        <div class="d-flex games-purchased flex-row m-3">
+            <div class="card bg-dark text-light text-center m-2 shadow-sm" *ngFor="let g of games">
+                <div class="card-header">
+                    <img class="card-img rounded shadow-sm" src={{g.images[0]}}>
+                </div>
+                <div class="card-body">
+                    <p class="fs-5 "> {{g.name}}</p>
+                    <p>{{g.description}}</p>
+                </div>
+            </div>
+        </div>
+        <hr class="m-2 separator rounded">
+        <p class="m-2 p-3 fs-4 fw-medium text-light">Most Purchased Genres</p>
+        <app-chart [tags]="tags" [tagCount]="tagCount" (chartCreated)="refresh()"></app-chart>
+        <!-- <hr class="m-2 separator rounded"> -->
+
+    </div>
+</div>
+<app-footer></app-footer>

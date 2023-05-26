@@ -1,6 +1,5 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -21,11 +20,21 @@ export class GamesService {
     return this.myClient.get(this.Base_URL + '/' + id)
 
   }
-  deleteGame(id: string) {
+  deleteGame(id: any) {
     console.log("in product service")
     console.log(this.Base_URL + '/' + id)
 
     return this.myClient.delete(this.Base_URL + '/' + id)
+
+  }
+  AddNewProduct(newProduct:any){
+    console.log('in service')
+    console.log(newProduct);
+    // console.log(Array.isArray(newProduct.os))
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');  // Add the 'Content-Type' header
+    headers.append('Accept', 'application/json');  // Add any other necessary headers
+    return this.myClient.post(this.Base_URL,newProduct,{ headers });
 
   }
 }

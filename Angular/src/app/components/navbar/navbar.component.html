@@ -10,9 +10,9 @@
         <li><a routerLink="/">Contact</a></li>
 
         <li><a routerLink="/games">Store</a></li>
-        <li><a routerLink="/orders">Orders</a></li>
-        <li><a routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
-        <li><app-user-nav></app-user-nav></li>
+        <li *ngIf="isLoggedIn"><a routerLink="/orders">Orders</a></li>
+        <li *ngIf="isLoggedIn"><a routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+        <div class="d-flex user-nav"><app-user-nav (loggedOut)="refresh()"></app-user-nav></div>
       </ul>
     </div>
     <span class="navTrigger">

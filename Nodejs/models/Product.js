@@ -14,20 +14,20 @@ const productSchema = new mongoose.Schema({
   type: {
     type: [String],
     required: true,
-    enum: ["singleplayer", "multiplayer"],
+    // enum: ["singleplayer", "multiplayer"],
   },
   tag: {
     type: [String],
     required: true,
-    enum: ['action','funny','sports','adventure','horror']
+    // enum: ['action','funny','sports','adventure','horror']
   },
   releasedDate: {
-    required: true,
     type: Date,
+    default: Date.now
   },
   os: {
     type: [String],
-    enum: ["windows", "mac", "linux"],
+    // enum: ["windows", "mac", "linux"],
   },
   description: {
     type: String,
