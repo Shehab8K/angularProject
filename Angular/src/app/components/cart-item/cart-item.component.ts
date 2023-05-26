@@ -36,6 +36,7 @@ export class CartItemComponent {
       this.userService.updateUserCart(this.user._id, this.cart).subscribe({
         next: () => {
           this.updateTotal()
+          this.updateCartItems()
         },
 
         error: (err) => {
@@ -53,6 +54,7 @@ export class CartItemComponent {
           this.user = data;
           this.cart = this.user.cart
           this.updateTotal()
+          this.updateCartItems()
           this.cartService.updateCartItems(this.cart);
         },
         error: (err) => {
@@ -77,5 +79,15 @@ export class CartItemComponent {
     this.total = this.cart.reduce((acc, item) => acc + item.price, 0);
     const totalPrice = this.total;
     this.cartService.updateTotal(totalPrice);
+    localStorage.setItem('cartTotalPrice', totalPrice.toString());
+    console.log(typeof totalPrice);
   }
+
+  updateCartItems(){
+    const allItems = this.cart.length;
+    this.cartService.updateTotal(allItems);
+    localStorage.setItem('allCartItems', allItems.toString());
+    console.log(allItems);
+  }
+
 }

@@ -20,4 +20,15 @@ export class CartService {
   public updateCartItems(items: any[]): void {
     this.cartItems.next(items);
   }
+
+  gettotalPriceFromLocalStorage(): number {
+    const cartTotalPrice = localStorage.getItem('cartTotalPrice');
+    return cartTotalPrice !== null ? parseFloat(cartTotalPrice) : 0;
+  }
+
+  getallItemsFromLocalStorage(): number {
+    const cartItems = localStorage.getItem('allCartItems');
+    return cartItems !== null ? parseInt(cartItems) : 0;
+  }
+
 }
