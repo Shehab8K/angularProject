@@ -154,6 +154,7 @@ router.post("/", async (req, res) => {
 );
 //update product
 
+
 router.put("/:id", async (req, res) => {
   try {
     // , upload.array("file")
