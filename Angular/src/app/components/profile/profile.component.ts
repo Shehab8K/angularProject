@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/users.service';
 import { switchMap } from 'rxjs';
 import { OrdersService } from 'src/app/services/orders.service';
+import { ColorPickerChangeEvent } from 'ngx-color';
 
 @Component({
   selector: 'app-profile',
@@ -15,13 +16,16 @@ export class ProfileComponent implements OnInit {
   tags: any[] = [];
   tagCount: any[] = [];
   editMode: boolean = false
+  bgcolor: any;
+  selectedColor: any; 
+
   constructor(private userService: UserService, private orderService: OrdersService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.fetchData()
     console.log(this.games)
   }
-  
+
   toggleEditMode() {
     this.editMode = !this.editMode
   }
@@ -69,6 +73,7 @@ export class ProfileComponent implements OnInit {
       userObservable.pipe(
         switchMap((userData) => { //to switch to the orders Observable inside the user Observable subscription
           this.user = userData;
+          this.bgcolor = this.user.bgColor
           // Fetch user orders
           const ordersObservable = this.orderService.GetUserOrders(this.user._id);
           if (ordersObservable) {
@@ -94,5 +99,12 @@ export class ProfileComponent implements OnInit {
     console.log("refreshing")
     this.cdr.detectChanges();
   }
+  onColorChange(event: ColorPickerChangeEvent): void {
+    // Handle color change event
+    this.selectedColor = event.color.hex;
+    this.bgcolor= this.selectedColor 
+    console.log( this.selectedColor)
+  }
+
 
 }

@@ -34,11 +34,12 @@ export class ChartComponent {
             data: this.tagCount,
             backgroundColor: [
               '#26d9ac',
-              'lightgray',
               '#60709f',
               'rgba(112, 192, 219)',
               'rgb(160, 160, 119)',
-              'rgb(135, 96, 96)'
+              'rgb(135, 96, 96)', 
+              'lightgray',
+
             ],
             // hoverOffset: 4
           }],

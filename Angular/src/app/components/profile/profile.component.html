@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class=" page-container d-flex">
-    <div class="profile-container shadow-lg rounded">
+    <div [style.background.]="bgcolor" class="profile-container shadow-lg rounded">
         <div class="header m-2 p-3 d-flex flex-row">
             <div class=" info d-flex flex-row">
                 <div class="profile-pic rounded m-3">
@@ -49,14 +49,19 @@
                     <button (click)="toggleEditMode()"
                         class="btn btn-outline-dark btn-lg ps-5 pe-5 mt-4">Edit</button></ng-template>
             </div>
+            <div>
+                <!-- <input value="white" type="color" [(ngModel)]="selectedColor"
+                    (change)="onColorChange(selectedColor)" (blur)="refresh()"> -->
+                    <ngx-color-picker [(color)]="selectedColor" (onChange)="onColorChange($event)"></ngx-color-picker>
 
+            </div>
         </div>
         <hr class="m-2 separator rounded">
         <div class="d-flex flex-row Preferences">
             <p class="m-2 p-3 fs-4 fw-medium text-light">Preferences: <i *ngIf="editMode" class="fas fa-edit"></i>
             </p>
             <div class="d-flex flex-row tags" *ngIf="!editMode else elseblock4">
-                <p class="tag ms-2 rounded text-center text-light" *ngFor="let t of user.preferences">{{t}}
+                <p class="tag ms-2 rounded text-center bg-dark text-light" *ngFor="let t of user.preferences">{{t}}
                 </p>
             </div>
             <ng-template class="elseblock4" #elseblock4>

@@ -68,6 +68,7 @@ import { DashboardProductsComponent } from './components/dashboard/dashboard-pro
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { GameShowComponent } from './components/game-show/game-show.component';
 
 
 
@@ -118,6 +119,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     DashboardProductDetailsComponent,
     LoadingComponent,
     ProfileComponent,
+    GameShowComponent,
 
 
   ],

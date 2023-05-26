@@ -22,32 +22,34 @@ import { UsersTableComponent } from './components/dashboard/users/users-table/us
 import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { GameShowComponent } from './components/game-show/game-show.component';
 const routes: Routes = [
-  
-  {path:'', component:HomeComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'games',component:AllGamesComponent},
-  {path:'profile',component:ProfileComponent},
-  {path:'login',component:LoginComponent},
-  {path:'cart',component:CartComponent},
-  {path:'orders',component:OrdersComponent},
-  {path:'login',component:LoginComponent},
-  {path:'payment',component:PaymentComponent},
-  {path:'dashboard',component:DashboardComponent},
-  {path:'dashboard/users',component:UsersTableComponent},
-  {path:'dashboard/games/:id',component:DashboardProductDetailsComponent},
+
+  { path: '', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'games', component: AllGamesComponent }, 
+  { path: 'games/:id', component: GameShowComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard/users', component: UsersTableComponent },
+  { path: 'dashboard/games/:id', component: DashboardProductDetailsComponent },
 
   // Error routes to be handled
-  {path:'403',component:ForbiddenComponent},
+  { path: '403', component: ForbiddenComponent },
   // {path:'401',component:NotfoundComponent},
 
   // Checking auth demo routes
-  {path:'admin',component:AdminOnlyComponent, canActivate:[AdminGuard]},
-  {path:'user',component:UserOnlyComponent, canActivate:[UserGuard]},
-  {path:'auth',component:AuthOnlyComponent, canActivate:[AuthGuard]},
+  { path: 'admin', component: AdminOnlyComponent, canActivate: [AdminGuard] },
+  { path: 'user', component: UserOnlyComponent, canActivate: [UserGuard] },
+  { path: 'auth', component: AuthOnlyComponent, canActivate: [AuthGuard] },
 
   // Other PAths
-  {path:'**', component:NotfoundComponent}
+  { path: '**', component: NotfoundComponent }
 
 ]
 
