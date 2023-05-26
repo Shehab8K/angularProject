@@ -7,7 +7,7 @@
                     <img src="../../../assets/images/pubg.png">
                 </div>
                 <div>
-                    <div *ngIf="editMode else elseblock">
+                    <div class="mb-4" *ngIf="editMode else elseblock">
                         <label class="fw-medium fs-4">Username: </label>
                         <input class="form-control bg-dark text-light p-2 mb-1" value={{user.name}}>
                     </div>
@@ -16,7 +16,7 @@
                     </ng-template>
                     <div class="fs-5">
                         <div>
-                            <div *ngIf="editMode else elseblock2">
+                            <div class="mb-4" *ngIf="editMode else elseblock2">
                                 <label class="fw-medium fs-4">Discord Username: </label>
                                 <input class="form-control bg-dark text-light p-2 mb-1" value={{user.discord}}>
                             </div>
@@ -27,12 +27,12 @@
 
                     </div>
 
-                    <div class=" d-flex flex-row">
-                        <div class=" m-2 rounded text-center stat text-light">
+                    <div class="mt-4 d-flex flex-row" *ngIf="!editMode">
+                        <div class="mt-2 m-2 rounded text-center stat text-light">
                             <span>465</span><br>
                             <label>Followers</label>
                         </div>
-                        <div class=" m-2 rounded text-center stat text-light">
+                        <div class="mt-2 m-2 rounded text-center stat text-light">
                             <span>3,415</span><br>
                             <label>Following</label>
                         </div>
@@ -43,7 +43,11 @@
                 <p class="fs-3">Level</p>
                 <!-- <p class="level fs-1">21</p> -->
                 <img class="level" src="../../../assets/images/gladiator.png">
-                <button (click)="toggleEditMode()" class="btn btn-outline-dark btn-lg ps-5 pe-5 mt-4">Edit</button>
+                <button *ngIf="editMode else elseblock3" (click)="toggleEditMode()"
+                    class="btn btn-outline-success btn-lg ps-5 pe-5 mt-4">Save</button>
+                <ng-template #elseblock3>
+                    <button (click)="toggleEditMode()"
+                        class="btn btn-outline-dark btn-lg ps-5 pe-5 mt-4">Edit</button></ng-template>
             </div>
 
         </div>
