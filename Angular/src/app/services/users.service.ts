@@ -49,4 +49,7 @@ export class UserService {
   logout(){
     localStorage.removeItem('user');
   }
+  updateUser(id:string, body:any){
+    return this.myClient.put(this.Base_URL +'/'+ id, {body})
+  }
 }

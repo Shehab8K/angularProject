@@ -12,7 +12,9 @@
     /* background-color: rgba(112, 219, 142, 0.527); */
     width: 80%;
 }
-
+.theme{
+    align-items: center;
+}
 .profile-pic {
     width: 250px;
     height: 250px;

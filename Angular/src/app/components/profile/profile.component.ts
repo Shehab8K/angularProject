@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/users.service';
 import { switchMap } from 'rxjs';
 import { OrdersService } from 'src/app/services/orders.service';
-import { ColorPickerChangeEvent } from 'ngx-color';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +16,10 @@ export class ProfileComponent implements OnInit {
   tagCount: any[] = [];
   editMode: boolean = false
   bgcolor: any;
-  selectedColor: any; 
+  default: any;
+  updatedName: any;
+  updatedDiscord: any;
+  updatedPreferences:  string[] = [];
 
   constructor(private userService: UserService, private orderService: OrdersService, private cdr: ChangeDetectorRef) { }
 
@@ -25,7 +27,24 @@ export class ProfileComponent implements OnInit {
     this.fetchData()
     console.log(this.games)
   }
-
+  getData() {console.log("updating user")
+    const updatedUser = {
+      "username": this.updatedName||this.user.username,
+      "discord": this.updatedDiscord ||this.user.discord,
+      "preferences": this.updatedPreferences||this.user.preferences,
+      "bgColor": this.bgcolor
+    }
+    this.userService.updateUser(this.user._id, updatedUser).subscribe({
+      next: () => {
+        this.fetchData()
+        this.toggleEditMode()
+        this.refresh()
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
   toggleEditMode() {
     this.editMode = !this.editMode
   }
@@ -74,6 +93,7 @@ export class ProfileComponent implements OnInit {
         switchMap((userData) => { //to switch to the orders Observable inside the user Observable subscription
           this.user = userData;
           this.bgcolor = this.user.bgColor
+          this.default = this.bgcolor
           // Fetch user orders
           const ordersObservable = this.orderService.GetUserOrders(this.user._id);
           if (ordersObservable) {
@@ -87,7 +107,7 @@ export class ProfileComponent implements OnInit {
           this.orders = data;
           this.getTags()
           this.getGames()
-          console.log(this.games)
+          // console.log(this.games)
         },
         error: (err: any) => {
           console.log(err);
@@ -99,12 +119,13 @@ export class ProfileComponent implements OnInit {
     console.log("refreshing")
     this.cdr.detectChanges();
   }
-  onColorChange(event: ColorPickerChangeEvent): void {
+  onColorChange(color: string): void {
     // Handle color change event
-    this.selectedColor = event.color.hex;
-    this.bgcolor= this.selectedColor 
-    console.log( this.selectedColor)
+    // this.selectedColor =color;
+    this.bgcolor = color
+    console.log(this.bgcolor)
   }
-
-
+  setDefault() {
+    this.bgcolor = this.default
+  }
 }

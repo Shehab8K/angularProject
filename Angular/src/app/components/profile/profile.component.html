@@ -3,25 +3,35 @@
     <div [style.background.]="bgcolor" class="profile-container shadow-lg rounded">
         <div class="header m-2 p-3 d-flex flex-row">
             <div class=" info d-flex flex-row">
+                <!-- profile pic -->
                 <div class="profile-pic rounded m-3">
                     <img src="../../../assets/images/pubg.png">
                 </div>
                 <div>
-                    <div class="mb-4" *ngIf="editMode else elseblock">
+                    <div class="mb-2" *ngIf="editMode else elseblock">
                         <label class="fw-medium fs-4">Username: <i class="fas fa-edit"></i></label>
-                        <input class="form-control bg-dark text-light p-2 mb-1" value={{user.name}}>
+                        <input class="form-control bg-dark text-light p-2 mb-1" [(ngModel)]="updatedName"
+                            value={{user.username}}>
                     </div>
                     <ng-template #elseblock>
-                        <p class="fw-bold fs-2">{{user.name.toUpperCase()}}</p>
+                        <p class="fw-bold fs-2">{{user.username.toUpperCase()}}</p>
                     </ng-template>
                     <div class="fs-5">
                         <div>
-                            <div class="mb-4" *ngIf="editMode else elseblock2">
+                            <div class="mb-2" *ngIf="editMode else elseblock2">
                                 <label class="fw-medium fs-4">Discord Username: <i class="fas fa-edit"></i></label>
-                                <input class="form-control bg-dark text-light p-2 mb-1" value={{user.discord}}>
+                                <input class="form-control bg-dark text-light p-2 mb-1" [(ngModel)]="updatedDiscord"
+                                    value={{user.discord}}>
+                                <label class="fw-medium fs-4 mt-2">Theme: <i class="fas fa-edit"></i></label>
+                                <div class="d-flex flex-row theme"> <input class="m-2" value="white" type="color"
+                                        [(ngModel)]="bgcolor" (change)="onColorChange(bgcolor)" (blur)="refresh()">
+                                    <button class="btn btn-dark" (blur)="refresh()" (click)="setDefault()">Default
+                                        Theme</button>
+                                </div>
                             </div>
                             <ng-template #elseblock2><i class="fa-brands fa-discord"> </i>
                                 <span> {{user.discord}}</span>
+
                             </ng-template>
                         </div>
 
@@ -41,19 +51,12 @@
             </div>
             <div class="level-container m-3">
                 <p class="fs-3">Level</p>
-                <!-- <p class="level fs-1">21</p> -->
                 <img class="level" src="../../../assets/images/gladiator.png">
-                <button *ngIf="editMode else elseblock3" (click)="toggleEditMode()"
-                    class="btn btn-outline-success btn-lg ps-5 pe-5 mt-4">Save</button>
+                <button *ngIf="editMode else elseblock3" class="btn btn-outline-success btn-lg ps-5 pe-5 mt-4"
+                    (click)="getData() ">Save</button>
                 <ng-template #elseblock3>
                     <button (click)="toggleEditMode()"
                         class="btn btn-outline-dark btn-lg ps-5 pe-5 mt-4">Edit</button></ng-template>
-            </div>
-            <div>
-                <!-- <input value="white" type="color" [(ngModel)]="selectedColor"
-                    (change)="onColorChange(selectedColor)" (blur)="refresh()"> -->
-                    <ngx-color-picker [(color)]="selectedColor" (onChange)="onColorChange($event)"></ngx-color-picker>
-
             </div>
         </div>
         <hr class="m-2 separator rounded">
@@ -65,8 +68,9 @@
                 </p>
             </div>
             <ng-template class="elseblock4" #elseblock4>
-                <input class="form-control tagEdit bg-dark text-light p-2 ms-2" *ngFor="let t of user.preferences"
-                    value={{t}}>
+                <input class="form-control tagEdit bg-dark text-light p-2 ms-2"
+                    *ngFor="let t of user.preferences;let i = index" value={{t}} [(ngModel)]="updatedPreferences[i]"
+                    [name]="'preference' + i">
             </ng-template>
         </div>
         <hr class="m-2 separator rounded">
