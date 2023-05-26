@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { GamesService } from 'src/app/services/products.service';
 import { Location } from '@angular/common';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-dashboard-products',
@@ -17,18 +18,19 @@ export class DashboardProductsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private gamesService: GamesService, private location: Location) { }
+  constructor(private gamesService: GamesService) { }
 
   ngOnInit() {
     this.gamesService.GetAllGames().subscribe(
-      (data: Object) => {
+   {
+       next:(data: Object) => {
         this.games = data as any[];
         this.dataSource = new MatTableDataSource(data as any[]);
         this.dataSource.paginator = this.paginator;
       },
-      (error) => {
+      error:(error) => {
         console.log(error);
-      }
+      }}
     );
   }
 

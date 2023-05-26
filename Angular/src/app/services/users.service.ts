@@ -49,4 +49,9 @@ export class UserService {
   logout(){
     localStorage.removeItem('user');
   }
+
+  getAllUsers(){
+    return this.myClient.get(this.Base_URL);
+  }
+
 }
