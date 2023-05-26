@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/users.service';
 
 
 @Component({
@@ -7,6 +9,8 @@ import { CartService } from 'src/app/services/cart.service';
   templateUrl: './credit-card.component.html',
   styleUrls: ['./credit-card.component.css']
 })
+
+
 export class CreditCardComponent {
 
   cardholderName = 'CARDHOLDER';
@@ -18,10 +22,20 @@ export class CreditCardComponent {
   months:any[] = [];
   expirationDateyear = new Date().getFullYear();
   endYear = this.expirationDateyear + 6;
-  years: number[] = [];
+  years: any[] = [];
   cart: any[] = [];
   cvvFocus = false;
   cartTotalPrice: number  = 0;
+  user:any
+  filteredMonths: string[] = this.months;
+
+  creditcardForm = new FormGroup({
+    name: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Za-z]+$/), Validators.minLength(6)]),
+    cardNumber: new FormControl(null, [Validators.required, Validators.pattern(/^\d{16}$/)]),
+    expirationMonth: new FormControl(null, [Validators.required]),
+    expirationYear: new FormControl(null, [Validators.required]),
+    cvv : new FormControl(null, [Validators.required, Validators.pattern(/^\d{3}$/)])
+  })
 
   ngOnInit(): void {
     this.cartTotalPrice = this.cartService.gettotalPriceFromLocalStorage();
@@ -29,7 +43,19 @@ export class CreditCardComponent {
     this.cart.length = this.cartService.getallItemsFromLocalStorage();
   }
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private userService: UserService) {
+
+    const userObservable = userService.getCurrentUser()
+    if (userObservable) {
+      userObservable.subscribe({
+        next: (data) => {
+          this.user = data;
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      })
+    }
 
     for (let i = this.expirationDateyear; i <= this.endYear; i++) {
       this.years.push(i);
@@ -45,15 +71,56 @@ export class CreditCardComponent {
 
   }
 
+  formErrors: { [key: string]: string } = {
+    name: '',
+    cardNumber: '',
+    expirationMonth: '',
+    expirationYear: '',
+    cvv: ''
+  };
+
   onFormSubmit(): void {
-    // if (myForm.invalid) {
-    //   // Form is invalid, do not proceed with submission
-    //   return;
-    // }
-    console.log(this.cartTotalPrice, this.cvv);
-    const cardNumberString = this.cardNumber.join('');
-    console.log(cardNumberString,this.cartTotalPrice !== null ? this.cartTotalPrice.toFixed(2) : null, this.cvv,this.expirationDatemonth, this.expirationDateyear);
+    if (this.creditcardForm.valid) {
+      // Form is valid, perform further actions or submit the form
+      console.log("Form is valid");
+      let id = this.user._id
+      let cardNumber = this.cardNumber.join('')
+      let cardExpMonth = this.expirationDatemonth
+      let cardExpYear = this.expirationDateyear
+      let cardCVC = this.cvv
+      let price = this.cartTotalPrice !== null ? this.cartTotalPrice : null
+
+      // console.log(typeof price)
+      // console.log(typeof this.cartTotalPrice)
+
+      let data ={
+        id,
+        cardNumber,
+        cardExpMonth,
+        cardExpYear,
+        cardCVC,
+        price
+      }
+
+      console.log(data)
+      location.reload();
+    } else {
+      // Form is invalid, handle validation errors
+      console.log("Form is invalid");
+
+      // Mark all form controls as touched to trigger validation errors
+      this.markFormGroupTouched(this.creditcardForm);
+
+    }
   }
+
+// Mark all form controls as touched
+markFormGroupTouched(formGroup: FormGroup): void {
+  Object.values(formGroup.controls).forEach(control => {
+    control.markAsTouched();
+  });
+}
+
 
   onCvvFocus() {
     this.cvvFocus = true;
@@ -86,8 +153,20 @@ export class CreditCardComponent {
     this.expirationDatemonth = (event.target as HTMLInputElement).value;
   }
 
-  onexpirationDateyearChange(event: Event): void {
+
+  onexpirationDateyearChange(event: any) {
+    const selectedYear = event.target.value;
+    const currentYear = new Date().getFullYear();
+
+    if (selectedYear === currentYear.toString()) {
+      // Use current month and future months
+      const currentMonth = new Date().getMonth() + 1;
+      this.filteredMonths = this.months.filter(month => parseInt(month, 10) > currentMonth);
+    } else {
+      // Use all months
+      this.filteredMonths = this.months;
+    }
     const yearString = (event.target as HTMLInputElement).value;
-    this.expirationDateyear = parseInt(yearString, 10);
+      this.expirationDateyear = parseInt(yearString, 10);
   }
 }
