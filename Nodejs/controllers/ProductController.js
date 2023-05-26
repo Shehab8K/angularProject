@@ -111,20 +111,10 @@ router.post("/", async (req, res) => {
   
   try {
      await uploadProduct(req, res, async function (err) {
-      console.log(req.body);
-      console.log("//////////////////");
-      console.log(res);
       if (err) {
-        // console.log(err)
         return res.status(500).send("Error uploading file");
       } else {
-        // console.log(req.body)
-        // console.log(req.body.imageURL[0])
-        // return
-        // console.log(req.body);
-        // console.log(req.files);
-        // console.log("loooooooooooooooooool")
-        // console.log(res);
+
         if(req.files){
           console.log(req.files);
         }
@@ -164,62 +154,93 @@ router.post("/", async (req, res) => {
 );
 //update product
 
-// router.put("/:id", upload.array("file"), async (req, res) => {
-//   try {
-//     // Validate the request body
-//     //  const { error } = validateProduct(req.body);
-//     //  if (error) {
-//     //    return res.status(400).json({ error: error.details[0].message });
-//     //  }
-//     const { name, price, os, tag, type, description, releasedDate } = req.body;
+router.put("/:id", async (req, res) => {
+  try {
+    // , upload.array("file")
+    // Validate the request body
+    //  const { error } = validateProduct(req.body);
+    //  if (error) {
+    //    return res.status(400).json({ error: error.details[0].message });
+    //  }
+    // const { name, price, os, tag, type, description, releasedDate } = req.body;
+    const dataForValidation = {
+      name: req.body.name,
+      price: req.body.price,
+      os: req.body.os,
+      tag: req.body.tag,
+      type: req.body.type,
+      description: req.body.description,
+      releasedDate: req.body.releasedDate
+    }
 
-//     const updatedFields = {
-//       name,
-//       price,
-//       os,
-//       tag,
-//       type,
-//       description,
-//       releasedDate,
-//     };
+    const { error } = validateProduct(dataForValidation);
 
-//     if (req.files && req.files.length > 0) {
-//       // Handle multiple file uploads
-//       // Delete old images
-//       const product = await Product.findById(req.params.id);
-//       //  console.log(product.images);
-//       if (product.images && product.images.length > 0) {
-//         const publicIds = product.images.map((image) => {
-//           const filename = image.split("/").pop();
-//           return `games/${filename.split(".")[0]}`;
-//         });
+    if(error)
+    {
+      return res.status(400).json({ message: error.details });
+    }
 
-//         await cloudinary.api.delete_resources(publicIds);
-//       }
-//       const fileNames = [];
+    const product = await Product.findById(req.params.id)
 
-//       for (const file of req.files) {
-//         const result = await cloudinary.uploader.upload(file.path, {
-//           folder: "games",
-//         });
-//         fileNames.push(result.secure_url);
-//         // Remove the temporary file after upload
-//         fs.unlinkSync(file.path);
-//       }
-//       updatedFields.images = fileNames;
-//     }
-//     const product = await Product.findByIdAndUpdate(
-//       req.params.id,
-//       updatedFields,
-//       { new: true }
-//     );
+    if(!product)
+    {
+      return res.status(404).json({message: "Product not found"})
+    }
 
-//     res.status(200).json(product);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("An error occurred while updating the product.");
-//   }
-// });
+      product.name = req.body.name || product.name;
+      product.price = req.body.price || product.price;
+      product.os = req.body.os || product.os;
+      product.tag = req.body.tag || product.tag;
+      product.type = req.body.type || product.type;
+      product.description = req.body.description || product.description;
+      product.releasedDate = req.body.releasedDate || product.releasedDate;
+      product.character = req.body.character || product.character; 
+    
+      if (req.files && req.files.length > 0) {
+      // Handle multiple file uploads
+      // Delete old images
+      //  console.log(product.images);
+      if (product.images && product.images.length > 0) {
+        const publicIds = product.images.map((image) => {
+          const filename = image.split("/").pop();
+          return `games/${filename.split(".")[0]}`;
+        });
+        await cloudinary.api.delete_resources(publicIds);
+      }
+
+      const fileNames = [];
+
+      for (const file of req.files) {
+        const result = await cloudinary.uploader.upload(file.path, {
+          folder: "games",
+        });
+        fileNames.push(result.secure_url);
+        // Remove the temporary file after upload
+        fs.unlinkSync(file.path);
+      }
+      product.images = fileNames;
+    }
+
+    const updateProduct = await product.save();
+
+    if(!updateProduct)
+    {
+      return res.status(400).json({message: "Failed to update product"});
+    }
+
+    return res.status(200).json(updateProduct);
+    // const product = await Product.findByIdAndUpdate(
+    //   req.params.id,
+    //   updatedFields,
+    //   { new: true }
+    // );
+
+    // res.status(200).json(product);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while updating the product.");
+  }
+});
 
 //delete product
 router.delete("/:id", async (req, res) => {
@@ -250,17 +271,17 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-const validateProduct = (data) => {
+const validateProduct = (product) => {
   const productSchema = Joi.object({
-    name: Joi.string().required(),
-    price: Joi.number().required(),
-    os: Joi.string().required(),
-    tag: Joi.string().required(),
-    type: Joi.string().required(),
-    description: Joi.string().required(),
-    releasedDate: Joi.date().required(),
+    name: Joi.string(),
+    price: Joi.number(),
+    os: Joi.array(),
+    tag: Joi.array(),
+    type: Joi.array(),
+    description: Joi.string(),
+    releasedDate: Joi.date(),
   });
-  return schema.validate(product);
+  return productSchema.validate(product);
 };
 
 // return productSchema.validate(data);
