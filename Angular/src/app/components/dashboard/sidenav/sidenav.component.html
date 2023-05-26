@@ -4,26 +4,26 @@
     <div class="side-wrapper">
      <div class="side-title">MENU</div>
      <div class="side-menu">
-      <a class="sidebar-link discover is-active" href="#">
+      <a class="sidebar-link discover is-active" routerLink="/dashboard">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home" class="me-2"></mat-icon>
       Bashboard
       </a>
-      <a class="sidebar-link trending" routerLink="/dashboard/users">
+      <a class="sidebar-link trending" [routerLink]="['./users']">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person" class="me-2"></mat-icon>
-       
+
        Users
       </a>
-      <a class="sidebar-link" href="#">
+      <a class="sidebar-link" [routerLink]="['./games']">
         <mat-icon aria-hidden="false" aria-label="Example home icon" class="me-2">videogame_asset</mat-icon>
        Games
       </a>
-      <a class="sidebar-link" href="#">
+      <a class="sidebar-link" [routerLink]="['./orders']">
         <mat-icon aria-hidden="false" aria-label="Example home icon" class="me-2">shopping_cart</mat-icon>
-       
+
       Orders
       </a>
-      
+
      </div>
     </div>
-    
+
    </div>
