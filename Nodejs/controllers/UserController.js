@@ -147,6 +147,8 @@ const updateUser = async (req, res) => {
       user.password = hashedPassword || user.password;
       user.discord = req.body.discord || user.discord;
       user.preferences = req.body.preferences || user.preferences;
+      user.bgColor = req.body.bgColor || user.bgColor;
+      
       const updatedUser = await user.save();
       
       if(!updatedUser)

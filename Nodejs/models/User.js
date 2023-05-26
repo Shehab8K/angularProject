@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  bgColor: {
+    type: String,
+    default: "rgba(112, 192, 219, 0.527)",
+  },
   preferences:{
     type: Array,
     default: [],
