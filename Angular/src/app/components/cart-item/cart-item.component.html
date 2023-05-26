@@ -9,7 +9,7 @@
     </section>
 
     <section class="actions shadow-lg" *ngIf="user.cart.length > 0">
-      <a routerLink="/payment"><button>Checkout 💳</button></a>
+      <a routerLink="/payment"><button (click)="updateTotal()">Checkout 💳</button></a>
     </section>
 
     <section class="cart shadow-lg">

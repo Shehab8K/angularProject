@@ -21,8 +21,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { UsersTableComponent } from './components/dashboard/users/users-table/users-table.component';
 import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
+// import { CreditCardComponent } from './components/payment/credit-card/credit-card.component';
 const routes: Routes = [
-  
+
   {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
   {path:'games',component:AllGamesComponent},

@@ -1,12 +1,24 @@
 .container {
   margin-bottom: 5vh;
   font-family: 'Nova Flat';
-  width: 65rem;
+
   color: white;
   justify-content: space-between;
   transition: transform 0.3s ease;
   margin-top: 150px !important;
 
+}
+@media (max-width: 600px) {
+  .container {
+    /* width: 15rem; */
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 600px) {
+  .container {
+    width: 65rem;
+  }
 }
  main {
   display: grid;
@@ -32,7 +44,14 @@ img {
 
 .cart {
   grid-area: content;
+  overflow-y: scroll;
+  height: 60vh;
 }
+
+.cart::-webkit-scrollbar-track {
+  background-color: transparent; /* Color of the scrollbar track */
+}
+
 li{
   transition: transform 0.3s ease;
 }
