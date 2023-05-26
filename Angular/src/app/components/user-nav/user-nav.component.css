@@ -11,7 +11,7 @@ body{
   color: black;
 }
 .sub-menu-link{
-  transition: transform 0.1s ease;
+  transition: transform 0.3s ease;
 
 }
 .user-wrap{

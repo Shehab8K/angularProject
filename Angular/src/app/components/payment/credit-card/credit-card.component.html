@@ -121,10 +121,10 @@
       <input class="form-control cvvinput" type="text"  maxlength="3" placeholder="XXX" [(ngModel)]="cvv" (focus)="onCvvFocus()" (blur)="onCvvBlur()" (input)="onCvvChange($event)">
     </div>
     </div>
-    <section class="summary shadow-lg mt-3 fs-5 mb-3 d-flex justify-content-around">
+    <section class="summary rounded shadow-lg mt-3 fs-5 mb-3 d-flex justify-content-around">
       <div class="items">🛒 {{cart.length}} items</div>
       <div class="total">Price: {{total.toFixed(2)}}💲</div>
     </section>
-    <button class="btn col-12 mt-3" type="submit">Pay</button>
+    <button class="btn col-12 mt-3 pay" type="submit">Pay</button>
   </form>
 </div>
