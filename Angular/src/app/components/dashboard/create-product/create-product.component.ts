@@ -13,9 +13,9 @@ export class CreateProductComponent  {
   createdGame: string = "New Game";
   gameForm!: FormGroup;
   selectedImages:string[] = [];
-  // selectedTags:string[] = [];
-  // selectedType:string[] = [];
-  // selectedOs:string[] = [];
+  selectedTags:string[] = [];
+  selectedType:string[] = [];
+  selectedOs:string[] = [];
 
 
 
@@ -44,7 +44,7 @@ export class CreateProductComponent  {
   //     description: new FormControl(null, Validators.required),
   //     imageURL: new FormControl([], Validators.required),
   //     // imageURL: this.formBuilder.array([]),
-  //   }); 
+  //   });
   // }
   onChangeFile(event: any) {
     const files = event.target.files;
@@ -99,28 +99,28 @@ export class CreateProductComponent  {
             formData.append('imageURL', image);
           }
           //////
-          // for(let tag of this.selectedTags){
-          //   formData.append('tag', tag);
-          // }
-          // //////
-          // for(let type of this.selectedType){
-          //   formData.append('type', type);
-          // }
-          // ///////
-          // for(let os of this.selectedOs){
-          //   formData.append('os', os);
-          // }
+          for(let tag of this.selectedTags){
+            formData.append('tag', tag);
+          }
+          //////
+          for(let type of this.selectedType){
+            formData.append('type', type);
+          }
+          ///////
+          for(let os of this.selectedOs){
+            formData.append('os', os);
+          }
           const currentDate = new Date();
           const formattedDate = currentDate.toISOString();
           // console.log(formattedDate)
           formData.append('releasedDate', formattedDate);
           formData.append('name', this.gameForm.get('name')!.value);
               formData.append('price', this.gameForm.get('price')!.value);
-              formData.append('tag', this.gameForm.get('tag')!.value);
-              formData.append('type', this.gameForm.get('type')!.value);
-              formData.append('os', this.gameForm.get('os')!.value);
+              // formData.append('tag', this.gameForm.get('tag')!.value);
+              // formData.append('type', this.gameForm.get('type')!.value);
+              // formData.append('os', this.gameForm.get('os')!.value);
               formData.append('description', this.gameForm.get('description')!.value);
-              
+
               // for (const entry of formData.entries()) {
               //   console.log(entry);
               // }
@@ -135,6 +135,5 @@ export class CreateProductComponent  {
     else{
       console.log("engzzzzzzzzz")
     }
-  }   
+  }
 }
- 
