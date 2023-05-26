@@ -4,14 +4,14 @@
     background-image: url("../../../assets/images/pubg.png");
     width: 100%;
     height: 100%;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     justify-content: center;
 }
 
 .profile-container {
     margin-top: 150px !important;
-    background-color:rgba(112, 192, 219, 0.527);
+    background-color: rgba(112, 192, 219, 0.527);
     width: 80%;
 
 }
@@ -32,9 +32,15 @@
 
 .info {
     align-items: center;
-    width: 60%;
+    width: 50%;
+    /* border: 2px solid red; */
     justify-content: space-evenly;
     color: black;
+}
+
+.stat {
+    padding: 3px 18px;
+    background-color: #5c527a;
 }
 
 .level-container {
@@ -51,6 +57,16 @@
     width: 150px;
     /* border: 5px dashed #777a52; */
 }
-.separator{
-    border:2px solid lightgray
+
+.separator {
+    border: 2px solid lightgray
+}
+
+.card-img {
+    width: 250px;
+    height: 150px;
+}
+
+.games-purchased {
+    justify-content: center;
 }

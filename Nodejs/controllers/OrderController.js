@@ -39,7 +39,7 @@ let createOrder = async (req, res) => {
 
     let total = 0;
     for (let i = 0; i < gameItems.length; i++) {
-      total += gameItems[i].GamePrice;
+      total += gameItems[i].price;
     }
 
     const newOrder = new Order({
