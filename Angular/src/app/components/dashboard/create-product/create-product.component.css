@@ -1,9 +1,9 @@
 .formCont{
-    /* background-color: darkgray; */
-    border:1px solid darkred;
+    /* background-color: darkgray;  */
+     border:1px solid darkred;
     border-radius: 20px;
     border-width: 2px; 
     /* height: 50vh;
     /* /* width: 95%; */
-    /* padding: 2%; */
+    padding: 2%;
 }
