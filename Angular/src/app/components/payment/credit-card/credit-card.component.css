@@ -9,11 +9,16 @@
 }
 section {
   background: #414758;
-  border-radius: 3px;
+  /* border-radius: 3px; */
   padding: 1rem;
-  color:#b9a463
+  color:#b9a463;
+  /* transition: transform 0.3s ease; */
+
 }
-section:hover{
+.pay{
+    transition: transform 0.3s ease;
+}
+.pay:hover{
   transform: scale(1.05);
 }
 
