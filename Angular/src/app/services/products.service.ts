@@ -20,7 +20,7 @@ export class GamesService {
     return this.myClient.get(this.Base_URL + '/' + id)
 
   }
-  deleteGame(id: string) {
+  deleteGame(id: any) {
     console.log("in product service")
     console.log(this.Base_URL + '/' + id)
 
