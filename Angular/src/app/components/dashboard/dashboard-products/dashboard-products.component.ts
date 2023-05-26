@@ -34,14 +34,16 @@ export class DashboardProductsComponent implements OnInit {
 
   deleteProduct(id: any) {
     this.gamesService.deleteGame(id).subscribe(
-      () => {
+      {
+        next:() => {
         this.removeDeletedProduct(id);
         this.dataSource = new MatTableDataSource(this.games);
         this.dataSource.paginator = this.paginator;
       },
-      (err) => {
+      error: (err) => {
         console.log(err);
       }
+    }
     );
   }
 
