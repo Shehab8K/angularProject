@@ -12,15 +12,13 @@ import { UserService } from 'src/app/services/users.service';
 })
 export class UsersTableComponent implements OnInit {
   userTitle: string="Users";
-  displayedColumns: string[] = ['name', 'username', 'email'];
+  displayedColumns: string[] = ['name', 'username', 'email', 'rule'];
   dataSource!: MatTableDataSource<any>;
   users:any[]=[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private usersService: UserService) {
-    // Initialize your table data array
-    // Create a MatTableDataSource with your data array
-    // this.dataSource = new MatTableDataSource(tableData);
+
   }
 
   ngOnInit() {
@@ -28,6 +26,7 @@ export class UsersTableComponent implements OnInit {
    {
        next:(data: Object) => {
         this.users = data as any[];
+        console.log(this.users)
         this.dataSource = new MatTableDataSource(data as any[]);
         this.dataSource.paginator = this.paginator;
       },
