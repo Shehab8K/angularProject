@@ -1,6 +1,6 @@
 <app-title [titleContent]="productsTitle"></app-title>
 <table mat-table [dataSource]="dataSource">
-  <!-- Column definitions -->
+
 
   <ng-container matColumnDef="_id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -12,7 +12,7 @@
   </ng-container>
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef>Date</th>
-    <td mat-cell *matCellDef="let game">{{ game.releasedDate }}</td>
+    <td mat-cell *matCellDef="let game">{{formatDate( game.releasedDate) }}</td>
   </ng-container>
   <ng-container matColumnDef="price">
     <th mat-header-cell *matHeaderCellDef>Price</th>
@@ -29,14 +29,13 @@
     </td>
   </ng-container>
 
-  <!-- Add more column definitions for other properties -->
 
   <!-- Table rows -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<!-- Add the paginator below the table -->
+
 <mat-paginator [length]="100"
   [pageSize]="10"
   [pageSizeOptions]="[5, 10, 25, 100]"
