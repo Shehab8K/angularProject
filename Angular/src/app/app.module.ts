@@ -67,6 +67,7 @@ import { PendingOrdersComponent } from './components/dashboard/dashboard-orders/
 import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { CreateProductComponent } from './components/dashboard/create-product/create-product.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 
@@ -117,6 +118,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     DashboardProductsComponent,
     DashboardProductDetailsComponent,
     LoadingComponent,
+    CreateProductComponent,
     ProfileComponent,
 
 

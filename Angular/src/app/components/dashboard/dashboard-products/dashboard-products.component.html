@@ -7,7 +7,7 @@
     <td mat-cell *matCellDef="let game">{{ game._id }}</td>
   </ng-container>
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <th mat-header-cell *matHeaderCellDef >Name</th>
     <td mat-cell *matCellDef="let game">{{ game.name }}</td>
   </ng-container>
   <ng-container matColumnDef="date">
@@ -24,8 +24,8 @@
       <a [routerLink]="'/dashboard/games/' + game._id">
       <i class="material-icons button--rounded ">visibility</i>
     </a>
-      <i class="material-icons button--rounded m-2">edit</i>
-      <i class="material-icons button--rounded ">delete</i>
+      <i class="material-icons button--rounded m-2" >edit</i>
+      <i class="material-icons button--rounded " (click)="deleteProduct(game._id)">delete</i>
     </td>
   </ng-container>
 
