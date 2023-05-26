@@ -111,13 +111,23 @@ router.post("/", async (req, res) => {
   
   try {
      await uploadProduct(req, res, async function (err) {
+      console.log(req.body);
+      console.log("//////////////////");
+      console.log(res);
       if (err) {
-        console.log(err)
+        // console.log(err)
         return res.status(500).send("Error uploading file");
       } else {
         // console.log(req.body)
         // console.log(req.body.imageURL[0])
         // return
+        // console.log(req.body);
+        // console.log(req.files);
+        // console.log("loooooooooooooooooool")
+        // console.log(res);
+        if(req.files){
+          console.log(req.files);
+        }
         let product = await Product.create({
           name: req.body.name,
           price: req.body.price,
@@ -125,7 +135,7 @@ router.post("/", async (req, res) => {
           tag: req.body.tag,
           type: req.body.type,
           description: req.body.description,
-          releasedDate: req.body.releasedDate,
+          // releasedDate: req.body.releasedDate,
           // images: fileNames, // Save the secure URLs of the uploaded images
         });
         if (!product) {

@@ -22,8 +22,8 @@ const productSchema = new mongoose.Schema({
     // enum: ['action','funny','sports','adventure','horror']
   },
   releasedDate: {
-    required: true,
     type: Date,
+    default: Date.now
   },
   os: {
     type: [String],
