@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
       if (order.status == 'accepted') {
         order.gameItems.forEach((game: any) => {
           if (this.games.length > 0) {
-            if (!this.games.some((obj: any) => obj.id === game._id))
+            if (!this.games.some((obj: any) => obj._id === game._id))
               this.games.push(game)
           } else {
             this.games.push(game)

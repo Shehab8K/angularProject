@@ -9,16 +9,16 @@
     <div class="order-body">
         <div class=" ms-3 d-flex flex-column" *ngFor="let g of o.gameItems">
             <div class="d-flex flex-row order-item ">
-                <img class="game-img " src={{g.GamePic}}>
+                <img class="game-img " src={{g.images[0]}}>
                 <div class="item-details  mt-1">
                     <div class="fs-5">
-                        {{g.GameTitle}}
+                        {{g.name}}
                     </div>
                     <div class="price">
                         <p class="text-secondary">
                             Price
                         </p>
-                        <p class="fs-4">{{g.GamePrice}} $</p>
+                        <p class="fs-4">{{g.price}} $</p>
                     </div>
                 </div>
             </div>

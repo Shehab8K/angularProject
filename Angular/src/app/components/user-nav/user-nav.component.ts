@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/users.service';
 
@@ -8,9 +8,10 @@ import { UserService } from 'src/app/services/users.service';
   styleUrls: ['./user-nav.component.css']
 })
 export class UserNavComponent {
-  public user:any;
-  public myusername:any;
-  public image:any;
+  public user: any;
+  public myusername: any;
+  public image: any;
+  @Output() loggedOut: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private userService: UserService, private router: Router) {
     const userObservable = this.userService.getCurrentUser()
@@ -19,7 +20,7 @@ export class UserNavComponent {
         next: (data) => {
           this.user = data;
           this.myusername = this.user.username
-          console.log("inside next "+this.myusername)
+          console.log("inside next " + this.myusername)
         },
         error: (err) => {
           console.log(err)
@@ -34,7 +35,8 @@ export class UserNavComponent {
     userWrap?.classList.toggle('expand');
   }
 
-  logout(){
+  logout() {
+    this.loggedOut.emit();
     this.userService.logout();
     this.myusername = null
   }
