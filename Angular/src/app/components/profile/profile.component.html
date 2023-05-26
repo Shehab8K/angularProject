@@ -8,8 +8,8 @@
                 </div>
                 <div>
                     <div *ngIf="editMode else elseblock">
-                        <label class="fw-bold fs-4">Username: </label>
-                        <input class="form-control bg-dark text-light p-2 mb-1" value={{user.name.toUpperCase()}}>
+                        <label class="fw-medium fs-4">Username: </label>
+                        <input class="form-control bg-dark text-light p-2 mb-1" value={{user.name}}>
                     </div>
                     <ng-template #elseblock>
                         <p class="fw-bold fs-2">{{user.name.toUpperCase()}}</p>
@@ -17,7 +17,7 @@
                     <div class="fs-5">
                         <div>
                             <div *ngIf="editMode else elseblock2">
-                                <label class="fw-bold fs-4">Discord Username: </label>
+                                <label class="fw-medium fs-4">Discord Username: </label>
                                 <input class="form-control bg-dark text-light p-2 mb-1" value={{user.discord}}>
                             </div>
                             <ng-template #elseblock2><i class="fa-brands fa-discord"> </i>
