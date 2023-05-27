@@ -80,7 +80,7 @@
     </div>
   </div>
 
-  <form >
+  <form (ngSubmit)="onFormSubmit()">
     <div class="mb-3">
       <label>Name on Card</label>
       <input required class="form-control" type="text" placeholder="John Smith" [(ngModel)]="cardholderName" (input)="onNameChange($event)">
@@ -123,7 +123,7 @@
     </div>
     <section class="summary rounded shadow-lg mt-3 fs-5 mb-3 d-flex justify-content-around">
       <div class="items">🛒 {{cart.length}} items</div>
-      <div class="total">Price: {{total.toFixed(2)}}💲</div>
+      <div class="total">Price: {{cartTotalPrice.toFixed(2)}}💲</div>
     </section>
     <button class="btn col-12 mt-3 pay" type="submit">Pay</button>
   </form>

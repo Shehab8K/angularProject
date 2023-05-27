@@ -38,9 +38,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "rgba(112, 192, 219, 0.527)",
   },
-  preferences: {
+  preferences:{
     type: Array,
     default: [],
+  },
+  isBanned:{
+    type: Boolean,
+    required: true,
+    default: false
   },
   createdAt: {
     type: Date,

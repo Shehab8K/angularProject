@@ -16,6 +16,12 @@ router.post('/register', userController.createUser);
 // Login 
 router.post('/login',userController.login);
 
+//Ban
+router.post('/ban',userController.banUser);
+
+//Unban
+router.post('/unban',userController.unBanUser);
+
 // Cart
 router.put('/cart/:id',cartController.updateUserCart);
 

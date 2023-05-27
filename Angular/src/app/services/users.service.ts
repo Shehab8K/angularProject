@@ -50,6 +50,12 @@ export class UserService {
     localStorage.removeItem('user');
   }
   updateUser(id:string, body:any){
-    return this.myClient.put(this.Base_URL +'/'+ id, {body})
+    console.log("in service")
+    return this.myClient.put(this.Base_URL +'/'+ id, body)
   }
+
+  getAllUsers(){
+    return this.myClient.get(this.Base_URL);
+  }
+
 }

@@ -19,21 +19,28 @@ export class ProfileComponent implements OnInit {
   default: any;
   updatedName: any;
   updatedDiscord: any;
-  updatedPreferences:  string[] = [];
+  updatedPreferences: any[] = [];
 
   constructor(private userService: UserService, private orderService: OrdersService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.fetchData()
-    console.log(this.games)
   }
-  getData() {console.log("updating user")
+  setValues() {
+    this.bgcolor = this.user.bgColor
+    this.default = this.user.bgColor
+    this.updatedName = this.user.username
+    this.updatedDiscord = this.user.discord
+    this.updatedPreferences = this.user.preferences
+  }
+  getData() {
     const updatedUser = {
-      "username": this.updatedName||this.user.username,
-      "discord": this.updatedDiscord ||this.user.discord,
-      "preferences": this.updatedPreferences||this.user.preferences,
+      "username": this.updatedName,
+      "discord": this.updatedDiscord,
+      "preferences": this.updatedPreferences,
       "bgColor": this.bgcolor
     }
+    console.log(updatedUser)
     this.userService.updateUser(this.user._id, updatedUser).subscribe({
       next: () => {
         this.fetchData()
@@ -92,8 +99,7 @@ export class ProfileComponent implements OnInit {
       userObservable.pipe(
         switchMap((userData) => { //to switch to the orders Observable inside the user Observable subscription
           this.user = userData;
-          this.bgcolor = this.user.bgColor
-          this.default = this.bgcolor
+          this.setValues()
           // Fetch user orders
           const ordersObservable = this.orderService.GetUserOrders(this.user._id);
           if (ordersObservable) {
@@ -120,10 +126,7 @@ export class ProfileComponent implements OnInit {
     this.cdr.detectChanges();
   }
   onColorChange(color: string): void {
-    // Handle color change event
-    // this.selectedColor =color;
     this.bgcolor = color
-    console.log(this.bgcolor)
   }
   setDefault() {
     this.bgcolor = this.default

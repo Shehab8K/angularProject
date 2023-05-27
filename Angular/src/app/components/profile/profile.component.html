@@ -10,8 +10,8 @@
                 <div>
                     <div class="mb-2" *ngIf="editMode else elseblock">
                         <label class="fw-medium fs-4">Username: <i class="fas fa-edit"></i></label>
-                        <input class="form-control bg-dark text-light p-2 mb-1" [(ngModel)]="updatedName"
-                            value={{user.username}}>
+                        <input value={{user.username}} class="form-control bg-dark text-light p-2 mb-1"
+                            [(ngModel)]="updatedName">
                     </div>
                     <ng-template #elseblock>
                         <p class="fw-bold fs-2">{{user.username.toUpperCase()}}</p>
@@ -69,7 +69,7 @@
             </div>
             <ng-template class="elseblock4" #elseblock4>
                 <input class="form-control tagEdit bg-dark text-light p-2 ms-2"
-                    *ngFor="let t of user.preferences;let i = index" value={{t}} [(ngModel)]="updatedPreferences[i]"
+                    *ngFor="let t of user.preferences;let i = index" value="{{t}}" [(ngModel)]="updatedPreferences[i]"
                     [name]="'preference' + i">
             </ng-template>
         </div>
