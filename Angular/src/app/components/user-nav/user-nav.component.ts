@@ -38,7 +38,7 @@ export class UserNavComponent {
     this.loggedOut.emit();
   }
   logout() {
-    this.userService.logout();    
+    this.userService.logout();
     this.loggedOut.emit();
     this.myusername = null
   }
