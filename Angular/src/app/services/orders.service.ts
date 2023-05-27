@@ -28,5 +28,9 @@ export class OrdersService {
     return this.myClient.post(this.Base_URL + '/', data);
   }
 
+  getAllOrders(){
+    return this.myClient.get(this.Base_URL);
+  }
+
 
 }
