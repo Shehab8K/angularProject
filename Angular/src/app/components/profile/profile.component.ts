@@ -9,13 +9,15 @@ import { OrdersService } from 'src/app/services/orders.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
   user: any;
   games: any[] = [];
   orders: any;
   tags: any[] = [];
   tagCount: any[] = [];
   editMode: boolean = false
-  bgcolor: any;
+  // bgcolor: any;
+  bgcolor="rgba(112, 192, 219, 0.527)"
   default: any;
   updatedName: any;
   updatedDiscord: any;
@@ -131,9 +133,6 @@ export class ProfileComponent implements OnInit {
   refresh() {
     console.log("refreshing")
     this.cdr.detectChanges();
-  }
-  onColorChange(color: string): void {
-    this.bgcolor = color
   }
   setDefault() {
     this.bgcolor = this.default

@@ -71,6 +71,7 @@ import { CreateProductComponent } from './components/dashboard/create-product/cr
 import { ProfileComponent } from './components/profile/profile.component';
 import { GameShowComponent } from './components/game-show/game-show.component';
 
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 
@@ -148,7 +149,8 @@ import { GameShowComponent } from './components/game-show/game-show.component';
       positionClass: "toast-bottom-right",
       preventDuplicates: true
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
