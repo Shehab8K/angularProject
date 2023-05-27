@@ -23,8 +23,29 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: "user"
   },
+  cart: {
+    type: Array,
+    default: []
+  },
   token: {
     type: String,
+  },
+  discord: {
+    type: String,
+    default: "",
+  }, 
+  bgColor: {
+    type: String,
+    default: "rgba(112, 192, 219, 0.527)",
+  },
+  preferences:{
+    type: Array,
+    default: [],
+  },
+  isBanned:{
+    type: Boolean,
+    required: true,
+    default: false
   },
   createdAt: {
     type: Date,

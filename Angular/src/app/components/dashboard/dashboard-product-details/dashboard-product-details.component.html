@@ -1,0 +1,24 @@
+<div *ngIf="game else falseBlock " style="background-color: rgb(95, 100, 100);">
+    <p>name:{{game.name}}</p>
+    <p>price:{{game.price}}</p>
+    <p>description:{{game.description}}</p>
+    <p>date:{{game.releasedDate}}</p>
+    <div *ngFor="let operatingSystem of game.os">
+        {{operatingSystem}}
+      </div>
+    <div *ngFor="let gameType of game.type">
+        {{gameType}}
+      </div>
+    <div *ngFor="let gameTag of game.tag">
+        {{gameTag}}
+      </div>
+<!-- <img src="https://res.cloudinary.com/ds5puha49/games/h4ypwnl4ybjjywoexnzw"> -->
+    <div *ngFor="let imageUrl of game.images">
+        <img [src]="imageUrl" alt="Product Image" />
+      </div>
+</div>
+
+<ng-template #falseBlock>
+    <!-- <h1 class="alert alert-danger">loading</h1> -->
+<app-loading></app-loading>
+</ng-template>

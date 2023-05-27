@@ -1,5 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import * as $ from 'jquery';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,12 +9,20 @@ import * as $ from 'jquery';
 })
 export class NavbarComponent {
   isScrolled = false;
+  isLoggedIn: boolean = false;
+
+  constructor(private authService: AuthService, private cdr: ChangeDetectorRef) { }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.pageYOffset > 50;
   }
-
+  refresh() {
+    this.cdr.detectChanges();
+  }
+  isloggedIn() {
+    this.isLoggedIn = this.authService.isLoggedIn()
+  }
   onMenuClick() {
     const navTrigger = document.querySelector('.navTrigger');
     const mainListDiv = document.querySelector('#mainListDiv') as HTMLElement | null;
@@ -26,6 +35,7 @@ export class NavbarComponent {
   }
 
   ngOnInit() {
+    this.isloggedIn()
     $(document).ready(function () {
       $('.navTrigger').click(function () {
         $(this).toggleClass('active');
