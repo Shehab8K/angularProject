@@ -30,14 +30,12 @@ export class WidgetComponent {
   getAllUsersCount() {
     this.userService.getAllUsers().subscribe((users: Object) => {
       this.usersCount = Object.keys(users).length;
-      // console.log(`Number of items: ${this.usersCount}`);
     });
   }
 
   getAllOrdersCount() {
     this.orderService.getAllOrders().subscribe((orders: Object) => {
       this.ordersCount = Object.keys(orders).length;
-      // console.log(`Number of items: ${this.usersCount}`);
     });
   }
 }
