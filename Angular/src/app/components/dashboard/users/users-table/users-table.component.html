@@ -19,6 +19,12 @@
       {{ user.role }}
     </td>
   </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let user" [class.ban]="user.isBanned" [class.unban]="!user.isBanned">
+      <i class="material-icons button--rounded m-2" (click)="banToggle(user._id)" (blur)="refresh()">block</i>
+    </td>
+  </ng-container>
   
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
