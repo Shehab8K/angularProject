@@ -9,6 +9,7 @@ import { OrdersService } from 'src/app/services/orders.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
   user: any;
   games: any[] = [];
   orders: any;
@@ -131,9 +132,6 @@ export class ProfileComponent implements OnInit {
   refresh() {
     console.log("refreshing")
     this.cdr.detectChanges();
-  }
-  onColorChange(color: string): void {
-    this.bgcolor = color
   }
   setDefault() {
     this.bgcolor = this.default

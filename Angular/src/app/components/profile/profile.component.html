@@ -5,32 +5,36 @@
             <div class=" info d-flex flex-row">
                 <!-- profile pic -->
                 <div class="profile-pic rounded m-3">
-                    <img src="../../../assets/images/pubg.png">
+                    <img src="../../../assets/images/PkBYcGy.png">
                 </div>
                 <div>
                     <div class="mb-2" *ngIf="editMode else elseblock">
-                        <label class="fw-medium fs-4">Username: <i class="fas fa-edit"></i></label>
+                        <label class="fw-medium fs-4 text-light ">Username: <i class="fas fa-edit fa-sm"></i></label>
                         <input value={{user.username}} class="form-control bg-dark text-light p-2 mb-1"
                             [(ngModel)]="updatedName">
                     </div>
                     <ng-template #elseblock>
-                        <p class="fw-bold fs-2">{{user.username.toUpperCase()}}</p>
+                        <p class="fw-bold fs-2 text-light ">{{user.username.toUpperCase()}}</p>
                     </ng-template>
                     <div class="fs-5">
                         <div>
                             <div class="mb-2" *ngIf="editMode else elseblock2">
-                                <label class="fw-medium fs-4">Discord Username: <i class="fas fa-edit"></i></label>
+                                <label class="fw-medium fs-4 text-light ">Discord Username: <i class="fas fa-edit fa-sm"></i></label>
                                 <input class="form-control bg-dark text-light p-2 mb-1" [(ngModel)]="updatedDiscord"
                                     value={{user.discord}}>
-                                <label class="fw-medium fs-4 mt-2">Theme: <i class="fas fa-edit"></i></label>
-                                <div class="d-flex flex-row theme"> <input class="m-2" value="white" type="color"
-                                        [(ngModel)]="bgcolor" (change)="onColorChange(bgcolor)" (blur)="refresh()">
-                                    <button class="btn btn-dark" (blur)="refresh()" (click)="setDefault()">Default
+                                <label class="fw-medium fs-4 mt-2 text-light ">Theme: </label>
+                                <!-- <div class="d-flex flex-row theme"> -->
+                                    <!-- <input class="m-2" value="white" type="color" [(ngModel)]="bgcolor"
+                                        (change)="onColorChange(bgcolor)" (blur)="refresh()"> -->
+                                        <!-- <ngx-color-picker class="m-2" [(ngModel)]="bgcolor"
+                                        (change)="onColorChange(bgcolor)" (blur)="refresh()"></ngx-color-picker> -->
+                                     <button class="btn m-2" [(colorPicker)]="bgcolor"> <i class="text-light fa-solid fa-palette fa-xl"></i></button>
+                                    <button class="btn btn-dark " (blur)="refresh()" (click)="setDefault()">Default
                                         Theme</button>
-                                </div>
+                                <!-- </div> -->
                             </div>
                             <ng-template #elseblock2><i class="fa-brands fa-discord"> </i>
-                                <span> {{user.discord}}</span>
+                                <span class="text-light "> {{user.discord}}</span>
 
                             </ng-template>
                         </div>
@@ -61,7 +65,7 @@
         </div>
         <hr class="m-2 separator rounded">
         <div class="d-flex flex-row Preferences">
-            <p class="m-2 p-3 fs-4 fw-medium text-light">Preferences: <i *ngIf="editMode" class="fas fa-edit"></i>
+            <p class="m-2 p-3 fs-4 fw-medium text-light">Preferences: <i *ngIf="editMode" class="fas fa-edit fa-sm"></i>
             </p>
             <div class="d-flex flex-row tags" *ngIf="!editMode else elseblock4">
                 <p class="tag ms-2 rounded text-center bg-dark text-light" *ngFor="let t of user.preferences">{{t}}
