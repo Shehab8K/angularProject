@@ -138,8 +138,9 @@ router.post("/", async (req, res) => {
           let images = req.files;
           images.forEach((img) => {
             product["images"].push(process.env.CLOUD_PATH + img.filename) //name
+            console.log(product);
           });
-
+          console.log(images)
           product.save();
         }
         
@@ -154,94 +155,87 @@ router.post("/", async (req, res) => {
 );
 //update product
 
-
 router.put("/:id", async (req, res) => {
+  
   try {
-    // , upload.array("file")
-    // Validate the request body
-    //  const { error } = validateProduct(req.body);
-    //  if (error) {
-    //    return res.status(400).json({ error: error.details[0].message });
-    //  }
-    // const { name, price, os, tag, type, description, releasedDate } = req.body;
-    const dataForValidation = {
-      name: req.body.name,
-      price: req.body.price,
-      os: req.body.os,
-      tag: req.body.tag,
-      type: req.body.type,
-      description: req.body.description,
-      releasedDate: req.body.releasedDate
-    }
+     await uploadProduct(req, res, async function (err) {
+      if (err) {
+        return res.status(500).send("Error uploading file");
+      } else {
 
-    const { error } = validateProduct(dataForValidation);
+        if(req.files){
+          console.log(req.files);
+        }
 
-    if(error)
-    {
-      return res.status(400).json({ message: error.details });
-    }
+        const dataForValidation = {
+          name: req.body.name,
+          price: req.body.price,
+          os: req.body.os,
+          tag: req.body.tag,
+          type: req.body.type,
+          description: req.body.description,
+          releasedDate: req.body.releasedDate
+        }
 
-    const product = await Product.findById(req.params.id)
+        const { error } = validateProduct(dataForValidation);
 
-    if(!product)
-    {
-      return res.status(404).json({message: "Product not found"})
-    }
+        if(error)
+        {
+          return res.status(400).json({ message: error.details });
+        }
 
-      product.name = req.body.name || product.name;
-      product.price = req.body.price || product.price;
-      product.os = req.body.os || product.os;
-      product.tag = req.body.tag || product.tag;
-      product.type = req.body.type || product.type;
-      product.description = req.body.description || product.description;
-      product.releasedDate = req.body.releasedDate || product.releasedDate;
-      product.character = req.body.character || product.character; 
+        const product = await Product.findById(req.params.id)
+          
+        if(!product)
+        {
+          return res.status(404).json({message: "Product not found"})
+        }
+        
+        product.name = req.body.name || product.name;
+        product.price = req.body.price || product.price;
+        product.os = req.body.os || product.os;
+        product.tag = req.body.tag || product.tag;
+        product.type = req.body.type || product.type;
+        product.description = req.body.description || product.description;
+        product.releasedDate = req.body.releasedDate || product.releasedDate;
+        product.character = req.body.character || product.character; 
+        
+        if(req.files){
+
+          if (product.images && product.images.length > 0) {
+            const publicIds = product.images.map((image) => {
+              const filename = image.split("/").pop();
+              return `games/${filename.split(".")[0]}`;
+            });
+      
+            await cloudinary.api.delete_resources(publicIds);
+            product.images = [];
+          }
+
+          // Add new imagess
+          let images = req.files;
+          images.forEach((img) => {
+            product["images"].push(process.env.CLOUD_PATH + img.filename) //name
+          });
+
+        }
+        
+        const updateProduct = await product.save();
+
+        if(!updateProduct)
+        {
+          return res.status(400).json({message: "Failed to update product"});
+        }
     
-      if (req.files && req.files.length > 0) {
-      // Handle multiple file uploads
-      // Delete old images
-      //  console.log(product.images);
-      if (product.images && product.images.length > 0) {
-        const publicIds = product.images.map((image) => {
-          const filename = image.split("/").pop();
-          return `games/${filename.split(".")[0]}`;
-        });
-        await cloudinary.api.delete_resources(publicIds);
+        return res.status(200).json(updateProduct);
       }
-
-      const fileNames = [];
-
-      for (const file of req.files) {
-        const result = await cloudinary.uploader.upload(file.path, {
-          folder: "games",
-        });
-        fileNames.push(result.secure_url);
-        // Remove the temporary file after upload
-        fs.unlinkSync(file.path);
-      }
-      product.images = fileNames;
-    }
-
-    const updateProduct = await product.save();
-
-    if(!updateProduct)
-    {
-      return res.status(400).json({message: "Failed to update product"});
-    }
-
-    return res.status(200).json(updateProduct);
-    // const product = await Product.findByIdAndUpdate(
-    //   req.params.id,
-    //   updatedFields,
-    //   { new: true }
-    // );
-
-    // res.status(200).json(product);
-  } catch (error) {
+    })
+  } catch (err) {
     console.error(error);
     res.status(500).send("An error occurred while updating the product.");
   }
-});
+}
+);
 
 //delete product
 router.delete("/:id", async (req, res) => {
