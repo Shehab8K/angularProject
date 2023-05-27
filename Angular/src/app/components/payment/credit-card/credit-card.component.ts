@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/users.service';
-
+import { OrdersService } from 'src/app/services/orders.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-credit-card',
@@ -43,7 +44,7 @@ export class CreditCardComponent {
     this.cart.length = this.cartService.getallItemsFromLocalStorage();
   }
 
-  constructor(private cartService: CartService, private userService: UserService) {
+  constructor(private cartService: CartService, private userService: UserService, private orderService: OrdersService, private router: Router) {
 
     const userObservable = userService.getCurrentUser()
     if (userObservable) {
@@ -101,9 +102,19 @@ export class CreditCardComponent {
         cardCVC,
         price
       }
-
       console.log(data)
-      location.reload();
+      console.log(this.user.cart)
+      //service to create oreder
+
+      this.createOrder();
+
+      //service to clear cart
+      // this.clearCart();
+
+      //service to pament stripe
+
+
+      this.router.navigate(['/games']);
     } else {
       // Form is invalid, handle validation errors
       console.log("Form is invalid");
@@ -114,6 +125,28 @@ export class CreditCardComponent {
     }
   }
 
+  createOrder(): void {
+    // properities to create order
+    const orderData = {
+      gameItems: this.user.cart,
+      userID: this.user._id,
+      total:this.cartTotalPrice
+    };
+
+    console.log(orderData)
+    this.orderService.createOrder(orderData).subscribe(
+      (response) => {
+        // Handle successful response here
+        console.log('Order created successfully:', response);
+      },
+      (error) => {
+        // Handle error here
+        console.error('Error creating order:', error);
+      }
+    );
+  }
+
+
 // Mark all form controls as touched
 markFormGroupTouched(formGroup: FormGroup): void {
   Object.values(formGroup.controls).forEach(control => {
@@ -121,6 +154,16 @@ markFormGroupTouched(formGroup: FormGroup): void {
   });
 }
 
+  clearCart(){
+  this.userService.updateUserCart(this.user._id, []).subscribe({
+    next: () => {
+      this.ngOnInit();
+    },
+    error: (err) => {
+      console.log(err);
+    }
+  })
+  }
 
   onCvvFocus() {
     this.cvvFocus = true;
@@ -152,7 +195,6 @@ markFormGroupTouched(formGroup: FormGroup): void {
     // this.expirationDatemonth = parseInt(monthString, 10);
     this.expirationDatemonth = (event.target as HTMLInputElement).value;
   }
-
 
   onexpirationDateyearChange(event: any) {
     const selectedYear = event.target.value;
