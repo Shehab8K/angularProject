@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/users.service';
 
@@ -13,7 +13,7 @@ export class UserNavComponent {
   public image: any;
   @Output() loggedOut: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router,private cdr: ChangeDetectorRef) {
     const userObservable = this.userService.getCurrentUser()
     if (userObservable) {
       userObservable.subscribe({
@@ -34,10 +34,12 @@ export class UserNavComponent {
     const userWrap = document.getElementById('usrWrap');
     userWrap?.classList.toggle('expand');
   }
-
-  logout() {
+  refresh() {
     this.loggedOut.emit();
-    this.userService.logout();
+  }
+  logout() {
+    this.userService.logout();    
+    this.loggedOut.emit();
     this.myusername = null
   }
 }

@@ -9,11 +9,12 @@
 
 .profile-container {
     margin-top: 150px !important;
-    background-color: rgba(112, 192, 219, 0.527);
+    /* background-color: rgba(112, 219, 142, 0.527); */
     width: 80%;
-
 }
-
+.theme{
+    align-items: center;
+}
 .profile-pic {
     width: 250px;
     height: 250px;
@@ -35,16 +36,19 @@
     color: black;
 }
 
-.stat,
-.tag {
+.stat {
+    background: linear-gradient(rgb(64, 64, 64) 0%, rgb(0, 0, 0) 100%);
     padding: 3px 18px;
-    background: linear-gradient(to right, rgb(64, 64, 64) 0%, rgb(0, 0, 0) 100%);
 
 }
-.tags{
+
+
+
+.tags {
     flex-wrap: wrap;
 
 }
+
 .Preferences {
     align-items: baseline;
     flex-wrap: wrap;
@@ -52,6 +56,7 @@
 
 .tag {
     height: fit-content;
+    padding: 5px 18px;
 }
 
 .tagEdit {

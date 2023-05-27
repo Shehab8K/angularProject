@@ -2,3 +2,12 @@
 .demo-table {
   width: 100%;
 }
+.blue-text {
+  
+  background-color: rgba(174, 111, 179, 0.399);
+}
+
+.green-text {
+  
+  background-color: rgba(121, 178, 121, 0.371);
+}

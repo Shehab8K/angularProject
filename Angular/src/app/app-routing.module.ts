@@ -22,6 +22,7 @@ import { UsersTableComponent } from './components/dashboard/users/users-table/us
 import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { GameShowComponent } from './components/game-show/game-show.component';
 import { DashboardHomeComponent } from './components/dashboard/dashboard-home/dashboard-home.component';
 import { DashboardOrdersComponent } from './components/dashboard/dashboard-orders/dashboard-orders.component';
 import { CreateProductComponent } from './components/dashboard/create-product/create-product.component';
@@ -34,7 +35,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'cart',component:CartComponent},
   {path:'orders',component:OrdersComponent},
-  {path:'login',component:LoginComponent},
+  {path:'games/:id',component:GameShowComponent},
   {path:'payment',component:PaymentComponent},
   {
     path:'dashboard',
@@ -50,16 +51,16 @@ const routes: Routes = [
 
 
   // Error routes to be handled
-  {path:'403',component:ForbiddenComponent},
+  { path: '403', component: ForbiddenComponent },
   // {path:'401',component:NotfoundComponent},
 
   // Checking auth demo routes
-  {path:'admin',component:AdminOnlyComponent, canActivate:[AdminGuard]},
-  {path:'user',component:UserOnlyComponent, canActivate:[UserGuard]},
-  {path:'auth',component:AuthOnlyComponent, canActivate:[AuthGuard]},
+  { path: 'admin', component: AdminOnlyComponent, canActivate: [AdminGuard] },
+  { path: 'user', component: UserOnlyComponent, canActivate: [UserGuard] },
+  { path: 'auth', component: AuthOnlyComponent, canActivate: [AuthGuard] },
 
   // Other PAths
-  {path:'**', component:NotfoundComponent}
+  { path: '**', component: NotfoundComponent }
 
 ]
 

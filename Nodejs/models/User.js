@@ -23,16 +23,20 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: "user"
   },
-  cart:{
+  cart: {
     type: Array,
     default: []
   },
   token: {
     type: String,
   },
-  discord:{
+  discord: {
     type: String,
     default: "",
+  }, 
+  bgColor: {
+    type: String,
+    default: "rgba(112, 192, 219, 0.527)",
   },
   preferences:{
     type: Array,
