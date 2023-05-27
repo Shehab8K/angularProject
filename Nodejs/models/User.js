@@ -1,31 +1,31 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   username: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
     required: true,
-    default: "user"
+    default: "user",
   },
   cart: {
     type: Array,
-    default: []
+    default: [],
   },
   token: {
     type: String,
@@ -38,21 +38,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "rgba(112, 192, 219, 0.527)",
   },
-  preferences:{
+  preferences: {
     type: Array,
     default: [],
   },
-  isBanned:{
+  isBanned: {
     type: Boolean,
     required: true,
-    default: false
+    default: false,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

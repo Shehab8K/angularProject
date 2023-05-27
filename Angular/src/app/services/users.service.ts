@@ -57,5 +57,10 @@ export class UserService {
   getAllUsers(){
     return this.myClient.get(this.Base_URL);
   }
-
+ban(body:any){
+  return this.myClient.post(this.Base_URL + "/ban",body)
+}
+unban(body:any){
+  return this.myClient.post(this.Base_URL + "/unban",body)
+}
 }
