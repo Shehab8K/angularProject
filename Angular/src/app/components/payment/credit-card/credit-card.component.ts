@@ -91,15 +91,15 @@ export class CreditCardComponent {
       // console.log(this.user.cart)
 
       //service to create oreder
-      // this.createOrder();
+      this.createOrder();
 
       //service to clear cart
       this.clearCart();
 
       //service to pament stripe
-      // this.createPayment()
+      this.createPayment()
 
-      this.router.navigate(['/games']);
+      this.router.navigate(['/cart']);
     } else {
       // Form is invalid, handle validation errors
       console.log("Form is invalid");
