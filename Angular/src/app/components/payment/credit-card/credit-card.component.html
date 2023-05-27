@@ -80,16 +80,43 @@
     </div>
   </div>
 
-  <form (ngSubmit)="onFormSubmit()">
+  <form (ngSubmit)="onFormSubmit()" [formGroup]="creditcardForm">
     <div class="mb-3">
       <label>Name on Card</label>
-      <input required class="form-control" type="text" placeholder="John Smith" [(ngModel)]="cardholderName" (input)="onNameChange($event)">
+      <input formControlName="name" class="form-control" type="text" placeholder="John Smith" (input)="onNameChange($event)">
+      <div *ngIf="creditcardForm.get('name')?.invalid && creditcardForm.get('name')?.touched" class="text-danger">
+        <div *ngIf="creditcardForm.get('name')?.errors?.['required']">
+          Name on Card is required.
+        </div>
+        <div *ngIf="creditcardForm.get('name')?.errors?.['minlength']">
+          Name on Card must be at least 6 characters long.
+        </div>
+        <div *ngIf="creditcardForm.get('name')?.errors?.['pattern']">
+          Name on Card must contain only characters.
+        </div>
+      </div>
     </div>
+
+
     <div class="mb-3">
       <label>Card Number</label>
-      <input class="form-control" type="text"  maxlength="16"
+      <input formControlName="cardNumber" class="form-control" type="text"
+       maxlength="16" placeholder="XXXXXXXXXXXXXXXX"
+       (input)="onCardNumberChange($event)">
+      <div *ngIf="creditcardForm.get('cardNumber')?.invalid && creditcardForm.get('cardNumber')?.touched"
+          class="text-danger">
+        <div *ngIf="creditcardForm.get('cardNumber')?.errors?.['required']">
+          CardNumber is required
+        </div>
+        <div *ngIf="creditcardForm.get('cardNumber')?.errors?.['pattern']">
+          CardNumber must be 16 digits.
+        </div>
+      </div>
+
+      <!-- <input class="form-control" type="text"  maxlength="16"
       placeholder="XXXXXXXXXXXXXXXX" [(ngModel)]="cardNumber"
-      (input)="onCardNumberChange($event)">
+      (input)="onCardNumberChange($event)"> -->
+
     </div>
 
     <div class="d-flex gap-3 mb-2 col-sm-12">
@@ -98,29 +125,49 @@
       <div class="d-flex">
         <div class="col-sm-12 col-md-6">
           <div class="select">
-            <select class="form-control" (input)="onexpirationDatemonthChange($event)">
-              <option value="" disabled selected>month</option>
-              <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+            <select class="form-control" formControlName="expirationMonth"
+            (input)="onexpirationDatemonthChange($event)">
+              <option value="" disabled selected>Month</option>
+              <option *ngFor="let month of filteredMonths" [value]="month">{{ month }}</option>
             </select>
           </div>
+          <div *ngIf="creditcardForm.get('expirationMonth')?.invalid && creditcardForm.get('expirationMonth')?.touched"
+            class="text-danger">Please select a month.</div>
         </div>
+
         <div class="col-sm-12 col-md-6">
           <div class="select">
-            <select class="form-control" (input)="onexpirationDateyearChange($event)">
-              <option value="" disabled selected>year</option>
-              <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+            <select class="form-control" formControlName="expirationYear"
+              (input)="onexpirationDateyearChange($event)">
+                <option value="" disabled selected> Year</option>
+                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
             </select>
           </div>
-          <!-- <input class="form-control" type="text" placeholder="yy" [(ngModel)]="expirationDateyear" (input)="onexpirationDateyearChange($event)"> -->
+          <div *ngIf="creditcardForm.get('expirationYear')?.invalid && creditcardForm.get('expirationYear')?.touched"
+            class="text-danger">Please select a year.</div>
         </div>
-    </div>
+      </div>
+
     </div>
 
     <div class="col-sm-12 col-md-6">
       <label>CVV</label>
-      <input class="form-control cvvinput" type="text"  maxlength="3" placeholder="XXX" [(ngModel)]="cvv" (focus)="onCvvFocus()" (blur)="onCvvBlur()" (input)="onCvvChange($event)">
+      <input class="form-control cvvinput" type="text"
+              maxlength="3"placeholder="XXX" formControlName="cvv"
+              (focus)="onCvvFocus()" (blur)="onCvvBlur()"
+            (input)="onCvvChange($event)">
+            <div *ngIf="creditcardForm.get('cvv')?.invalid && creditcardForm.get('cvv')?.touched"
+                class="text-danger">
+              <div *ngIf="creditcardForm.get('cvv')?.errors?.['required']">
+                CVV is required
+              </div>
+              <div *ngIf="creditcardForm.get('cvv')?.errors?.['pattern']">
+                CVV must be three digit.
+              </div>
+            </div>
     </div>
-    </div>
+  </div>
+
     <section class="summary rounded shadow-lg mt-3 fs-5 mb-3 d-flex justify-content-around">
       <div class="items">🛒 {{cart.length}} items</div>
       <div class="total">Price: {{cartTotalPrice.toFixed(2)}}💲</div>

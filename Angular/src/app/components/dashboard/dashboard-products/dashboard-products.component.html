@@ -1,4 +1,7 @@
 <app-title [titleContent]="productsTitle"></app-title>
+<div class="d-flex justify-content-center align-content-center">
+  <i type="button" [routerLink]="['./add']" class="fa-solid fa-circle-plus fa-xl " style="color: white;"></i>
+</div>
 <table mat-table [dataSource]="dataSource">
 
   <ng-container matColumnDef="_id">

@@ -2,14 +2,10 @@
 
   <main>
 
-    <section class="summary shadow-lg mb-3">
-      <div class="items">🛒 {{user.cart.length}} items</div>
-
-      <div class="total"> {{total.toFixed(2)}} 💲</div>
-    </section>
-
-    <section class="actions shadow-lg" *ngIf="user.cart.length > 0">
-      <a routerLink="/payment"><button (click)="updateTotal()">Checkout 💳</button></a>
+    <section class="promo text-center m-2 p-3 mt-3 shadow-sm fs-3 rounded">
+      <div>
+        <p class="spin-emoji">🌟</p> Offer Ends Soon! <p class="spin-emoji">🌟</p>
+      </div>
     </section>
 
     <section class="cart rounded shadow-lg">
@@ -54,10 +50,13 @@
       </section>
     </section>
 
-    <section class="promo text-center m-2 p-3 mt-3 shadow-sm fs-3 rounded">
-      <div>
-        <p class="spin-emoji">🌟</p> Offer Ends Soon! <p class="spin-emoji">🌟</p>
-      </div>
+    <section class="summary shadow-lg mb-3">
+      <div class="items">🛒 {{user.cart.length}} items</div>
+      <div class="total"> {{total.toFixed(2)}} 💲</div>
+    </section>
+
+    <section class="actions shadow-lg" *ngIf="user.cart.length > 0">
+      <a routerLink="/payment"><button (click)="updateTotal()">Checkout 💳</button></a>
     </section>
 
   </main>

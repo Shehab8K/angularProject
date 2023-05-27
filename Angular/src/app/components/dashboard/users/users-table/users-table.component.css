@@ -2,3 +2,39 @@
 .demo-table {
   width: 100%;
 }
+.blue-text {
+  
+  background-color: rgba(174, 111, 179, 0.399);
+}
+
+.green-text {
+  
+  background-color: rgba(121, 178, 121, 0.371);
+}
+
+.button--rounded {
+  border-radius: 50%;
+  font-size: 1rem;
+  padding: .75rem;
+  background-color: #1F1D2B;
+  /* color: rgb(93, 22, 22); */
+  cursor: pointer;
+  text-align: center;
+}
+
+.button--right-pad {
+  margin-right: 1rem;
+}
+
+.button--pad {
+  margin-right: .5rem;
+  margin-left: 1rem;
+}
+
+.ban{
+color: red;
+}
+
+.unban{
+color: white;
+}

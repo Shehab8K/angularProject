@@ -153,7 +153,8 @@ router.post("/", async (req, res) => {
 }
 }
 );
-// Update product demo
+//update product
+
 router.put("/:id", async (req, res) => {
   
   try {
