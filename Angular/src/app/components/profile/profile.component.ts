@@ -16,8 +16,7 @@ export class ProfileComponent implements OnInit {
   tags: any[] = [];
   tagCount: any[] = [];
   editMode: boolean = false
-  // bgcolor: any;
-  bgcolor="rgba(112, 192, 219, 0.527)"
+  bgcolor: any;
   default: any;
   updatedName: any;
   updatedDiscord: any;
