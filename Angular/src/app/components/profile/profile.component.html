@@ -69,8 +69,12 @@
             </div>
             <ng-template class="elseblock4" #elseblock4>
                 <input class="form-control tagEdit bg-dark text-light p-2 ms-2"
-                    *ngFor="let t of user.preferences;let i = index" value="{{t}}" [(ngModel)]="updatedPreferences[i]"
+                    *ngFor="let t of user.preferences;let i = index" value={{t}} [(ngModel)]="updatedPreferences[i]"
                     [name]="'preference' + i">
+                <input class="form-control tagEdit bg-dark text-light p-2 ms-2" *ngFor="let t of inputs;let i = index"
+                    value={{t}} [(ngModel)]="newPreferences[i]" [name]="'newPreferences' + i"> <i type="button"
+                    (click)="addInput()" class="fa-solid fa-circle-plus fa-lg m-2"></i>
+
             </ng-template>
         </div>
         <hr class="m-2 separator rounded">

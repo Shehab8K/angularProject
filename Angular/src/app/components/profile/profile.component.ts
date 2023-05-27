@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
   updatedName: any;
   updatedDiscord: any;
   updatedPreferences: any[] = [];
+  newPreferences: any[] = [];
+  inputs: any[] = []
 
   constructor(private userService: UserService, private orderService: OrdersService, private cdr: ChangeDetectorRef) { }
 
@@ -31,9 +33,12 @@ export class ProfileComponent implements OnInit {
     this.default = this.user.bgColor
     this.updatedName = this.user.username
     this.updatedDiscord = this.user.discord
-    this.updatedPreferences = this.user.preferences
+    this.updatedPreferences = this.user.preferences.filter((value: string[]) => value.length > 0);
   }
   getData() {
+    if (this.newPreferences.length > 0)
+      this.updatedPreferences = Array.from(new Set(this.updatedPreferences.concat(this.newPreferences)));
+    this.updatedPreferences.filter(value => value.length > 0);
     const updatedUser = {
       "username": this.updatedName,
       "discord": this.updatedDiscord,
@@ -46,6 +51,7 @@ export class ProfileComponent implements OnInit {
         this.fetchData()
         this.toggleEditMode()
         this.refresh()
+        this.user.preferences = this.user.preferences.filter((value: String) => value.length > 0);
       },
       error: (err) => {
         console.log(err)
@@ -99,6 +105,7 @@ export class ProfileComponent implements OnInit {
       userObservable.pipe(
         switchMap((userData) => { //to switch to the orders Observable inside the user Observable subscription
           this.user = userData;
+          this.user.preferences = this.user.preferences.filter((value: String) => value.length > 0);
           this.setValues()
           // Fetch user orders
           const ordersObservable = this.orderService.GetUserOrders(this.user._id);
@@ -130,5 +137,8 @@ export class ProfileComponent implements OnInit {
   }
   setDefault() {
     this.bgcolor = this.default
+  }
+  addInput() {
+    this.inputs.push("")
   }
 }

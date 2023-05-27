@@ -21,7 +21,7 @@
         <div class="sub-menu-link">
           <a (click)="logout()" routerLink="/">
             <i class="fa-solid fa-right-from-bracket fa-xl element"></i>
-            <span>Logout</span>
+            <span (blur)="refresh()">Logout</span>
           </a>
         </div>
       </span>
