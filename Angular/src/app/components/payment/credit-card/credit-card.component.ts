@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/users.service';
 import { OrdersService } from 'src/app/services/orders.service';
+import { PaymentService } from 'src/app/services/payment.servce';
 import { Router } from '@angular/router';
 
 @Component({
@@ -44,7 +45,7 @@ export class CreditCardComponent {
     this.cart.length = this.cartService.getallItemsFromLocalStorage();
   }
 
-  constructor(private cartService: CartService, private userService: UserService, private orderService: OrdersService, private router: Router) {
+  constructor(private cartService: CartService, private userService: UserService, private orderService: OrdersService, private router: Router, private paymentService: PaymentService) {
 
     const userObservable = userService.getCurrentUser()
     if (userObservable) {
@@ -84,44 +85,26 @@ export class CreditCardComponent {
     if (this.creditcardForm.valid) {
       // Form is valid, perform further actions or submit the form
       console.log("Form is valid");
-      let id = this.user._id
-      let cardNumber = this.cardNumber.join('')
-      let cardExpMonth = this.expirationDatemonth
-      let cardExpYear = this.expirationDateyear
-      let cardCVC = this.cvv
-      let price = this.cartTotalPrice !== null ? this.cartTotalPrice : null
 
       // console.log(typeof price)
       // console.log(typeof this.cartTotalPrice)
+      // console.log(this.user.cart)
 
-      let data ={
-        id,
-        cardNumber,
-        cardExpMonth,
-        cardExpYear,
-        cardCVC,
-        price
-      }
-      console.log(data)
-      console.log(this.user.cart)
       //service to create oreder
-
-      this.createOrder();
+      // this.createOrder();
 
       //service to clear cart
-      // this.clearCart();
+      this.clearCart();
 
       //service to pament stripe
-
+      // this.createPayment()
 
       this.router.navigate(['/games']);
     } else {
       // Form is invalid, handle validation errors
       console.log("Form is invalid");
-
       // Mark all form controls as touched to trigger validation errors
       this.markFormGroupTouched(this.creditcardForm);
-
     }
   }
 
@@ -146,24 +129,54 @@ export class CreditCardComponent {
     );
   }
 
+  clearCart(){
+    this.userService.updateUserCart(this.user._id, []).subscribe({
+      next: () => {
+        this.ngOnInit();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+    }
+
+    createPayment(): void {
+      // Your logic to get the required data for creating the payment
+      let id = this.user._id
+      let cardNumber = this.cardNumber.join('')
+      let cardExpMonth = this.expirationDatemonth
+      let cardExpYear = this.expirationDateyear
+      let cardCVC = this.cvv
+      let price = this.cartTotalPrice !== null ? this.cartTotalPrice : null
+
+      let paymentData ={
+        id,
+        cardNumber,
+        cardExpMonth,
+        cardExpYear,
+        cardCVC,
+        price
+      }
+      console.log(paymentData)
+      this.paymentService.createPayment(paymentData).subscribe(
+        (response) => {
+          // Handle successful response here
+          console.log('Payment created successfully:', response);
+        },
+        (error) => {
+          // Handle error here
+          console.error('Error creating payment:', error);
+        }
+      );
+    }
 
 // Mark all form controls as touched
-markFormGroupTouched(formGroup: FormGroup): void {
+  markFormGroupTouched(formGroup: FormGroup): void {
   Object.values(formGroup.controls).forEach(control => {
     control.markAsTouched();
   });
-}
-
-  clearCart(){
-  this.userService.updateUserCart(this.user._id, []).subscribe({
-    next: () => {
-      this.ngOnInit();
-    },
-    error: (err) => {
-      console.log(err);
-    }
-  })
   }
+
 
   onCvvFocus() {
     this.cvvFocus = true;
