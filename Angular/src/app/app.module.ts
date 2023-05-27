@@ -69,7 +69,9 @@ import { DashboardProductDetailsComponent } from './components/dashboard/dashboa
 import { LoadingComponent } from './components/loading/loading.component';
 import { CreateProductComponent } from './components/dashboard/create-product/create-product.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { GameShowComponent } from './components/game-show/game-show.component';
 
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 
@@ -120,6 +122,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     LoadingComponent,
     CreateProductComponent,
     ProfileComponent,
+    GameShowComponent,
 
 
   ],
@@ -146,7 +149,8 @@ import { ProfileComponent } from './components/profile/profile.component';
       positionClass: "toast-bottom-right",
       preventDuplicates: true
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
