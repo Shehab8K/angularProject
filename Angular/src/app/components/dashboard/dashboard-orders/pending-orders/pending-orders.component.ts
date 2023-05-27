@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { OrdersService } from 'src/app/services/orders.service';
 
 
 @Component({
@@ -9,29 +10,30 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./pending-orders.component.css']
 })
 export class PendingOrdersComponent {
-  displayedColumns: string[] = ['column1', 'column2', 'column3'];
-  dataSource: MatTableDataSource<any>;
+  allOrders: any[] = [];
+  racceptedOrders:any[]=[];
+
+  displayedColumns: string[] = ['_id', 'numGames', 'total'];
+  dataSource!: MatTableDataSource<any>;
+@Input() acceptedOrdersChild!:any[];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() {
-    // Initialize your table data array
-    const tableData = [
-      { column1: 'Value 1', column2: 'Value 2', column3: 'Value 3' },
-      { column1: 'Value 1', column2: 'Value 2', column3: 'Value 3' },
-      { column1: 'Value 1', column2: 'Value 2', column3: 'Value 3' },
-      { column1: 'Value 1', column2: 'Value 2', column3: 'Value 3' },
-      { column1: 'Va5gd', column2: 'Value 2', column3: 'Value 3' },
-      
-      // Other table data objects
-    ];
+  constructor(private ordersService:OrdersService) { }
 
-    // Create a MatTableDataSource with your data array
-    this.dataSource = new MatTableDataSource(tableData);
-  }
+  ngOnInit() {
+    this.ordersService.getAllOrders().subscribe(
+   {
+       next:(data: Object) => {
+        this.allOrders = data as any[];
+    this.racceptedOrders=this.allOrders.filter(order => order.status === "pending");
 
-  ngAfterViewInit() {
-    // Associate the paginator with the data source
-    this.dataSource.paginator = this.paginator;
+        this.dataSource = new MatTableDataSource(this.racceptedOrders);
+        this.dataSource.paginator = this.paginator;
+      },
+      error:(error) => {
+        console.log(error);
+      }}
+    );
   }
 }
