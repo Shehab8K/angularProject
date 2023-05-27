@@ -86,10 +86,6 @@ export class CreditCardComponent {
       // Form is valid, perform further actions or submit the form
       console.log("Form is valid");
 
-      // console.log(typeof price)
-      // console.log(typeof this.cartTotalPrice)
-      // console.log(this.user.cart)
-
       //service to create oreder
       this.createOrder();
 
@@ -138,7 +134,7 @@ export class CreditCardComponent {
         console.log(err);
       }
     })
-    }
+  }
 
     createPayment(): void {
       // Your logic to get the required data for creating the payment
@@ -168,7 +164,7 @@ export class CreditCardComponent {
           console.error('Error creating payment:', error);
         }
       );
-    }
+  }
 
 // Mark all form controls as touched
   markFormGroupTouched(formGroup: FormGroup): void {
@@ -176,7 +172,6 @@ export class CreditCardComponent {
     control.markAsTouched();
   });
   }
-
 
   onCvvFocus() {
     this.cvvFocus = true;
