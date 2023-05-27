@@ -32,5 +32,8 @@ export class OrdersService {
     return this.myClient.get(this.Base_URL);
   }
 
+  chngOrderStatus(id:any,body:any){
+    return this.myClient.put(this.Base_URL+ "/"+id,body)
+  }
 
 }

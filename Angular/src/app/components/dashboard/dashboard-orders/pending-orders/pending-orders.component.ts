@@ -11,9 +11,9 @@ import { OrdersService } from 'src/app/services/orders.service';
 })
 export class PendingOrdersComponent {
   allOrders: any[] = [];
-  racceptedOrders:any[]=[];
+  acceptedOrders:any[]=[];
 
-  displayedColumns: string[] = ['_id', 'numGames', 'total'];
+  displayedColumns: string[] = ['_id', 'numGames', 'total','action'];
   dataSource!: MatTableDataSource<any>;
 @Input() acceptedOrdersChild!:any[];
 
@@ -26,14 +26,25 @@ export class PendingOrdersComponent {
    {
        next:(data: Object) => {
         this.allOrders = data as any[];
-    this.racceptedOrders=this.allOrders.filter(order => order.status === "pending");
+    this.acceptedOrders=this.allOrders.filter(order => order.status === "pending");
 
-        this.dataSource = new MatTableDataSource(this.racceptedOrders);
+        this.dataSource = new MatTableDataSource(this.acceptedOrders);
         this.dataSource.paginator = this.paginator;
       },
       error:(error) => {
         console.log(error);
       }}
     );
+  }
+  chngStatus(id:any,status:string){
+    const body={status:status}
+    this.ordersService.chngOrderStatus(id,body).subscribe({
+      next:()=>{
+        console.log("done")
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    })
   }
 }
