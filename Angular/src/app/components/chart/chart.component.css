@@ -1,8 +1,4 @@
-.chart-container
-{
-  margin-top: 80px;
-  /* background-color: white; */
-}
-p{
-  color: white;
+.chart{
+    width: 100% !important;
+    height: 100% !important;
 }

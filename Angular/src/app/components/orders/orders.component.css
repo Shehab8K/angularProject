@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     width: 70%;
-    background-color: #414758;
+    background-color: #414758e1;
     margin-top: 150px !important;
 
 }
@@ -38,8 +38,8 @@
 
 .order-type:hover,
 .order-type.selected {
-    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
-    ;
+    /* background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important; */
+    background-color: #777a52;
     cursor: pointer;
     color: white;
 }

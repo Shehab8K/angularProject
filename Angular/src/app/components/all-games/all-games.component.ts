@@ -5,6 +5,7 @@ import { GamesService } from 'src/app/services/products.service';
 // import { FiltersService } from 'src/app/services/filters.service';
 import { firstValueFrom } from 'rxjs';
 import { UserService } from 'src/app/services/users.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-all-games',
@@ -25,8 +26,9 @@ export class AllGamesComponent implements OnInit {
   gameTags: any[] = [];
   user: any;
   cart: any[] = []
+  isLoggedIn: boolean = false;
 
-  constructor(private gamesService: GamesService, private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private authService: AuthService,private gamesService: GamesService, private formBuilder: FormBuilder, private userService: UserService) {
     this.priceRange = this.formBuilder.group({
       range1: false,
       range2: false,
@@ -43,6 +45,7 @@ export class AllGamesComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.isloggedIn()
     const userObservable = this.userService.getCurrentUser()
     if (userObservable) {
       userObservable.subscribe({
@@ -71,12 +74,11 @@ export class AllGamesComponent implements OnInit {
     } catch (error) {
       console.error("An error occurred while retrieving the games", error);
     }
+    console.log(this.gameTags)
   }
-
-  toggleFavorite(): void {
-    // this.isFavorite = !this.isFavorite;
+  isloggedIn() {
+    this.isLoggedIn = this.authService.isLoggedIn()
   }
-
   isInCart(g: any): boolean {
     const index = this.cart.findIndex((item: any) => item._id === g._id);
     if (index === -1) {
@@ -105,6 +107,7 @@ export class AllGamesComponent implements OnInit {
       }
     })
   }
+  
   onChangepriceRange(): void {
     const selectedPrice = Object.keys(this.priceRange.value).filter(option => this.priceRange.value[option]);
     // console.log(selectedPrice);

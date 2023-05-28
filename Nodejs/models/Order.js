@@ -1,24 +1,28 @@
 const mongoose = require("mongoose");
 
-const gameItemSchema = new mongoose.Schema({
-   GameTitle:{
-    type: String,
-    required: true
-   },
-		GamePic:{
-       type: String,
-      required: true
-    },
-    GamePrice: {
-    type: Number,
-    required: true
-  }
-});
+// const gameItemSchema = new mongoose.Schema({
+//    GameTitle:{
+//     type: String,
+//     required: true
+//    },
+// 		GamePic:{
+//        type: String,
+//       required: true
+//     },
+//     GamePrice: {
+//     type: Number,
+//     required: true
+//   },
+//   tags: {
+//     type: [String],
+//     required: true
+//   },
+// });
 
 const ordersSchema = new mongoose.Schema({
-  gameItems: {
-    type: [gameItemSchema],
-    required: true
+  gameItems:{
+    type: Array,
+    default: []
   },
   status: {
     type: String,

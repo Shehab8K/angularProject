@@ -14,36 +14,66 @@ import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { PaymentComponent } from './components/payment/payment/payment.component';
 import { NotfoundComponent } from './components/errors/notfound/notfound.component';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { UsersTableComponent } from './components/dashboard/users/users-table/users-table.component';
 import { DashboardProductsComponent } from './components/dashboard/dashboard-products/dashboard-products.component';
 import { DashboardProductDetailsComponent } from './components/dashboard/dashboard-product-details/dashboard-product-details.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { GameShowComponent } from './components/game-show/game-show.component';
+import { DashboardHomeComponent } from './components/dashboard/dashboard-home/dashboard-home.component';
+import { DashboardOrdersComponent } from './components/dashboard/dashboard-orders/dashboard-orders.component';
+import { CreateProductComponent } from './components/dashboard/create-product/create-product.component';
 const routes: Routes = [
+
+  // All users + guests
   {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
+  {path:'login',component:LoginComponent},
   {path:'games',component:AllGamesComponent},
-  {path:'profile',component:ChartComponent},
-  {path:'login',component:LoginComponent},
+  {path:'games/:id',component:GameShowComponent},
   {path:'cart',component:CartComponent},
-  {path:'orders',component:OrdersComponent},
-  {path:'login',component:LoginComponent},
-  {path:'dashboard',component:DashboardComponent},
-  {path:'dashboard/users',component:UsersTableComponent},
-  {path:'dashboard/games/:id',component:DashboardProductDetailsComponent},
 
-  // Error routes to be handled
-  {path:'403',component:ForbiddenComponent},
-  // {path:'401',component:NotfoundComponent},
+  // Only Admins and users
+  {
+    path: "",
+    canActivate:[AuthGuard],
+    canActivateChild: [AuthGuard],
+    children:[
+      {path:'payment',component:PaymentComponent},
+      {path:'orders',component:OrdersComponent},
+      {path:'profile',component:ProfileComponent},
+    ]
+  },
+
+  // Only Admins Routes
+  {
+    path:'dashboard',
+    canActivate: [AdminGuard],
+    canActivateChild:[AdminGuard],
+    component:DashboardComponent,
+    children: [
+      {path:'', component:DashboardHomeComponent},
+      {path:'users', component:UsersTableComponent},
+      {path:'games',component:DashboardProductsComponent},
+      {path:'games/add',component:CreateProductComponent},
+      {path:'orders',component:DashboardOrdersComponent},
+    ]
+  },
+
+
+  // Error routes
+  { path: '403', component: ForbiddenComponent },
 
   // Checking auth demo routes
-  {path:'admin',component:AdminOnlyComponent, canActivate:[AdminGuard]},
-  {path:'user',component:UserOnlyComponent, canActivate:[UserGuard]},
-  {path:'auth',component:AuthOnlyComponent, canActivate:[AuthGuard]},
+  { path: 'admin', component: AdminOnlyComponent, canActivate: [AdminGuard] },
+  { path: 'user', component: UserOnlyComponent, canActivate: [UserGuard] },
+  { path: 'auth', component: AuthOnlyComponent, canActivate: [AuthGuard] },
 
   // Other PAths
-  {path:'**', component:NotfoundComponent}
+  { path: '**', component: NotfoundComponent }
 
 ]
 
