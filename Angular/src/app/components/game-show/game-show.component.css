@@ -1,0 +1,83 @@
+body {
+    background-image: url("../../../assets/images/bgggg.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.page-container {
+    margin-top: 150px !important;
+    width: 80%;
+    /* border: 2px solid red; */
+    background-color: #414758e1;
+}
+
+.image {
+    width: 170px;
+    height: 120px;
+
+}
+
+.image-container {
+    justify-content: center;
+    /* border: 2px solid red; */
+
+}
+.info-container{
+justify-content: space-between;
+}
+.col-right {
+    width: 30%;
+    height: fit-content;
+}
+.col-left{
+    width: 60%;
+    height: fit-content;
+}
+.cart {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.cart:hover {
+    transform: scale(1.1);
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.link:hover {
+    color: #007bff;
+}
+
+.actions-container,
+.discord {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.points {
+    border-radius: 50%;
+    /* border: 2px dashed #007bff; */
+    background: #777a52;
+}
+.req{
+    font-size: smaller;
+}
+.tag {
+    width: fit-content;
+    background-color: #414758e1;
+    font-size: small;
+}
+.os{
+    justify-content: center;
+}
