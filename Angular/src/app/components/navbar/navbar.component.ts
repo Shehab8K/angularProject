@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, HostListener, Output, EventEmitter } from '@angular/core';
 import * as $ from 'jquery';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -7,12 +7,17 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements AfterViewInit {
   isScrolled = false;
   isLoggedIn: boolean = false;
+  @Output() navigateToSection: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private authService: AuthService, private cdr: ChangeDetectorRef) { }
-
+  ngAfterViewInit() {
+  }
+  scrollToSection() {
+    this.navigateToSection.emit('about');
+  }
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.pageYOffset > 50;
@@ -33,7 +38,6 @@ export class NavbarComponent {
       $(mainListDiv).fadeIn();
     }
   }
-
   ngOnInit() {
     this.isloggedIn()
     $(document).ready(function () {

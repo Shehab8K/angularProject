@@ -36,17 +36,17 @@
                         <div class="modal fade" id="confirmation" index="-1">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                    <div class="modal-body">
-                                        <h5 class="text-dark" *ngIf="isInCart()">{{game.name.toUpperCase()}} added to
+                                    <div class="modal-header text-dark p-3">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body p-4">
+                                        <h5 class="text-success text-center" *ngIf="isInCart()">{{game.name.toUpperCase()}} added to
                                             cart!
                                         </h5>
-                                        <h5 class="text-dark" *ngIf="!isInCart()">{{game.name.toUpperCase()}} removed
+                                        <h5 class="text-danger text-center" *ngIf="!isInCart()">{{game.name.toUpperCase()}} removed
                                             from
                                             cart!</h5>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success"
-                                            data-bs-dismiss="modal">Ok</button>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                 <hr class="text-secondary">
                 <!-- discord link -->
                 <p class="m-4 discord d-flex">
-                    <!-- <i class="fa-brands p-2 fa-3x fa-discord"> -->
+                    <!-- *ngIf="game.discord" -->
                     <img src="../../../assets/images/discord.gif">
                     <a class="link fs-4 m-2" target="_blank" rel="noopener noreferrer"
                         href="https://discord.me/gta-online-en">Join us on

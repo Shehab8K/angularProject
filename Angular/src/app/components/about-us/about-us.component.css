@@ -1,0 +1,17 @@
+.main-container{
+    background-image: url("../../../assets/images/131147-abstract-cool-grey-polygon-background-design-vector.jpg");
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* height: 300px; */
+}
+.left-col {
+    justify-content: center;
+    align-items: center;
+}
+.featured-container{
+    justify-content: space-evenly;
+}
+.Featured-icon{
+    width: 100px;
+}

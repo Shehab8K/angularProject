@@ -70,6 +70,7 @@ import { GameShowComponent } from './components/game-show/game-show.component';
 
 import { ColorPickerModule } from 'ngx-color-picker';
 import { GalleryModule } from 'ng-gallery';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 
@@ -119,6 +120,7 @@ import { GalleryModule } from 'ng-gallery';
     CreateProductComponent,
     ProfileComponent,
     GameShowComponent,
+    AboutUsComponent,
 
 
   ],
