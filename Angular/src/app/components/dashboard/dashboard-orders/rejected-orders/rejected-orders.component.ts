@@ -19,37 +19,32 @@ export class RejectedOrdersComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private ordersService:OrdersService) { }
+  constructor(private ordersService:OrdersService) { 
+    this.filterPendingOrders()
 
-  ngOnInit() {
-    this.ordersService.getAllOrders().subscribe(
-   {
-       next:(data: Object) => {
-        this.allOrders = data as any[];
-    this.rejectedOrders=this.allOrders.filter(order => order.status === "rejected");
-
-        this.dataSource = new MatTableDataSource(this.rejectedOrders);
-        this.dataSource.paginator = this.paginator;
-      },
-      error:(error) => {
-        console.log(error);
-      }}
-    );
   }
 
-  // ngOnInit() {
-  // //   this.gamesService.GetAllGames().subscribe(
-  // //  {
-  // //      next:(data: Object) => {
-  // //       this.games = data as any[];
-  // console.log('from child',this.rejectedOrdersChild)
-  //       this.dataSource = new MatTableDataSource(this.rejectedOrdersChild as any[]);
-  //       this.dataSource.paginator = this.paginator;
-  //       console.log(this.rejectedOrdersChild)
-  //   //   },
-  //   //   error:(error) => {
-  //   //     console.log(error);
-  //   //   }}
-  //   // );
-  // }
+  ngOnInit() {
+    this.ordersService.orderUpdateChngObservable.subscribe(()=>{
+      this.filterPendingOrders();
+    })
+  }
+
+  filterPendingOrders(){
+    this.ordersService.getAllOrders().subscribe(
+      {
+          next:(data: Object) => {
+           this.allOrders = data as any[];
+       this.rejectedOrders=this.allOrders.filter(order => order.status === "rejected");
+   
+           this.dataSource = new MatTableDataSource(this.rejectedOrders);
+           this.dataSource.paginator = this.paginator;
+         },
+         error:(error) => {
+           console.log(error);
+         }}
+       );
+  }
+
+
 }
