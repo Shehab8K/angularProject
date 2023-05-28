@@ -14,7 +14,7 @@
                             [(ngModel)]="updatedName">
                     </div>
                     <ng-template #elseblock>
-                        <p class="fw-bold fs-2 text-light ">{{user.username.toUpperCase()}}</p>
+                        <p class="fw-bold fs-2 text-light overUser">{{user.username.toUpperCase()}}</p>
                     </ng-template>
                     <div class="fs-5">
                         <div>
@@ -23,15 +23,9 @@
                                 <input class="form-control bg-dark text-light p-2 mb-1" [(ngModel)]="updatedDiscord"
                                     value={{user.discord}}>
                                 <label class="fw-medium fs-4 mt-2 text-light ">Theme: </label>
-                                <!-- <div class="d-flex flex-row theme"> -->
-                                    <!-- <input class="m-2" value="white" type="color" [(ngModel)]="bgcolor"
-                                        (change)="onColorChange(bgcolor)" (blur)="refresh()"> -->
-                                        <!-- <ngx-color-picker class="m-2" [(ngModel)]="bgcolor"
-                                        (change)="onColorChange(bgcolor)" (blur)="refresh()"></ngx-color-picker> -->
                                      <button class="btn m-2" [(colorPicker)]="bgcolor"> <i class="text-light fa-solid fa-palette fa-xl"></i></button>
                                     <button class="btn btn-dark " (blur)="refresh()" (click)="setDefault()">Default
                                         Theme</button>
-                                <!-- </div> -->
                             </div>
                             <ng-template #elseblock2><i class="fa-brands fa-discord"> </i>
                                 <span class="text-light "> {{user.discord}}</span>
@@ -83,13 +77,14 @@
         </div>
         <hr class="m-2 separator rounded">
         <p class="m-2 p-3 fs-4 fw-medium text-light">Games Purchased</p>
+        <div></div>
         <div class="d-flex games-purchased flex-row m-3">
             <div class="card bg-dark text-light text-center m-2 shadow-sm" *ngFor="let g of games">
                 <div class="card-header">
                     <img class="card-img rounded shadow-sm" src={{g.images[0]}}>
                 </div>
                 <div class="card-body">
-                    <p class="fs-5 "> {{g.name}}</p>
+                    <p class="fs-5 title" routerLink="/games/{{g._id}}"> {{g.name}}</p>
                     <p>{{g.description}}</p>
                 </div>
             </div>

@@ -12,6 +12,7 @@ export class PaymentService {
   constructor(private readonly myClient: HttpClient) { }
 
   createPayment(data: any): Observable<any> {
+    console.log("in service"+Array.isArray(data))
     return this.myClient.post(this.Base_URL + '/charge', data);
   }
 }
