@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { GamesService } from 'src/app/services/products.service';
 import { UserService } from 'src/app/services/users.service';
+import { GalleryItem, ImageItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-game-show',
@@ -15,6 +16,7 @@ export class GameShowComponent implements OnInit {
   isLoggedIn: boolean = false;
   user: any;
   cart: any[] = []
+  images: GalleryItem[] = [];
 
   constructor(route: ActivatedRoute, private gameService: GamesService, private authService: AuthService, private userService: UserService) {
     this.gameID = route.snapshot.params["id"]
@@ -24,6 +26,7 @@ export class GameShowComponent implements OnInit {
     this.gameService.GetGameByID(this.gameID).subscribe({
       next: (data) => {
         this.game = data
+        this.assignImages()
       },
       error: (err) => {
         console.log(err)
@@ -35,7 +38,7 @@ export class GameShowComponent implements OnInit {
         next: (data) => {
           this.user = data;
           this.cart = this.user.cart
-          this.isloggedIn()
+          this.isloggedIn();
         },
         error: (err) => {
           console.log(err)
@@ -43,7 +46,12 @@ export class GameShowComponent implements OnInit {
       })
     }
   }
-
+  assignImages() {
+    this.game.images.forEach((img: string) => {
+      this.images.push(new ImageItem({ src: img, thumb: img })
+      )
+    });
+  }
   isloggedIn() {
     this.isLoggedIn = this.authService.isLoggedIn()
   }
@@ -59,15 +67,15 @@ export class GameShowComponent implements OnInit {
 
   addToCart() {
     if (this.cart.length > 0) {
-      const index = this.cart.findIndex((item: any) => item._id === this.gameID );
+      const index = this.cart.findIndex((item: any) => item._id === this.gameID);
       if (index === -1) {
-        this.cart.push(this.game );
+        this.cart.push(this.game);
       } else {
         this.cart.splice(index, 1);
       }
     }
     else
-      this.cart.push(this.game );
+      this.cart.push(this.game);
     this.userService.updateUserCart(this.user._id, this.cart).subscribe({
       next: () => {
         this.ngOnInit();

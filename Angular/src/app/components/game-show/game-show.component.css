@@ -15,32 +15,25 @@ body {
 .page-container {
     margin-top: 150px !important;
     width: 80%;
-    /* border: 2px solid red; */
     background-color: #414758e1;
 }
-
-.image {
-    width: 170px;
-    height: 120px;
-
-}
-
 .image-container {
-    justify-content: center;
-    /* border: 2px solid red; */
+    background: none;
+}
+.info-container {
+    justify-content: space-between;
+}
 
-}
-.info-container{
-justify-content: space-between;
-}
 .col-right {
     width: 30%;
     height: fit-content;
 }
-.col-left{
+
+.col-left {
     width: 60%;
     height: fit-content;
 }
+
 .cart {
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -59,25 +52,30 @@ justify-content: space-between;
     color: #007bff;
 }
 
-.actions-container,
-.discord {
+.actions-container {
     justify-content: space-evenly;
     align-items: center;
 }
+.discord{
+    align-items: center;
+    justify-content: center;
 
+}
 .points {
     border-radius: 50%;
-    /* border: 2px dashed #007bff; */
     background: #777a52;
 }
-.req{
+
+.req {
     font-size: smaller;
 }
+
 .tag {
     width: fit-content;
     background-color: #414758e1;
     font-size: small;
 }
-.os{
+
+.os {
     justify-content: center;
 }

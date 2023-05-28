@@ -14,8 +14,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormMainInfoComponent } from './components/register/form-main-info/form-main-info.component';
 import { FormDiscordComponent } from './components/register/form-discord/form-discord.component';
 import { FormCharacterComponent } from './components/register/form-character/form-character.component';
-// import { GameCardComponent } from './components/game-card/game-card.component';
-// import { FiltersComponent } from './components/filters/filters.component';
 import { AllGamesComponent } from './components/all-games/all-games.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { LoginComponent } from './components/login/login.component';
@@ -30,7 +28,6 @@ import { AdminOnlyComponent } from './components/admin-only/admin-only.component
 import { UserOnlyComponent } from './components/user-only/user-only.component';
 import { AuthOnlyComponent } from './components/auth-only/auth-only.component';
 import { OrdersComponent } from './components/orders/orders.component';
-// import { OrderItemComponent } from './order-item/order-item.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 
@@ -72,6 +69,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { GameShowComponent } from './components/game-show/game-show.component';
 
 import { ColorPickerModule } from 'ngx-color-picker';
+import { GalleryModule } from 'ng-gallery';
 
 
 
@@ -86,8 +84,6 @@ import { ColorPickerModule } from 'ngx-color-picker';
     FormMainInfoComponent,
     FormDiscordComponent,
     FormCharacterComponent,
-    // GameCardComponent,
-    // FiltersComponent,
     AllGamesComponent,
     ChartComponent,
     LoginComponent,
@@ -150,7 +146,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
       preventDuplicates: true
     }),
     BrowserAnimationsModule,
-    ColorPickerModule
+    ColorPickerModule,
+    GalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
