@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/users.service';
 import { switchMap } from 'rxjs';
 import { OrdersService } from 'src/app/services/orders.service';
+import { UserUpdateService } from 'src/app/services/emitters.service';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit {
   newPreferences: any[] = [];
   inputs: any[] = []
 
-  constructor(private userService: UserService, private orderService: OrdersService, private cdr: ChangeDetectorRef) { }
+  constructor(private userService: UserService, private orderService: OrdersService, private cdr: ChangeDetectorRef, private userUpdateService: UserUpdateService) { }
 
   ngOnInit(): void {
     this.fetchData()
@@ -47,6 +48,7 @@ export class ProfileComponent implements OnInit {
       "bgColor": this.bgcolor
     }
     console.log(updatedUser)
+    // this.emitValue();
     this.userService.updateUser(this.user._id, updatedUser).subscribe({
       next: () => {
         this.fetchData()
@@ -59,6 +61,9 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
+  // emitValue(): void{
+  //   this.userUpdateService.emitValue('Hambola');
+  // }
   toggleEditMode() {
     this.editMode = !this.editMode
   }
