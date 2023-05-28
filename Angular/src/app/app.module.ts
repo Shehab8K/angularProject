@@ -70,6 +70,8 @@ import { GameShowComponent } from './components/game-show/game-show.component';
 
 import { ColorPickerModule } from 'ngx-color-picker';
 import { GalleryModule } from 'ng-gallery';
+import { UserUpdateService } from './services/emitters.service';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 
@@ -119,8 +121,9 @@ import { GalleryModule } from 'ng-gallery';
     CreateProductComponent,
     ProfileComponent,
     GameShowComponent,
-    DashboardProductDetailsComponent
+    DashboardProductDetailsComponent,
 
+    AboutUsComponent,
 
 
   ],
@@ -151,7 +154,7 @@ import { GalleryModule } from 'ng-gallery';
     ColorPickerModule,
     GalleryModule
   ],
-  providers: [],
+  providers: [UserUpdateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
