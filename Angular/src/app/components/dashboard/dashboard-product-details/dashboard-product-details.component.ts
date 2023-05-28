@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GamesService } from 'src/app/services/products.service';
+import { GalleryItem, ImageItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-dashboard-product-details',
@@ -8,20 +9,40 @@ import { GamesService } from 'src/app/services/products.service';
   styleUrls: ['./dashboard-product-details.component.css']
 })
 export class DashboardProductDetailsComponent implements OnInit {
-  ID:any;
-  game:any;
-  constructor(myRoute:ActivatedRoute,public myService:GamesService ){
-    this.ID=myRoute.snapshot.params["id"]
-    // console.log(this.ID)
-  }
+  Title: string = "Game details";
+  hoveredImageUrl: string = "";
+  firstImage: string = "";
+  currentSlideIndex = 0;
+  images: GalleryItem[] = [];
+
+  ID: any;
+  game: any;
+
+  constructor(private route: ActivatedRoute, private gameService: GamesService) { }
+
   ngOnInit(): void {
-   this.myService.GetGameByID(this.ID).subscribe(
-    {
-      next:(data)=>{
-        this.game=data
-      },
-      error:(err)=>{console.log(err)}
-    }
-   )
+    this.ID=this.route.snapshot.params["id"]
+    this.loadGameDetails();
   }
-}
+  assignImages() {
+    this.game.images.forEach((img: string) => {
+      this.images.push(new ImageItem({ src: img, thumb: img })
+      )
+    });
+  }
+
+  loadGameDetails(): void {
+    this.gameService.GetGameByID(this.ID).subscribe(
+      {
+        next: (data) => {
+          this.game = data;
+          this.assignImages()
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      }
+    );
+  }
+
+  }

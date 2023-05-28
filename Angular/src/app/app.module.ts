@@ -121,6 +121,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     CreateProductComponent,
     ProfileComponent,
     GameShowComponent,
+    DashboardProductDetailsComponent,
+
     AboutUsComponent,
 
 
