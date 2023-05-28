@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule, Form  } from '@angular/forms';
 import { GamesService } from 'src/app/services/products.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-product',
@@ -19,10 +20,17 @@ export class CreateProductComponent  {
 
 
 
-  constructor(public gamesService: GamesService,  private formBuilder: FormBuilder) {}
+  constructor(public gamesService: GamesService,  private formBuilder: FormBuilder, private route: ActivatedRoute) {}
 
 
   ngOnInit(): void {
+//
+  // //   const gameId = this.route.snapshot.queryParams['gameId'];
+  // // const game = history.state.game;
+
+  // // Use the gameId and game object in your form
+  // console.log(gameId, game);
+
     this.gameForm = this.formBuilder.group({
       name: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
