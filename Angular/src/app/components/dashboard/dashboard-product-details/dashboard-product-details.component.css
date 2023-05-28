@@ -1,98 +1,83 @@
 .card {
   width: 80vw;
-  height: 70vh;
   background: rgb(38, 38, 38);
   box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.333);
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   padding: 10px;
   margin: auto;
 }
 
-.Top {
-    height: 30%;
-    background-color: #980e84;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    border: 2px solid transparent;
-    border-radius: 10px;
-    gap: 2%;
-    padding:1%;
-    margin-bottom:1%;
-}
-.smallimages
+.left ,.right
 {
-  background-color: transparent;
-  width:60%;
+  width: 50%;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.smallimages img 
-{
-  width: 10vw!important;
-  height:15vh!important;
+
+
+.up {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.smallimages {
+  height: 30%;
+  border: 2px solid white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.smallimages img,
+.largeimage img {
+  width: 95% !important;
+  height: 95% !important;
   object-fit: unset;
-  opacity: 0.7;
-  float: right;
-  margin: 1%;
+  padding: 2%;
   border: 2px dotted white;
 }
-.smallimages img:hover
-{
-  opacity:1;
+
+.smallimages img {
+  opacity: 0.7;
 }
 
-
+.smallimages img:hover {
+  opacity: 1;
+}
 
 .largeimage {
-  width: 30vw;
-  height: 25vh;
-  object-fit: unset;
-  border-radius: 5px;
-}
-.largeimage img {
   width: 100%;
-    height: 100%;
-    object-fit: unset;
+  height: 80%;
 }
 
-.OS:before {
-  content: " ";
-  display: block;
-  width: 100%;
-  height: 2px;
-  margin: 1%  0%;
-  background: #414141;
+
+* {
+  color: white !important;
+  border-radius: 10px;
 }
 
-*{
-  color:white !important;
-  border-radius: 10px
-}
 .OS i {
   margin-right: 15px;
-  color:  #980e84 !important;
-  font-size: 30px !important;
-  float: right;
+  font-size: 30px;
+  float:left;
 }
-.OS h5
-{
-  border: 5px dotted #980e84;
-  width:fit-content;
-  padding: 0 1%;
-  margin: 0 1%;
-  float: left;
-}
-.type
-{
-  display:flex;
-  gap:2%;
-}
-.right
-{
+
+
+
+.type {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  width: 100%;
+  gap: 2%;
+}
+
+
+
+
+img {
+  object-fit: unset !important;
+}
+.tag {
+  display: flex;
 }

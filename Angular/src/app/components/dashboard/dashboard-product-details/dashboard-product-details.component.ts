@@ -8,27 +8,32 @@ import { GamesService } from 'src/app/services/products.service';
   styleUrls: ['./dashboard-product-details.component.css']
 })
 export class DashboardProductDetailsComponent implements OnInit {
-  Title: string="Game details";
-  hoveredImageUrl: string = ""; // Added hoveredImageUrl property
-  defaultImageUrl: string = "../../../../assets/images/giphy.gif"; // Set a default image URL
-  ID:any;
-  game:any;
-  constructor(myRoute:ActivatedRoute,public myService:GamesService ){
-    this.ID=myRoute.snapshot.params["id"]
-    // console.log(this.ID)
-  }
+  Title: string = "Game details";
+  hoveredImageUrl: string = "";
+  firstImage: string = "";
+  currentSlideIndex = 0;
+
+  ID: any;
+  game: any;
+
+  constructor(private route: ActivatedRoute, private gameService: GamesService) { }
+
   ngOnInit(): void {
-    this.myService.GetGameByID(this.ID).subscribe(
+    this.ID=this.route.snapshot.params["id"]
+    this.loadGameDetails();
+  }
+
+  loadGameDetails(): void {
+    this.gameService.GetGameByID(this.ID).subscribe(
       {
         next: (data) => {
           this.game = data;
         },
-        error: (err) => { console.log(err); }
+        error: (err) => {
+          console.log(err);
+        }
       }
     );
   }
 
-  displayLargeImage(imageUrl: string) {
-    this.hoveredImageUrl = imageUrl;
   }
-}

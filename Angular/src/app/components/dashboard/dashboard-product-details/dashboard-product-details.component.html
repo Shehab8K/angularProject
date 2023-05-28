@@ -1,53 +1,43 @@
-<app-title [titleContent]="Title"></app-title>
-
-<div class="card">
-  <h2 class="GameName">{{game.name}}</h2>
-  <div class="Top">
-    <div>
-    <h6><i class="fa fa-money"></i> price: {{game.price}}$</h6>
-    <h6><i class="fa fa-calendar"></i> date: {{game.releasedDate| date: 'dd/MM/yyyy'}}</h6>
-    <h6><i class="fa fa-clock"></i> time: {{game.releasedDate | date: 'HH:mm:ss aa'}}</h6>
+<ng-container *ngIf="game">
+  <app-title [titleContent]="game.name"></app-title>
+  <div class="card">
+    <div class="up">
+      <div class="left"></div>
+      <div class="right">
+        <h4>About</h4>
+        <hr>
+        <h5>{{ game.description }}</h5>
+        <hr/>
+        <h6><i class="fa fa-money"></i> {{ game.price }}$</h6>
+        <h6><i class="fa fa-calendar"></i> {{ game.releasedDate | date: 'dd/MM/yyyy' }}</h6>
+        <hr/>
+        <div class="tag">
+        <h5 class="bg-dark p-1" *ngFor="let gameTag of game.tag">
+          {{gameTag}}
+        </h5>
+      </div>
+       <hr />
+        <div class="type">
+          <i *ngFor="let gameType of game.type"class="fa" [ngClass]="{
+            'fa-user': gameType === 'singleplayer',
+            'fa-users': gameType === 'multiplayer'
+          }">
+            {{gameType}}
+        </i>
+        </div>
+        <hr/>
+        <div class="OS">
+          <i *ngFor="let operatingSystem of game.os" class="fa" [ngClass]="{
+            'fa-apple': operatingSystem === 'mac',
+            'fa-windows': operatingSystem === 'windows',
+            'fa-linux': operatingSystem === 'linux'
+          }"></i>
+        </div>
+      </div>
     </div>
-    <div class="smallimages">
-    <div  *ngFor="let imageUrl of game.images">
-      <img [src]="imageUrl" alt="Product Image" (mouseover)="displayLargeImage(imageUrl)"/>
-    </div>
-   </div>
   </div>
-  <div class="right">
-    
-     <div class="largeimage">
-      <img [src]="hoveredImageUrl ? hoveredImageUrl : defaultImageUrl" alt="Large image">
-    </div> 
-    
+</ng-container>
 
-    <h3 >
-      Description: {{game.description}}
-    </h3> 
-    </div>
-
-  <div class="type">
-  <i *ngFor="let gameType of game.type"class="fa" [ngClass]="{
-    'fa-user': gameType === 'singleplayer',
-    'fa-users': gameType === 'multiplayer'
-  }">
-    {{gameType}}
-</i>
-
-</div>
-<div class="down">
-  <div class="OS">
-      <i *ngFor="let operatingSystem of game.os" class="fa" [ngClass]="{
-      'fa-apple': operatingSystem === 'mac',
-      'fa-windows': operatingSystem === 'windows',
-      'fa-linux': operatingSystem === 'linux'
-    }"></i><h5 *ngFor="let gameTag of game.tag">
-    {{gameTag}}
-  </h5>
-  </div>
-  
-</div>
-</div>
-<ng-template #falseBlock>
+<ng-container *ngIf="!game">
   <app-loading></app-loading>
-</ng-template>
+</ng-container>
