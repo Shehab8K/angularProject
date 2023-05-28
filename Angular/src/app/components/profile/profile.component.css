@@ -15,7 +15,11 @@
     /* background-color: rgba(112, 219, 142, 0.527); */
     width: 80%;
 }
-
+.overUser{
+  width: 10em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .theme {
     align-items: center;
 }

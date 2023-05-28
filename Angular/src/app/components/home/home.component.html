@@ -1,6 +1,10 @@
-<app-navbar></app-navbar>
-<video class="container-fluid" loop="" muted="" autoplay="" playsinline="" poster="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/page_bg_english.jpg?t=1683671735" class="fullscreen-bg__video">
-  <source src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/mp4_page_bg_english.mp4?t=1683671735" type="video/mp4">
+<app-navbar (navigateToSection)="handleNavigateToSection()"></app-navbar>
+<video class="container-fluid" loop="" muted="" autoplay="" playsinline=""
+  poster="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/page_bg_english.jpg?t=1683671735"
+  class="fullscreen-bg__video">
+  <source
+    src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/mp4_page_bg_english.mp4?t=1683671735"
+    type="video/mp4">
 </video>
 <!-- <img class="container-fluid" src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/page_bg_english.jpg?t=1683671735"> -->
 
@@ -8,7 +12,8 @@
   <h3 class="title1 text-white p5 mt-4 mb-3">Trending Games</h3>
 
   <div class="d-flex justify-content-center col-12 content">
-    <button (click)="ShowPrevious()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="prev col-1"> ❮ </button>
+    <button (click)="ShowPrevious()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="prev col-1"> ❮
+    </button>
 
     <div class="container row col-10 shadow-lg">
       <div class="image col-md-8 ">
@@ -30,8 +35,11 @@
     <button (click)="ShowNext()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="next col-1"> ❯ </button>
   </div>
 
-<!-- Your Cards are there -->
-<app-home-cards></app-home-cards>
+  <!-- Your Cards are there -->
+  <app-home-cards></app-home-cards>
+  <section class="text-light" id="about" #aboutSection>
+    <app-about-us></app-about-us>
+  </section>
+
 </section>
 <app-footer></app-footer>
-
