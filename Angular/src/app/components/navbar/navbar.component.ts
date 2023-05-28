@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, HostListener, Output, EventEmitter } from '@angular/core';
 import * as $ from 'jquery';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,10 @@ export class NavbarComponent implements AfterViewInit {
   isLoggedIn: boolean = false;
   @Output() navigateToSection: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private authService: AuthService, private cdr: ChangeDetectorRef) { }
+  constructor(private authService: AuthService,
+               private cdr: ChangeDetectorRef,
+               private userService: UserService
+               ) { }
   ngAfterViewInit() {
   }
   scrollToSection() {
@@ -48,5 +52,8 @@ export class NavbarComponent implements AfterViewInit {
         $("#mainListDiv").fadeIn();
       });
     });
+    this.userService.value$.subscribe((value:any)=>{
+      this.isLoggedIn = value;
+    })
   }
 }

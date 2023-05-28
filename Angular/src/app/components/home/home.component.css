@@ -3,7 +3,7 @@
 video{
  width:100%;
  position: relative;
- top:0px; 
+ top:0px;
 }
 
 .prev, .next{
@@ -26,7 +26,9 @@ video{
 h1{
   color:white
 }
-
+#about{
+  padding: 5em 0;
+}
 /* .image_hover{
   display: none;
 } */
