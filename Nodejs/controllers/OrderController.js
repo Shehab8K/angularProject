@@ -77,7 +77,7 @@ let updateOrder = async (req, res) => {
           status: newData.status
         }
       );
-      res.send("Order updated successfully");
+      return res.status(200).json({message:"Order updated successfully"});
     }
   } catch (error) {
     console.error(error);

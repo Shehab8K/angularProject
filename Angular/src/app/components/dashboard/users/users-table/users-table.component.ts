@@ -91,10 +91,7 @@ unbanUser(userId: string){
 }
 
 // updateDataSource(): void {
-//   // Update the users array or fetch the updated users from the server
-//   // Assign the updated users array to the dataSource
 //   this.dataSource = new MatTableDataSource(this.users);
-//   // Set the paginator for the updated dataSource
 //   this.dataSource.paginator = this.paginator;
 // }
 refresh(){

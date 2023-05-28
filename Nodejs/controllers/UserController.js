@@ -132,7 +132,8 @@ const updateUser = async (req, res) => {
       var hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
     }
 
-    const user = await User.findById(req.params.id);
+    const userID = req.params.id
+    const user = await User.findById(userID);
     if (user) {
       user.name = req.body.name || user.name;
       user.username = req.body.username || user.username;

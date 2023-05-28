@@ -45,7 +45,11 @@ body{
   margin-left: 0.6em;
   font-weight: 500;
 }
-
+.userflow{
+  width: 5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .hr{
   width: 90%;
 }
