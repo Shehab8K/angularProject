@@ -19,27 +19,36 @@ export class PendingOrdersComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private ordersService:OrdersService) { }
+  constructor(private ordersService:OrdersService) {
+    this.filterPendingOrders();
+
+   }
 
   ngOnInit() {
-    this.ordersService.getAllOrders().subscribe(
-   {
-       next:(data: Object) => {
-        this.allOrders = data as any[];
-    this.acceptedOrders=this.allOrders.filter(order => order.status === "pending");
-
-        this.dataSource = new MatTableDataSource(this.acceptedOrders);
-        this.dataSource.paginator = this.paginator;
-      },
-      error:(error) => {
-        console.log(error);
-      }}
-    );
+    this.ordersService.orderUpdateChngObservable.subscribe(()=>{
+      this.filterPendingOrders();
+    })
   }
+  filterPendingOrders(){
+this.ordersService.getAllOrders().subscribe({
+  next:(data: Object) => {
+    this.allOrders = data as any[];
+this.acceptedOrders=this.allOrders.filter(order => order.status === "pending");
+
+    this.dataSource = new MatTableDataSource(this.acceptedOrders);
+    this.dataSource.paginator = this.paginator;
+  },
+  error:(error) => {
+    console.log(error);
+  }
+})
+  }
+
   chngStatus(id:any,status:string){
     const body={status:status}
     this.ordersService.chngOrderStatus(id,body).subscribe({
       next:()=>{
+        this.ordersService.orderChngStatusSubject.next();
         console.log("done")
       },
       error:(err)=>{
@@ -47,4 +56,7 @@ export class PendingOrdersComponent {
       }
     })
   }
+
+  
+
 }
