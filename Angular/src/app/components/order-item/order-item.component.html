@@ -31,9 +31,26 @@
             <button class="btn  ms-3 btn-danger">Decline</button>
         </div> -->
         <div class="col1">
-            <button *ngIf="o.status=='pending'; else elseBlock" (click)="deleteOrder(o._id)"
+            <button data-bs-toggle="modal" data-bs-target="#confirmation" *ngIf="o.status=='pending'; else elseBlock"
                 class="btn cancel-btn btn-outline-secondary"> <i class="close-icon fa fa-times fs-4 "></i> CANCEL
                 OREDR </button>
+            <div class="modal fade" id="confirmation" index="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header text-dark">
+                            <h5 class="modal-title" id="confirmationLabel">Cancel order confirmation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-dark">Are you sure you want to cancel this order?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger"data-bs-dismiss="modal" (click)="deleteOrder(o._id)">I'm sure</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <ng-template #elseBlock>
                 <p class="text-secondary">
                     STATUS</p>

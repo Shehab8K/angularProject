@@ -61,6 +61,7 @@ export class OrdersComponent implements OnInit {
   refresh() {
     console.log("refreshing")
     this.fetchData()
+    // location.reload()
     this.cdr.detectChanges();
   }
 }

@@ -13,7 +13,7 @@ export class UserNavComponent {
   public image: any;
   @Output() loggedOut: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private userService: UserService, private router: Router,private cdr: ChangeDetectorRef) {
+  constructor(private userService: UserService, private router: Router,private cdr: ChangeDetectorRef,) {
     const userObservable = this.userService.getCurrentUser()
     if (userObservable) {
       userObservable.subscribe({
@@ -41,5 +41,7 @@ export class UserNavComponent {
     this.userService.logout();
     this.loggedOut.emit();
     this.myusername = null
+    location.reload()
+
   }
 }
