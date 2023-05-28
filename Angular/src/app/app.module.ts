@@ -72,6 +72,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { GalleryModule } from 'ng-gallery';
 import { UserUpdateService } from './services/emitters.service';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ComponentNameComponent } from './components/dashboard/component-name/component-name.component';
+import { UpdateProductComponent } from './components/dashboard/update-product/update-product.component';
 
 
 
@@ -122,6 +124,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     ProfileComponent,
     GameShowComponent,
     AboutUsComponent,
+    ComponentNameComponent,
+    UpdateProductComponent,
 
 
   ],
