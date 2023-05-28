@@ -3,14 +3,15 @@ import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  static Register(formData: any) {
-    throw new Error('Method not implemented.');
-  }
+
+  private valueSubject: Subject<boolean> = new Subject<boolean>();
+  value$: Observable<boolean> = this.valueSubject.asObservable();
 
   constructor(private readonly myClient: HttpClient, private authService: AuthService) { }
 
@@ -47,6 +48,7 @@ export class UserService {
     return this.myClient.put(this.Base_URL + '/cart/' + id, {cart})
   }
   logout(){
+    this.valueSubject.next(false);
     localStorage.removeItem('user');
   }
   updateUser(id:string, body:any){
@@ -57,10 +59,13 @@ export class UserService {
   getAllUsers(){
     return this.myClient.get(this.Base_URL);
   }
-ban(body:any){
+
+  ban(body:any){
   return this.myClient.post(this.Base_URL + "/ban",body)
-}
-unban(body:any){
+  }
+
+  unban(body:any){
   return this.myClient.post(this.Base_URL + "/unban",body)
-}
+  }
+
 }

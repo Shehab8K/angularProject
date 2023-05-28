@@ -1,1 +1,102 @@
-<p>game-show works!</p>
+<app-navbar></app-navbar>
+
+<body>
+    <div class="rounded p-2 container page-container">
+        <div class="m-4 mb-3">
+            <h1>
+                {{game.name.toUpperCase()}}
+            </h1>
+        </div>
+        <div class="m-5">
+            <gallery class="w-100 p-2 image-container shadow-lg rounded bg-dark" thumbPosition="bottom"
+                [items]="images"></gallery>
+        </div>
+        <div class="m-5 info-container d-flex flex-row">
+            <div class="col-left bg-dark shadow-lg rounded">
+                <div class="p-3">
+                    <h3 class="pb-3">About</h3>
+                    <p>{{game.description}}</p>
+                </div>
+                <hr class="text-secondary">
+                <div class="d-flex flex-row  p-2 actions-container">
+                    <!-- points -->
+                    <div class="m-3 text-center ">
+                        <label class="fs-4 text-secondary">Points</label>
+                        <div class="points p-3 fs-5">100</div>
+                    </div>
+                    <!-- add to cart -->
+                    <div class="mt-4 " *ngIf="isLoggedIn">
+                        <div class="text-center"> <i data-bs-toggle="modal" data-bs-target="#confirmation"
+                                class="fa-solid cart fa-3x p-2" (click)="addToCart()"
+                                [ngClass]="{ 'fa-cart-plus': !isInCart(), 'fa-cart-shopping': isInCart() }"></i>
+                            <p class="text-success fs-5">{{game.price}} $</p>
+                        </div>
+
+                        <!-- popup -->
+                        <div class="modal fade" id="confirmation" index="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header text-dark p-3">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body p-4">
+                                        <h5 class="text-success text-center" *ngIf="isInCart()">{{game.name.toUpperCase()}} added to
+                                            cart!
+                                        </h5>
+                                        <h5 class="text-danger text-center" *ngIf="!isInCart()">{{game.name.toUpperCase()}} removed
+                                            from
+                                            cart!</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="text-secondary">
+                <!-- discord link -->
+                <p class="m-4 discord d-flex">
+                    <!-- *ngIf="game.discord" -->
+                    <img src="../../../assets/images/discord.gif">
+                    <a class="link fs-4 m-2" target="_blank" rel="noopener noreferrer"
+                        href="https://discord.me/gta-online-en">Join us on
+                        discord!</a>
+                </p>
+            </div>
+            <div class="col-right bg-dark shadow-lg rounded p-3">
+                <!-- system requirements -->
+                <div>
+                    <p>System requirements:</p>
+                    <!-- <hr class="text-secondary"> -->
+                    <small class="req">
+                        <li>OS: Windows 7 64-bit</li>
+                        <li> Processor: Intel i3/Ryzen 3 series</li>
+                        <li>Memory: 6 GB RAM</li>
+                        <li> Graphics: Nvidia GTX 900/AMD RX 400 series | Intel Iris Xe Graphics </li>
+                        <li> DirectX: Version 11</li>
+                        <li> Storage: 120 GB available space</li>
+                    </small>
+                </div>
+                <hr class="text-secondary">
+                <div class="d-flex flex-wrap flex-row">
+                    <p class="m-1 tag p-1 text-center" *ngFor="let t of game.tag">{{t}}</p>
+                </div>
+                <hr class="text-secondary">
+                <div class="d-flex flex-wrap flex-row">
+                    <p class="m-1 tag p-1 text-center" *ngFor="let t of game.type">{{t}}</p>
+                </div>
+                <hr class="text-secondary">
+                <div class="d-flex flex-wrap os flex-row">
+                    <i *ngFor="let p of game.os" class="fa m-1 p-1" [ngClass]="{
+                        'fa-apple': p === 'mac',
+                        'fa-windows': p === 'windows',
+                        'fa-linux': p === 'linux'
+                      }"></i>
+                </div>
+                <hr class="text-secondary">
+                <p class="text-primary text-center">10,000 users</p>
+            </div>
+        </div>
+    </div>
+</body>
+<app-footer></app-footer>

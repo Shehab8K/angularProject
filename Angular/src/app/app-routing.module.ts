@@ -28,17 +28,31 @@ import { DashboardOrdersComponent } from './components/dashboard/dashboard-order
 import { CreateProductComponent } from './components/dashboard/create-product/create-product.component';
 const routes: Routes = [
 
+  // All users + guests
   {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
-  {path:'games',component:AllGamesComponent},
-  {path:'profile',component:ProfileComponent},
   {path:'login',component:LoginComponent},
-  {path:'cart',component:CartComponent},
-  {path:'orders',component:OrdersComponent},
+  {path:'games',component:AllGamesComponent},
   {path:'games/:id',component:GameShowComponent},
-  {path:'payment',component:PaymentComponent},
+  {path:'cart',component:CartComponent},
+
+  // Only Admins and users
+  {
+    path: "",
+    canActivate:[AuthGuard],
+    canActivateChild: [AuthGuard],
+    children:[
+      {path:'payment',component:PaymentComponent},
+      {path:'orders',component:OrdersComponent},
+      {path:'profile',component:ProfileComponent},
+    ]
+  },
+
+  // Only Admins Routes
   {
     path:'dashboard',
+    canActivate: [AdminGuard],
+    canActivateChild:[AdminGuard],
     component:DashboardComponent,
     children: [
       {path:'', component:DashboardHomeComponent},
@@ -50,9 +64,8 @@ const routes: Routes = [
   },
 
 
-  // Error routes to be handled
+  // Error routes
   { path: '403', component: ForbiddenComponent },
-  // {path:'401',component:NotfoundComponent},
 
   // Checking auth demo routes
   { path: 'admin', component: AdminOnlyComponent, canActivate: [AdminGuard] },

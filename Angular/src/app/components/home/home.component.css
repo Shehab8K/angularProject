@@ -34,6 +34,17 @@ h1{
   background-color: rgb(39, 41, 53);
   font-size: small;
 }
+#about{
+  padding: 5em 0;
+}
+/* .image_hover{
+  display: none;
+} */
+/* .container
+{
+  width:50%;
+  margin:2% auto;
+} */
 .image
 {
   height: 25rem;
@@ -80,7 +91,3 @@ button{
   transition-duration: 0.4s;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 6px 16px 0 rgba(0,0,0,0.19);
 }
-
-/* .title1{
-
-} */

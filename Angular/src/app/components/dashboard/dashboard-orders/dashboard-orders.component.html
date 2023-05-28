@@ -1,5 +1,5 @@
 <app-title  [titleContent]="ordersTitle"></app-title>
-<mat-tab-group>
+<mat-tab-group mat-stretch-tabs>
     <mat-tab label="Accepted">
         <app-accepted-orders></app-accepted-orders>
     </mat-tab>
@@ -7,6 +7,6 @@
         <app-pending-orders ></app-pending-orders>
     </mat-tab>
     <mat-tab label="rejected">
-        <app-rejected-orders></app-rejected-orders>
+        <app-rejected-orders  [rejectedOrdersChild]="rejectedOrders"></app-rejected-orders>
     </mat-tab>
 </mat-tab-group>

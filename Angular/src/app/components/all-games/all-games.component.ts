@@ -74,14 +74,11 @@ export class AllGamesComponent implements OnInit {
     } catch (error) {
       console.error("An error occurred while retrieving the games", error);
     }
+    console.log(this.gameTags)
   }
   isloggedIn() {
     this.isLoggedIn = this.authService.isLoggedIn()
   }
-  toggleFavorite(): void {
-    // this.isFavorite = !this.isFavorite;
-  }
-
   isInCart(g: any): boolean {
     const index = this.cart.findIndex((item: any) => item._id === g._id);
     if (index === -1) {

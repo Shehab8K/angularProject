@@ -23,4 +23,15 @@ export class AuthGuard {
     }
     return this.auth.isLoggedIn();
   }
+
+  canActivateChild(
+    childRoute: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
+    if (!this.auth.isLoggedIn()) {
+      this.toastr.error('Please Log In!');
+      this.router.navigate(['/login']);
+    }
+    return this.auth.isLoggedIn();
+  }
 }

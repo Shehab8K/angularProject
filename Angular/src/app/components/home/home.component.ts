@@ -10,18 +10,11 @@ export class HomeComponent {
 
   currentindex = 0;
   timer:any;
-  // currentImageIndex = 0;
-
-  items: any[] = [];
-  images: any[] = []
-  currentIndex: number = 0;
-
-  constructor(private gamesService: GamesService) {
-    this.getGames();
-
-    // console.log('items oninit:', this.items)
-   }
-
+  images:any[]=[]
+  items:any[]=[]
+  currentImageIndex = 0;
+  currentIndex:number=0
+constructor(private gamesService: GamesService){}
    getGames() {
     this.gamesService.GetAllGames().subscribe(
       (response: Object) => {
@@ -36,7 +29,7 @@ export class HomeComponent {
       }
     );
   }
-  currentImageIndex: number = 0;
+  // currentImageIndex: number = 0;
 
   // getGames() {
   //   this.gamesService.GetAllGames().subscribe(
@@ -66,7 +59,9 @@ export class HomeComponent {
     }
 
   }
-
+  // handleNavigateToSection() {
+  //     this.aboutSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  // }
   ShowNext(){
 
     if(this.currentIndex < this.items.length-1)

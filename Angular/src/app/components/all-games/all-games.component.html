@@ -6,18 +6,17 @@
                 src="../../../assets/images/icon.gif"></div>
         <div class="d-flex flex-row page-display">
             <div class="d-flex flex-column">
-
                 <div class="game-container bg-dark d-flex flex-row shadow  mb-3 p-2  rounded" *ngFor="let g of games">
                     <div class="d-flex flex-row ">
                         <div class="image">
                             <img src={{g.images[0]}}>
                             <div class="overlay">
-                                <!-- <i class="fa-solid fa-cart-shopping cart"></i> -->
-                                <!-- <button class="btn"> <i class="fa-solid fa-cart-shopping cart p-1 fa-2x"></i></button> -->
-                                <i *ngIf="isLoggedIn else elseblock" class=" fa-solid cart fa-2x p-2"
-                                    (click)="addToCart(g)" [ngClass]="{
-                                'fa-cart-plus': !isInCart(g),
-                                'fa-cart-shopping': isInCart(g)}"></i>
+                                <div *ngIf="isLoggedIn else elseblock">
+                                    <i class="fa-solid cart fa-2x p-2" (click)="addToCart(g)" [ngClass]="{
+                                    'fa-cart-plus': !isInCart(g),
+                                    'fa-cart-shopping': isInCart(g)
+                                  }"></i>
+                                </div>
                                 <ng-template #elseblock>
                                     Login to purchase!</ng-template>
                             </div>

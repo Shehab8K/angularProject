@@ -20,15 +20,15 @@ export class CreditCardComponent {
   cvv = 'xxx';
 
   // expirationDatemonth = new Date().getMonth();
-  expirationDatemonth:any
-  months:any[] = [];
+  expirationDatemonth: any
+  months: any[] = [];
   expirationDateyear = new Date().getFullYear();
   endYear = this.expirationDateyear + 6;
   years: any[] = [];
   cart: any[] = [];
   cvvFocus = false;
-  cartTotalPrice: number  = 0;
-  user:any
+  cartTotalPrice: number = 0;
+  user: any
   filteredMonths: string[] = this.months;
 
   creditcardForm = new FormGroup({
@@ -36,7 +36,7 @@ export class CreditCardComponent {
     cardNumber: new FormControl(null, [Validators.required, Validators.pattern(/^\d{16}$/)]),
     expirationMonth: new FormControl(null, [Validators.required]),
     expirationYear: new FormControl(null, [Validators.required]),
-    cvv : new FormControl(null, [Validators.required, Validators.pattern(/^\d{3}$/)])
+    cvv: new FormControl(null, [Validators.required, Validators.pattern(/^\d{3}$/)])
   })
 
   ngOnInit(): void {
@@ -95,7 +95,7 @@ export class CreditCardComponent {
       //service to pament stripe
       this.createPayment()
 
-      this.router.navigate(['/cart']);
+      this.router.navigate(['/orders']);
     } else {
       // Form is invalid, handle validation errors
       console.log("Form is invalid");
@@ -109,7 +109,7 @@ export class CreditCardComponent {
     const orderData = {
       gameItems: this.user.cart,
       userID: this.user._id,
-      total:this.cartTotalPrice
+      total: this.cartTotalPrice
     };
 
     console.log(orderData)
@@ -125,7 +125,7 @@ export class CreditCardComponent {
     );
   }
 
-  clearCart(){
+  clearCart() {
     this.userService.updateUserCart(this.user._id, []).subscribe({
       next: () => {
         this.ngOnInit();
@@ -136,41 +136,41 @@ export class CreditCardComponent {
     })
   }
 
-    createPayment(): void {
-      // Your logic to get the required data for creating the payment
-      let id = this.user._id
-      let cardNumber = this.cardNumber.join('')
-      let cardExpMonth = this.expirationDatemonth
-      let cardExpYear = this.expirationDateyear
-      let cardCVC = this.cvv
-      let price = this.cartTotalPrice !== null ? this.cartTotalPrice : null
+  createPayment(): void {
+    // Your logic to get the required data for creating the payment
+    let id = this.user._id
+    let cardNumber = this.cardNumber.join('')
+    let cardExpMonth = this.expirationDatemonth
+    let cardExpYear = this.expirationDateyear
+    let cardCVC = this.cvv
+    let price = this.cartTotalPrice !== null ? this.cartTotalPrice : null
 
-      let paymentData ={
-        id,
-        cardNumber,
-        cardExpMonth,
-        cardExpYear,
-        cardCVC,
-        price
+    let paymentData = {
+      id,
+      cardNumber,
+      cardExpMonth,
+      cardExpYear,
+      cardCVC,
+      price
+    }
+    console.log(paymentData)
+    this.paymentService.createPayment(paymentData).subscribe({
+      next: (response) => {
+        // Handle successful response here
+        console.log('Payment created successfully:', response);
+      },
+      error: (error) => {
+        // Handle error here
+        console.error('Error creating payment:', error);
       }
-      console.log(paymentData)
-      this.paymentService.createPayment(paymentData).subscribe(
-        (response) => {
-          // Handle successful response here
-          console.log('Payment created successfully:', response);
-        },
-        (error) => {
-          // Handle error here
-          console.error('Error creating payment:', error);
-        }
-      );
+    })
   }
 
-// Mark all form controls as touched
+  // Mark all form controls as touched
   markFormGroupTouched(formGroup: FormGroup): void {
-  Object.values(formGroup.controls).forEach(control => {
-    control.markAsTouched();
-  });
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+    });
   }
 
   onCvvFocus() {
@@ -194,7 +194,7 @@ export class CreditCardComponent {
 
   }
 
- onCvvChange(event: Event): void {
+  onCvvChange(event: Event): void {
     this.cvv = (event.target as HTMLInputElement).value;
   }
 
@@ -217,6 +217,6 @@ export class CreditCardComponent {
       this.filteredMonths = this.months;
     }
     const yearString = (event.target as HTMLInputElement).value;
-      this.expirationDateyear = parseInt(yearString, 10);
+    this.expirationDateyear = parseInt(yearString, 10);
   }
 }
