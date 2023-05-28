@@ -19,21 +19,24 @@ export class AcceptedOrdersComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private ordersService:OrdersService) { }
+  constructor(private ordersService:OrdersService) { 
+    this.filterAcceptedOrders();
+
+  }
 
   ngOnInit() {
-    this.ordersService.getAllOrders().subscribe(
-   {
-       next:(data: Object) => {
-        this.allOrders = data as any[];
-    this.racceptedOrders=this.allOrders.filter(order => order.status === "accepted");
-
-        this.dataSource = new MatTableDataSource(this.racceptedOrders);
-        this.dataSource.paginator = this.paginator;
-      },
-      error:(error) => {
-        console.log(error);
-      }}
-    );
+    this.ordersService.orderUpdateChngObservable.subscribe(()=>{
+      this.filterAcceptedOrders();
+    })
+  }
+  filterAcceptedOrders(){
+    this.ordersService.getAllOrders().subscribe({
+      next:(data)=>{
+this.allOrders =data as any[];
+this.racceptedOrders=this.allOrders.filter(order => order.status === "accepted");
+this.dataSource = new MatTableDataSource(this.racceptedOrders);
+this.dataSource.paginator = this.paginator;
+      }
+    })
   }
 }
