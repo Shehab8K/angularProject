@@ -3,7 +3,7 @@
 video{
  width:100%;
  position: relative;
- top:0px; 
+ top:0px;
 }
 
 .prev, .next{
@@ -27,14 +27,13 @@ h1{
   color:white
 }
 
-/* .image_hover{
-  display: none;
-} */
-/* .container
-{
-  width:50%;
-  margin:2% auto;
-} */
+.tag {
+  width: fit-content;
+  padding: 1px;
+  margin-left: 3px;
+  background-color: rgb(39, 41, 53);
+  font-size: small;
+}
 .image
 {
   height: 25rem;
@@ -82,6 +81,6 @@ button{
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 6px 16px 0 rgba(0,0,0,0.19);
 }
 
-.title1{
-  
-}
+/* .title1{
+
+} */

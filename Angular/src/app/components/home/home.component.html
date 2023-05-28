@@ -11,27 +11,62 @@
     <button (click)="ShowPrevious()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="prev col-1"> ❮ </button>
 
     <div class="container row col-10 shadow-lg">
-      <div class="image col-md-8 ">
-        <img [src]="images[currentImageIndex].src" />
+
+      <div class="image col-md-8">
+        <ng-container *ngFor="let image of items[currentIndex]?.images">
+          <img [src]="image" *ngIf="image === items[currentIndex]?.images[0]" />
+        </ng-container>
       </div>
 
-      <div class="col-md-4 d-flex flex-column right-side">
-        <p class="container text-white p-2 fs-3">{{images[currentImageIndex].title}}</p>
+      <div class="col-md-4 d-flex flex-column right-side gap-2">
+        <div class="d-flex flex-column justify-content-around text-center">
+          <p class="container text-white p-2 fs-3">{{items[currentIndex].name}}</p>
+        </div>
 
-        <div class="side d-flex gap-3">
+        <div class="side d-flex flex-column gap-3 justify-content-between">
+
+          <div class="d-flex gap-3">
+            <p class="text-white">{{items[currentIndex].description}}$</p>
+          </div>
+
 
           <!-- <img [src]="images[currentImageIndex].image" /> -->
-          <img *ngFor="let image of images[currentImageIndex].photo;
-          let i = index" [src]="image">
+          <div class="border">
+            <img  *ngFor="let image of images[currentindex];" [src]="image" />
+          </div>
+          <div class="d-flex gap-3" >
+            <!-- <p class="p-1 text-center text-white" >
+                <img *ngFor="let image of images[currentIndex]"
+                [src]="image" height="400" width="200">
+            </p> -->
+          </div>
+
+
+
+
+          <div class="d-flex fs-4 justify-content-between p-3">
+            <!-- <div class="os d-flex gap-3">
+              <i *ngFor="let p of items[currentIndex].os" class="fa text-white" [ngClass]="{
+                'fa-apple': p === 'mac',
+                'fa-windows': p === 'windows',
+                'fa-linux': p === 'linux'
+              }"></i>
+            </div> -->
+              <p class="text-white">{{items[currentIndex].price}}$</p>
+          </div>
 
         </div>
+
       </div>
     </div>
+
     <button (click)="ShowNext()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="next col-1"> ❯ </button>
   </div>
 
 <!-- Your Cards are there -->
 <app-home-cards></app-home-cards>
+
 </section>
+
 <app-footer></app-footer>
 
