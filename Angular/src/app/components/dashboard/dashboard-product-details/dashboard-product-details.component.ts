@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GamesService } from 'src/app/services/products.service';
+import { GalleryItem, ImageItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-dashboard-product-details',
@@ -12,6 +13,7 @@ export class DashboardProductDetailsComponent implements OnInit {
   hoveredImageUrl: string = "";
   firstImage: string = "";
   currentSlideIndex = 0;
+  images: GalleryItem[] = [];
 
   ID: any;
   game: any;
@@ -22,12 +24,19 @@ export class DashboardProductDetailsComponent implements OnInit {
     this.ID=this.route.snapshot.params["id"]
     this.loadGameDetails();
   }
+  assignImages() {
+    this.game.images.forEach((img: string) => {
+      this.images.push(new ImageItem({ src: img, thumb: img })
+      )
+    });
+  }
 
   loadGameDetails(): void {
     this.gameService.GetGameByID(this.ID).subscribe(
       {
         next: (data) => {
           this.game = data;
+          this.assignImages()
         },
         error: (err) => {
           console.log(err);

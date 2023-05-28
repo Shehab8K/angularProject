@@ -1,16 +1,16 @@
 <table mat-table [dataSource]="dataSource" >
     <!-- Define your table columns -->
-    <ng-container matColumnDef="column1">
-      <th mat-header-cell *matHeaderCellDef>Column 1</th>
-      <td mat-cell *matCellDef="let element">{{ element.column1 }}</td>
+    <ng-container matColumnDef="_id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let order">{{ order._id }}</td>
     </ng-container>
-    <ng-container matColumnDef="column2">
-      <th mat-header-cell *matHeaderCellDef>Column 1</th>
-      <td mat-cell *matCellDef="let element">{{ element.column2 }}</td>
+    <ng-container matColumnDef="numGames">
+      <th mat-header-cell *matHeaderCellDef>no. of items</th>
+      <td mat-cell *matCellDef="let order">{{ order.numGames }}</td>
     </ng-container>
-    <ng-container matColumnDef="column3">
-      <th mat-header-cell *matHeaderCellDef>Column 1</th>
-      <td mat-cell *matCellDef="let element">{{ element.column3 }}</td>
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let order">{{ order.total }}</td>
     </ng-container>
     <!-- Repeat the same structure for other columns -->
   

@@ -1,11 +1,10 @@
 .card {
-  width: 80vw;
-  background: rgb(38, 38, 38);
-  box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.333);
+  width:100%;
   display: flex;
   justify-content: space-between;
   padding: 10px;
   margin: auto;
+  background-color: transparent;
 }
 
 .left ,.right
@@ -17,6 +16,10 @@
   justify-content: space-between;
 }
 
+.desc
+{
+  font-size: 15px;
+}
 
 .up {
   display: flex;
@@ -24,38 +27,8 @@
   justify-content: space-between;
 }
 
-.smallimages {
-  height: 30%;
-  border: 2px solid white;
-  display: flex;
-  justify-content: space-between;
-}
-
-.smallimages img,
-.largeimage img {
-  width: 95% !important;
-  height: 95% !important;
-  object-fit: unset;
-  padding: 2%;
-  border: 2px dotted white;
-}
-
-.smallimages img {
-  opacity: 0.7;
-}
-
-.smallimages img:hover {
-  opacity: 1;
-}
-
-.largeimage {
-  width: 100%;
-  height: 80%;
-}
-
-
 * {
-  color: white !important;
+  color: white;
   border-radius: 10px;
 }
 
@@ -80,4 +53,5 @@ img {
 }
 .tag {
   display: flex;
+  flex-wrap:wrap;
 }

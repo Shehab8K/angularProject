@@ -39,7 +39,7 @@ let createOrder = async (req, res) => {
 
     let total = 0;
     for (let i = 0; i < gameItems.length; i++) {
-      total += gameItems[i].GamePrice;
+      total += gameItems[i].price;
     }
 
     const newOrder = new Order({
@@ -77,8 +77,8 @@ let updateOrder = async (req, res) => {
           status: newData.status
         }
       );
-      res.send("Order updated successfully");
-    }
+      return res.status(200).json({message:"Order updated successfully"});
+``    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });

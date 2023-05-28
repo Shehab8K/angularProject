@@ -2,88 +2,62 @@
 
   <main>
 
-    <section class="summary shadow-lg mb-3">
-      <div class="items">🛒 3 items</div>
-      <div class="total">$415.00 💲</div>
+    <section class="promo text-center m-2 p-3 mt-3 shadow-sm fs-3 rounded">
+      <div>
+        <p class="spin-emoji">🌟</p> Offer Ends Soon! <p class="spin-emoji">🌟</p>
+      </div>
     </section>
 
-    <section class="actions shadow-lg">
-      <a routerLink="/payment"><button>Checkout 💳</button></a>
-    </section>
-
-    <section class="cart shadow-lg">
-      <ul>
-        <li class="item shadow-lg mb-3">
+    <section class="cart rounded shadow-lg">
+      <ul *ngFor="let cart of user.cart">
+        <li class="item mb-3 rounded">
           <div class="d-flex gap-4">
-            <div class="image">
-              <img src="../../../assets/images/cod.jpg">
+            <div class="image ">
+              <img  src={{cart.images[0]}}>
             </div>
 
             <div>
-              <h4 class="name">Call of Duty </h4>
-              <p>Single player</p>
+              <h4 class="name"> {{cart.name }}</h4>
+              <div class="d-flex">
+                <div *ngFor="let type of cart.type">
+                  <p class="tag p-1 text-center">{{type}}</p>
+                </div>
+                <div *ngFor="let tag of cart.tag">
+                  <p class="tag p-1 text-center">{{tag}}</p>
+                </div>
+              </div>
               <div class="os d-flex gap-2">
-                <i class='fab fa-apple' ></i>
-                <i class='fab fa-windows'></i>
+                <i *ngFor="let p of cart.os" class="fa" [ngClass]="{
+              'fa-apple': p === 'mac',
+              'fa-windows': p === 'windows',
+              'fa-linux': p === 'linux'
+              }"></i>
               </div>
             </div>
           </div>
 
-          <div>
-            <p class="price">$231.00</p>
-            <p><button>Remove</button></p>
+          <div class="right-col d-flex flex-column">
+            <p class="price">{{cart.price}} $</p>
+            <p><button (click)="removeCartItem(cart)">Remove</button></p>
           </div>
         </li>
-
-        <li class="item shadow-lg mb-3">
-          <div class="d-flex gap-4">
-            <div class="image">
-              <img src="../../../assets/images/lol.jpg">
-            </div>
-            <div>
-              <h4 class="name">Game 1</h4>
-              <p>Multiple player</p>
-              <div class="os d-flex gap-2">
-                <i class='fab fa-apple' ></i>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p class="price">$115.00</p>
-            <p><button>Remove</button></p>
-          </div>
-        </li>
-
-        <li class="item shadow-lg mb-3">
-          <div class="d-flex gap-4">
-            <div class="image">
-              <img src="../../../assets/images/OIP.jpg">
-            </div>
-            <div>
-              <h4 class="name">Game2</h4>
-              <p>Single player</p>
-              <div class="os d-flex gap-2">
-                <i class='fab fa-windows'></i>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p class="price">$69.00</p>
-            <p><button>Remove</button></p>
-          </div>
-        </li>
+        <hr class="m-2 separator rounded">
       </ul>
 
-      <section class="shadow-lg d-flex justify-content-around">
-        <a routerLink="/games"><button>Continue Shipping</button></a>
-        <button>Remove All</button>
+      <section class="d-flex justify-content-around">
+        <a routerLink="/games"><button class="bottmom-button">Continue Shipping</button></a>
+        <button class="bottmom-button" *ngIf="user.cart.length > 0" (click)="clearCart()">Remove All</button>
       </section>
     </section>
 
-    <section class="promo text-center shadow-lg">
-      <div><p class="spin-emoji">🌟</p> Offer Ends Soon! <p class="spin-emoji">🌟</p></div>
+    <section class="summary shadow-lg mb-3">
+      <div class="items">🛒 {{user.cart.length}} items</div>
+      <div class="total"> {{total.toFixed(2)}} 💲</div>
     </section>
 
+    <section class="actions shadow-lg" *ngIf="user.cart.length > 0">
+      <a routerLink="/payment"><button (click)="updateTotal()">Checkout 💳</button></a>
+    </section>
 
   </main>
 

@@ -1,47 +1,63 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import Chart from 'chart.js/auto';
-// import { GamesService } from 'src/app/services/games.service';
+
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent {
-  games: any
-
   public chart: any;
-  createChart(){
+  @Input() tags: any[] = [];
+  @Input() tagCount: any[] = [];
+  @Output() chartCreated: EventEmitter<void> = new EventEmitter<void>();
+  // constructor(private cdr: ChangeDetectorRef) { }
 
+
+  ngOnInit(): void {
+    console.log("in child");
+    this.createChart();
+    // this.cdr.detectChanges();
+
+    // console.log(this.tags)
+    // console.log(this.tagCount)
+  }
+
+  createChart() {
     this.chart = new Chart("MyChart", {
-      type: 'pie', //this denotes tha type of chart
+      type: 'pie',
 
       data: {// values on X-Axis
-        labels: ['Action','Adventure',
-								 'War','fantasy'],
-	       datasets: [
-          // {
-          //   label: "Sales",
-          //   data: ['467','576', '57'],
-          //   backgroundColor: 'blue'
-          // },
+        labels: this.tags,
+        datasets: [
           {
-            label: "Profit",
-            data: ['300', '400', '536'],
+            data: this.tagCount,
             backgroundColor: [
-              'red',
-              'gray',
-              'green',
+              '#26d9ac',
+              '#60709f',
+              'rgba(112, 192, 219)',
+              'rgb(160, 160, 119)',
+              'rgb(135, 96, 96)', 
+              'lightgray',
+
             ],
             // hoverOffset: 4
           }],
       },
       options: { //forsize of chart
-        aspectRatio:2.5
+        aspectRatio: 2.5,
+        plugins: {
+          legend: {
+            labels: {
+              color: 'white'
+            }
+          }
+        }
       }
 
     });
-  }
-  ngOnInit(): void {
-    this.createChart();
+    this.chartCreated.emit();
+    // this.cdr.detectChanges();
+
   }
 }

@@ -1,12 +1,15 @@
 <ng-container *ngIf="game">
   <app-title [titleContent]="game.name"></app-title>
-  <div class="card">
+  <div class="card  ">
     <div class="up">
-      <div class="left"></div>
+      <div class="left">
+        <gallery class="w-100 p-2 image-container shadow-lg rounded bg-dark" thumbPosition="bottom"
+                [items]="images"></gallery>
+      </div>
       <div class="right">
         <h4>About</h4>
         <hr>
-        <h5>{{ game.description }}</h5>
+        <h5 class="desc">{{ game.description }}</h5>
         <hr/>
         <h6><i class="fa fa-money"></i> {{ game.price }}$</h6>
         <h6><i class="fa fa-calendar"></i> {{ game.releasedDate | date: 'dd/MM/yyyy' }}</h6>
@@ -22,8 +25,9 @@
             'fa-user': gameType === 'singleplayer',
             'fa-users': gameType === 'multiplayer'
           }">
-            {{gameType}}
+         
         </i>
+        <p *ngFor="let gameType of game.type"h3>{{gameType}}</p> 
         </div>
         <hr/>
         <div class="OS">

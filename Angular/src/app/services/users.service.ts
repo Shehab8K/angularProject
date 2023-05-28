@@ -49,4 +49,18 @@ export class UserService {
   logout(){
     localStorage.removeItem('user');
   }
+  updateUser(id:string, body:any){
+    console.log("in service")
+    return this.myClient.put(this.Base_URL +'/'+ id, body)
+  }
+
+  getAllUsers(){
+    return this.myClient.get(this.Base_URL);
+  }
+ban(body:any){
+  return this.myClient.post(this.Base_URL + "/ban",body)
+}
+unban(body:any){
+  return this.myClient.post(this.Base_URL + "/unban",body)
+}
 }
