@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { GamesService } from 'src/app/services/products.service';
 import { Location } from '@angular/common';
 import { error } from 'jquery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-products',
@@ -18,7 +19,7 @@ export class DashboardProductsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private gamesService: GamesService) { }
+  constructor(private gamesService: GamesService, private router: Router) { }
 
   ngOnInit() {
     this.gamesService.GetAllGames().subscribe(
@@ -34,6 +35,20 @@ export class DashboardProductsComponent implements OnInit {
     );
   }
 
+  editProduct(id:any)
+  {
+    this.router.navigate(['/dashboard/games/update', id]);
+    // this.gamesService.GetGameByID(id).subscribe({
+    //   next:(res)=>{
+    //     console.log(res);
+    //     this.gamesService.emitValue(res);
+    //     this.router.navigate(['/dashboard/games/add']);
+    //   },
+    //   error: (err)=>{
+    //     console.log(err);
+    //   }
+    // })
+  }
   deleteProduct(id: any) {
     this.gamesService.deleteGame(id).subscribe(
       {
@@ -57,7 +72,7 @@ export class DashboardProductsComponent implements OnInit {
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');  
+    const day = String(date.getDate()).padStart(2, '0');
     return `${day} - ${month} - ${year}`;
   }
 

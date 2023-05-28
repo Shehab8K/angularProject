@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -7,9 +8,16 @@ import { environment } from 'src/environments/environment';
 })
 export class GamesService {
 
+  private valueSubject: Subject<object> = new Subject<object>();
+  value$: Observable<object> = this.valueSubject.asObservable();
+
   constructor(private readonly myClient: HttpClient) { }
 
   private readonly Base_URL = environment.apiURL + '/products';
+
+  emitValue(newValue: object): void {
+    this.valueSubject.next(newValue);
+  }
 
   GetAllGames() {
     // console.log (this.myClient.get(this.Base_URL));
@@ -35,6 +43,14 @@ export class GamesService {
     headers.append('Content-Type', 'multipart/form-data');  // Add the 'Content-Type' header
     headers.append('Accept', 'application/json');  // Add any other necessary headers
     return this.myClient.post(this.Base_URL,newProduct,{ headers });
+  }
 
+  UpdateProduct(newProduct:any, id:any){
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');  // Add the 'Content-Type' header
+    headers.append('Accept', 'application/json');  // Add any other necessary headers
+    console.log("update service")
+    console.log(newProduct)
+    return this.myClient.put(this.Base_URL+"/"+id,newProduct,{ headers });
   }
 }

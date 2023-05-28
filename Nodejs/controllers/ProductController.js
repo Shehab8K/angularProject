@@ -115,9 +115,6 @@ router.post("/", async (req, res) => {
         return res.status(500).send("Error uploading file");
       } else {
 
-        if(req.files){
-          console.log(req.files);
-        }
         let product = await Product.create({
           name: req.body.name,
           price: req.body.price,
@@ -163,10 +160,6 @@ router.put("/:id", async (req, res) => {
         return res.status(500).send("Error uploading file");
       } else {
 
-        if(req.files){
-          console.log(req.files);
-        }
-
         const dataForValidation = {
           name: req.body.name,
           price: req.body.price,
@@ -176,6 +169,10 @@ router.put("/:id", async (req, res) => {
           description: req.body.description,
           releasedDate: req.body.releasedDate
         }
+
+        console.log("comming")
+        console.log(req.body);
+        console.log(req.files);
 
         const { error } = validateProduct(dataForValidation);
 
@@ -188,6 +185,7 @@ router.put("/:id", async (req, res) => {
           
         if(!product)
         {
+          console.log("User not found");
           return res.status(404).json({message: "Product not found"})
         }
         
@@ -239,7 +237,6 @@ router.put("/:id", async (req, res) => {
 
 //delete product
 router.delete("/:id", async (req, res) => {
-  console.log("in controller");
   try {
     const product = await Product.findById(req.params.id);
     if (!product) {

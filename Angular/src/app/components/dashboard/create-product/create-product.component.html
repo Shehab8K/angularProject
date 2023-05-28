@@ -9,11 +9,11 @@
                     <div class="col-6">
                         <input formControlName="name"   type="text" class="form-control"
                             placeholder=" Name"
-                            aria-label="name">
+                            aria-label="name" value="{{name}}">
                     </div>
                     <div class="col-6">
                         <input formControlName="price"  type="number" class="form-control"
-                            placeholder="Price" aria-label="price">
+                            placeholder="Price" aria-label="price" value="{{price}}">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -59,15 +59,19 @@
                         <div class="col-13">
                             <textarea formControlName="description"  class="form-control w-100"
                                 id="exampleFormControlTextarea1" rows="3" cols="50"
-                                placeholder="Descripe the new Game!"></textarea>
+                                placeholder="Descripe the new Game!" value="{{description}}"></textarea>
                         </div>
                     </div>
 
                 </div>
             </div>
             <div class="text-center">
+
+              <button type="submit" class="btn btn-outline-secondary  "
+              style="color: white;" *ngIf="!updateMood">Add Game</button>
+
                 <button type="submit" class="btn btn-outline-secondary  "
-                    style="color: white;">Add Game</button>
+                    style="color: white;" *ngIf="updateMood">Update Game</button>
             </div>
 
         </form>
