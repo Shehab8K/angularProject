@@ -78,7 +78,7 @@ let updateOrder = async (req, res) => {
         }
       );
       return res.status(200).json({message:"Order updated successfully"});
-    }
+``    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
