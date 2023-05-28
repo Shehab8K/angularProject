@@ -70,6 +70,7 @@ import { GameShowComponent } from './components/game-show/game-show.component';
 
 import { ColorPickerModule } from 'ngx-color-picker';
 import { GalleryModule } from 'ng-gallery';
+import { UserUpdateService } from './services/emitters.service';
 
 
 
@@ -149,7 +150,7 @@ import { GalleryModule } from 'ng-gallery';
     ColorPickerModule,
     GalleryModule
   ],
-  providers: [],
+  providers: [UserUpdateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

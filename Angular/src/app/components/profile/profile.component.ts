@@ -25,7 +25,8 @@ export class ProfileComponent implements OnInit {
   newPreferences: any[] = [];
   inputs: any[] = []
 
-  constructor(private userService: UserService, private orderService: OrdersService, private cdr: ChangeDetectorRef, private userUpdateService: UserUpdateService) { }
+  constructor(private userService: UserService, private orderService: OrdersService,
+     private cdr: ChangeDetectorRef, private userUpdateService: UserUpdateService) { }
 
   ngOnInit(): void {
     this.fetchData()
@@ -47,8 +48,7 @@ export class ProfileComponent implements OnInit {
       "preferences": this.updatedPreferences,
       "bgColor": this.bgcolor
     }
-    console.log(updatedUser)
-    // this.emitValue();
+    this.emitValue(updatedUser);
     this.userService.updateUser(this.user._id, updatedUser).subscribe({
       next: () => {
         this.fetchData()
@@ -61,9 +61,9 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-  // emitValue(): void{
-  //   this.userUpdateService.emitValue('Hambola');
-  // }
+  emitValue(data: any): void{
+    this.userUpdateService.emitValue(data);
+  }
   toggleEditMode() {
     this.editMode = !this.editMode
   }
@@ -126,7 +126,6 @@ export class ProfileComponent implements OnInit {
           this.orders = data;
           this.getTags()
           this.getGames()
-          // console.log(this.games)
         },
         error: (err: any) => {
           console.log(err);
@@ -135,7 +134,6 @@ export class ProfileComponent implements OnInit {
     }
   }
   refresh() {
-    console.log("refreshing")
     this.cdr.detectChanges();
   }
   setDefault() {

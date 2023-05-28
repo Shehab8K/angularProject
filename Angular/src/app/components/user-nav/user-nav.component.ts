@@ -13,10 +13,13 @@ export class UserNavComponent {
   public myusername: any;
   public image: any;
 
-  public subscribedValue: string | undefined;
+  public subscribedValue: any;
   @Output() loggedOut: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private userService: UserService, private router: Router,private cdr: ChangeDetectorRef, private userUpdateService: UserUpdateService) {
+
+  constructor(private userService: UserService, private router: Router,
+    private cdr: ChangeDetectorRef, private userUpdateService:UserUpdateService
+    ) {
     const userObservable = this.userService.getCurrentUser()
     if (userObservable) {
       userObservable.subscribe({
@@ -33,12 +36,13 @@ export class UserNavComponent {
 
   }
 
-  // ngOnInit(): void {
-  //   this.userUpdateService.value$.subscribe((value: string) => {
-  //     this.subscribedValue = value;
-  //     console.log("from user nav : "+this.userUpdateService);
-  //   });
-  // }
+  ngOnInit(): void {
+    this.userUpdateService.value$.subscribe((value: any) => {
+      this.subscribedValue = value;
+      this.myusername = this.subscribedValue.username
+      // this.myusername = this.subscribedValue.username;
+    });
+  }
 
   toggleWrap() {
     const userWrap = document.getElementById('usrWrap');

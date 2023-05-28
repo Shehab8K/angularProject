@@ -3,10 +3,10 @@ import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class UserUpdateService {
-  // private valueSubject: Subject<string> = new Subject<string>();
-  // value$: Observable<string> = this.valueSubject.asObservable();
+  private valueSubject: Subject<object> = new Subject<object>();
+  value$: Observable<object> = this.valueSubject.asObservable();
 
-  // emitValue(newValue: string): void {
-  //   this.valueSubject.next(newValue);
-  // }
+  emitValue(newValue: object): void {
+    this.valueSubject.next(newValue);
+  }
 }
