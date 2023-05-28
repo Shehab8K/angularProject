@@ -55,7 +55,7 @@ export class UserNavComponent {
     this.userService.logout();
     this.loggedOut.emit();
     this.myusername = null
-    location.reload()
+    // location.reload()
 
   }
 }

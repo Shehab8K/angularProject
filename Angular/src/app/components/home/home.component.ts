@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 // import { GamesService } from 'src/app/services/games.service';
 @Component({
   selector: 'app-home',
@@ -10,6 +10,7 @@ export class HomeComponent {
   currentindex = 0;
   timer:any;
   currentImageIndex = 0;
+  @ViewChild('aboutSection') aboutSection!: ElementRef;
 
   images = [
     {
@@ -65,7 +66,9 @@ export class HomeComponent {
     }
 
   }
-
+  handleNavigateToSection() {
+      this.aboutSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
   ShowNext(){
     if(this.currentImageIndex < this.images.length-1)
     {
