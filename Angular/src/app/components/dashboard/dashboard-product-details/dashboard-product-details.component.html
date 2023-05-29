@@ -1,35 +1,37 @@
 <ng-container *ngIf="game">
-  <app-title [titleContent]="game.name"></app-title>
-  <div class="card  ">
+  <div class="card  animated-box in">
+    <app-title [titleContent]="game.name"></app-title>
     <div class="up">
       <div class="left">
-        <gallery class="w-100 p-2 image-container shadow-lg rounded bg-dark" thumbPosition="bottom"
-                [items]="images"></gallery>
+        <gallery class="w-100 p-2 image-container shadow-lg rounded bg-dark"
+          thumbPosition="bottom"
+          [items]="images"></gallery>
       </div>
       <div class="right">
         <h4>About</h4>
         <hr>
         <h5 class="desc">{{ game.description }}</h5>
-        <hr/>
+        <hr />
         <h6><i class="fa fa-money"></i> {{ game.price }}$</h6>
-        <h6><i class="fa fa-calendar"></i> {{ game.releasedDate | date: 'dd/MM/yyyy' }}</h6>
-        <hr/>
+        <h6><i class="fa fa-calendar"></i> {{ game.releasedDate | date:
+          'dd/MM/yyyy' }}</h6>
+        <hr />
         <div class="tag">
-        <h5 class="bg-dark p-1" *ngFor="let gameTag of game.tag">
-          {{gameTag}}
-        </h5>
-      </div>
-       <hr />
+          <h5 class="bg-dark p-1" *ngFor="let gameTag of game.tag">
+            {{gameTag}}
+          </h5>
+        </div>
+        <hr />
         <div class="type">
-          <i *ngFor="let gameType of game.type"class="fa" [ngClass]="{
+          <i *ngFor="let gameType of game.type" class="fa" [ngClass]="{
             'fa-user': gameType === 'singleplayer',
             'fa-users': gameType === 'multiplayer'
           }">
-         
-        </i>
-        <p *ngFor="let gameType of game.type"h3>{{gameType}}</p> 
+
+          </i>
+          <p *ngFor="let gameType of game.type" h3>{{gameType}}</p>
         </div>
-        <hr/>
+        <hr />
         <div class="OS">
           <i *ngFor="let operatingSystem of game.os" class="fa" [ngClass]="{
             'fa-apple': operatingSystem === 'mac',
