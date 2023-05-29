@@ -1,7 +1,6 @@
 <app-title [titleContent]="productsTitle"></app-title>
 <div class="d-flex justify-content-center align-content-center">
-  <i type="button" [routerLink]="['./add']"
-    class="fa-solid fa-circle-plus fa-xl " style="color: white;"></i>
+  <i type="button" [routerLink]="['./add']" class="fa-solid fa-circle-plus fa-xl " style="color: white;"></i>
 </div>
 <table mat-table [dataSource]="dataSource">
 
@@ -25,22 +24,35 @@
     <th mat-header-cell *matHeaderCellDef>actions</th>
     <td mat-cell *matCellDef="let game">
       <a [routerLink]="'/dashboard/games/' + game._id">
-        <i class="material-icons button--rounded ">visibility</i>
+        <i class="material-icons button--rounded">visibility</i>
       </a>
-      
+  
       <i class="material-icons button--rounded m-2">edit</i>
-      <i class="material-icons button--rounded "
-        (click)="deleteProduct(game._id)">delete</i>
+      <i class="material-icons button--rounded" data-bs-toggle="modal" [attr.data-bs-target]="'#confirmation' + game._id">delete</i>
+      <div class="modal fade" [id]="'confirmation' + game._id" index="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header text-dark">
+              <h5 class="modal-title" id="confirmationLabel">Delete game confirmation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p class="text-dark">Are you sure you want to delete this game?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteProduct(game._id)">I'm sure</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </td>
   </ng-container>
+  
 
   <!-- Table rows -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
-<mat-paginator [length]="100"
-  [pageSize]="10"
-  [pageSizeOptions]="[5, 10, 25, 100]"
-  aria-label="Select page">
+<mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
 </mat-paginator>

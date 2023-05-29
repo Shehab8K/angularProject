@@ -83,7 +83,10 @@
   <form (ngSubmit)="onFormSubmit()" [formGroup]="creditcardForm">
     <div class="mb-3">
       <label>Name on Card</label>
-      <input formControlName="name" class="form-control" type="text" placeholder="John Smith" (input)="onNameChange($event)">
+      <input
+          formControlName="name" class="form-control" type="text"
+          placeholder="John Smith"
+          (input)="onNameChange($event)">
       <div *ngIf="creditcardForm.get('name')?.invalid && creditcardForm.get('name')?.touched" class="text-danger">
         <div *ngIf="creditcardForm.get('name')?.errors?.['required']">
           Name on Card is required.

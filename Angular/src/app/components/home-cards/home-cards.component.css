@@ -224,13 +224,18 @@ body li {
     overflow-y: auto;
   padding: 20px 0;
   box-sizing: border-box;
-  /* border:3px yellow solid !important; */
-  height: 570px !important;
+  width:98%
+}
+
+.home
+{
+  display:flex;
+  flex-direction: row;
+  align-items: baseline
 }
 
 /* for arrows */
 .arrow {
-  position: relative;
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
@@ -240,7 +245,7 @@ body li {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index:20;
+  z-index: 20;
   opacity: 0.8;
   transition: opacity 0.3s;
 }
@@ -250,17 +255,17 @@ body li {
 }
 
 .left-arrow {
-  left: 0%;
-  top: 55vh;
-}
-.right-arrow {
-  left: 100%;
-  bottom:42vh
- 
+  left: 0;
 }
 
-.arrow svg {
+.right-arrow {
+  right: 0;
+}
+
+.left-arrow svg,
+.right-arrow svg {
   width: 24px;
   height: 24px;
   fill: #000;
 }
+

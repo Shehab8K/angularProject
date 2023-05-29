@@ -59,10 +59,12 @@ img {
 .cart {
   grid-area: content;
   width: 100%;
-  overflow-y: scroll;
-  height: 60vh;
+  /* overflow-y: scroll; */
+  /* height: 60vh; */
 }
-
+.game-details{
+  flex-wrap: wrap;
+}
 .cart::-webkit-scrollbar-track {
   background-color: transparent; /* Color of the scrollbar track */
 }

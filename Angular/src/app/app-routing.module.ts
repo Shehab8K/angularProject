@@ -60,6 +60,7 @@ const routes: Routes = [
       {path:'games',component:DashboardProductsComponent},
       {path:'games/add',component:CreateProductComponent},
       {path:'orders',component:DashboardOrdersComponent},
+      {path:'games/:id',component:DashboardProductDetailsComponent}
     ]
   },
 
