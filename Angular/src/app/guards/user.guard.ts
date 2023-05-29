@@ -19,9 +19,9 @@ export class UserGuard {
     state: RouterStateSnapshot
   ): boolean {
       const role = this.auth.getRole();
-    if (role !== 'user' && role !== 'admin') {
+    if (role == 'admin') {
       console.log(role);
-      this.router.navigate(['/401']); //Useless for now
+      this.router.navigate(['/dashboard']);
     }
     return true;
   }
@@ -31,9 +31,9 @@ export class UserGuard {
     state: RouterStateSnapshot
   ): boolean {
     const role = this.auth.getRole();
-    if (role !== 'user' && role !== 'admin') {
+    if (role == 'admin') {
       console.log(role);
-      this.router.navigate(['/401']); //Useless for now
+      this.router.navigate(['/dashboard']);
     }
     return true;
   }
