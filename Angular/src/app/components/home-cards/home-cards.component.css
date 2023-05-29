@@ -225,12 +225,13 @@ body li {
   padding: 20px 0;
   box-sizing: border-box;
   /* border:3px yellow solid !important; */
-  height: 570px !important;
+  height: 70% !important;
 }
 
 /* for arrows */
 .arrow {
-  position: relative;
+  position: absolute;
+  top:175%;
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
@@ -240,7 +241,7 @@ body li {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index:20;
+  z-index: 20;
   opacity: 0.8;
   transition: opacity 0.3s;
 }
@@ -250,17 +251,43 @@ body li {
 }
 
 .left-arrow {
-  left: 0%;
-  top: 55vh;
-}
-.right-arrow {
-  left: 100%;
-  bottom:42vh
- 
+  left: 0;
 }
 
-.arrow svg {
+.right-arrow {
+  right: 0;
+}
+
+.left-arrow svg,
+.right-arrow svg {
   width: 24px;
   height: 24px;
   fill: #000;
+}
+@media screen and (max-width:1327px) {
+  .arrow {
+    top:210%;
+  }
+}
+@media screen and (max-width:1324px) {
+  .arrow {
+    top:165%;
+  }
+}
+@media screen and (min-width:990px) and (max-width: 1324px) {
+  .arrow {
+    top:187%;
+  }
+}
+
+@media screen and (max-width:990px) {
+  .arrow {
+    top:205%;
+  }
+}
+
+@media screen and (max-width:991px) {
+  .arrow {
+    top:210%;
+  }
 }
