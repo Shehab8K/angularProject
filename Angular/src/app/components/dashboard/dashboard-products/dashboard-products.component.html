@@ -27,13 +27,8 @@
       <a [routerLink]="'/dashboard/games/' + game._id">
         <i class="material-icons button--rounded ">visibility</i>
       </a>
-      <!-- <a (click)="navigateToEdit(game)">
-        <i class="material-icons button--rounded m-2">edit</i>
-      </a> -->
-      <a [routerLink]="'/dashboard/games/' + game._id">
-        <i class="material-icons button--rounded m-2">edit</i>
-      </a>
       
+      <i class="material-icons button--rounded m-2">edit</i>
       <i class="material-icons button--rounded "
         (click)="deleteProduct(game._id)">delete</i>
     </td>

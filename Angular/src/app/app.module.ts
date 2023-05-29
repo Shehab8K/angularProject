@@ -72,6 +72,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { GalleryModule } from 'ng-gallery';
 import { UserUpdateService } from './services/emitters.service';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ChartTwoComponent } from './components/chart-two/chart-two.component';
 
 
 
@@ -124,6 +125,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     DashboardProductDetailsComponent,
 
     AboutUsComponent,
+    ChartTwoComponent,
 
 
   ],
