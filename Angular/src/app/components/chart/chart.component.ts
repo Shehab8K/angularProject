@@ -94,7 +94,7 @@ export class ChartComponent implements OnInit{
               'rgb(160, 160, 119)',
               'rgb(135, 96, 96)',
               'lightgray',
-
+'pink','#70879c',
             ],
             // hoverOffset: 4
           }],
