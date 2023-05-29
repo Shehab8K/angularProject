@@ -1,6 +1,7 @@
 <app-title [titleContent]="productsTitle"></app-title>
 <div class="d-flex justify-content-center align-content-center">
-  <i type="button" [routerLink]="['./add']" class="fa-solid fa-circle-plus fa-xl " style="color: white;"></i>
+  <i type="button" [routerLink]="['./add']"
+    class="fa-solid fa-circle-plus fa-xl " style="color: white;"></i>
 </div>
 <table mat-table [dataSource]="dataSource">
 
@@ -26,6 +27,7 @@
       <a [routerLink]="'/dashboard/games/' + game._id">
         <i class="material-icons button--rounded ">visibility</i>
       </a>
+      
       <i class="material-icons button--rounded m-2">edit</i>
       <i class="material-icons button--rounded "
         (click)="deleteProduct(game._id)">delete</i>
