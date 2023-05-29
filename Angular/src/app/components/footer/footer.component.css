@@ -139,7 +139,7 @@ footer#footer-3-cols div#copyright-information div#social-buttons {
 
 footer#footer-3-cols div#copyright-information div#social-buttons img {
     margin-left: 0.68em;
-    cursor: pointer;
+    /* cursor: pointer; */
     font-size: 14pt;
 }
 
