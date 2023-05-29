@@ -8,7 +8,7 @@
 </video>
 <!-- <img class="container-fluid" src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/537f97557c1b5f6d112cd059/page_bg_english.jpg?t=1683671735"> -->
 
-<section class="container d-flex flex-column mb-2">
+<section class="container d-flex flex-column mb-2 shadow-lg">
   <h3 class="title1 text-white p5 mt-4 mb-3">Trending Games</h3>
 
   <div class="d-flex justify-content-center col-12 content">
@@ -16,21 +16,41 @@
     </button>
 
     <div class="container row col-10 shadow-lg">
-      <div class="image col-md-8 ">
-        <img [src]="images[currentImageIndex].src" />
+
+      <div class="image col-md-8">
+        <ng-container >
+          <img [src]="hoveredImageUrl ? hoveredImageUrl : firstImage"  />
+        </ng-container>
+
       </div>
 
-      <div class="col-md-4 d-flex flex-column right-side">
-        <p class="container text-white p-2 fs-3">{{images[currentImageIndex].title}}</p>
 
-        <div class="side d-flex gap-3">
+      <div class="col-md-4 d-flex flex-column right-side justify-content-between p-3">
 
-          <!-- <img [src]="images[currentImageIndex].image" /> -->
-          <img *ngFor="let image of images[currentImageIndex].photo;
-          let i = index" [src]="image">
-
+        <div class="game-name">
+          <p class=" text-white fs-4 text-center">{{items[currentindex].name}}</p>
         </div>
+
+        <!-- <div class="side d-flex flex-column justify-content-between"> -->
+
+            <div class="side d-flex gap-2 p-2">
+              <ng-container *ngFor="let image of items[currentindex].images; let i = index;">
+                  <img class="hover-img" *ngIf="i < 4" [src]="image" (mouseover)="displayLargeImage(image)" (mouseout)="onMouseOut()">
+                </ng-container>
+                <!-- <ng-template *ngIf="items[currentindex].images.length == 1 ; ">
+                  <img class="img-only" [src]="items[currentindex].images[0]" (mouseover)="displayLargeImage(items[currentindex].images[0])" (mouseout)="onMouseOut()">
+                </ng-template> -->
+            </div>
+
+          <div class="d-flex justify-content-between price_tag p-3">
+            <div class="d-flex gap-2" >
+              <p class="tag" *ngFor="let type of items[currentindex].type">{{type}}</p>
+            </div>
+            <p class="price d-flex justify-content-end">{{items[currentindex].price}}$</p>
+          </div>
+
       </div>
+
     </div>
     <button (click)="ShowNext()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="next col-1"> ❯ </button>
   </div>

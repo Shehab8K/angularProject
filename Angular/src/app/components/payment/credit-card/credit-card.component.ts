@@ -86,10 +86,6 @@ export class CreditCardComponent {
       // Form is valid, perform further actions or submit the form
       console.log("Form is valid");
 
-      // console.log(typeof price)
-      // console.log(typeof this.cartTotalPrice)
-      // console.log(this.user.cart)
-
       //service to create oreder
       this.createOrder();
 
@@ -176,7 +172,6 @@ export class CreditCardComponent {
       control.markAsTouched();
     });
   }
-
 
   onCvvFocus() {
     this.cvvFocus = true;
