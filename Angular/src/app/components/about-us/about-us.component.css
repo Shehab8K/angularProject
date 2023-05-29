@@ -15,7 +15,9 @@
 }
 .Featured-icon{
     width: 20%;
-    margin: 30px;
+    margin-left: 30px;
+    margin-top: 20px;
+
 }
 .card{
     background-color: rgba(255, 255, 255, 0.867);
