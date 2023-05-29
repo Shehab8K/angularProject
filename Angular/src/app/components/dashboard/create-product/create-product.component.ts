@@ -24,6 +24,8 @@ export class CreateProductComponent  {
   name: String | undefined;
   description: String | undefined;
 
+  formData = new FormData();
+
   constructor(public gamesService: GamesService,
      private formBuilder: FormBuilder,
      private route: ActivatedRoute
@@ -49,6 +51,28 @@ export class CreateProductComponent  {
           next:(res)=>{
             this.game = res;
             this.createdGame = this.game.name
+
+            // Assigning comming data to the form data
+            // const formData = new FormData();
+            // this.gameForm.patchValue(res);
+
+            // this.formData.append('imageURL', this.game.imageURL);
+
+            // //////
+
+            // this.formData.append('tag', this.game.tag);
+
+            // //////
+
+            // this.formData.append('type', this.game.type);
+
+            // ///////
+
+            // this.formData.append('os', this.game.os);
+
+            // this.formData.append('name', this.game.name);
+            // this.formData.append('price', this.game.price);
+            // this.formData.append('description', this.game.description);
             this.updatingInputFromComingGame(res)
             this.updateMood = true;
           },
@@ -64,6 +88,7 @@ export class CreateProductComponent  {
   {
     this.name = game.name;
     this.price = game.price
+    this.description = game.description
 
     for (let i = 0; i < game.os.length; i++) {
       this.selectedOs.push(game.os[i]);
@@ -74,8 +99,12 @@ export class CreateProductComponent  {
     for (let i = 0; i < game.type.length; i++) {
       this.selectedType.push(game.type[i]);
     }
-    this.selectedImages = [game.images]
-    this.description = game.description
+
+
+    console.log("Asmaaaaa");
+    console.log(this.selectedTags);
+    console.log(this.selectedType);
+    console.log(this.selectedOs);
   }
 
   onChangeFile(event: any) {
@@ -92,45 +121,43 @@ export class CreateProductComponent  {
 
 
   add(){
-        const formData = new FormData();
         // console.log('in function')
         if (this.gameForm.valid) {
           for(let image of this.selectedImages){
-            formData.append('imageURL', image);
+            this.formData.append('imageURL', image);
           }
           //////
           for(let tag of this.selectedTags){
-            formData.append('tag', tag);
+            this.formData.append('tag', tag);
           }
           //////
           for(let type of this.selectedType){
-            formData.append('type', type);
+            this.formData.append('type', type);
           }
           ///////
           for(let os of this.selectedOs){
-            formData.append('os', os);
+            this.formData.append('os', os);
           }
           const currentDate = new Date();
           const formattedDate = currentDate.toISOString();
 
-          formData.append('releasedDate', formattedDate);
-          formData.append('name', this.gameForm.get('name')!.value);
-              formData.append('price', this.gameForm.get('price')!.value);
-
-              formData.append('description', this.gameForm.get('description')!.value);
-
+          this.formData.append('releasedDate', formattedDate);
+          this.formData.append('name', this.gameForm.get('name')!.value);
+          this.formData.append('price', this.gameForm.get('price')!.value);
+          this.formData.append('description', this.gameForm.get('description')!.value);
 
 
-          console.log(formData);
+
+          // console.log(formData);
 
           if(this.updateMood)
           {
-            this.gamesService.UpdateProduct(formData,this.game._id).subscribe({
+            this.gamesService.UpdateProduct(this.formData,this.game._id).subscribe({
               next:()=>{this.gameForm.reset();},
               error:(err)=>{console.log(err)}
             })
           }else{
-            this.gamesService.AddNewProduct( formData).subscribe({
+            this.gamesService.AddNewProduct( this.formData).subscribe({
               next:()=>{console.log("donee"); this.gameForm.reset()},
               error:(err)=>{console.log(err)}
             });
