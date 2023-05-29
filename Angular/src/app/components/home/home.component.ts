@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { GamesService } from 'src/app/services/products.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,72 +8,71 @@ import { GamesService } from 'src/app/services/products.service';
 })
 export class HomeComponent {
 
-
   currentindex = 0;
-  timer:any;
-  images:any[]=[]
-  items:any[]=[]
-  currentImageIndex = 0;
-  currentIndex:number=0
-constructor(private gamesService: GamesService){}
-   getGames() {
+  timer: any;
+  images: string[] = [];
+  name = '';
+  items: any[] = [];
+  hoveredImageUrl = '';
+  firstImage = '';
+
+  @ViewChild('aboutSection') aboutSection!: ElementRef;
+
+  constructor(private gamesService: GamesService) {
+    this.getGames();
+  }
+
+  displayLargeImage(imageUrl: string): void {
+    this.hoveredImageUrl = imageUrl;
+    this.Stop();
+  }
+
+  getGames() {
     this.gamesService.GetAllGames().subscribe(
       (response: Object) => {
-        this.items = response as any[];
+        this.items = response as { images: any[] }[];
         this.images = this.items.map((item: any) => item.images);
-        // this.images = this.items[this.currentIndex];
+        this.updateFirstImage();
         console.log('items:', this.items);
-        console.log('images:', this.images);
+        console.log('images:', this.images[0]);
+        console.log('firstImage:', this.firstImage);
       },
       (error) => {
         console.error('Error retrieving games:', error);
       }
     );
   }
-  // currentImageIndex: number = 0;
-
-  // getGames() {
-  //   this.gamesService.GetAllGames().subscribe(
-  //     (response: Object) => {
-  //       this.items = response as any[];
-  //       console.log('items:', this.items);
-  //     },
-  //     (error) => {
-  //       console.error('Error retrieving games:', error);
-  //     }
-  //   );
-  // }
 
 
-
-
-
-  ShowPrevious(){
-    if(this.currentIndex > 0)
-    {
-      this.currentIndex--;
-      console.log('images:', this.images[this.currentIndex]);
+  updateFirstImage() {
+    if (this.items && this.items.length > 0) {
+      const currentItem = this.items[this.currentindex];
+      // if (currentItem && currentItem.images && currentItem.images.length > 0) {
+        this.firstImage = currentItem.images[0];
+      // }
     }
-    else
-    {
-      this.currentIndex = this.items.length-1;
-    }
-
   }
-  // handleNavigateToSection() {
-  //     this.aboutSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
-  // }
-  ShowNext(){
 
-    if(this.currentIndex < this.items.length-1)
-    {
-      this.currentIndex++
+  ShowPrevious() {
+    if (this.currentindex > 0) {
+      this.currentindex--;
+    } else {
+      this.currentindex = this.items.length - 1;
     }
-    else
-    {
-      this.currentIndex=0;
-    }
+    this.updateFirstImage();
+  }
 
+  handleNavigateToSection() {
+    this.aboutSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  ShowNext() {
+    if (this.currentindex < this.items.length - 1) {
+      this.currentindex++;
+    } else {
+      this.currentindex = 0;
+    }
+    this.updateFirstImage();
   }
 
   onMouseOver() {
@@ -80,20 +80,24 @@ constructor(private gamesService: GamesService){}
   }
 
   onMouseOut() {
-    this.ngOnInit();
+    this.hoveredImageUrl =''
+    this.Start();
   }
 
   ngOnInit() {
+    this.Start();
+  }
 
+  Start() {
     this.timer = setInterval(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.items.length;
+      this.currentindex = (this.currentindex + 1) % this.items.length;
+      this.updateFirstImage();
     }, 4000);
   }
 
-  Stop(){
+  Stop() {
     clearInterval(this.timer);
   }
-
 
 
 }

@@ -20,9 +20,11 @@ video{
 .next {
   border-radius: 5px 0 0 5px;
 }
+
 .prev:hover, .next:hover {
   background: linear-gradient(to bottom right, #5d5e67, #a8a9aa);
 }
+
 h1{
   color:white
 }
@@ -34,19 +36,12 @@ h1{
   background-color: rgb(39, 41, 53);
   font-size: small;
 }
+
 #about{
   padding: 5em 0;
 }
-/* .image_hover{
-  display: none;
-} */
-/* .container
-{
-  width:50%;
-  margin:2% auto;
-} */
-.image
-{
+
+.image{
   height: 25rem;
 }
 
@@ -55,30 +50,38 @@ h1{
   height: 100%;
   box-shadow: 10px 10px 2px  rgba(0,0,0,0.2);
 }
+
 .right-side{
-  background: linear-gradient(to bottom right, #1b1b1d, #2b2b2c);;
+  background: linear-gradient(to bottom right, #171518, #2b2b2c);;
 }
+
 .side{
-  /* display: flex; */
   flex-wrap: wrap;
-  /* gap:1px ; */
 }
+
 .side img{
-  width: 45%;
+  width: 47%;
   height: 12vh;
   opacity: 0.6;
 }
+
 .side img:hover{
   opacity: 1;
 }
 
-/* .button
-{
-  width:100%;
-  margin:3% auto;
-  display: flex;
-  justify-content: space-around;
-} */
+.price{
+  color:#fba830
+}
+
+.tag {
+  width: fit-content;
+  padding: 1px;
+  margin-left: 3px;
+  background-color: rgb(39, 41, 53);
+  font-size: small;
+  color:white;
+  flex-wrap: wrap;
+}
 
 button{
   border: none;
