@@ -19,7 +19,6 @@ export class ChartTwoComponent implements OnInit{
   constructor(private userService: UserService, private orderService: OrdersService) { }
 
   ngOnInit(): void {
-    console.log("in child");
     this.fetchData()
   }
   fetchData() {

@@ -52,7 +52,7 @@ h1{
 }
 
 .right-side{
-  background: linear-gradient(to bottom right, #171518, #2b2b2c);;
+  background: linear-gradient(to bottom right, #29262a, #2b2b2c);;
 }
 
 .side{
@@ -67,6 +67,11 @@ h1{
 
 .side img:hover{
   opacity: 1;
+}
+
+.price_tag {
+  border-top: 2px solid #fba830;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Adjust the shadow properties as needed */
 }
 
 .price{
