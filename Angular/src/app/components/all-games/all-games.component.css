@@ -19,7 +19,8 @@ body {
 .page-display {
     margin-top: 40px;
 }
-.gif{
+
+.gif {
     width: 60px;
     height: 60px;
 }
@@ -91,10 +92,12 @@ hr {
     height: 150px;
     margin-left: 15px;
 }
-.last-col{
-   align-items: center;
-   justify-content: space-around;
+
+.last-col {
+    align-items: center;
+    justify-content: space-around;
 }
+
 img {
     width: 250px;
     height: 150px;
