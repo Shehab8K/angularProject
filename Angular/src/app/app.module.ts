@@ -122,6 +122,8 @@ import { ChartTwoComponent } from './components/chart-two/chart-two.component';
     CreateProductComponent,
     ProfileComponent,
     GameShowComponent,
+    DashboardProductDetailsComponent,
+
     AboutUsComponent,
     ChartTwoComponent,
 
