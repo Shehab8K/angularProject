@@ -4,66 +4,54 @@
 
     <div class="d-flex ustify-content-center align-items-center ">
 
-        <div class=" formCont">
+        <div class=" formCont" >
             <form (ngSubmit)="update()" [formGroup]="gameForm"
                 enctype="multipart/form-data">
                 <div class="col">
                     <div class="row mb-3">
                         <div class="col-6">
                             <input formControlName="name" type="text"
-                                class="form-control"
-                                placeholder=" Name"
+                                class="form-control rounded p-3"
+                                placeholder="Name"
                                 aria-label="name">
                         </div>
                         <div class="col-6">
                             <input formControlName="price" type="number"
-                                class="form-control"
+                                class="form-control rounded p-3"
                                 placeholder="Price" aria-label="price">
                         </div>
                     </div>
-                    <div class="row mb-3" >
-                        <!-- <div class="col-6" formArrayName="tag">
-                            <select
-                                class="selectpicker w-100"
-                                multiple
-                                data-live-search="true" title="Tags"
-                                >
-                                <option value="action">Action</option>
-                                <option value="funny">funny</option>
-                                <option value="sports">sports</option>
-                                <option value="adventure">adventure</option>
-                                <option value="horror">horror</option>
-                            </select>
+                    <div class="row mb-3">
+                        <div class="col-6 " >
 
-                        </div> -->
-                        <div class="col-6" >  
+                            <mat-form-field appearance="outline" style=" width: 100%;" >
+                                <mat-label>Tags</mat-label>
+                                <mat-select formControlName="tag" multiple>
+                                    <mat-option *ngFor="let tag of tagsList"
+                                        [value]="tag">{{tag}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
 
-                        <mat-form-field >
-                            <mat-label>Tags</mat-label>
-                            <mat-select formControlName="tag" multiple>
-                              <mat-option *ngFor="let tag of tagsList" [value]="tag">{{tag}}</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          </div>
-                        <div class="col-6" >  
+                            <mat-form-field appearance="outline" style=" width: 100%;">
+                                <mat-label>Operating System</mat-label>
+                                <mat-select formControlName="os" multiple>
+                                    <mat-option *ngFor="let os of osList"
+                                        [value]="os">{{os}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
 
-                        <mat-form-field >
-                            <mat-label>Operating System</mat-label>
-                            <mat-select formControlName="os" multiple>
-                              <mat-option *ngFor="let os of osList" [value]="os">{{os}}</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          </div>
-                        <div class="col-6" >  
-
-                        <mat-form-field >
-                            <mat-label>types</mat-label>
-                            <mat-select formControlName="type" multiple>
-                              <mat-option *ngFor="let type of typesList" [value]="type">{{type}}</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          </div>
-
+                            <mat-form-field appearance="outline" style=" width: 100%;">
+                                <mat-label>types</mat-label>
+                                <mat-select formControlName="type" multiple>
+                                    <mat-option *ngFor="let type of typesList"
+                                        [value]="type">{{type}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
 
                         <!-- <div class="col-6" formArrayName="type">  
                             <select 
@@ -91,12 +79,11 @@
 
                         </div> -->
 
-
                         <div formArrayName="imageURL" class="col-6">
                             <div class="input-group mb-3">
                                 <input (change)="onChangeFile($event)"
                                     name="images"
-                                    type="file" class="form-control"
+                                    type="file" class="form-control rounded p-3"
                                     id="inputGroupFile02" multiple>
 
                             </div>
@@ -105,7 +92,7 @@
                         <div class="row mb-3">
                             <div class="col-13">
                                 <textarea formControlName="description"
-                                    class="form-control w-100"
+                                    class="form-control w-100 rounded p-3"
                                     id="exampleFormControlTextarea1" rows="3"
                                     cols="50"
                                     placeholder="Descripe the new Game!"></textarea>
@@ -116,7 +103,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-outline-secondary  "
-                        style="color: white;">Add Game</button>
+                        style="color: white;">Update Game</button>
                 </div>
 
             </form>

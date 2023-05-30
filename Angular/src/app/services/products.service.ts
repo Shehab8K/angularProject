@@ -39,4 +39,14 @@ export class GamesService {
     return this.myClient.post(this.Base_URL,newProduct,{ headers });
 
   }
+
+  updateProduct(id:any, updatedProduct:any){
+    console.log('in servece');
+    console.log(updatedProduct)
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');  // Add the 'Content-Type' header
+    headers.append('Accept', 'application/json');  // Add any other necessary headers
+    return this.myClient.put(this.Base_URL+ '/'+ id,updatedProduct,{headers})
+  }
+
 }

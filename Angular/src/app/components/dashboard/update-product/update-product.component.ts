@@ -12,9 +12,6 @@ export class UpdateProductComponent {
   updatedGameName: string = "Update Game";
   gameForm!: FormGroup;
   selectedImages:string[] = [];
-  selectedTags:string[] = [];
-  selectedType:string[] = [];
-  selectedOs:string[] = [];
   updatedDescription!:string;
   updatedName!:string;
   updatedPrice!:number;
@@ -24,6 +21,8 @@ export class UpdateProductComponent {
   updatedTags:string[]=[];
   updatedTypes:string[]=[];
   updatedOs:string[]=[];
+  updatedImages:string[]=[];
+
   tagsList = ['Action', 'funny', 'sports','adventure','horror'];
   typesList = ['multiplayer', 'singleplayer'];
   osList = ['Linux', 'MacOs', 'Windows'];
@@ -59,7 +58,6 @@ export class UpdateProductComponent {
   const tagControl = this.gameForm.get('tag');
   if (tagControl) {
     tagControl.valueChanges.subscribe((selectedTags: string[]) => {
-      // Update the 'updatedTags' array with the selected tags
       this.updatedTags = selectedTags;
     });
     console.log(this.updatedTags)
@@ -67,18 +65,16 @@ export class UpdateProductComponent {
   const typeControl = this.gameForm.get('type');
   if (typeControl) {
     typeControl.valueChanges.subscribe((selectedTypes: string[]) => {
-      // Update the 'updatedTags' array with the selected tags
-      this.updatedTags = selectedTypes;
+      this.updatedTypes = selectedTypes;
     });
     console.log(this.updatedTypes)
   }
   const osControl = this.gameForm.get('os');
   if (osControl) {
     osControl.valueChanges.subscribe((selectedOs: string[]) => {
-      // Update the 'updatedTags' array with the selected tags
       this.updatedOs = selectedOs;
     });
-    console.log(this.updatedTypes)
+    console.log(this.updatedOs)
   }
   }
 
@@ -134,6 +130,7 @@ export class UpdateProductComponent {
   // }
 
   update(){
+    const formData = new FormData();
     if(this.gameForm.valid){
        this.updatedValues =this.gameForm.value;
        console.log(this.game)
@@ -141,39 +138,75 @@ export class UpdateProductComponent {
         this.gameForm.value.name==this.game.name || this.gameForm.value.name ==null ? this.updatedName=this.game.name :this.updatedName=this.gameForm.value.name;
         this.gameForm.value.price==this.game.price || this.gameForm.value.price ==null ? this.updatedPrice=this.game.price :this.updatedPrice=this.gameForm.value.price;
         this.gameForm.value.description==this.game.description || this.gameForm.value.description ==null ? this.updatedDescription=this.game.description :this.updatedDescription=this.gameForm.value.description;
+        formData.append('name',this.updatedName);
+        formData.append('description',this.updatedDescription);
+        formData.append('price', this.updatedPrice.toString());
 
-        if(this.updatedTags.length==0 )
-         this.updatedTags=  this.game.tag
-        else
-          this.updatedTags=this.gameForm.value.tag
+        
           
         if(this.updatedTypes.length==0 )
          this.updatedTypes=  this.game.type
+         
         else
-          this.updatedTypes=this.gameForm.value.type
+         { this.updatedTypes=this.gameForm.value.type
+        }
+
+ for(let type of this.updatedTypes){
+            formData.append('type', type);
+          }
+        if(this.updatedTags.length==0 )
+         this.updatedTags=  this.game.tag
+        else
+        {
+          this.updatedTags=this.gameForm.value.tag
           
-          
+         
+        }
+           for(let tag of this.updatedTags){
+            formData.append('tag', tag);
+          }
         if(this.updatedOs.length==0 )
          this.updatedOs=  this.game.os
         else
-          this.updatedOs=this.gameForm.value.os
+        {  this.updatedOs=this.gameForm.value.os
           
           
+        }
+for(let os of this.updatedOs){
+            formData.append('os', os);
+          }
+        if(this.selectedImages.length==0 )
+         this.updatedImages=  this.game.images
+        else
+        {  this.updatedImages=this.gameForm.value.imageURL
+          
+          
+        }
+for(let images of this.selectedImages){
+            formData.append('imageURL', images);
+          }
+           formData.forEach((value, key) => {
+          console.log(key + ": " + value);
+        });
+          
 
-console.log(this.updatedTags)
-console.log(this.updatedTypes)
-console.log(this.updatedDescription)
-console.log(this.updatedOs)
-      //  if(this.gameForm.value.name==this.game.name || this.gameForm.value.name ==null ){
-      //   this.updatedName=this.game.name;
-
-      //  }else{
-        
-
-      //  }
-      console.log(this.updatedPrice)
-      console.log(this.updatedValues)
-      console.log(this.updatedName)
+        this.gamesService.updateProduct(this.updatedProductId,formData).subscribe({
+          next:()=>{
+            console.log('doneeeeeeeee')
+          },
+          error:(err)=>{
+            console.log(err)
+          }
+        })
+// console.log(this.updatedTags)
+// console.log(this.updatedTypes)
+// console.log(this.updatedDescription)
+// console.log(this.updatedOs)
+// console.log(this.updatedImages)
+// // console.log(this.game.images)
+//       // console.log(this.updatedPrice)
+//       console.log(this.updatedValues)
+      // console.log(this.updatedName)
     }
 }
 

@@ -167,22 +167,22 @@ router.put("/:id", async (req, res) => {
           console.log(req.files);
         }
 
-        const dataForValidation = {
-          name: req.body.name,
-          price: req.body.price,
-          os: req.body.os,
-          tag: req.body.tag,
-          type: req.body.type,
-          description: req.body.description,
-          releasedDate: req.body.releasedDate
-        }
+        // const dataForValidation = {
+        //   name: req.body.name,
+        //   price: req.body.price,
+        //   os: req.body.os,
+        //   tag: req.body.tag,
+        //   type: req.body.type,
+        //   description: req.body.description,
+        //   releasedDate: req.body.releasedDate
+        // }
 
-        const { error } = validateProduct(dataForValidation);
+        // const { error } = validateProduct(dataForValidation);
 
-        if(error)
-        {
-          return res.status(400).json({ message: error.details });
-        }
+        // if(error)
+        // {
+        //   return res.status(400).json({ message: error.details });
+        // }
 
         const product = await Product.findById(req.params.id)
           
@@ -191,14 +191,14 @@ router.put("/:id", async (req, res) => {
           return res.status(404).json({message: "Product not found"})
         }
         
-        product.name = req.body.name || product.name;
-        product.price = req.body.price || product.price;
-        product.os = req.body.os || product.os;
-        product.tag = req.body.tag || product.tag;
-        product.type = req.body.type || product.type;
-        product.description = req.body.description || product.description;
-        product.releasedDate = req.body.releasedDate || product.releasedDate;
-        product.character = req.body.character || product.character; 
+        product.name = req.body.name;
+        product.price = req.body.price ;
+        product.os = req.body.os ;
+        product.tag = req.body.tag ;
+        product.type = req.body.type ;
+        product.description = req.body.description;
+        product.releasedDate = req.body.releasedDate;
+        product.character = req.body.character; 
         
         if(req.files){
 
@@ -239,7 +239,6 @@ router.put("/:id", async (req, res) => {
 
 //delete product
 router.delete("/:id", async (req, res) => {
-  console.log("in controller");
   try {
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -266,18 +265,18 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-const validateProduct = (product) => {
-  const productSchema = Joi.object({
-    name: Joi.string(),
-    price: Joi.number(),
-    os: Joi.array(),
-    tag: Joi.array(),
-    type: Joi.array(),
-    description: Joi.string(),
-    releasedDate: Joi.date(),
-  });
-  return productSchema.validate(product);
-};
+// const validateProduct = (product) => {
+//   const productSchema = Joi.object({
+//     name: Joi.string(),
+//     price: Joi.number(),
+//     os: Joi.array(),
+//     tag: Joi.array(),
+//     type: Joi.array(),
+//     description: Joi.string(),
+//     releasedDate: Joi.date(),
+//   });
+//   return productSchema.validate(product);
+// };
 
 // return productSchema.validate(data);
 
