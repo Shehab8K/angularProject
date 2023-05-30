@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AllGamesComponent implements OnInit {
   tags: string[] = [];
   types: string[] = [];
-  games: any
+  games: any[]=[]
   rawData: any
   isFavorite: boolean = false;
   isAdded: boolean = false;
