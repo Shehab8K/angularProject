@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule, Form  } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GamesService } from 'src/app/services/products.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-product',
@@ -27,7 +26,7 @@ export class CreateProductComponent  {
 
   formData = new FormData();
 
-  constructor(public gamesService: GamesService,  private formBuilder: FormBuilder) {}
+  constructor(public gamesService: GamesService,  private formBuilder: FormBuilder, private route: ActivatedRoute) {}
 
 
   ngOnInit(): void {

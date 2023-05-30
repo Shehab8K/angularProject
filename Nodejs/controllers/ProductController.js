@@ -55,65 +55,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Validate the request body
-// const { error } = validateProduct(req.body);
-// if (error) {
-//   return res.status(400).json({ error: error.details[0].message });
-// }
-
-// router.post("/", async (req, res) => {
-//   try {
-//     uploadProduct(req,res,async function(err){
-//       if(err){
-//         console.log(err)
-//         return res.status(500).send("Error uploading file");
-//       }
-//       else{
-
-//       }
-//     })
-//     if (req.files && req.files.length > 0) {
-//       const fileNames = [];
-
-//       for (const file of req.files) {
-//         console.log(file);
-//         const result = await cloudinary.uploader.upload(file.path, {
-//           folder: "games",
-//         });
-//         fileNames.push(result.secure_url);
-//         // Remove the temporary file after upload
-//         fs.unlinkSync(file.path);
-//       }
-
-//       const product = await Product.create({
-//         name: req.body.name,
-//         price: req.body.price,
-//         os: req.body.os,
-//         tag: req.body.tag,
-//         type: req.body.type,
-//         description: req.body.description,
-//         releasedDate: req.body.releasedDate,
-//         images: fileNames, // Save the secure URLs of the uploaded images
-//       });
-
-//       res.status(200).json(product);
-//     } else {
-//       return res.status(400).send("No files uploaded");
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("An error occurred while creating the product.");
-//   }
-// });
-
 
 router.post("/", async (req, res) => {
-  
   try {
      await uploadProduct(req, res, async function (err) {
       if (err) {
         return res.status(500).send("Error uploading file");
       } else {
+        console.log("in put fucntion")
 
         let product = await Product.create({
           name: req.body.name,
@@ -160,29 +109,30 @@ router.put("/:id", async (req, res) => {
         return res.status(500).send("Error uploading file");
       } else {
 
-        const dataForValidation = {
-          name: req.body.name,
-          price: req.body.price,
-          os: req.body.os,
-          tag: req.body.tag,
-          type: req.body.type,
-          description: req.body.description,
-          releasedDate: req.body.releasedDate
-        }
+        // const dataForValidation = {
+        //   name: req.body.name,
+        //   price: req.body.price,
+        //   os: req.body.os,
+        //   tag: req.body.tag,
+        //   type: req.body.type,
+        //   description: req.body.description,
+        //   releasedDate: req.body.releasedDate
+        // }
 
-        console.log("comming")
-        console.log(req.body);
-        console.log(req.files);
+        // console.log("comming")
+        // console.log(req.body);
+        // console.log(req.files);
 
-        const { error } = validateProduct(dataForValidation);
+        // const { error } = validateProduct(dataForValidation);
 
-        if(error)
-        {
-          return res.status(400).json({ message: error.details });
-        }
+        // if(error)
+        // {
+        //   return res.status(400).json({ message: error.details });
+        // }
 
         const product = await Product.findById(req.params.id)
-          
+        console.log(product)
+        console.log("in put backend")
         if(!product)
         {
           console.log("User not found");
@@ -190,7 +140,7 @@ router.put("/:id", async (req, res) => {
         }
         
         product.name = req.body.name || product.name;
-        product.price = req.body.price || product.price;
+        product.price = Number(req.body.price) || Number(product.price);
         product.os = req.body.os || product.os;
         product.tag = req.body.tag || product.tag;
         product.type = req.body.type || product.type;
@@ -229,7 +179,8 @@ router.put("/:id", async (req, res) => {
       }
     })
   } catch (err) {
-    console.error(error);
+    console.log("error happened")
+    console.error(err);
     res.status(500).send("An error occurred while updating the product.");
   }
 }

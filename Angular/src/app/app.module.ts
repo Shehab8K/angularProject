@@ -129,7 +129,6 @@ import { UpdateProductComponent } from './components/dashboard/update-product/up
     ChartTwoComponent,
     UpdateProductComponent,
 
-
   ],
   imports: [
     BrowserModule,

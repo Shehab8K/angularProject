@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators,FormArray } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule, Form  } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { throwError } from 'rxjs';
 import { GamesService } from 'src/app/services/products.service';
 
 @Component({
@@ -9,109 +11,112 @@ import { GamesService } from 'src/app/services/products.service';
   styleUrls: ['./update-product.component.css']
 })
 export class UpdateProductComponent {
-  updatedGameName: string = "Update Game";
+
+  game: any;
+  createdGame: string = "New Game";
   gameForm!: FormGroup;
   selectedImages:string[] = [];
   selectedTags:string[] = [];
   selectedType:string[] = [];
   selectedOs:string[] = [];
-  updatedDescription!:string;
-  updatedName!:string;
-  updatedPrice!:number;
-  game:any;
-  updatedProductId!:string;
-  updatedValues!:any
-  updatedTags:string[]=[];
-  updatedTypes:string[]=[];
-  updatedOs:string[]=[];
-  tagsList = ['Action', 'funny', 'sports','adventure','horror'];
-  typesList = ['multiplayer', 'singleplayer'];
-  osList = ['Linux', 'MacOs', 'Windows'];
 
-  constructor(
-    public gamesService: GamesService,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute
-  ) {}
+  updateMood: boolean = false;
 
-  ngOnInit() {
-        this.gameForm = this.formBuilder.group({
-          name: new FormControl(),
-          price: new FormControl(),
-          tag: new FormControl(),
-          type: new FormControl(),
-          os: new FormControl(),
-          description: new FormControl(),
-          imageURL: this.formBuilder.array([]),
-        });
+  gameName: string = "";
+  gamePrice: Number | undefined
+  gameDesc: string = ""
+  formData = new FormData();
 
-        this.updatedProductId = this.route.snapshot.params["id"];
+  constructor(public gamesService: GamesService,  private formBuilder: FormBuilder, private route: ActivatedRoute) {}
 
-  this.gamesService.GetGameByID(this.updatedProductId).subscribe({
-    next: (data: any) => {
-      this.game = data;
-    },
-    error: (err) => {
-      console.log(err);
-    }
-  });
 
-  const tagControl = this.gameForm.get('tag');
-  if (tagControl) {
-    tagControl.valueChanges.subscribe((selectedTags: string[]) => {
-      // Update the 'updatedTags' array with the selected tags
-      this.updatedTags = selectedTags;
+  ngOnInit(): void {
+//
+  // //   const gameId = this.route.snapshot.queryParams['gameId'];
+  // // const game = history.state.game;
+
+  // // Use the gameId and game object in your form
+  // console.log(gameId, game);
+
+    this.gameForm = this.formBuilder.group({
+      name: new FormControl(null),
+      price: new FormControl(null),
+      tag: new FormControl([]),
+      type: new FormControl([]),
+      os: new FormControl([]),
+      description: new FormControl(null),
+      imageURL: this.formBuilder.array([]),
     });
-    console.log(this.updatedTags)
-  }
-  const typeControl = this.gameForm.get('type');
-  if (typeControl) {
-    typeControl.valueChanges.subscribe((selectedTypes: string[]) => {
-      // Update the 'updatedTags' array with the selected tags
-      this.updatedTags = selectedTypes;
+
+    this.route.params.subscribe(params => {
+      const id = params?.['id']; // Use optional chaining operator
+      if (id) {
+        this.gamesService.GetGameByID(id).subscribe({
+          next:(res)=>{
+            this.game = res;
+            this.createdGame = this.game.name
+
+            this.gameName = this.game.name;
+            this.gamePrice = this.game.price;
+            this.gameDesc = this.game.description
+            // Assigning comming data to the form data
+            // const formData = new FormData();
+            // this.gameForm.patchValue(res);
+
+            // this.formData.append('imageURL', this.game.imageURL);
+
+            // //////
+
+            // this.formData.append('tag', this.game.tag);
+
+            // //////
+
+            // this.formData.append('type', this.game.type);
+
+            // ///////
+
+            // this.formData.append('os', this.game.os);
+
+            // this.formData.append('name', this.game.name);
+            // this.formData.append('price', this.game.price);
+            // this.formData.append('description', this.game.description);
+            // this.updatingInputFromComingGame(res)
+            this.updateMood = true;
+          },
+          error:(err)=>{
+            // Error wrong id default send to error 404 / OR Return back with alert
+          }
+        })
+      }
     });
-    console.log(this.updatedTypes)
-  }
-  const osControl = this.gameForm.get('os');
-  if (osControl) {
-    osControl.valueChanges.subscribe((selectedOs: string[]) => {
-      // Update the 'updatedTags' array with the selected tags
-      this.updatedOs = selectedOs;
-    });
-    console.log(this.updatedTypes)
-  }
   }
 
-  // populateFormFields() {
-  //   this.gameForm.patchValue({
-  //     name: this.game.name,
-  //     price: this.game.price,
-  //     description: this.game.description
-  //   });
-  
-  //   this.setFormArrayValues('tag', this.game.tag);
-  //   this.setFormArrayValues('type', this.game.type);
-  //   this.setFormArrayValues('os', this.game.os);
-  //   this.setFormArrayValues('imageURL', this.game.images);
-  //   console.log(this.gameForm.value); // Print form values to the console
-  // }
+  // updatingInputFromComingGame(game:any)
+  // {
+  //   this.name = game.name;
+  //   this.price = game.price
+  //   this.description = game.description
 
-
-  // setFormArrayValues(formArrayName: string, values: any[]) {
-  //   const formArray = this.gameForm.get(formArrayName) as FormArray;
-  //   formArray.clear();
-  //   if (values) {
-  //     values.forEach(value => {
-  //       formArray.push(new FormControl(value));
-  //     });
+  //   for (let i = 0; i < game.os.length; i++) {
+  //     this.selectedOs.push(game.os[i]);
   //   }
+  //   for (let i = 0; i < game.tag.length; i++) {
+  //     this.selectedTags.push(game.tag[i]);
+  //   }
+  //   for (let i = 0; i < game.type.length; i++) {
+  //     this.selectedType.push(game.type[i]);
+  //   }
+
+
+  //   console.log("Asmaaaaa");
+  //   console.log(this.selectedTags);
+  //   console.log(this.selectedType);
+  //   console.log(this.selectedOs);
   // }
-  
+
   onChangeFile(event: any) {
     const files = event.target.files;
     this.selectedImages = [];
-    console.log(event.target)
-    console.log("tesssss")
     const imagesControl = this.gameForm.get('imageURL') as FormArray;
     for (let i = 0; i < files.length; i++) {
       this.selectedImages.push(files[i]);
@@ -119,62 +124,48 @@ export class UpdateProductComponent {
     }
   }
 
-  // getUpdatedTags(): string[] {
-  //   const tagFormArray = this.gameForm.get('tag') as FormArray;
-  //   console.log(tagFormArray)
-  //   return tagFormArray.value;
-  // }
 
-  // saveUpdates() {
-  //   this.updatedTags = this.getUpdatedTags();
-  //   // const updatedTypes = this.getUpdatedTypes();
-  //   // const updatedOs = this.getUpdatedOs();
-  
-  //   // Do something with the updated values (e.g., send them to the server)
-  // }
+  add(){
+        // console.log('in function')
+        if (this.gameForm.valid) {
+          console.log("valid");
+          for(let image of this.selectedImages){
+            this.formData.append('imageURL', image);
+          }
+          //////
+          for(let tag of this.selectedTags){
+            this.formData.append('tag', tag);
+          }
+          //////
+          for(let type of this.selectedType){
+            this.formData.append('type', type);
+          }
+          ///////
+          for(let os of this.selectedOs){
+            this.formData.append('os', os);
+          }
 
-  update(){
-    if(this.gameForm.valid){
-       this.updatedValues =this.gameForm.value;
-       console.log(this.game)
+          const currentDate = new Date();
+          const formattedDate = currentDate.toISOString();
 
-        this.gameForm.value.name==this.game.name || this.gameForm.value.name ==null ? this.updatedName=this.game.name :this.updatedName=this.gameForm.value.name;
-        this.gameForm.value.price==this.game.price || this.gameForm.value.price ==null ? this.updatedPrice=this.game.price :this.updatedPrice=this.gameForm.value.price;
-        this.gameForm.value.description==this.game.description || this.gameForm.value.description ==null ? this.updatedDescription=this.game.description :this.updatedDescription=this.gameForm.value.description;
+          this.formData.append('releasedDate', formattedDate);
 
-        if(this.updatedTags.length==0 )
-         this.updatedTags=  this.game.tag
-        else
-          this.updatedTags=this.gameForm.value.tag
-          
-        if(this.updatedTypes.length==0 )
-         this.updatedTypes=  this.game.type
-        else
-          this.updatedTypes=this.gameForm.value.type
-          
-          
-        if(this.updatedOs.length==0 )
-         this.updatedOs=  this.game.os
-        else
-          this.updatedOs=this.gameForm.value.os
-          
-          
 
-console.log(this.updatedTags)
-console.log(this.updatedTypes)
-console.log(this.updatedDescription)
-console.log(this.updatedOs)
-      //  if(this.gameForm.value.name==this.game.name || this.gameForm.value.name ==null ){
-      //   this.updatedName=this.game.name;
+          this.formData.append('name', this.gameForm.get('name')!.value);
+          this.formData.append('price', this.gameForm.get('price')!.value);
+          this.formData.append('description', this.gameForm.get('description')!.value);
 
-      //  }else{
-        
 
-      //  }
-      console.log(this.updatedPrice)
-      console.log(this.updatedValues)
-      console.log(this.updatedName)
+              console.log("in update typescript")
+
+            this.gamesService.UpdateProduct(this.formData,this.game._id).subscribe({
+              next:()=>{this.gameForm.reset();},
+              error:(err)=>{console.log(err)}
+            })
+     }
+    else{
+      console.log(this.gameForm.valid);
+      console.log("engzzzzzzzzz")
     }
-}
-
+  }
 }

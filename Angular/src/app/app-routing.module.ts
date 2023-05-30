@@ -28,6 +28,7 @@ import { DashboardOrdersComponent } from './components/dashboard/dashboard-order
 import { CreateProductComponent } from './components/dashboard/create-product/create-product.component';
 import { UpdateProductComponent } from './components/dashboard/update-product/update-product.component';
 
+
 const routes: Routes = [
 
   // All users + guests
@@ -61,10 +62,9 @@ const routes: Routes = [
       {path:'users', component:UsersTableComponent},
       {path:'games',component:DashboardProductsComponent},
       {path:'games/add',component:CreateProductComponent},
-      {path:'games/update/:id',component:CreateProductComponent},
+      {path:'games/update/:id',component:UpdateProductComponent},
       {path:'orders',component:DashboardOrdersComponent},
       {path:'games/:id',component:DashboardProductDetailsComponent},
-      {path:'games/update/:id',component:UpdateProductComponent}
     ]
   },
 
