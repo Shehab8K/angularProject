@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,11 +14,8 @@ export class GamesService {
   constructor(private readonly myClient: HttpClient) { }
 
   private readonly Base_URL = environment.apiURL + '/products';
-
-  emitValue(newValue: object): void {
-    this.valueSubject.next(newValue);
-  }
-
+  public panUserSubject:Subject<void> = new Subject <any>
+  public panUserUpdateObservable: Observable <void> = this.panUserSubject.asObservable();
   GetAllGames() {
     // console.log (this.myClient.get(this.Base_URL));
     return this.myClient.get(this.Base_URL);

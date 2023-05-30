@@ -13,6 +13,10 @@ export class UserService {
   private valueSubject: Subject<boolean> = new Subject<boolean>();
   value$: Observable<boolean> = this.valueSubject.asObservable();
 
+
+  public banSubject:Subject<void> = new Subject <any>
+public banChngObservable: Observable <void> = this.banSubject.asObservable();
+
   constructor(private readonly myClient: HttpClient, private authService: AuthService) { }
 
   private readonly Base_URL = environment.apiURL+"/users";

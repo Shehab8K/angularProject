@@ -26,6 +26,8 @@ import { GameShowComponent } from './components/game-show/game-show.component';
 import { DashboardHomeComponent } from './components/dashboard/dashboard-home/dashboard-home.component';
 import { DashboardOrdersComponent } from './components/dashboard/dashboard-orders/dashboard-orders.component';
 import { CreateProductComponent } from './components/dashboard/create-product/create-product.component';
+import { UpdateProductComponent } from './components/dashboard/update-product/update-product.component';
+
 const routes: Routes = [
 
   // All users + guests
@@ -61,6 +63,8 @@ const routes: Routes = [
       {path:'games/add',component:CreateProductComponent},
       {path:'games/update/:id',component:CreateProductComponent},
       {path:'orders',component:DashboardOrdersComponent},
+      {path:'games/:id',component:DashboardProductDetailsComponent},
+      {path:'games/update/:id',component:UpdateProductComponent}
     ]
   },
 

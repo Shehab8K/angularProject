@@ -1,6 +1,8 @@
-<app-title [titleContent]="createdGame"></app-title>
+<div class=" animated-box in">
 
-<div class="d-flex ustify-content-center align-items-center ">
+    <app-title [titleContent]="createdGame"></app-title>
+
+    <div class="d-flex ustify-content-center align-items-center ">
 
     <div class=" formCont">
         <form (ngSubmit)="add()"  [formGroup]="gameForm"  enctype="multipart/form-data">
@@ -9,11 +11,11 @@
                     <div class="col-6">
                         <input formControlName="name"   type="text" class="form-control"
                             placeholder=" Name"
-                            aria-label="name" value="{{name}}">
+                            aria-label="name">
                     </div>
                     <div class="col-6">
                         <input formControlName="price"  type="number" class="form-control"
-                            placeholder="Price" aria-label="price" value="{{price}}">
+                            placeholder="Price" aria-label="price">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -27,53 +29,58 @@
                             <option value="horror">horror</option>
                         </select>
 
-                    </div>
-                    <div class="col-6">
-                        <select formControlName="type"  class="selectpicker w-100" multiple
-                            data-live-search="true" title="Type" [(ngModel)]="selectedType">
-                            <option value="multiplayer">Multiplayer</option>
-                            <option value="singleplayer">Singleplayer</option>
-                        </select>
-
-                    </div>
-
-                </div>
-                <div class="row mb-3">
-                    <div class="col-6">
-                        <select formControlName="os" class="selectpicker w-100" multiple
-                            data-live-search="true" title="Operation system" [(ngModel)]="selectedOs">
-                            <option value="linux">Linux</option>
-                            <option value="mac">MacOs</option>
-                            <option value="windows">Windows</option>
-                        </select>
-
-                    </div>
-                    <div formArrayName="imageURL" class="col-6">
-                        <div class="input-group mb-3">
-                            <input   (change)="onChangeFile($event)"  name="images" type="file" class="form-control" id="inputGroupFile02" multiple>
+                        </div>
+                        <div class="col-6">
+                            <select formControlName="type"
+                                class="selectpicker w-100" multiple
+                                data-live-search="true" title="Type"
+                                [(ngModel)]="selectedType">
+                                <option value="multiplayer">Multiplayer</option>
+                                <option value="singleplayer">Singleplayer</option>
+                            </select>
 
                         </div>
+
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <select formControlName="os"
+                                class="selectpicker w-100"
+                                multiple
+                                data-live-search="true" title="Operation system"
+                                [(ngModel)]="selectedOs">
+                                <option value="linux">Linux</option>
+                                <option value="mac">MacOs</option>
+                                <option value="windows">Windows</option>
+                            </select>
+
+                        </div>
+                        <div formArrayName="imageURL" class="col-6">
+                            <div class="input-group mb-3">
+                                <input (change)="onChangeFile($event)"
+                                    name="images"
+                                    type="file" class="form-control"
+                                    id="inputGroupFile02" multiple>
+
+                            </div>
 
                     </div>
                     <div class="row mb-3">
                         <div class="col-13">
                             <textarea formControlName="description"  class="form-control w-100"
                                 id="exampleFormControlTextarea1" rows="3" cols="50"
-                                placeholder="Descripe the new Game!" value="{{description}}"></textarea>
+                                placeholder="Descripe the new Game!"></textarea>
                         </div>
                     </div>
 
                 </div>
             </div>
             <div class="text-center">
-
-              <button type="submit" class="btn btn-outline-secondary  "
-              style="color: white;" *ngIf="!updateMood">Add Game</button>
-
                 <button type="submit" class="btn btn-outline-secondary  "
-                    style="color: white;" *ngIf="updateMood">Update Game</button>
+                    style="color: white;">Add Game</button>
             </div>
 
-        </form>
+            </form>
+        </div>
     </div>
 </div>

@@ -6,7 +6,7 @@
     padding: 2%;
     /* border-radius: 20px; */
   }
-
+  
   .animated-box:after {
     content: '';
     position: absolute;
@@ -19,11 +19,11 @@
     background-size: 300% 300%;
     clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), 3px calc(100% - 3px), 3px 100%, 100% 100%, 100% 0%, 0% 0%);
   }
-
+  
   .animated-box.in:after {
     animation: frame-enter 1s forwards ease-in-out reverse, gradient-animation 4s ease-in-out infinite;
   }
-
+  
   /* motion */
   @keyframes gradient-animation {
     0% {
@@ -36,7 +36,7 @@
       background-position: 15% 0%;
     }
   }
-
+  
   @keyframes frame-enter {
     0% {
       clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), 3px calc(100% - 3px), 3px 100%, 100% 100%, 100% 0%, 0% 0%);

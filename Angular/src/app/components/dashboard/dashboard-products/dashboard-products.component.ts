@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute  } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { GamesService } from 'src/app/services/products.service';
 import { Location } from '@angular/common';
 import { error } from 'jquery';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-products',
@@ -19,7 +19,7 @@ export class DashboardProductsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private gamesService: GamesService, private router: Router) { }
+  constructor(private gamesService: GamesService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.gamesService.GetAllGames().subscribe(
@@ -75,5 +75,9 @@ export class DashboardProductsComponent implements OnInit {
     const day = String(date.getDate()).padStart(2, '0');
     return `${day} - ${month} - ${year}`;
   }
+
+  // navigateToEdit(game: any) {
+  //   this.router.navigate(['./add'], { relativeTo: this.route, queryParams: { gameId: game._id }, state: { game: game } });
+  // }
 
 }

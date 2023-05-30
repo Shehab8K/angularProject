@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-// import { GamesService } from 'src/app/services/games.service';
+import { GamesService } from 'src/app/services/products.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,77 +9,70 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class HomeComponent {
 
   currentindex = 0;
-  timer:any;
-  currentImageIndex = 0;
+  timer: any;
+  images: string[] = [];
+  name = '';
+  items: any[] = [];
+  hoveredImageUrl = '';
+  firstImage = '';
+
   @ViewChild('aboutSection') aboutSection!: ElementRef;
 
-  images = [
-    {
-      src: '../../../assets/images/val.jpeg',
-      title: 'Game 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      photo: [
-        'https://i.ytimg.com/vi/_fPJoRFGZpc/maxresdefault.jpg',
-        'https://th.bing.com/th/id/OIP._TdlTXLwsbDRxzgoAga19wEsC0?pid=ImgDet&rs=1',
-        'https://th.bing.com/th/id/OIP.pHS9-oSfeh2Y2BtzLdoRzAAAAA?pid=ImgDet&w=255&h=255&rs=1',
-        'https://i.ytimg.com/vi/h6sH1KYID44/maxresdefault.jpg'
-      ]
-    },
-    {
-      src: '../../../assets/images/cod.jpg',
-      title: 'Game 2',
-      content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      photo: [
-        'https://th.bing.com/th/id/OIP._TdlTXLwsbDRxzgoAga19wEsC0?pid=ImgDet&rs=1',
-        'https://i.ytimg.com/vi/h6sH1KYID44/maxresdefault.jpg',
-        'https://th.bing.com/th/id/OIP.pHS9-oSfeh2Y2BtzLdoRzAAAAA?pid=ImgDet&w=255&h=255&rs=1',
-        'https://i.ytimg.com/vi/_fPJoRFGZpc/maxresdefault.jpg',
-      ]
-    },
-    {
-      src: '../../../assets/images/lol.jpg',
-      title: 'Game 3',
-      content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      photo: [
-        'https://th.bing.com/th/id/OIP._TdlTXLwsbDRxzgoAga19wEsC0?pid=ImgDet&rs=1',
-        'https://i.ytimg.com/vi/_fPJoRFGZpc/maxresdefault.jpg',
-        'https://i.ytimg.com/vi/h6sH1KYID44/maxresdefault.jpg',
-        'https://th.bing.com/th/id/OIP.pHS9-oSfeh2Y2BtzLdoRzAAAAA?pid=ImgDet&w=255&h=255&rs=1',
-      ]
-    }
-  ];
-
-
-  photos = [
-    { src: 'https://th.bing.com/th/id/OIP.ky02K_RaApV5EI5d0VvJLgHaEK?pid=ImgDet&rs=1', alt: 'Image 1' },
-    { src: 'https://th.bing.com/th/id/R.0e249008936b54dd7e510ab07835eebc?rik=tJ4QvPsaUT8xvw&pid=ImgRaw&r=0', alt: 'Image 2' },
-    { src: 'https://i.pinimg.com/originals/d0/ea/7d/d0ea7d697127bf515aa6d1e33001db0d.jpg', alt: 'Image 3' },
-  ];
-
-  ShowPrevious(){
-    if(this.currentImageIndex > 0)
-    {
-      this.currentImageIndex--;
-    }
-    else
-    {
-      this.currentImageIndex = this.images.length-1;
-    }
-
+  constructor(private gamesService: GamesService) {
+    this.getGames();
   }
+
+  displayLargeImage(imageUrl: string): void {
+    this.hoveredImageUrl = imageUrl;
+    this.Stop();
+  }
+
+  getGames() {
+    this.gamesService.GetAllGames().subscribe(
+      (response: Object) => {
+        this.items = response as { images: any[] }[];
+        this.images = this.items.map((item: any) => item.images);
+        this.updateFirstImage();
+        console.log('items:', this.items);
+        console.log('images:', this.images[0]);
+        console.log('firstImage:', this.firstImage);
+      },
+      (error) => {
+        console.error('Error retrieving games:', error);
+      }
+    );
+  }
+
+
+  updateFirstImage() {
+    if (this.items && this.items.length > 0) {
+      const currentItem = this.items[this.currentindex];
+      // if (currentItem && currentItem.images && currentItem.images.length > 0) {
+        this.firstImage = currentItem.images[0];
+      // }
+    }
+  }
+
+  ShowPrevious() {
+    if (this.currentindex > 0) {
+      this.currentindex--;
+    } else {
+      this.currentindex = this.items.length - 1;
+    }
+    this.updateFirstImage();
+  }
+
   handleNavigateToSection() {
-      this.aboutSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    this.aboutSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
-  ShowNext(){
-    if(this.currentImageIndex < this.images.length-1)
-    {
-      this.currentImageIndex++
-    }
-    else
-    {
-      this.currentImageIndex=0;
-    }
 
+  ShowNext() {
+    if (this.currentindex < this.items.length - 1) {
+      this.currentindex++;
+    } else {
+      this.currentindex = 0;
+    }
+    this.updateFirstImage();
   }
 
   onMouseOver() {
@@ -86,23 +80,23 @@ export class HomeComponent {
   }
 
   onMouseOut() {
-    this.ngOnInit();
+    this.hoveredImageUrl =''
+    this.Start();
   }
 
   ngOnInit() {
+    this.Start();
+  }
+
+  Start() {
     this.timer = setInterval(() => {
-      this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+      this.currentindex = (this.currentindex + 1) % this.items.length;
+      this.updateFirstImage();
     }, 4000);
   }
 
-  Stop(){
+  Stop() {
     clearInterval(this.timer);
-  }
-
-  setCurrentImage(index: number) {
-    this.currentImageIndex = index;
-    // this.ngOnInit1();
-    this.Stop();
   }
 
 

@@ -1,21 +1,15 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {Component,OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { switchMap } from 'rxjs';
-// import { UserUpdateService } from 'src/app/services/emitters.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UserService } from 'src/app/services/users.service';
 
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  selector: 'app-chart-two',
+  templateUrl: './chart-two.component.html',
+  styleUrls: ['./chart-two.component.css']
 })
-export class ChartComponent implements OnInit{
+export class ChartTwoComponent implements OnInit{
   public chart: any;
-  // @Input() tags: any[] = [];
-  // @Input() tagCount: any[] = [];
-  // @Output() chartCreated: EventEmitter<void> = new EventEmitter<void>();
-  // constructor(private cdr: ChangeDetectorRef) { }
 
   tags: any[] = [];
   tagCount: any[] = [];
@@ -25,24 +19,12 @@ export class ChartComponent implements OnInit{
   constructor(private userService: UserService, private orderService: OrdersService) { }
 
   ngOnInit(): void {
-    console.log("in child");
     this.fetchData()
   }
   fetchData() {
-    const userObservable = this.userService.getCurrentUser(); //get current user
-    if (userObservable) {
-      userObservable.pipe(
-        switchMap((userData) => { //to switch to the orders Observable inside the user Observable subscription
-          this.user = userData;
-          // Fetch user orders
-          const ordersObservable = this.orderService.GetUserOrders(this.user._id);
-          if (ordersObservable) {
-            return ordersObservable;
-          } else {
-            throw new Error('Failed to fetch user orders');
-          }
-        })
-      ).subscribe({
+    const ordersObservable = this.orderService.getAllOrders(); //get current user
+    if (ordersObservable) {
+      ordersObservable.subscribe({
         next: (data: any) => {
           this.orders = data;
           this.getTags()
@@ -94,7 +76,7 @@ export class ChartComponent implements OnInit{
               'rgb(160, 160, 119)',
               'rgb(135, 96, 96)',
               'lightgray',
-'pink','#70879c',
+
             ],
             // hoverOffset: 4
           }],
@@ -111,8 +93,5 @@ export class ChartComponent implements OnInit{
       }
 
     });
-    // this.chartCreated.emit();
-    // this.cdr.detectChanges();
-
   }
 }
