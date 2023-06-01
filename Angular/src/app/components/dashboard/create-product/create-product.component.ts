@@ -17,7 +17,12 @@ export class CreateProductComponent  {
   selectedTags:string[] = [];
   selectedType:string[] = [];
   selectedOs:string[] = [];
-
+  updatedTags:string[]=[];
+  updatedTypes:string[]=[];
+  updatedOs:string[]=[];
+  tagsList = ['Action', 'funny', 'sports','adventure','horror',"war","combat","fantasy"];
+  typesList = ['multiplayer', 'singleplayer'];
+  osList = ['linux', 'mac', 'windows'];
 
 
   constructor(public gamesService: GamesService,  private formBuilder: FormBuilder, private route: ActivatedRoute) {}
@@ -41,6 +46,28 @@ export class CreateProductComponent  {
       // imageURL: new FormControl([], Validators.required),
       imageURL: this.formBuilder.array([]),
     });
+
+    const tagControl = this.gameForm.get('tag');
+    if (tagControl) {
+      tagControl.valueChanges.subscribe((selectedTags: string[]) => {
+        this.updatedTags = selectedTags;
+      });
+      console.log(this.updatedTags)
+    }
+    const typeControl = this.gameForm.get('type');
+  if (typeControl) {
+    typeControl.valueChanges.subscribe((selectedTypes: string[]) => {
+      this.updatedTypes = selectedTypes;
+    });
+    console.log(this.updatedTypes)
+  }
+  const osControl = this.gameForm.get('os');
+  if (osControl) {
+    osControl.valueChanges.subscribe((selectedOs: string[]) => {
+      this.updatedOs = selectedOs;
+    });
+    console.log(this.updatedOs)
+  }
   }
   // validate(){
   //   this.gameForm = this.formBuilder.group({
@@ -64,6 +91,7 @@ export class CreateProductComponent  {
       this.selectedImages.push(files[i]);
       imagesControl.push(this.formBuilder.control(files[i]));
     }
+    
   }
 
   // onChangeTags(event: any) {
@@ -107,15 +135,16 @@ export class CreateProductComponent  {
             formData.append('imageURL', image);
           }
           //////
-          for(let tag of this.selectedTags){
+          for(let tag of this.updatedTags){
             formData.append('tag', tag);
           }
+          console.log(this.updatedTags)
           //////
-          for(let type of this.selectedType){
+          for(let type of this.updatedTypes){
             formData.append('type', type);
           }
           ///////
-          for(let os of this.selectedOs){
+          for(let os of this.updatedOs){
             formData.append('os', os);
           }
           const currentDate = new Date();

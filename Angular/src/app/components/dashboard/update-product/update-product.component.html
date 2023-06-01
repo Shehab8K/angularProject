@@ -4,7 +4,7 @@
 
     <div class="d-flex ustify-content-center align-items-center ">
 
-        <div class=" formCont" >
+        <div class=" formCont">
             <form (ngSubmit)="update()" [formGroup]="gameForm"
                 enctype="multipart/form-data">
                 <div class="col">
@@ -22,9 +22,10 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-6 " >
+                        <div class="col-6 ">
 
-                            <mat-form-field appearance="outline" style=" width: 100%;" >
+                            <mat-form-field appearance="outline"
+                                style=" width: 100%;">
                                 <mat-label>Tags</mat-label>
                                 <mat-select formControlName="tag" multiple>
                                     <mat-option *ngFor="let tag of tagsList"
@@ -34,7 +35,8 @@
                         </div>
                         <div class="col-6">
 
-                            <mat-form-field appearance="outline" style=" width: 100%;">
+                            <mat-form-field appearance="outline"
+                                style=" width: 100%;">
                                 <mat-label>Operating System</mat-label>
                                 <mat-select formControlName="os" multiple>
                                     <mat-option *ngFor="let os of osList"
@@ -44,7 +46,8 @@
                         </div>
                         <div class="col-6">
 
-                            <mat-form-field appearance="outline" style=" width: 100%;">
+                            <mat-form-field appearance="outline"
+                                style=" width: 100%;">
                                 <mat-label>types</mat-label>
                                 <mat-select formControlName="type" multiple>
                                     <mat-option *ngFor="let type of typesList"
