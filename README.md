@@ -1,8 +1,8 @@
 <div align="center" style="margin-top:6%;margin-bottom:6%;">
  <img style = "width:140px; height:140px;" src="https://i.imgur.com/ipVb55a.png" />
 </div>
- <h1 align="center" class="fs-1"> GGamerz </h1>
- 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Nova+Square&pause=1000&color=F20055&width=435&lines=GGamerz)](https://git.io/typing-svg)
+
 # Introduction
 GGamerz is an e-commerce website with an admin-panel that allows admins to control all data manipulation and handling. Our app mainly serves as a platform where users can shop through a database of various games and filter by different choices such as game type, game category or platform compatibility. Users can build their profile and add their game preferences and Discord links to facilitate contact between them and other users as a part of our community.
 
@@ -29,6 +29,7 @@ MEAN is a technology stack used for building full stack applications. It's a com
 
 ### Admin-panel
 - Chart statistics and analysis.
+- Images upload using Multer and cloudinary.
 - User ban and unban.
 - Reject or accept orders.
 - Add, edit, view and delete products.
