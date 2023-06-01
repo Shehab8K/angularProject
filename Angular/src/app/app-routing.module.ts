@@ -30,25 +30,33 @@ import { UpdateProductComponent } from './components/dashboard/update-product/up
 
 const routes: Routes = [
 
-  // All users + guests
-  {path:'', component:HomeComponent},
   {path:'register', component:RegisterComponent},
   {path:'login',component:LoginComponent},
-  {path:'games',component:AllGamesComponent},
-  {path:'games/:id',component:GameShowComponent},
-  {path:'cart',component:CartComponent},
-
-  // Only Admins and users
+  // All users + guests
   {
     path: "",
-    canActivate:[AuthGuard],
-    canActivateChild: [AuthGuard],
+    canActivate:[UserGuard],
+    canActivateChild:[UserGuard],
     children:[
-      {path:'payment',component:PaymentComponent},
-      {path:'orders',component:OrdersComponent},
-      {path:'profile',component:ProfileComponent},
+      {path:'', component:HomeComponent},
+      {path:'games',component:AllGamesComponent},
+      {path:'games/:id',component:GameShowComponent},
+      {path:'cart',component:CartComponent},
+
+      // Only logged in users
+      {
+        path: "",
+        canActivate:[AuthGuard,UserGuard],
+        canActivateChild: [AuthGuard,UserGuard],
+        children:[
+          {path:'payment',component:PaymentComponent},
+          {path:'orders',component:OrdersComponent},
+          {path:'profile',component:ProfileComponent},
+        ]
+      },
     ]
   },
+
 
   // Only Admins Routes
   {

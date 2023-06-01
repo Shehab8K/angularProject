@@ -14,49 +14,44 @@
   <div class="d-flex justify-content-center col-12 content">
     <button (click)="ShowPrevious()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="prev col-1"> ❮
     </button>
-
     <div class="container row col-10 shadow-lg">
-
       <div class="image col-md-8">
-        <ng-container >
-          <img [src]="hoveredImageUrl ? hoveredImageUrl : firstImage"  />
+        <ng-container>
+          <img [src]="hoveredImageUrl ? hoveredImageUrl : firstImage" />
         </ng-container>
-
       </div>
-
-
       <div class="col-md-4 d-flex flex-column right-side justify-content-between p-3">
-
         <div class="game-name">
           <p class=" text-white fs-4 text-center">{{items[currentindex].name}}</p>
         </div>
-
         <!-- <div class="side d-flex flex-column justify-content-between"> -->
-
-            <div class="side d-flex gap-2 p-2">
-              <ng-container *ngFor="let image of items[currentindex].images; let i = index;">
-                  <img class="hover-img" *ngIf="i < 4" [src]="image" (mouseover)="displayLargeImage(image)" (mouseout)="onMouseOut()">
-                </ng-container>
-                <!-- <ng-template *ngIf="items[currentindex].images.length == 1 ; ">
+        <div class="side d-flex gap-2 p-2">
+          <ng-container *ngFor="let image of items[currentindex].images; let i = index;">
+            <img class="hover-img" *ngIf="i < 4" [src]="image" (mouseover)="displayLargeImage(image)"
+              (mouseout)="onMouseOut()">
+          </ng-container>
+          <!-- <ng-template *ngIf="items[currentindex].images.length == 1 ; ">
                   <img class="img-only" [src]="items[currentindex].images[0]" (mouseover)="displayLargeImage(items[currentindex].images[0])" (mouseout)="onMouseOut()">
                 </ng-template> -->
-            </div>
-
-          <div class="d-flex justify-content-between price_tag p-3">
-            <div class="d-flex gap-2" >
-              <p class="tag" *ngFor="let type of items[currentindex].type">{{type}}</p>
-            </div>
-            <p class="price d-flex justify-content-end">{{items[currentindex].price}}$</p>
+        </div>
+        <div class="d-flex justify-content-between price_tag p-3">
+          <div class="d-flex gap-2">
+            <p class="tag" *ngFor="let type of items[currentindex].type">{{type}}</p>
           </div>
-
+          <p class="price d-flex justify-content-end">{{items[currentindex].price}}$</p>
+        </div>
       </div>
-
     </div>
     <button (click)="ShowNext()" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="next col-1"> ❯ </button>
   </div>
 
   <!-- Your Cards are there -->
-  <app-home-cards></app-home-cards>
+  <div class="mt-5">
+    <h3 class="title1 text-white position-absolute">Choose your Favorite Character and Enjoy its Game</h3>
+
+    <app-home-cards></app-home-cards>
+  </div>
+
   <section class="text-light" id="about" #aboutSection>
     <app-about-us></app-about-us>
   </section>

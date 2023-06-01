@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
-<div class=" page-container d-flex">
+<div  [style.backgroundImage.]="bgImg" class=" page-container d-flex">
     <div [style.background.]="bgcolor" class="profile-container shadow-lg rounded">
         <div class="header m-2 p-3 d-flex flex-row">
             <div class=" info d-flex flex-row">
                 <!-- profile pic -->
                 <div class="profile-pic rounded m-3">
-                    <img src="../../../assets/images/PkBYcGy.png">
+                    <img [src]="character">
                 </div>
                 <div>
                     <div class="mb-2" *ngIf="editMode else elseblock">
@@ -19,13 +19,15 @@
                     <div class="fs-5">
                         <div>
                             <div class="mb-2" *ngIf="editMode else elseblock2">
-                                <label class="fw-medium fs-4 text-light ">Discord Username: <i class="fas fa-edit fa-sm"></i></label>
+                                <label class="fw-medium fs-4 text-light ">Discord Username: <i
+                                        class="fas fa-edit fa-sm"></i></label>
                                 <input class="form-control bg-dark text-light p-2 mb-1" [(ngModel)]="updatedDiscord"
                                     value={{user.discord}}>
                                 <label class="fw-medium fs-4 mt-2 text-light ">Theme: </label>
-                                     <button class="btn m-2" [(colorPicker)]="bgcolor"> <i class="text-light fa-solid fa-palette fa-xl"></i></button>
-                                    <button class="btn btn-dark " (blur)="refresh()" (click)="setDefault()">Default
-                                        Theme</button>
+                                <button class="btn m-2" [(colorPicker)]="bgcolor"> <i
+                                        class="text-light fa-solid fa-palette fa-xl"></i></button>
+                                <button class="btn btn-dark " (blur)="refresh()" (click)="setDefault()">Default
+                                    Theme</button>
                             </div>
                             <ng-template #elseblock2><i class="fa-brands fa-discord"> </i>
                                 <span class="text-light "> {{user.discord}}</span>
@@ -92,7 +94,7 @@
         <hr class="m-2 separator rounded">
         <p class="m-2 p-3 fs-4 fw-medium text-light">Most Purchased Genres</p>
         <!-- <app-chart [tags]="tags" [tagCount]="tagCount" (chartCreated)="refresh()"></app-chart> -->
-                <app-chart ></app-chart>
+        <app-chart></app-chart>
         <!-- <hr class="m-2 separator rounded"> -->
 
     </div>

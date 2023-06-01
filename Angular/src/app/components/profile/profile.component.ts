@@ -24,9 +24,11 @@ export class ProfileComponent implements OnInit {
   updatedPreferences: any[] = [];
   newPreferences: any[] = [];
   inputs: any[] = []
-
+  character = 'assets/images/Characters/PkBYcGy.png'
+  bgImg = "url(" + this.character + ")"
+  
   constructor(private userService: UserService, private orderService: OrdersService,
-     private cdr: ChangeDetectorRef, private userUpdateService: UserUpdateService) { }
+    private cdr: ChangeDetectorRef, private userUpdateService: UserUpdateService) { }
 
   ngOnInit(): void {
     this.fetchData()
@@ -61,7 +63,7 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-  emitValue(data: any): void{
+  emitValue(data: any): void {
     this.userUpdateService.emitValue(data);
   }
   toggleEditMode() {
