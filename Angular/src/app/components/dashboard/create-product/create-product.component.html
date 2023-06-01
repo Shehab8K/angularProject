@@ -23,7 +23,21 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-6">
-                            <select formControlName="tag"
+
+                            <mat-form-field appearance="outline"
+                                style=" width: 100%;">
+                                <mat-label>Tags</mat-label>
+                                <mat-select formControlName="tag" multiple>
+                                    <mat-option *ngFor="let tag of tagsList"
+                                        [value]="tag">{{tag}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+
+                            
+
+
+                            <!-- <select formControlName="tag"
                                 class="selectpicker w-100"
                                 multiple
                                 data-live-search="true" title="Tags"
@@ -36,32 +50,32 @@
                                 <option value="horror">war</option>
                                 <option value="horror">combat</option>
                                 <option value="horror">fantasy</option>
-                            </select>
+                            </select> -->
 
                         </div>
                         <div class="col-6">
-                            <select formControlName="type"
-                                class="selectpicker w-100" multiple
-                                data-live-search="true" title="Type"
-                                [(ngModel)]="selectedType">
-                                <option value="multiplayer">Multiplayer</option>
-                                <option value="singleplayer">Singleplayer</option>
-                            </select>
+                            <mat-form-field appearance="outline"
+                                style=" width: 100%;">
+                                <mat-label>types</mat-label>
+                                <mat-select formControlName="type" multiple>
+                                    <mat-option *ngFor="let type of typesList"
+                                        [value]="type">{{type}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
 
                         </div>
 
                     </div>
                     <div class="row mb-3">
                         <div class="col-6">
-                            <select formControlName="os"
-                                class="selectpicker w-100"
-                                multiple
-                                data-live-search="true" title="Operation system"
-                                [(ngModel)]="selectedOs">
-                                <option value="linux">Linux</option>
-                                <option value="mac">MacOs</option>
-                                <option value="windows">Windows</option>
-                            </select>
+                            <mat-form-field appearance="outline"
+                                style=" width: 100%;">
+                                <mat-label>Operating System</mat-label>
+                                <mat-select formControlName="os" multiple>
+                                    <mat-option *ngFor="let os of osList"
+                                        [value]="os">{{os}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
 
                         </div>
                         <div formArrayName="imageURL" class="col-6">

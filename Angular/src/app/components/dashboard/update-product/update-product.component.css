@@ -59,15 +59,17 @@
   }
 }
 
-input,textarea,.no-background
- {
+input,
+textarea,
+.no-background {
   border-color: gray;
   background: none;
   color: white;
 }
+
 textarea:focus,
-input:focus{
-  border:2px solid #c2185b;
+input:focus {
+  border: 2px solid #c2185b;
   box-shadow: none;
   background: none;
   color: white;
