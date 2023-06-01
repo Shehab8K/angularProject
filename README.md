@@ -1,5 +1,5 @@
 <div align="center" style="margin-top:6%;margin-bottom:6%;">
- <img style = "width:140px; height:140px;" src="https://imgur.com/Z0OVJv9" />
+ <img style = "width:140px; height:140px;" src="https://i.imgur.com/ipVb55a.png" />
 </div>
  <h1 align="center" class="fs-1"> GGamerz </h1>
  
