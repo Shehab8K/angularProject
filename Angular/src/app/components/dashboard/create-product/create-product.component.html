@@ -11,13 +11,13 @@
                     <div class="row mb-3">
                         <div class="col-6">
                             <input formControlName="name" type="text"
-                                class="form-control"
+                                class="form-control rounded p-3"
                                 placeholder=" Name"
                                 aria-label="name">
                         </div>
                         <div class="col-6">
                             <input formControlName="price" type="number"
-                                class="form-control"
+                                class="form-control rounded p-3"
                                 placeholder="Price" aria-label="price">
                         </div>
                     </div>
@@ -33,24 +33,6 @@
                                 </mat-select>
                             </mat-form-field>
 
-
-                            
-
-
-                            <!-- <select formControlName="tag"
-                                class="selectpicker w-100"
-                                multiple
-                                data-live-search="true" title="Tags"
-                                [(ngModel)]="selectedTags">
-                                <option value="action">Action</option>
-                                <option value="funny">funny</option>
-                                <option value="sports">sports</option>
-                                <option value="adventure">adventure</option>
-                                <option value="horror">horror</option>
-                                <option value="horror">war</option>
-                                <option value="horror">combat</option>
-                                <option value="horror">fantasy</option>
-                            </select> -->
 
                         </div>
                         <div class="col-6">
@@ -78,11 +60,11 @@
                             </mat-form-field>
 
                         </div>
-                        <div formArrayName="imageURL" class="col-6">
-                            <div class="input-group mb-3">
+                        <div formArrayName="imageURL" class="col-6 ">
+                            <div class="input-group mb-3 ">
                                 <input (change)="onChangeFile($event)"
                                     name="images"
-                                    type="file" class="form-control"
+                                    type="file" class="form-control rounded p-3"
                                     id="inputGroupFile02" multiple>
 
                             </div>
