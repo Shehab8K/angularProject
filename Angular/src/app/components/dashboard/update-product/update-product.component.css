@@ -1,67 +1,7 @@
-.card {
-  width:100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  margin: auto;
-  background-color: transparent;
-}
-
-.left ,.right
-{
-  width: 50%;
-  padding: 1%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.desc
-{
-  font-size: 15px;
-}
-
-.up {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-* {
-  color: white;
-  border-radius: 10px;
-}
-
-.OS i {
-  margin-right: 15px;
-  font-size: 30px;
-  float:left;
-}
-
-
-
-.type {
-  display: flex;
-  gap: 2%;
-}
-
-
-
-
-img {
-  object-fit: unset !important;
-}
-.tag {
-  display: flex;
-  flex-wrap:wrap;
-}
-
-
 /* The animation starts here */
 .animated-box {
   position: relative;
   padding: 2%;
-  margin-bottom: 3%;
   /* border-radius: 20px; */
 }
 
@@ -87,9 +27,11 @@ img {
   0% {
     background-position: 15% 0%;
   }
+
   50% {
     background-position: 85% 100%;
   }
+
   100% {
     background-position: 15% 0%;
   }
@@ -99,16 +41,34 @@ img {
   0% {
     clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), 3px calc(100% - 3px), 3px 100%, 100% 100%, 100% 0%, 0% 0%);
   }
+
   25% {
     clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) 100%, 100% 100%, 100% 0%, 0% 0%);
   }
+
   50% {
     clip-path: polygon(0% 100%, 3px 100%, 3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 3px, 100% 0%, 0% 0%);
   }
+
   75% {
     -webkit-clip-path: polygon(0% 100%, 3px 100%, 3px 3px, 3px 3px, 3px 3px, 3px 3px, 3px 3px, 3px 3px, 3px 0%, 0% 0%);
   }
+
   100% {
     -webkit-clip-path: polygon(0% 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 3px 100%, 0% 100%);
   }
+}
+
+input,textarea,.no-background
+ {
+  border-color: gray;
+  background: none;
+  color: white;
+}
+textarea:focus,
+input:focus{
+  border:2px solid #c2185b;
+  box-shadow: none;
+  background: none;
+  color: white;
 }

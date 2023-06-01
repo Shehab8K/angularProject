@@ -73,6 +73,7 @@ import { GalleryModule } from 'ng-gallery';
 import { UserUpdateService } from './services/emitters.service';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ChartTwoComponent } from './components/chart-two/chart-two.component';
+import { UpdateProductComponent } from './components/dashboard/update-product/update-product.component';
 
 
 
@@ -126,6 +127,7 @@ import { ChartTwoComponent } from './components/chart-two/chart-two.component';
 
     AboutUsComponent,
     ChartTwoComponent,
+    UpdateProductComponent,
 
 
   ],
