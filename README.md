@@ -1,6 +1,8 @@
 <div align="center" style="margin-top:6%;margin-bottom:6%;">
- <img style = "width:140px; height:140px;" src="https://i.imgur.com/ipVb55a.png" />
- <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Nova+Square&size=40&pause=1000&color=F20055&center=true&vCenter=true&width=435&lines=GGamerz" alt="Typing SVG" /></a>
+ <img style = "width:140px; height:140px;" src="https://i.imgur.com/ipVb55a.png" ></br>
+ <a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=Nova+Square&size=40&pause=1000&color=F20055&center=true&vCenter=true&width=435&lines=GGamerz" alt="Typing SVG" />\
+ </a>
 </div>
 
 # Introduction
