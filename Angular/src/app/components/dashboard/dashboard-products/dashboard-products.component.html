@@ -26,8 +26,7 @@
       <a [routerLink]="'/dashboard/games/' + game._id">
         <i class="material-icons button--rounded">visibility</i>
       </a>
-  
-      <i class="material-icons button--rounded m-2">edit</i>
+      <a [routerLink]="'/dashboard/games/update/' + game._id"><i class="material-icons button--rounded m-2">edit</i></a>
       <i class="material-icons button--rounded" data-bs-toggle="modal" [attr.data-bs-target]="'#confirmation' + game._id">delete</i>
       <div class="modal fade" [id]="'confirmation' + game._id" index="-1">
         <div class="modal-dialog modal-dialog-centered">
