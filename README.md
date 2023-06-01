@@ -1,5 +1,5 @@
 <div align="center" style="margin-top:6%;margin-bottom:6%;">
- <img style = "width:140px; height:140px;  border-radius:50px;" src="https://imgur.com/4rt9suy" />
+ <img style = "width:140px; height:140px;" src="https://imgur.com/4rt9suy" />
 </div>
  <h1 align="center" class="fs-1"> GGamerz </h1>
  
@@ -45,11 +45,13 @@ git clone https://github.com/asmaagamal871/angularProject.git
 
 ```
 DATABASE_NAME=
+SECRET_KEY=
 CLOUD_NAME=
 CLOUDINARY_KEY=
 CLOUDINARY_SECRET=
-
-SECRET_KEY=WeAreTheBestTeamForSamkara
+CLOUD_PATH=https://res.cloudinary.com/ds5puha49/
+STRIPE_PUBLIC_KEY=
+STRIPE_SECRET_KEY=
 ```
 
 <pre>
