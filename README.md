@@ -1,5 +1,5 @@
 <div align="center" style="margin-top:6%;margin-bottom:6%;">
- <img style = "width:140px; height:140px;" src="https://imgur.com/4rt9suy" />
+ <img style = "width:140px; height:140px;" src="https://imgur.com/woVZ4Kb" />
 </div>
  <h1 align="center" class="fs-1"> GGamerz </h1>
  
@@ -25,7 +25,7 @@ MEAN is a technology stack used for building full stack applications. It's a com
 - User can view their pending, accepted or rejected orders.
 - Stripe visa payment gateway.
 - Responsive design for mobile and desktop devices.
-- Chart statistics
+- Chart statistics.
 
 ### Admin-panel
 - Chart statistics and analysis.
