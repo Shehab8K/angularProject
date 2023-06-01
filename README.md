@@ -1,7 +1,7 @@
 <div align="center" style="margin-top:6%;margin-bottom:6%;">
  <img style = "width:140px; height:140px;" src="https://i.imgur.com/ipVb55a.png" />
 </div>
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Nova+Square&pause=1000&color=F20055&width=435&lines=GGamerz)](https://git.io/typing-svg)
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Nova+Square&pause=1000&color=F20055&width=435&lines=GGamerz" alt="Typing SVG" /></a>
 
 # Introduction
 GGamerz is an e-commerce website with an admin-panel that allows admins to control all data manipulation and handling. Our app mainly serves as a platform where users can shop through a database of various games and filter by different choices such as game type, game category or platform compatibility. Users can build their profile and add their game preferences and Discord links to facilitate contact between them and other users as a part of our community.
