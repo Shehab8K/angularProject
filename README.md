@@ -71,10 +71,6 @@ npm install
 node server.js     or    nodemon server.js
 Server will be listening on port 3000
 </pre>
-
-
- ### Dummy data
-  Import file usersdata.json in compass.
     
 ## Authors
 
