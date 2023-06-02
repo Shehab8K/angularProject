@@ -9,7 +9,7 @@
 GGamerz is an e-commerce website with an admin-panel that allows admins to control all data manipulation and handling. Our app mainly serves as a platform where users can shop through a database of various games and filter by different choices such as game type, game category or platform compatibility. Users can build their profile and add their game preferences and Discord links to facilitate contact between them and other users as a part of our community.
 
 ## Demo :tv: 
-[![Website Demo Video](https://imgur.com/2o7nYuS)](https://youtu.be/rYhzmK-7wDY) 
+[![Website Demo Video](https://imgur.com/2o7nYuS)](https://youtu.be/o9uaP1QoSwI) 
 
 
 ## Technologies
