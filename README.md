@@ -4,7 +4,10 @@ and filter by different choices such as game type, game category or platform com
 
 ## Demo Video :tv: 
 [![Website Demo Video](https://img.youtube.com/vi/o9uaP1QoSwI/0.jpg)](https://www.youtube.com/watch?v=o9uaP1QoSwI) 
-Feel free to visit our website🖥️ at 👉https://ggamerz.netlify.app/ for more information and to explore the exciting features we offer.
+</br>
+<hr>
+Don't forget to <b>visit</b> our website at 👉🏻 https://ggamerz.netlify.app/ 
+<hr>
 
 ## Technologies
 MEAN is a technology stack used for building full stack applications. It's a combination of the following technologies:
