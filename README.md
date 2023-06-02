@@ -9,6 +9,8 @@
 GGamerz is an e-commerce website with an admin-panel that allows admins to control all data manipulation and handling. Our app mainly serves as a platform where users can shop through a database of various games and filter by different choices such as game type, game category or platform compatibility. Users can build their profile and add their game preferences and Discord links to facilitate contact between them and other users as a part of our community.
 
 ## Demo :tv: 
+[![Website Demo Video](https://studio.youtube.com/video/rYhzmK-7wDY/edit)
+
 
 ## Technologies
 MEAN is a technology stack used for building full stack applications. It's a combination of the following technologies:
