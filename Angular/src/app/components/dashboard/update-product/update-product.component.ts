@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators,FormArray } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GamesService } from 'src/app/services/products.service';
 
 @Component({
@@ -23,14 +23,15 @@ export class UpdateProductComponent {
   updatedOs:string[]=[];
   updatedImages:string[]=[];
 
-  tagsList = ['Action', 'funny', 'sports','adventure','horror'];
+  tagsList = ['Action', 'funny', 'sports','adventure','horror',"war","combat","fantasy"];
   typesList = ['multiplayer', 'singleplayer'];
   osList = ['Linux', 'MacOs', 'Windows'];
 
   constructor(
     public gamesService: GamesService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+     private router: Router
   ) {}
 
   ngOnInit() {
@@ -78,30 +79,6 @@ export class UpdateProductComponent {
   }
   }
 
-  // populateFormFields() {
-  //   this.gameForm.patchValue({
-  //     name: this.game.name,
-  //     price: this.game.price,
-  //     description: this.game.description
-  //   });
-  
-  //   this.setFormArrayValues('tag', this.game.tag);
-  //   this.setFormArrayValues('type', this.game.type);
-  //   this.setFormArrayValues('os', this.game.os);
-  //   this.setFormArrayValues('imageURL', this.game.images);
-  //   console.log(this.gameForm.value); // Print form values to the console
-  // }
-
-
-  // setFormArrayValues(formArrayName: string, values: any[]) {
-  //   const formArray = this.gameForm.get(formArrayName) as FormArray;
-  //   formArray.clear();
-  //   if (values) {
-  //     values.forEach(value => {
-  //       formArray.push(new FormControl(value));
-  //     });
-  //   }
-  // }
   
   onChangeFile(event: any) {
     const files = event.target.files;
@@ -114,20 +91,6 @@ export class UpdateProductComponent {
       imagesControl.push(this.formBuilder.control(files[i]));
     }
   }
-
-  // getUpdatedTags(): string[] {
-  //   const tagFormArray = this.gameForm.get('tag') as FormArray;
-  //   console.log(tagFormArray)
-  //   return tagFormArray.value;
-  // }
-
-  // saveUpdates() {
-  //   this.updatedTags = this.getUpdatedTags();
-  //   // const updatedTypes = this.getUpdatedTypes();
-  //   // const updatedOs = this.getUpdatedOs();
-  
-  //   // Do something with the updated values (e.g., send them to the server)
-  // }
 
   update(){
     const formData = new FormData();
@@ -146,67 +109,67 @@ export class UpdateProductComponent {
           
         if(this.updatedTypes.length==0 )
          this.updatedTypes=  this.game.type
-         
         else
-         { this.updatedTypes=this.gameForm.value.type
+         { 
+          this.updatedTypes=this.gameForm.value.type
         }
 
- for(let type of this.updatedTypes){
+        for(let type of this.updatedTypes)
+          {
             formData.append('type', type);
           }
+
+
         if(this.updatedTags.length==0 )
          this.updatedTags=  this.game.tag
         else
         {
           this.updatedTags=this.gameForm.value.tag
-          
-         
         }
            for(let tag of this.updatedTags){
             formData.append('tag', tag);
           }
+
         if(this.updatedOs.length==0 )
          this.updatedOs=  this.game.os
         else
-        {  this.updatedOs=this.gameForm.value.os
-          
-          
+        {  
+          this.updatedOs=this.gameForm.value.os
         }
-for(let os of this.updatedOs){
+        for(let os of this.updatedOs){
             formData.append('os', os);
           }
+
         if(this.selectedImages.length==0 )
-         this.updatedImages=  this.game.images
-        else
-        {  this.updatedImages=this.gameForm.value.imageURL
-          
-          
+         {
+          this.updatedImages=  this.game.images
+          console.log(this.updatedImages)
         }
-for(let images of this.selectedImages){
+        else
+        {  
+          this.updatedImages=this.selectedImages
+          console.log(this.update)
+        }
+
+        for(let images of this.updatedImages)
+          {
             formData.append('imageURL', images);
           }
+
            formData.forEach((value, key) => {
           console.log(key + ": " + value);
         });
           
-
         this.gamesService.updateProduct(this.updatedProductId,formData).subscribe({
           next:()=>{
-            console.log('doneeeeeeeee')
+            console.log("done")
+            // this.router.navigate(['/dashboard/games/'+this.updatedProductId]);
           },
           error:(err)=>{
             console.log(err)
           }
         })
-// console.log(this.updatedTags)
-// console.log(this.updatedTypes)
-// console.log(this.updatedDescription)
-// console.log(this.updatedOs)
-// console.log(this.updatedImages)
-// // console.log(this.game.images)
-//       // console.log(this.updatedPrice)
-//       console.log(this.updatedValues)
-      // console.log(this.updatedName)
+
     }
 }
 

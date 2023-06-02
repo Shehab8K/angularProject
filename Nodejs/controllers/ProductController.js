@@ -163,9 +163,9 @@ router.put("/:id", async (req, res) => {
         return res.status(500).send("Error uploading file");
       } else {
 
-        if(req.files){
-          console.log(req.files);
-        }
+        // if(req.files){
+        //   // console.log(req.files);
+        // }
 
         // const dataForValidation = {
         //   name: req.body.name,
@@ -190,7 +190,9 @@ router.put("/:id", async (req, res) => {
         {
           return res.status(404).json({message: "Product not found"})
         }
-        
+        if(req.body.imageURL){
+          product.images=req.body.imageURL;
+        }
         product.name = req.body.name;
         product.price = req.body.price ;
         product.os = req.body.os ;
@@ -200,7 +202,7 @@ router.put("/:id", async (req, res) => {
         product.releasedDate = req.body.releasedDate;
         product.character = req.body.character; 
         
-        if(req.files){
+        if(req.files ){
 
           if (product.images && product.images.length > 0) {
             const publicIds = product.images.map((image) => {
