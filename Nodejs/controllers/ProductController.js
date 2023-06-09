@@ -190,9 +190,7 @@ router.put("/:id", async (req, res) => {
         {
           return res.status(404).json({message: "Product not found"})
         }
-        if(req.body.imageURL){
-          product.images=req.body.imageURL;
-        }
+       
         product.name = req.body.name;
         product.price = req.body.price ;
         product.os = req.body.os ;
