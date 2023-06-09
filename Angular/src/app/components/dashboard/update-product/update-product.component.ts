@@ -162,9 +162,8 @@ export class UpdateProductComponent {
           
         this.gamesService.updateProduct(this.updatedProductId,formData).subscribe({
           next:()=>{
-           
-              this.router.navigate(['/dashboard/games']);
-           
+            console.log("done")
+            this.router.navigate(['/dashboard/games/'+this.updatedProductId]);
           },
           error:(err)=>{
             console.log(err)
