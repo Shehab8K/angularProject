@@ -1,6 +1,7 @@
 .page-container {
     background-color: #414758e1;
     margin-top: 150px !important;
+    width: 70%;
 }
 
 body {
@@ -18,6 +19,7 @@ body {
 
 .page-display {
     margin-top: 40px;
+    justify-content: space-between;
 }
 
 .gif {
@@ -34,10 +36,11 @@ body {
 
 .filters-container {
     font-family: 'Nova Flat';
-    width: 300px;
+    /* width: 300px; */
     color: white;
     height: fit-content;
     margin: 20px;
+    /* border: 2px solid red; */
 }
 
 .search {
@@ -183,3 +186,6 @@ i {
     cursor: pointer;
     transform: scale(1.2);
 }
+/* #falseBlock{
+    width:100% !important;
+} */
