@@ -28,7 +28,7 @@ export class AllGamesComponent implements OnInit {
   cart: any[] = []
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService,private gamesService: GamesService, private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private authService: AuthService, private gamesService: GamesService, private formBuilder: FormBuilder, private userService: UserService) {
     this.priceRange = this.formBuilder.group({
       range1: false,
       range2: false,
@@ -74,7 +74,7 @@ export class AllGamesComponent implements OnInit {
     } catch (error) {
       console.error("An error occurred while retrieving the games", error);
     }
-    console.log(this.gameTags)
+    // console.log(this.gameTags)
   }
   isloggedIn() {
     this.isLoggedIn = this.authService.isLoggedIn()
@@ -107,7 +107,7 @@ export class AllGamesComponent implements OnInit {
       }
     })
   }
-  
+
   onChangepriceRange(): void {
     const selectedPrice = Object.keys(this.priceRange.value).filter(option => this.priceRange.value[option]);
     // console.log(selectedPrice);
@@ -145,19 +145,18 @@ export class AllGamesComponent implements OnInit {
   }
 
   onChangeTags(): void {
-    // console.log(this.tags);
+    console.log(this.tags);
     this.rawData.forEach((game: any) => {
       if (game.tag.some((tag: string) => this.tags.includes(tag))) {
-        if (!(this.filteredGames.some(obj => obj.name === game.name)))
+        if (!(this.filteredGames.some(obj => obj._id === game._id)))
           this.filteredGames.push(game)
       }
       else
-        if (this.filteredGames.some(obj => obj.name === game.name))
+        if (this.filteredGames.some(obj => obj._id === game._id))
           this.filteredGames.splice(game)
-
     });
     console.log(this.filteredGames)
-    if (this.filteredGames.length > 0)
+    if (this.tags.length > 0)
       this.games = this.filteredGames
     else
       this.games = this.rawData
@@ -165,15 +164,15 @@ export class AllGamesComponent implements OnInit {
   onChangeTypes(): void {
     this.rawData.forEach((game: any) => {
       if (game.type.some((type: string) => this.types.includes(type))) {
-        if (!(this.filteredGames.some(obj => obj.id === game.id)))
+        if (!(this.filteredGames.some(obj => obj._id === game._id)))
           this.filteredGames.push(game)
       }
       else
-        if (this.filteredGames.some(obj => obj.id === game.id))
+        if (this.filteredGames.some(obj => obj._id === game._id))
           this.filteredGames.splice(game)
     });
     console.log(this.filteredGames)
-    if (this.filteredGames.length > 0)
+    if (this.types.length > 0)
       this.games = this.filteredGames
     else
       this.games = this.rawData
