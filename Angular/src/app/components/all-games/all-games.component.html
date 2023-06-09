@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 
 <body>
-    <div *ngIf="games && gameTags else falseBlock " class="page-container shadow-lg ps-4 pe-4 m-5 rounded">
+    <div  class="page-container shadow-lg ps-4 pe-4 m-5 rounded">
         <div class="header m-2 p-3 mt-3 shadow-sm fs-3 rounded"> ALL YOUR FAVORITE GAMES IN ONE PLACE<img class="gif"
                 src="../../../assets/images/icon.gif"></div>
         <div class="d-flex flex-row page-display">
-            <div class="d-flex flex-column">
+            <div *ngIf="games.length>0 else falseBlock " class="d-flex flex-column">
                 <div class="game-container bg-dark d-flex flex-row shadow  mb-3 p-2  rounded" *ngFor="let g of games">
                     <div class="d-flex flex-row ">
                         <div class="image">
@@ -16,32 +16,30 @@
                                     'fa-cart-plus': !isInCart(g),
                                     'fa-cart-shopping': isInCart(g)
                                   }"></i>
-                                    </div>
-                                    <ng-template #elseblock>
-                                        Login to purchase!</ng-template>
                                 </div>
+                                <ng-template #elseblock>
+                                    Login to purchase!</ng-template>
                             </div>
-                            <div class="d-flex flex-column details">
-                                <h4 class="game-title"
-                                    routerLink="/games/{{g._id}}">
-                                    {{g.name}}
-                                </h4>
-                                <div class="d-flex flex-row">
-                                    <!-- for tags -->
-                                    <div *ngFor="let t of g.type">
-                                        <p class="tag p-1 text-center">{{t}}</p>
-                                    </div>
-                                    <div *ngFor="let tag of g.tag">
-                                        <p class="tag p-1 text-center">{{tag}}</p>
-                                    </div>
-                                    <!-- <p class="tag p-1 text-center   ">Singleplayer</p> -->
+                        </div>
+                        <div class="d-flex flex-column details">
+                            <h4 class="game-title" routerLink="/games/{{g._id}}">
+                                {{g.name}}
+                            </h4>
+                            <div class="d-flex flex-row">
+                                <!-- for tags -->
+                                <div *ngFor="let t of g.type">
+                                    <p class="tag p-1 text-center">{{t}}</p>
                                 </div>
-                                <div class="d-flex flex-row">
-                                    <p>{{formatDate(g.releasedDate || '') }}</p>
-                                    <!-- for os -->
-                                    <div class="os">
-                                        <i *ngFor="let p of g.os" class="fa"
-                                            [ngClass]="{
+                                <div *ngFor="let tag of g.tag">
+                                    <p class="tag p-1 text-center">{{tag}}</p>
+                                </div>
+                                <!-- <p class="tag p-1 text-center   ">Singleplayer</p> -->
+                            </div>
+                            <div class="d-flex flex-row">
+                                <p>{{formatDate(g.releasedDate || '') }}</p>
+                                <!-- for os -->
+                                <div class="os">
+                                    <i *ngFor="let p of g.os" class="fa" [ngClass]="{
                                     'fa-apple': p === 'mac',
                                     'fa-windows': p === 'windows',
                                     'fa-linux': p === 'linux'
@@ -61,6 +59,10 @@
                     </div>
                 </div>
             </div>
+            <ng-template #falseBlock>
+                <h3 class="text-light text-center p-5">Sorry, no games to show with this filter</h3> 
+                <!-- <app-loading></app-loading> -->
+            </ng-template>
             <div class="filters-container bg-dark d-flex flex-column shadow  mb-3 p-2  rounded">
                 <div class="input-group mb-3 search">
                     <input type="text" class="form-control" placeholder="Search by name">
@@ -115,58 +117,63 @@
                 <div class="m-2">
                     <h5>Tags</h5>
                     <hr>
-                    <select class="selectpicker" multiple data-live-search="true" [(ngModel)]="tags"
+                    <!-- <select class="selectpicker" multiple data-live-search="true" [(ngModel)]="tags"
                         (change)="onChangeTags()">
-                        <option *ngFor="let tag of gameTags">{{tag}}</option>
+                        <option *ngFor="let tag of gameTags">{{tag}}</option> -->
+                    <!-- </select> -->
 
-                        <!-- <option>adventure</option>
-                    <option>sports</option>
-                    <option>sci-fi</option>
-                    <option>horror</option> -->
-                    </select>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Tags</mat-label>
+                        <mat-select multiple [(ngModel)]="tags" (selectionChange)="onChangeTags()">
+                          <mat-option *ngFor="let tag of gameTags" [value]="tag">{{tag}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      
                 </div>
                 <div class="m-2">
                     <h5>Type</h5>
                     <hr>
-                    <select class="selectpicker" multiple data-live-search="true" [(ngModel)]="types"
+                    <!-- <select class="selectpicker" multiple data-live-search="true" [(ngModel)]="types"
                         (change)="onChangeTypes()">
                         <option>multiplayer</option>
                         <option>singleplayer</option>
-                    </select>
+                    </select> -->
+                    <mat-form-field appearance="outline" style=" width: 100%;">
+                        <mat-label>Types</mat-label>
+                        <mat-select multiple [(ngModel)]="types"
+                        (selectionChange)="onChangeTypes()">
+                            <mat-option value="multiplayer">multiplayer</mat-option>
+                            <mat-option value="singleplayer">singleplayer</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
                 <div class="m-2">
                     <h5>Platform</h5>
                     <hr>
 
-                        <form [formGroup]="os">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox"
-                                    id="mac" formControlName="mac"
-                                    (change)="onChangeOs()">
-                                <label class="form-check-label" for="mac">MacOS</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox"
-                                    id="windows" formControlName="windows"
-                                    (change)="onChangeOs()">
-                                <label class="form-check-label" for="windows">
-                                    Windows</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox"
-                                    id="linux" formControlName="linux"
-                                    (change)="onChangeOs()">
-                                <label class="form-check-label" for="linux">Linux</label>
-                            </div>
-                        </form>
-                    </div>
+                    <form [formGroup]="os">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="mac" formControlName="mac"
+                                (change)="onChangeOs()">
+                            <label class="form-check-label" for="mac">MacOS</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="windows" formControlName="windows"
+                                (change)="onChangeOs()">
+                            <label class="form-check-label" for="windows">
+                                Windows</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="linux" formControlName="linux"
+                                (change)="onChangeOs()">
+                            <label class="form-check-label" for="linux">Linux</label>
+                        </div>
+                    </form>
+                </div>
 
             </div>
         </div>
     </div>
-    <ng-template #falseBlock>
-        <!-- <h1 class="alert alert-danger">loading</h1>  -->
-        <app-loading></app-loading>
-    </ng-template>
+  
 </body>
 <app-footer></app-footer>
